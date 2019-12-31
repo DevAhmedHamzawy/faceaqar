@@ -16,7 +16,6 @@ class CreateAdvertiserSortTable extends Migration
         Schema::create('advertiser_sort', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->timestamps();
         });
     }
 

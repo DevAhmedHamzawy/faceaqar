@@ -54,7 +54,7 @@ class CreateAuctionEstatesTable extends Migration
             $table->date('date')->nullable();
             $table->string('hijri_date')->nullable();
             $table->time('time')->nullable();
-            $table->string('auction_conditions');
+            $table->text('auction_conditions');
             $table->timestamps();
         });
     }

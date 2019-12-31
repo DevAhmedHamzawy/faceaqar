@@ -16,11 +16,12 @@ class CreateAdvertisersTable extends Migration
         Schema::create('advertisers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('estate_id');
+            $table->integer('advertiser_sort_id');
             $table->string('name');
             $table->string('mobile1');
             $table->string('mobile2');
             $table->string('telephone');
-            $table->string('tax');
+            $table->string('fax');
             $table->string('central');
             $table->string('email');
             $table->string('website');
