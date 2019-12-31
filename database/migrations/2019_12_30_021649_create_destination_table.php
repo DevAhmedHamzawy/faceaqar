@@ -16,7 +16,6 @@ class CreateDestinationTable extends Migration
         Schema::create('destination', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->timestamps();
         });
     }
 

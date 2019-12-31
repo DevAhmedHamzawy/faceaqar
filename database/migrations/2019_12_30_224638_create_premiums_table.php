@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdSortTable extends Migration
+class CreatePremiumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateAdSortTable extends Migration
      */
     public function up()
     {
-        Schema::create('ad_sort', function (Blueprint $table) {
+        Schema::create('premiums', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('display');
         });
     }
 
@@ -27,6 +26,6 @@ class CreateAdSortTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ad_sort');
+        Schema::dropIfExists('premiums');
     }
 }

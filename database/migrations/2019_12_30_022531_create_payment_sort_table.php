@@ -16,7 +16,6 @@ class CreatePaymentSortTable extends Migration
         Schema::create('payment_sort', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->timestamps();
         });
     }
 

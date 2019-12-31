@@ -16,7 +16,6 @@ class CreatePriceSortTable extends Migration
         Schema::create('price_sort', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->timestamps();
         });
     }
 

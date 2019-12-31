@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdSortTable extends Migration
+class CreateEstateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateAdSortTable extends Migration
      */
     public function up()
     {
-        Schema::create('ad_sort', function (Blueprint $table) {
+        Schema::create('estate_images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('display');
+            $table->integer('estate_id');
+            $table->string('img');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class CreateAdSortTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ad_sort');
+        Schema::dropIfExists('estate_images');
     }
 }

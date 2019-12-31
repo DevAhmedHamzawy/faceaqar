@@ -16,7 +16,6 @@ class CreateSortTable extends Migration
         Schema::create('sort', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->timestamps();
         });
     }
 
