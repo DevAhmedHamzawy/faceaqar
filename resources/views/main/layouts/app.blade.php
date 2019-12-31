@@ -12,16 +12,22 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('main/css/bootstrap-a.css') }}">
+    <link rel="stylesheet" href="{{ asset('main/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('main/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('main/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('main/css/style.css') }}">
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    @yield('header')
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <div>
+        {{--<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -70,11 +76,16 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav>--}}
 
-        <main class="py-4">
+        @include('main.layouts.includes.navbar_mobile')
+        @include('main.layouts.includes.header')
+        @include('main.layouts.includes.slider')
+
             @yield('content')
-        </main>
+
+        @include('main.layouts.includes.footer')
+        @yield('footer')
     </div>
 </body>
 </html>
