@@ -18,9 +18,9 @@ class CreateEstatesTable extends Migration
             $table->integer('code');
             $table->integer('ad_sort_id');
             $table->integer('area_id');
-            $table->integer('category_id');
-            $table->integer('sort_id');
-            $table->integer('offer_id');
+            $table->integer('category_id')->nullable();
+            $table->integer('sort_id')->nullable();
+            $table->integer('offer_id')->nullable();
             $table->integer('premium_id')->nullable();
             $table->integer('duration_id');
             $table->string('center');
@@ -28,7 +28,7 @@ class CreateEstatesTable extends Migration
             $table->string('street');
             $table->text('address');
             $table->string('name');
-            $table->string('youtube');
+            $table->string('youtube')->nullable();
             $table->longText('description');
             $table->decimal('lat', 10, 7);
             $table->decimal('lng', 10, 7);

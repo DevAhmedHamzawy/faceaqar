@@ -22,7 +22,6 @@ Route::post('admin/logout', 'Auth\AdminLoginController@logout')->name('admin.log
 
 Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/login'],function(){
 
-    
 
 });
 
@@ -30,4 +29,11 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
+Route::get('estates/{adSort}', 'SearchController@searchByAdSort');
+Route::get('estates/{adSort}/index', 'EstateController@index');
+Route::get('estates/{adSort}/create', 'EstateController@create');
+Route::post('estates/{adSort}/create', 'EstateController@store')->name('estates.create');
+Route::get('estates/{adSort}/{estate}', 'EstateController@show');
+Route::get('search', 'SearchController@index');
+Route::get('search/filters', 'SearchController@getFilters');

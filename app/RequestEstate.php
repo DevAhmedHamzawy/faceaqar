@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RequestEstate extends Model
+class RequestEstate extends Estate
 {
     //
 }

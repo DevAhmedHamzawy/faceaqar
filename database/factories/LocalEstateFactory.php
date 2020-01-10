@@ -15,7 +15,7 @@ $factory->define(LocalEstate::class, function (Faker $faker) {
         'payment_sort_id' => function(){ return DB::table('payment_sort')->get()->random()->id; },
         'schema_name' => $faker->name,
         'schema_number' => $faker->numberBetween(1,2000),
-        'banks_number' => $faker->numberBetween(1,2000),
+        'block_number' => $faker->numberBetween(1,2000),
         'piece_number' => $faker->numberBetween(1,2000),
         'streets_number' => $faker->randomElement(['شارع واحد' , 'شارعين' , '3 شوارع' , '4 شوارع']),
         'estate_space' => $faker->numberBetween(1,2000),

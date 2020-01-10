@@ -13,12 +13,12 @@ class AdSortTableSeeder extends Seeder
     public function run()
     {
         DB::table('ad_sort')->insert([
-            ['name' => 'local_estate' , 'display' => 'عقار محلى'],
-            ['name' => 'global_estate' , 'display' => 'عقار دولى'],
-            ['name' => 'schema_estate' , 'display' => 'مخطط عقارى'],
-            ['name' => 'project_estate' , 'display' => 'مشروع عقارى'],
-            ['name' => 'request_estate' , 'display' => 'طلب عقارى'],
-            ['name' => 'auction_estate' , 'display' => 'مزاد عقارى'],
+            ['name' => 'local_estate' , 'display' => 'عقار محلى' , 'title' => 'العقار المحلى'],
+            ['name' => 'global_estate' , 'display' => 'عقار دولى', 'title' => 'العقار الدولى'],
+            ['name' => 'schema_estate' , 'display' => 'مخطط عقارى', 'title' => 'المخطط العقارى'],
+            ['name' => 'project_estate' , 'display' => 'مشروع عقارى', 'title' => 'المشروع العقارى'],
+            ['name' => 'request_estate' , 'display' => 'طلب عقارى', 'title' => 'الطلب العقارى'],
+            ['name' => 'auction_estate' , 'display' => 'مزاد عقارى', 'title' => 'المزاد العقارى'],
         ]);
     }
 }

@@ -19,7 +19,7 @@ $factory->define(Estate::class, function (Faker $faker) {
         'premium_id' => function(){ return DB::table('premiums')->get()->random()->id; },
         'duration_id' => function(){ return DB::table('durations')->get()->random()->id; },
         'center' => $faker->city,
-        'neighborhood' => $faker->cityPrefix,
+        'neighborhood' => $faker->city,
         'street' => $faker->streetName,
         'address' => $faker->address,
         'name' => $faker->name,

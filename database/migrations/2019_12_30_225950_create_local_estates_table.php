@@ -21,7 +21,7 @@ class CreateLocalEstatesTable extends Migration
             $table->integer('payment_sort_id');
             $table->string('schema_name');
             $table->integer('schema_number');
-            $table->integer('banks_number');
+            $table->integer('block_number');
             $table->integer('piece_number');
             $table->enum('streets_number' , ['شارع واحد' , 'شارعين' , '3 شوارع' , '4 شوارع']);
             $table->integer('estate_space');

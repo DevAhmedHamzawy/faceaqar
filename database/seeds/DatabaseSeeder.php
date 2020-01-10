@@ -27,11 +27,11 @@ class DatabaseSeeder extends Seeder
         //$this->call(PriceSortTableSeeder::class);
         //$this->call(SortTableSeeder::class);
         //$this->call(AdvertiserSortTableSeeder::class);
-        //factory(Estate::class, 100)->create();
         //factory(Area::class, 100)->create();
+        //factory(Estate::class, 100)->create();
         //factory(Advertiser::class, 200)->create();
-        //factory(AuctionEstate::class, 50)->create();
         //factory(LocalEstate::class, 50)->create();
+        //factory(AuctionEstate::class, 50)->create();
         //factory(RequestEstate::class, 50)->create();
     }
 }
