@@ -8,6 +8,8 @@ class NeighborhoodFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->where('neighborhood' , 'like' , "%$value%");
+        if($value !== null){
+            return $builder->where('neighborhood' , 'like' , "%$value%");
+        }        
     }
 }

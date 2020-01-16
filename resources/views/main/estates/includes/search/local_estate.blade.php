@@ -1,65 +1,43 @@
 <div class="sel1">
     <p> نوع العقار</p>
     <div class="custom-select">
-    <select>
-      <option value="volvo">نوع</option>
-      <option value="saab">نوع</option>
-      <option value="mercedes">نوع</option>
+    <select name="category_id">
+      @foreach ($categories as $category)
+        <option value="{{ $category->id }}">{{ $category->name }}</option>
+      @endforeach
     </select>
     </div>
 </div>
 <div class="sel1">
     <p> نوع القطعة</p>
     <div class="custom-select">
-    <select>
-      <option value="volvo">نوع</option>
-      <option value="saab">نوع</option>
-      <option value="mercedes">نوع</option>
+    <select name="sort_id">
+      @foreach ($sorts as $sort)
+        <option value="{{ $sort->id }}">{{ $sort->name }}</option>
+      @endforeach
     </select>
     </div>
 </div>
 <div class="sel1">
     <p> نوع العرض</p>
     <div class="custom-select">
-    <select>
-      <option value="volvo">نوع</option>
-      <option value="saab">نوع</option>
-      <option value="mercedes">نوع</option>
+    <select name="offer_id">
+      @foreach ($offers as $offer)
+        <option value="{{ $offer->id }}">{{ $offer->name }}</option>
+      @endforeach
     </select>
     </div>
 </div>
 <div class="sel1">
     <p>عدد الغرف</p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">1</option>
-      <option value="saab">2</option>
-      <option value="mercedes">3</option>
-      <option value="audi">4</option>
-        <option value="audi">5</option>
-        <option value="audi">6</option>
-        <option value="audi">7</option>
-        <option value="audi">8</option>
-        <option value="audi">9</option>
-        <option value="audi">1</option>
-    </select>
+    <div >
+      <input type="number" name="rooms_number" value="{{ old('rooms_number') }}" min="0" id="">
     </div>
 </div>
 <div class="sel1">
     <p>عدد الحمامات</p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">1</option>
-      <option value="saab">2</option>
-      <option value="mercedes">3</option>
-      <option value="audi">4</option>
-        <option value="audi">5</option>
-        <option value="audi">6</option>
-        <option value="audi">7</option>
-        <option value="audi">8</option>
-        <option value="audi">9</option>
-        <option value="audi">1</option>
-    </select>
+    <div >
+      <input type="number" name="bathrooms_number" value="{{ old('bathrooms_number') }}" min="0" id="">
     </div>
 </div>
 <div class="sel1">
@@ -109,196 +87,164 @@
 </div> 
 <div class="sel1">
     <p>عدد الشوارع </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
+    <div class="custom-select" >
+    <select name="streets_number">
+      <option value="">اختر</option>
+      <option>شارع واحد  </option>
+      <option>شارعين  </option>
+      <option>3 شوارع </option>
+      <option>4 شوارع</option>
     </select>
     </div>
 </div> 
     <div class="sel1">
     <p>واجهة العقار </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
+    <div class="custom-select" >
+    <select name="destination_id">
+      <option value=""  >اختر</option>
+      @foreach ($destinations as $destination)
+          <option value="{{ $destination->id }}">{{ $destination->name }}</option>
+      @endforeach
     </select>
     </div>
 </div> 
 <div class="sel1">
     <p> مساحة البناء م٢	 </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
-    </select>
+    <div >
+      <input type="number" name="estate_space" value="{{ old('estate_space') }}" class="form-control required" id="" placeholder="  مساحة العقار م٢ ">
     </div>
 </div>
 <div class="sel1">
     <p> تصميم البناء	 </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
+    <div class="custom-select" >
+    <select name="building_design">
+      <option class="choose" value=""  > اختر </option>
+      <option> 0   </option>
+      <option> 00  </option>
     </select>
     </div>
 </div>
     <div class="sel1">
     <p> عمر العقار	 </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
-    </select>
+    <div >
+      <input type="number" name="age" value="{{ old('age') }}" class="form-control" id="" placeholder="عمر العقار">
     </div>
 </div>
 <div class="sel1">
     <p> عدد الادوار	  </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
-    </select>
+    <div >
+      <input type="number" name="floors_number" value="{{ old('floors_number') }}" min="0" id="">
     </div>
 </div>
 <div class="sel1">
     <p> عدد الوحدات	 </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
-    </select>
+    <div >
+      <input type="number" name="units_number" value="{{ old('units_number') }}" min="0" id="">
     </div>
 </div>
 <div class="sel1">
     <p> رقم الدور	 </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
-    </select>
+    <div >
+      <input type="number" name="floor_number" value="{{ old('floor_number') }}" min="0" id="">
     </div>
 </div>
 <div class="sel1">
     <p> رقم الوحدة </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
-    </select>
+    <div >
+      <input type="number" name="unit_number" value="{{ old('unit_number') }}" min="0" id="">
     </div>
 </div>
 <div class="sel1">
     <p> عدد الصالات	 </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
-    </select>
+    <div >
+      <input type="number" name="receptions_number" value="{{ old('receptions_number') }}" min="0" id="">
     </div>
 </div>
 <div class="sel1">
     <p> عدد المطابخ	 </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
-    </select>
+    <div >
+      <input type="number" name="kitchens_number" value="{{ old('kitchens_number') }}" min="0" id="">
     </div>
 </div>
 <div class="sel1">
     <p> عدد المخازن	 </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
-    </select>
+    <div >
+      <input type="number" name="stores_number" value="{{ old('stores_number') }}" min="0" id="">
     </div>
 </div>
 <div class="sel1">
     <p> المصاعد </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
-    </select>
+    <div >
+      <input type="number" name="lifts_number" value="{{ old('lifts_number') }}" min="0" id="">
     </div>
 </div>
 <div class="sel1">
     <p> البدروم (تحت الارض)	</p>
-                                        <div class="custom-select">
-    <select>
-      <option value="volvo">يوجد</option>
-      <option value="saab">لا يوجد</option>
+    <div class="custom-select" >
+    <select name="basement">
+      <option class="choose" value=""  > اختر </option>
+      <option> يوجد   </option>
+      <option> لا يوجد  </option>
     </select>
     </div>
 </div>
 <div class="sel1">
     <p> الخزانات الارضية</p>
     <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
+    <select  name="floor_tanks_sort">
+      <option class="choose" value=""  > اختر </option>
+      <option> نوع    </option>
+      <option> نوع اخر   </option>
     </select>
     </div>
 </div>
 <div class="sel1">
     <p>  الخزانات العلوية	 </p>
     <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
+    <select name="overhead_tanks_sort">
+      <option class="choose" value=""  > اختر </option>
+      <option> نوع    </option>
+      <option> نوع اخر   </option>
     </select>
     </div>
 </div>
 <div class="sel1">
     <p>موقف السيارات (كراج)	 </p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">يوجد</option>
-      <option value="saab">لا يوجد</option>
+    <div class="custom-select" >
+    <select name="parking">
+      <option class="choose" value=""  > اختر </option>
+      <option> يوجد   </option>
+      <option> لا يوجد  </option>
     </select>
     </div>
 </div>
 <div class="sel1">
     <p> شبكة الكهرباء	 </p>
-                                        <div class="custom-select">
-    <select>
-      <option value="volvo">يوجد</option>
-      <option value="saab">لا يوجد</option>
+    <div class="custom-select">
+    <select name="electricity_network">
+      <option class="choose" value=""  > اختر </option>
+      <option> يوجد   </option>
+      <option> لا يوجد  </option>
     </select>
     </div>
 </div>
 <div class="sel1">
     <p>شبكة المياة	</p>
-                                        <div class="custom-select">
-    <select>
-      <option value="volvo">يوجد</option>
-      <option value="saab">لا يوجد</option>
+    <div class="custom-select">
+    <select name="water_network">
+      <option class="choose" value=""  > اختر </option>
+      <option> يوجد   </option>
+      <option> لا يوجد  </option>
     </select>
     </div>
 </div>
 <div class="sel1">
     <p> شبكة الغاز	 </p>
     <div class="custom-select">
-    <select>
-      <option value="volvo">يوجد</option>
-      <option value="saab">لا يوجد</option>
+    <select name="gas_network">
+      <option class="choose" value=""  > اختر </option>
+      <option> يوجد   </option>
+      <option> لا يوجد  </option>
     </select>
     </div>
 </div>
@@ -306,10 +252,11 @@
 <div class="for-sel2">
 <div class="sel1">
     <p> شبكة الصرف الصحي </p>
-                                        <div class="custom-select">
-    <select>
-      <option value="volvo">يوجد</option>
-      <option value="saab">لا يوجد</option>
+    <div class="custom-select">
+    <select name="sewerage_network">
+      <option class="choose" value=""  > اختر </option>
+      <option> يوجد   </option>
+      <option> لا يوجد  </option>
     </select>
     </div>
 </div>
@@ -317,37 +264,43 @@
     <div class="sel1">
     <p>نوع السعر </p>
     <div class="custom-select">
-    <select>
-      <option value="volvo">نص</option>
-      <option value="saab">نص</option>
-      <option value="mercedes">نص</option>
+    <select name="price_sort_id">
+      <option  value="">اختر</option>
+      @foreach ($priceSorts as $priceSort)
+          <option value="{{ $priceSort->id }}">{{ $priceSort->name }}</option>
+      @endforeach
     </select>
     </div>
 </div>
     <div class="sel1">
     <p>طريقة الدفع</p>
-    <div class="custom-select">
-    <select>
-      <option value="volvo">بنكي</option>
-      <option value="saab">كاش</option>
+    <div class="custom-select" >
+    <select name="payment_sort_id">
+      <option  value="">اختر</option>
+      @foreach ($paymentSorts as $paymentSort)
+          <option value="{{ $paymentSort->id }}">{{ $paymentSort->name }}</option>
+      @endforeach
     </select>
     </div>
 </div>
     <div class="sel1">
     <p>المستندات</p>
     <div class="custom-select">
-    <select>
-      <option value="volvo">يوجد</option>
-      <option value="saab">لا يوجد</option>
+    <select name="docs">
+      <option value="">اختر  </option>
+      <option>بصك  </option>
+      <option>بدون صك   </option>
+      <option>أخرى</option>
     </select>
     </div>
 </div> 
 <div class="sel1">
     <p>التسليم</p>
     <div class="custom-select">
-    <select>
-      <option value="volvo">فوري</option>
-      <option value="saab">بعد مدة</option>
+    <select name="delivery_method">
+      <option value="">اختر   </option>
+      <option>فورى   </option>
+      <option>أخرى  </option>
     </select>
     </div>
 </div> 

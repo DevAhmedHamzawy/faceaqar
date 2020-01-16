@@ -15,7 +15,7 @@ class CreateEstatesTable extends Migration
     {
         Schema::create('estates', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('code');
+            $table->integer('user_id');
             $table->integer('ad_sort_id');
             $table->integer('area_id');
             $table->integer('category_id')->nullable();
@@ -23,6 +23,7 @@ class CreateEstatesTable extends Migration
             $table->integer('offer_id')->nullable();
             $table->integer('premium_id')->nullable();
             $table->integer('duration_id');
+            $table->integer('code');
             $table->string('center');
             $table->string('neighborhood');
             $table->string('street');

@@ -6,7 +6,7 @@ use App\Area;
 use Faker\Generator as Faker;
 
 $factory->define(Area::class, function (Faker $faker) {
-    $name = $faker->name;
+    $name = $faker->city;
     return [
         'name' => $name,
         'slug' => str_slug($name),

@@ -8,6 +8,8 @@ class BuildingDesignFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->where('building_design' , $value);
+        if($value !== null){
+            return $builder->where('building_design' , $value);
+        }
     }
 }

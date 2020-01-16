@@ -8,6 +8,8 @@ class OfferFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->where('offer_id' , $value);
+        if($value !== null){
+            return $builder->where('offer_id' , $value);
+        }    
     }
 }

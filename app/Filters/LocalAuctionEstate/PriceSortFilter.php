@@ -8,6 +8,8 @@ class PriceSortFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->where('price_sort_id' , $value);
+        if($value !== null){
+            return $builder->where('price_sort_id' , $value);
+        }
     }
 }

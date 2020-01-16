@@ -8,6 +8,8 @@ class PaymentSortFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->where('payment_sort_id' , $value);
+        if($value !== null){
+            return $builder->where('payment_sort_id' , $value);
+        }
     }
 }

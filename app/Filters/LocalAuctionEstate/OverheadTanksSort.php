@@ -8,6 +8,8 @@ class OverheadTanksSortFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->where('schema_number' , $value);
+        if($value !== null){
+            return $builder->where('overhead_tanks_sort' , $value);
+        }
     }
 }

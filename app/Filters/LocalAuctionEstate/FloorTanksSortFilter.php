@@ -8,6 +8,8 @@ class FloorTanksSortFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->where('floor_tanks_sort' , $value);
+        if($value !== null){
+            return $builder->where('floor_tanks_sort' , $value);
+        }
     }
 }

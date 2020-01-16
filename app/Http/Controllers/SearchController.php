@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Advertiser;
+use App\Category;
 use App\Estate;
 use App\Filters\AdSortFilter;
 use App\Filters\AgeFilter;
@@ -22,10 +23,29 @@ use App\Filters\ElectricityNetworkFilter;
 use App\Filters\EstateFilter;
 use App\Filters\FloorNumberFilter;
 use App\Filters\FloorsNumberFilter;
+use App\Filters\FloorTanksSortFilter;
+use App\Filters\GasNetworkFilter;
+use App\Filters\KitchensNumberFilter;
+use App\Filters\LiftsNumberFilter;
 use App\Filters\NeighborhoodFilter;
 use App\Filters\OfferFilter;
+use App\Filters\OverheadTanksSortFilter;
+use App\Filters\ParkingFilter;
+use App\Filters\PaymentSortFilter;
+use App\Filters\PieceNumberFilter;
+use App\Filters\PriceSortFilter;
+use App\Filters\ReceptionsNumberFilter;
+use App\Filters\RoomsNumberFilter;
+use App\Filters\SchemaNameFilter;
+use App\Filters\SchemaNumberFilter;
+use App\Filters\SewerageNetworkFilter;
 use App\Filters\SortFilter;
+use App\Filters\StoresNumberFilter;
 use App\Filters\StreetFilter;
+use App\Filters\StreetsNumberFilter;
+use App\Filters\UnitNumberFilter;
+use App\Filters\UnitsNumberFilter;
+use App\Filters\WaterNetworkFilter;
 use App\LocalEstate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,12 +54,23 @@ class SearchController extends Controller
 {
     public function index()
     {
-        return view('main.estates.search');
+        return view('main.estates.search', 
+        [
+            'categories' => Category::getVisibleCategories(),
+            'sorts' => Estate::getAllSorts(),
+            'offers' => Estate::getAllOffers(),
+            'destinations' => Estate::getAllDestinations(),
+            'priceSorts' => Estate::getAllPriceSorts(),
+            'paymentSorts' => Estate::getAllPaymentSorts(),
+            'result' => 0
+        ]);
     }
 
     public function searchByAdSort($adSort)
     {
         $adSortId = DB::table('ad_sort')->whereName($adSort)->pluck('id');
+
+        $adSort = DB::table('ad_sort')->whereName($adSort)->first();
 
         $estates = Estate::whereAdSortId($adSortId)->get();
 
@@ -70,7 +101,8 @@ class SearchController extends Controller
 
         }
 
-        return json_encode($estates);
+        //return json_encode($estates);
+        return view('main.estates.index', ['estates' => $estates, 'adSort' => $adSort]);
     }
 
 
@@ -78,7 +110,21 @@ class SearchController extends Controller
     {
         //old
         //$this->estates->filter($this->filters(request()))->get();
-        dd(Estate::filter($this->filters())->get());
+        //dd(Estate::filter($this->filters())->get());
+
+
+        return view('main.estates.search', 
+        [
+            'adSort' => Estate::checkAdSort('local_estate'),
+            'categories' => Category::getVisibleCategories(),
+            'sorts' => Estate::getAllSorts(),
+            'offers' => Estate::getAllOffers(),
+            'destinations' => Estate::getAllDestinations(),
+            'priceSorts' => Estate::getAllPriceSorts(),
+            'paymentSorts' => Estate::getAllPaymentSorts(),
+            'result' => 1,
+            'results' => Estate::filter($this->filters())->get(),
+        ]);
     }
 
     protected function filters()
@@ -88,7 +134,7 @@ class SearchController extends Controller
             'category' => request('category'),
         ];*/
 
-        /*return //[
+        return [
             'category' => new CategoryFilter,
             'area' => new AreaFilter,
             'center' => new CenterFilter,
@@ -110,8 +156,26 @@ class SearchController extends Controller
             'electricity_network' => new ElectricityNetworkFilter,
             'floor_number' => new FloorNumberFilter,
             'floors_number' => new FloorsNumberFilter,
-            'floor_tanks_'
-        ];*/
+            'floor_tanks_sort' => new FloorTanksSortFilter,
+            'gas_network_filter' => new GasNetworkFilter,
+            'kitchens_number_filter' => new KitchensNumberFilter,
+            'lifts_number_filter' => new LiftsNumberFilter,
+            'overhead_tanks_sort' => new OverheadTanksSortFilter,
+            'parking_filter' => new ParkingFilter,
+            'payment_sort' => new PaymentSortFilter,
+            'piece_number' => new PieceNumberFilter,
+            'price_sort' => new PriceSortFilter,
+            'receptions_number' => new ReceptionsNumberFilter,
+            'rooms_number' => new RoomsNumberFilter,
+            'schema_name' => new SchemaNameFilter,
+            'schema_number' => new SchemaNumberFilter,
+            'sewerage_network' => new SewerageNetworkFilter,
+            'stores_number' => new StoresNumberFilter,
+            'streets_number' => new StreetsNumberFilter,
+            'unit_number' => new UnitNumberFilter,
+            'units_number' => new UnitsNumberFilter,
+            'water_network' => new WaterNetworkFilter,
+        ];
 
         
     }

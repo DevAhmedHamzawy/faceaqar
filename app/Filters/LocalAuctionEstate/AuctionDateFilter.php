@@ -8,6 +8,8 @@ class AuctionDateFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->where('date' , $value);
+        if($value !== null){
+            return $builder->where('date' , $value);
+        }
     }
 }

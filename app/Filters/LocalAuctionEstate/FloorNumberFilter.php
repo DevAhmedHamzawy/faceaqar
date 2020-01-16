@@ -8,6 +8,8 @@ class FloorNumberFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->where('floor_number' , $value);
+        if($value !== null){
+            return $builder->where('floor_number' , $value);
+        }
     }
 }

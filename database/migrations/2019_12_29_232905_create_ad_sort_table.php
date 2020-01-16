@@ -18,6 +18,7 @@ class CreateAdSortTable extends Migration
             $table->string('name');
             $table->string('display');
             $table->string('title');
+            $table->string('adjective');
         });
     }
 

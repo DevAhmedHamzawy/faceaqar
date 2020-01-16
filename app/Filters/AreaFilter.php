@@ -8,6 +8,8 @@ class AreaFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->where('area_id' , $value);
+        if($value !== null){
+            return $builder->where('area_id' , $value);
+        }
     }
 }

@@ -8,6 +8,8 @@ class SewerageNetworkFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->where('sewerage_network' , $value);
+        if($value !== null){
+            return $builder->where('sewerage_network' , $value);
+        }
     }
 }

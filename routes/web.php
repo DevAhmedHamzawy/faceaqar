@@ -27,13 +27,13 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
 
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('home', 'HomeController@index')->name('home');
-Route::get('estates/{adSort}', 'SearchController@searchByAdSort');
+Route::get('estates/{adSort}', 'SearchController@searchByAdSort')->name('search-by-ad-sort');
 Route::get('estates/{adSort}/index', 'EstateController@index');
 Route::get('estates/{adSort}/create', 'EstateController@create');
 Route::post('estates/{adSort}/create', 'EstateController@store')->name('estates.create');
 Route::get('estates/{adSort}/{estate}', 'EstateController@show');
 Route::get('search', 'SearchController@index');
-Route::get('search/filters', 'SearchController@getFilters');
+Route::get('search/filters', 'SearchController@getFilters')->name('getresults');

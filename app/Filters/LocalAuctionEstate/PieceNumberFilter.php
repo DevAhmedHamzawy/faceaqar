@@ -8,6 +8,8 @@ class PieceNumberFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->where('piece_number' , $value);
+        if($value !== null){
+            return $builder->where('piece_number' , $value);
+        }
     }
 }

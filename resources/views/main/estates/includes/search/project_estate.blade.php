@@ -1,4 +1,4 @@
-<div class="sel1">
+{{--<div class="sel1">
     <p> نوع العقار</p>
     <div class="custom-select">
     <select>
@@ -27,4 +27,4 @@
       <option value="mercedes">نص</option>
     </select>
     </div>
-</div>
+</div>--}}

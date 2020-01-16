@@ -5,7 +5,7 @@
 
 @section('content')
 
-<form method="get" id="filtersform" onsubmit="getFilters();return false;">
+<form method="get" action="{{ route('getresults') }}" id="filtersform">
     <div class="all-ser-pages">
             <div class="container">
                             <div class="center-sepag ser-pages">
@@ -24,11 +24,11 @@
                                 <div class="sel1">
                                     <p>المدينة  </p>
                                     <div class="custom-select">
-                                    <select>
+                                    <select name="area_id">
                                       <option value="volvo">الكل</option>
-                                      <option value="saab">الرياض</option>
-                                      <option value="mercedes">الرياض</option>
-                                      <option value="audi">الرياض</option>
+                                      <option value="183">الرياض</option>
+                                      <option value="178">الرياض</option>
+                                      <option value="183">الرياض</option>
                                     </select>
                                     </div>
                                 </div>
@@ -61,8 +61,12 @@
                                 <div class="more-ser">
                                     <button class="btn btnspe" type="submit">ابدأ البحث</button>
                                    <button class="btn btn-more" onclick="moreSer()"> بحث عن المزيد </button>
-                               </div>                  
+                               </div>      
                 </div>            
+
+                @if ($result)
+                    @include('main.estates.includes.search.results')
+                @endif
             </div>
         </div>
     </div>
@@ -75,19 +79,14 @@
 
     <script>
     
-        function getFilters(){
-            
-            
-            axios.get(`../../search/${filters}`).then((data) => {
-
-
-
-        });
-                
-        console.log(filters)
-        
+        function moreSer() {
+        var x = document.getElementById("showmore");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
         }
-    
+        }
     </script>
     
 @endsection

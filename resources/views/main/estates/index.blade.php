@@ -18,49 +18,49 @@
             <div class="service_icon">
                 <ul>
                     <li>
-                        <a href="javascript:void(0)" onclick="getEstateSort('local_estate')" title="">
+                        <a href="{{ route('search-by-ad-sort' , 'local_estate') }}" title="">
                             <img src="{{ url('images/icon_r_2.png') }}" class="img-responsive" alt=""/>
                             <span>العقارات المحلية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="javascript:void(0)" onclick="getEstateSort('global_estate')" title="">
+                        <a href="{{ route('search-by-ad-sort' , 'global_estate') }}" title="">
                             <img src="{{ url('images/icon_r_6.png') }}" class="img-responsive" alt=""/>
                             <span>العقارات الدولية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="javascript:void(0)" onclick="getEstateSort('project_estate')" title="">
+                        <a href="{{ route('search-by-ad-sort' , 'project_estate') }}" title="">
                             <img src="{{ url('images/icon_r_1.png') }}" class="img-responsive" alt=""/>
                             <span>المشاريع العقارية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="javascript:void(0)" onclick="getEstateSort('auction_estate')" title="">
+                        <a href="{{ route('search-by-ad-sort' , 'auction_estate') }}" title="">
                             <img src="{{ url('images/icon_r_4.png') }}" class="img-responsive" alt=""/>
                             <span>المزادات العقارية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="javascript:void(0)" onclick="getEstateSort('request_estate')" title="">
+                        <a href="{{ route('search-by-ad-sort' , 'request_estate') }}" title="">
                             <img src="{{ url('images/icon_r_5.png') }}" class="img-responsive" alt=""/>
                             <span>الطلبات العقارية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="javascript:void(0)" onclick="getEstateSort('schema_estate')" title="">
+                        <a href="{{ route('search-by-ad-sort' , 'schema_estate') }}" title="">
                             <img src="{{ url('images/ss.png') }}" class="img-responsive" alt=""/>
                             <span>المخططات العقارية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="javascript:void(0)" onclick="getEstateSort('office_estate')" title="">
+                        <a href="{{ route('search-by-ad-sort' , 'office_estate') }}" title="">
                             <img src="{{ url('images/regpag88.png') }}" class="img-responsive" alt=""/>
                             <span>المكاتب العقارية الإلكترونية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="javascript:void(0)" onclick="getEstateSort('middleware_estate')" title="">
+                        <a href="{{ route('search-by-ad-sort' , 'middleware_estate') }}" title="">
                             <img src="{{ url('images/regpag4141.png') }}" class="img-responsive" alt=""/>
                             <span>وسيط واجهة العقار الالكتروني</span>
                         </a>	
@@ -174,7 +174,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script>
-        function getEstateSort(adSort){
+        /*function getEstateSort(adSort){
             axios.get(`../../estates/${adSort}`).then((data) => {
                 $('.all-ads').empty();
                 
@@ -198,6 +198,6 @@
                 $('.block_ads_inter').append('</div></div>');
                 }
             });
-        }
+        }*/
     </script>
 @endsection
