@@ -417,32 +417,32 @@
                 <h3 class="text-center"> او سجل بواسطة  </h3>
                 <ul class="list-inline">
                     <li>
-                        <a href="#" class="fb_001">
+                        <a href="{{ route('social', 'facebook') }}" class="fb_001">
                             <i class="fab fa-facebook"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="tw_001">
+                        <a href="{{ route('social', 'twitter') }}" class="tw_001">
                             <i class="fab fa-twitter" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="gb_001">
-                                <i class="fab fa-google-plus" aria-hidden="true"></i>
+                        <a href="{{ route('social', 'google') }}" class="gb_001">
+                            <i class="fab fa-google-plus" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="link_001">
+                        <a href="{{ route('social', 'linkedin') }}" class="link_001">
                             <i class="fab fa-linkedin" aria-hidden="true"></i>
                         </a>
                     </li>
-                                                <li>
-                        <a href="#" class="insta_001">
+                    <li>
+                        <a href="{{ route('social', 'instagram') }}" class="insta_001">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="you_001">
+                        <a href="{{ route('social', 'google') }}" class="you_001">
                             <i class="fab fa-youtube"></i>
                         </a>
                     </li>
@@ -492,32 +492,32 @@
                 <h3 class="text-center"> او سجل بواسطة  </h3>
                 <ul class="list-inline">
                     <li>
-                        <a href="#" class="fb_001">
+                        <a href="{{ route('social', 'facebook') }}" class="fb_001">
                             <i class="fab fa-facebook"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="tw_001">
+                        <a href="{{ route('social', 'twitter') }}" class="tw_001">
                             <i class="fab fa-twitter" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="gb_001">
-                                <i class="fab fa-google-plus" aria-hidden="true"></i>
+                        <a href="{{ route('social', 'google') }}" class="gb_001">
+                            <i class="fab fa-google-plus" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="link_001">
+                        <a href="{{ route('social', 'linkedin') }}" class="link_001">
                             <i class="fab fa-linkedin" aria-hidden="true"></i>
                         </a>
                     </li>
-                                                <li>
-                        <a href="#" class="insta_001">
+                    <li>
+                        <a href="{{ route('social', 'instagram') }}" class="insta_001">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="you_001">
+                        <a href="{{ route('social', 'google') }}" class="you_001">
                             <i class="fab fa-youtube"></i>
                         </a>
                     </li>

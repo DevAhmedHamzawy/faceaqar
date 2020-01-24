@@ -28,6 +28,8 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
 
 
 Auth::routes(['verify' => true]);
+Route::get('/auth/social/{social}', 'Auth\SocialLoginController@redirectToSocial')->name('social');
+Route::get('/auth/{social}/callback', 'Auth\SocialLoginController@handleSocialCallback');
 
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('estates/{adSort}', 'SearchController@searchByAdSort')->name('search-by-ad-sort');
@@ -37,3 +39,8 @@ Route::post('estates/{adSort}/create', 'EstateController@store')->name('estates.
 Route::get('estates/{adSort}/{estate}', 'EstateController@show');
 Route::get('search', 'SearchController@index');
 Route::get('search/filters', 'SearchController@getFilters')->name('getresults');
+
+
+Route::get('profile/{user}', 'UsersController@show')->name('profile');
+Route::get('profile/{user}/edit', 'UsersController@edit')->name('edit-profile');
+Route::put('profile/{user}/edit', 'UsersController@update')->name('update-profile');
