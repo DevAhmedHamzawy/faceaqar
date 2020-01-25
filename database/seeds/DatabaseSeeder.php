@@ -1,5 +1,6 @@
 <?php
 
+use App\Admin;
 use App\Advertiser;
 use App\Area;
 use App\AuctionEstate;
@@ -8,6 +9,7 @@ use App\LocalEstate;
 use App\Profile;
 use App\RequestEstate;
 use App\Role;
+use App\Setting;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -86,6 +88,8 @@ class DatabaseSeeder extends Seeder
         //factory(RequestEstate::class, 50)->create();
 
        
+        //factory(Admin::class, 20)->create();
 
+        //factory(Setting::class, 1)->create();
     }
 }
