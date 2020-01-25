@@ -54,3 +54,4 @@ Route::get('contactus', 'ContactUsController@show');
 Route::get('about', 'AboutController@show');
 Route::get('terms', 'TermsController@show');
 
+Route::get('clients', 'ClientController@index');

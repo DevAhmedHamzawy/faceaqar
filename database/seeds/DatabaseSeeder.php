@@ -4,6 +4,7 @@ use App\Admin;
 use App\Advertiser;
 use App\Area;
 use App\AuctionEstate;
+use App\Client;
 use App\Estate;
 use App\LocalEstate;
 use App\Profile;
@@ -96,5 +97,7 @@ class DatabaseSeeder extends Seeder
         //factory(Admin::class, 20)->create();
 
         //factory(Setting::class, 1)->create();
+
+        //factory(Client::class, 15)->create();
     }
 }

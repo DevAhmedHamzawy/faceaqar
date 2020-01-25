@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
-use App\Role;
+use App\Client;
 use Illuminate\Http\Request;
 
-class LawyersController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class LawyersController extends Controller
      */
     public function index()
     {
-        return view('admin.users.lawyers.index', ['lawyers' => User::withRole('lawyer')->get()]);
+        //
     }
 
     /**
@@ -25,7 +24,7 @@ class LawyersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.lawyers.add');
+        //
     }
 
     /**
@@ -36,21 +35,16 @@ class LawyersController extends Controller
      */
     public function store(Request $request)
     {
-        $request->merge(['password' => bcrypt($request->password), 'area_id' => 0]);
-        $user = User::create($request->only('name','email','password'));
-        $user->profile()->create($request->except('name','password'));
-
-        $user->attachRole(Role::whereName('lawyer')->first()->id);
-        return redirect()->route('lawyers.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Client $client)
     {
         //
     }
@@ -58,10 +52,10 @@ class LawyersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Client $client)
     {
         //
     }
@@ -70,10 +64,10 @@ class LawyersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Client $client)
     {
         //
     }
@@ -81,10 +75,10 @@ class LawyersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Client $client)
     {
         //
     }
