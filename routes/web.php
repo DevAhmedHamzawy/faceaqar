@@ -55,3 +55,5 @@ Route::get('about', 'AboutController@show');
 Route::get('terms', 'TermsController@show');
 
 Route::get('clients', 'ClientController@index');
+Route::get('portfolios', 'PortfolioController@index');
+Route::get('teams', 'TeamsController@index');

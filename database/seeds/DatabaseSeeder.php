@@ -7,6 +7,7 @@ use App\AuctionEstate;
 use App\Client;
 use App\Estate;
 use App\LocalEstate;
+use App\Portfolio;
 use App\Profile;
 use App\RequestEstate;
 use App\Role;
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
         //$this->call(PriceSortTableSeeder::class);
         //$this->call(SortTableSeeder::class);
         //$this->call(RoleTableSeeder::class);    
+        //$this->call(TeamTableSeeder::class);    
         
         //factory(Area::class, 100)->create();
 
@@ -99,5 +101,8 @@ class DatabaseSeeder extends Seeder
         //factory(Setting::class, 1)->create();
 
         //factory(Client::class, 15)->create();
+
+        //factory(Portfolio::class, 15)->create();
+
     }
 }
