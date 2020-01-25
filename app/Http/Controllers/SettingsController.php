@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Setting;
+use App\Settings;
 use Illuminate\Http\Request;
 
-class SettingController extends Controller
+class SettingsController extends Controller
 {
     /**
      * Show the form for editing the specified resource.

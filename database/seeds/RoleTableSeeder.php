@@ -19,6 +19,7 @@ class RoleTableSeeder extends Seeder
             ['name' => 'engineering_office', 'display_name' => 'مكتب هندسى'],
             ['name' => 'owner', 'display_name' => 'مالك'],
             ['name' => 'middleware', 'display_name' => 'وسيط'],
+            ['name' => 'lawyer', 'display_name' => 'محامى'],
             ['name' => 'other', 'display_name' => 'اخرى'],
         ]);
     }

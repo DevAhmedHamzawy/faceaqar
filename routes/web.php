@@ -23,7 +23,7 @@ Route::post('admin/logout', 'Auth\AdminLoginController@logout')->name('admin.log
 Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/login'],function(){
 
     Route::resource('settings', 'SettingsController');
-    
+    Route::resource('lawyers', 'Admin\LawyersController');    
 
 });
 
@@ -46,6 +46,9 @@ Route::get('search/filters', 'SearchController@getFilters')->name('getresults');
 Route::get('profile/{user}', 'UsersController@show')->name('profile');
 Route::get('profile/{user}/edit', 'UsersController@edit')->name('edit-profile');
 Route::put('profile/{user}/edit', 'UsersController@update')->name('update-profile');
+
+Route::get('lawyers/{user}', 'LawyersController@show');
+
 
 Route::get('contactus', 'ContactUsController@show');
 Route::get('about', 'AboutController@show');

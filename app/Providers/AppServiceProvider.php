@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Setting;
+use App\Settings;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -27,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        view()->share('settings', Setting::findOrFail(1));
+        view()->share('settings', Settings::findOrFail(1));
     }
 }

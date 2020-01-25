@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
         $role6 = Role::whereId(6)->firstOrFail();
         $role7 = Role::whereId(7)->firstOrFail();
         $role8 = Role::whereId(8)->firstOrFail();
+        $role9 = Role::whereId(9)->firstOrFail();
 
         factory(User::class, 400)->create();
         factory(Profile::class, 400)->create();
@@ -78,6 +79,10 @@ class DatabaseSeeder extends Seeder
 
         App\User::where('id' , '>' , '400')->where('id' , '<' , '350')->each(function ($user) use ($role8) { 
             $user->roles()->attach($role8->id); 
+        });
+
+        App\User::where('id' , '>' , '450')->where('id' , '<' , '400')->each(function ($user) use ($role9) { 
+            $user->roles()->attach($role9->id); 
         });*/
 
         
