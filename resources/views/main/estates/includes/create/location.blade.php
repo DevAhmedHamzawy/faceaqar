@@ -7,7 +7,7 @@
 
         <div class="add_auctions">
             <h4> بيانات عنوان {{ $adSort->title }}  </h4>
-            <form method="post" action="{{ route('estates.create' , $adSort->name) }}">
+            <form method="post" action="{{ route('estates.create' , $adSort->name) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="block_form_1 row">
                     <div class="row">

@@ -38,6 +38,10 @@
             $("#member-login").submit();
         }
 
+        function submitmemberloginone() {
+            $("#member-login-one").submit();
+        }
+
         function submitregister() {
             $("#register").submit();
         }

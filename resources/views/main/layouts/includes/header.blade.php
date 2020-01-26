@@ -13,13 +13,13 @@
                                 <a href="#"><img src="{{ url('main/images/loction.png') }}"> فروعنا </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/custmoer.png') }}"> عملائنا </a>
+                                <a href="{{ route('clients') }}"><img src="{{ url('main/images/custmoer.png') }}"> عملائنا </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/portfolio.png') }}"> أعمالنا </a>
+                                <a href="{{ route('portfolio') }}"><img src="{{ url('main/images/portfolio.png') }}"> أعمالنا </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/team.png') }}"> فريق العمل </a>
+                                <a href="{{ route('teams') }}"><img src="{{ url('main/images/team.png') }}"> فريق العمل </a>
                             </li>
                             <li>
                                 <a href="#"><img src="{{ url('main/images/money.png') }}"> الرسوم المالية </a>
@@ -28,7 +28,7 @@
                                 <a href="#"><img src="{{ url('main/images/puy.png') }}"> طرق الدفع </a>
                             </li>
                             <li>  
-                                <a href="#"><img src="{{ url('main/images/search.png') }}"> البحث </a>
+                                <a href="{{ route('search') }}"><img src="{{ url('main/images/search.png') }}"> البحث </a>
                             </li>
                         </ul>
         </div>
@@ -41,17 +41,18 @@
         <div class="overlay-content">
                         <ul>
                             <li>
-                                <a href="contactus.html"> اتصل بنا </a>
+                                <a href="{{ route('contactus') }}"> اتصل بنا </a>
                                 <img src="{{ url('main/images/contact.png') }}">
                             </li>
                             <li>
-                                <a href="aboutus.html"> من نحن </a>
+                                <a href="{{ route('about') }}"> من نحن </a>
                                 <img src="{{ url('main/images/how.png') }}">
                             </li>
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#submod"> الاشتراك </a>
                                 <img src="{{ url('main/images/sub.png') }}">
                             </li>
+                            @guest
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#regmod"> تسجيل جديد </a>
                                 <img src="{{ url('main/images/reg.png') }}">
@@ -65,9 +66,17 @@
                                 <img src="{{ url('main/images/about.png') }}">
                             </li>
                             <li>
-                                <a href="#" data-toggle="modal" data-target="#myModal"> تسجيل الدخول </a>
+                                <a href="{{ route('register') }}"> تسجيل الدخول </a>
                                 <img src="{{ url('main/images/login.png') }}">
                             </li>
+                            @endguest
+
+                            @auth
+                                <li>
+                                    <a href="{{ route('home') }}">الصفحة الشخصية</a>
+                                    <img src="{{ url('main/images/login.png') }}">
+                                </li>
+                            @endauth
                         </ul>
         </div>
     </div>
@@ -247,17 +256,18 @@
                     <div class="right-top-links">
                         <ul>
                             <li>
-                                <a href="contactus.html"> اتصل بنا </a>
+                                <a href="{{ route('contactus') }}"> اتصل بنا </a>
                                 <img src="{{ url('main/images/contact.png') }}">
                             </li>
                             <li>
-                                <a href="aboutus.html"> من نحن </a>
+                                <a href="{{ route('about') }}"> من نحن </a>
                                 <img src="{{ url('main/images/how.png') }}">
                             </li>
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#submod"> الاشتراك </a>
                                 <img src="{{ url('main/images/sub.png') }}">
                             </li>
+                            @guest
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#regmod"> تسجيل جديد </a>
                                 <img src="{{ url('main/images/reg.png') }}">
@@ -271,9 +281,17 @@
                                 <img src="{{ url('main/images/about.png') }}">
                             </li>
                             <li>
-                                <a href="#" data-toggle="modal" data-target="#myModal"> تسجيل الدخول </a>
+                                <a href="{{ route('register') }}"> تسجيل الدخول </a>
                                 <img src="{{ url('main/images/login.png') }}">
                             </li>
+                            @endguest
+
+                            @auth
+                                <li>
+                                    <a href="{{ route('home') }}">الصفحة الشخصية</a>
+                                    <img src="{{ url('main/images/login.png') }}">
+                                </li>
+                            @endauth
                             <li>  
                                 <a href="https://aqar1.lic2.com"> <img src="{{ url('main/images/home.png') }}"> </a>
                             </li>
@@ -406,7 +424,7 @@
                     <div class="checkbox">
                         
                         <label>تذكرنى</label>
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" name="remember" class="remember" {{ old('remember') ? 'checked' : '' }}>
                     </div>
                     <a href="#" class="fordid">هـل نسيت كلمة المرور؟</a>
                 </div>
@@ -452,7 +470,7 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">اغلاق</button>
-            <button type="button" onclick="submitmemberlogin()" class="btn btn-default1">دخول</button>
+            <button type="button" onclick="submitmemberloginone()" class="btn btn-default1">دخول</button>
                 <button type="button" class="btn btn-default1 regs">تسجيل جديد</button>
             </div>
         </div>
@@ -471,7 +489,7 @@
             <h4 class="modal-title"> دخول الأعضاء</h4>
             </div>
             <div class="modal-body">
-            <form method="post" id="member-login" action="{{ route('login') }}">
+            <form method="post" id="member-login-one" action="{{ route('login') }}">
                 @csrf
                 <p> ادخل رقم جوالك او الايميل او اسم المستخدم</p>
                 <input type="text" name="email" class="form-control">
@@ -481,7 +499,7 @@
                 <div class="lastchek">
                     <div class="checkbox">
                         <label>تذكرنى</label>
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" name="remember" class="remember" {{ old('remember') ? 'checked' : '' }}>
                     </div>
                     <a href="#" class="fordid">هـل نسيت كلمة المرور؟</a>
                 </div>
@@ -629,12 +647,10 @@
                         </div>
 
                         <div class="col-xs-12">
-                            <div class="icon-con">
-                                <i class="fas fa-qrcode"></i>
-                            </div>
-                            <h2> ادخل كود التحقق </h2>
-                            <input type="text">
+                            {!! NoCaptcha::renderJs() !!}
+                            {!! NoCaptcha::display() !!}
                         </div>
+
                         <div class="col-xs-12">
                             <div class="lastchek">
                             <div class="checkbox">
@@ -780,13 +796,13 @@
                                 <a href="#"><img src="{{ url('main/images/loction.png') }}"> فروعنا </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/custmoer.png') }}"> عملائنا </a>
+                                <a href="{{ route('clients') }}"><img src="{{ url('main/images/custmoer.png') }}"> عملائنا </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/portfolio.png') }}"> أعمالنا </a>
+                                <a href="{{ route('portfolio') }}"><img src="{{ url('main/images/portfolio.png') }}"> أعمالنا </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/team.png') }}"> فريق العمل </a>
+                                <a href="{{ route('teams') }}"><img src="{{ url('main/images/team.png') }}"> فريق العمل </a>
                             </li>
                             <li>
                                 <a href="#"><img src="{{ url('main/images/money.png') }}"> الرسوم المالية </a>
@@ -795,7 +811,7 @@
                                 <a href="#"><img src="{{ url('main/images/puy.png') }}"> طرق الدفع </a>
                             </li>
                             <li>  
-                                <a href="#"><img src="{{ url('main/images/search.png') }}"> البحث </a>
+                                <a href="{{ route('search') }}"><img src="{{ url('main/images/search.png') }}"> البحث </a>
                             </li>
                         </ul>
                     </div>

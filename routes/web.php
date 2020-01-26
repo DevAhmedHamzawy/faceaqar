@@ -36,10 +36,10 @@ Route::get('/auth/{social}/callback', 'Auth\SocialLoginController@handleSocialCa
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('estates/{adSort}', 'SearchController@searchByAdSort')->name('search-by-ad-sort');
 Route::get('estates/{adSort}/index', 'EstateController@index');
-Route::get('estates/{adSort}/create', 'EstateController@create');
+Route::get('estates/{adSort}/create', 'EstateController@create')->name('estate.createestate');
 Route::post('estates/{adSort}/create', 'EstateController@store')->name('estates.create');
 Route::get('estates/{adSort}/{estate}', 'EstateController@show');
-Route::get('search', 'SearchController@index');
+Route::get('search', 'SearchController@index')->name('search');
 Route::get('search/filters', 'SearchController@getFilters')->name('getresults');
 
 
@@ -50,10 +50,10 @@ Route::put('profile/{user}/edit', 'UsersController@update')->name('update-profil
 Route::get('lawyers/{user}', 'LawyersController@show');
 
 
-Route::get('contactus', 'ContactUsController@show');
-Route::get('about', 'AboutController@show');
-Route::get('terms', 'TermsController@show');
+Route::get('contactus', 'ContactUsController@show')->name('contactus');
+Route::get('about', 'AboutController@show')->name('about');
+Route::get('terms', 'TermsController@show')->name('terms');
 
-Route::get('clients', 'ClientController@index');
-Route::get('portfolios', 'PortfolioController@index');
-Route::get('teams', 'TeamsController@index');
+Route::get('clients', 'ClientController@index')->name('clients');
+Route::get('portfolio', 'PortfolioController@index')->name('portfolio');
+Route::get('teams', 'TeamsController@index')->name('teams');
