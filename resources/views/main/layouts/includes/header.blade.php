@@ -76,6 +76,16 @@
                                     <a href="{{ route('home') }}">الصفحة الشخصية</a>
                                     <img src="{{ url('main/images/login.png') }}">
                                 </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">تسجيل الخروج
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <img src="{{ url('main/images/logout.png') }}">
+                                </li>
                             @endauth
                         </ul>
         </div>
@@ -289,6 +299,16 @@
                             @auth
                                 <li>
                                     <a href="{{ route('home') }}">الصفحة الشخصية</a>
+                                    <img src="{{ url('main/images/login.png') }}">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">تسجيل الخروج
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                     <img src="{{ url('main/images/login.png') }}">
                                 </li>
                             @endauth

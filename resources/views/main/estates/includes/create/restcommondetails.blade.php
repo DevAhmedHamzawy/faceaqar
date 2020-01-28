@@ -25,7 +25,8 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d27626.27366240017!2d31.35026109284309!3d30.057386886394237!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1485270685978" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+        <div id="map" style="height:550px;"></div>
+        <input type="hidden" name="latlng" id="latlng" />
     </div>
 </div>
 @if($adSort->name == 'auction_estate')
@@ -159,17 +160,12 @@
     </div>
     <div class="col-md-3 hidden-xs"></div>
     <div class="clearfix"></div>         
-    <div class="col-md-3 hidden-xs"></div>
-    <div class="col-md-2 add-code">
-        <label for=""> <i class="fa fa-qrcode"></i> ادخل  رمز التحقق <em>*</em></label>
-    </div>
+    <div class="col-md-4 hidden-xs"></div>
     <div class="col-md-4 add-code">
-        <div class="form-group sdf required">
-            <img src="images/number_code.png" class="img-responsive" alt="">
-            <input type="text" class="form-control required" id="" placeholder="" name="namefield6">
-        </div>
-
+        {!! NoCaptcha::renderJs() !!}
+        {!! NoCaptcha::display() !!}
     </div>
+    
     <div class="col-md-3 hidden-xs"></div>
     <div class="col-md-12">
         <div class="checkbox form-group Terms_line text-right">

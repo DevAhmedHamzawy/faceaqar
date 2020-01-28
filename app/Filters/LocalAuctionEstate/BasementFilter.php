@@ -9,7 +9,11 @@ class BasementFilter implements Filter
     public function apply(Builder $builder, $value)
     {
         if($value !== null){
-            return $builder->where('basement' , $value);
+            return $builder->whereHas('localEstate', function($q) use ($value){
+                $q->where('basement' , $value);
+            })->whereHas('auctionEstate', function($q) use ($value){
+                $q->where('basement' , $value);
+            });
         }
     }
 }

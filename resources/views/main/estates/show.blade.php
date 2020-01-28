@@ -52,8 +52,8 @@
                                 <span class="color_blue">
                                     <ul>
                                         <li>{{ $estate->category->name }} <i class="fa fa-home"></i> </li>
-                                        <li class="qt3a2">{{ $sortName }}<i class="fas fa-building"></i> </li>
-                                        <li>   {{ $offerName }}   <i class="far fa-gem"></i>   </li>
+                                        <li class="qt3a2">{!! $sortName[0] !!}<i class="fas fa-building"></i> </li>
+                                        <li>   {!! $offerName[0] !!}   <i class="far fa-gem"></i>   </li>
                                     </ul>
                                 </span>
                             </div>

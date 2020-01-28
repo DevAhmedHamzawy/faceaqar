@@ -29,6 +29,21 @@ class Estate extends Model
         return $this->belongsTo('App\Area');
     }
 
+    public function localEstate()
+    {
+        return $this->hasOne('App\LocalEstate');
+    }
+
+    public function requestEstate()
+    {
+        return $this->hasOne('App\RequestEstate');
+    }
+
+    public function auctionEstate()
+    {
+        return $this->hasOne('App\AuctionEstate');
+    }
+
     
 
     public static function checkAdSort($adSort)

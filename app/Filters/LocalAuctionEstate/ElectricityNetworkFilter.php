@@ -9,7 +9,11 @@ class ElectricityNetworkFilter implements Filter
     public function apply(Builder $builder, $value)
     {
         if($value !== null){
-            return $builder->where('electricity_network' , $value);
+            return $builder->whereHas('localEstate', function($q) use ($value){
+                $q->where('electricity_network' , $value);
+            })->whereHas('auctionEstate', function($q) use ($value){
+                $q->where('electricity_network' , $value);
+            });
         }
     }
 }

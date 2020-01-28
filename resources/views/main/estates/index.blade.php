@@ -125,13 +125,13 @@
                                 <li>{{ $estate->code }}</li>
                                 <li> {{ $estate->created_at }} </li>
                             </ul>
-                            <a href="#" title="" class="bg_tt"> {{ $estate->date }} </a>
+                            <a href="#" title="" class="bg_tt"> {{ $estate->name }} </a>
                             <ul class="otherul">
                                 @unless ($estate->category == null)
                                     <li>{{ $estate->category->name }}<i class="fa fa-home"></i> </li>
                                 @endunless
-                                {{--<li class="qt3a"> {{ $estate->sortName[0] }} <i class="fas fa-building"></i> </li>
-                                <li>  {{ $estate->offerName[0] }}  <i class="far fa-gem"></i>   </li>--}}
+                                <li class="qt3a"> {{ $estate->sortName[0] }} <i class="fas fa-building"></i> </li>
+                                <li>  {{ $estate->offerName[0] }}  <i class="far fa-gem"></i>   </li>
                             </ul>
                                 
                                 @unless($estate->localAuctionEstate == null)

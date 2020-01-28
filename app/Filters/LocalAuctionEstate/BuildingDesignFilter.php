@@ -9,7 +9,11 @@ class BuildingDesignFilter implements Filter
     public function apply(Builder $builder, $value)
     {
         if($value !== null){
-            return $builder->where('building_design' , $value);
+            return $builder->whereHas('localEstate', function($q) use ($value){
+                $q->where('building_design' , $value);
+            })->whereHas('auctionEstate', function($q) use ($value){
+                $q->where('building_design' , $value);
+            });
         }
     }
 }

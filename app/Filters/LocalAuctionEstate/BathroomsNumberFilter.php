@@ -9,7 +9,11 @@ class BathroomsNumberFilter implements Filter
     public function apply(Builder $builder, $value)
     {
         if($value !== null){
-            return $builder->where('bathrooms_number' , $value);
+            return $builder->whereHas('localEstate', function($q) use ($value){
+                $q->whereBetween('bathrooms_number' , [0, $value+10]);
+            })->whereHas('auctionEstate', function($q) use ($value){
+                $q->whereBetween('bathrooms_number' , [0, $value+10]);
+            });
         }
     }
 }

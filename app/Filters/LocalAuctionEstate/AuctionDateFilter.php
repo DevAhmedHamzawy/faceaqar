@@ -9,7 +9,9 @@ class AuctionDateFilter implements Filter
     public function apply(Builder $builder, $value)
     {
         if($value !== null){
-            return $builder->where('date' , $value);
+            return $builder->whereHas('auctionEstate', function($q) use ($value){
+                $q->where('date' ,  $value);
+            });
         }
     }
 }

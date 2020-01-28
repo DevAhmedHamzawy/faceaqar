@@ -43,7 +43,7 @@
         </div>
         <div class="itemm">
             <h3> نوع السعر </h3>
-            <p>{{ $priceSortName }}</p>
+            <p>{{ $priceSortName[0] }}</p>
         </div>
         
         <div class="itemm">

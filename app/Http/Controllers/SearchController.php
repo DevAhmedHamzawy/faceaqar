@@ -52,8 +52,13 @@ use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
-    public function index()
-    {
+    public function index($adSort = null)
+    {  
+        if($adSort == null){
+            
+        }else{
+            
+        }
         return view('main.estates.search', 
         [
             'categories' => Category::getVisibleCategories(),
@@ -123,7 +128,7 @@ class SearchController extends Controller
             'priceSorts' => Estate::getAllPriceSorts(),
             'paymentSorts' => Estate::getAllPaymentSorts(),
             'result' => 1,
-            'results' => Estate::filter($this->filters())->get(),
+            'results' => Estate::filter($this->filters())->paginate(6),
         ]);
     }
 

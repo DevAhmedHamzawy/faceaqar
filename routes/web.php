@@ -38,7 +38,7 @@ Route::get('estates/{adSort}', 'SearchController@searchByAdSort')->name('search-
 Route::get('estates/{adSort}/index', 'EstateController@index');
 Route::get('estates/{adSort}/create', 'EstateController@create')->name('estate.createestate');
 Route::post('estates/{adSort}/create', 'EstateController@store')->name('estates.create');
-Route::get('estates/{adSort}/{estate}', 'EstateController@show');
+Route::get('estates/{adSort}/{estate}', 'EstateController@show')->name('estates.show');
 Route::get('search', 'SearchController@index')->name('search');
 Route::get('search/filters', 'SearchController@getFilters')->name('getresults');
 
@@ -47,7 +47,7 @@ Route::get('profile/{user}', 'UsersController@show')->name('profile');
 Route::get('profile/{user}/edit', 'UsersController@edit')->name('edit-profile');
 Route::put('profile/{user}/edit', 'UsersController@update')->name('update-profile');
 
-Route::get('lawyers/{user}', 'LawyersController@show');
+Route::get('lawyers/{user}', 'LawyerController@show');
 
 
 Route::get('contactus', 'ContactUsController@show')->name('contactus');

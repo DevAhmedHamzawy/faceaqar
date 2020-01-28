@@ -9,7 +9,11 @@ class SewerageNetworkFilter implements Filter
     public function apply(Builder $builder, $value)
     {
         if($value !== null){
-            return $builder->where('sewerage_network' , $value);
+            return $builder->whereHas('localEstate', function($q) use ($value){
+                $q->where('sewerage_network' , $value);
+            })->whereHas('auctionEstate', function($q) use ($value){
+                $q->where('sewerage_network' , $value);
+            });
         }
     }
 }

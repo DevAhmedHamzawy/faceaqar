@@ -9,7 +9,7 @@
     <div class="all-ser-pages">
             <div class="container">
                             <div class="center-sepag ser-pages">
-                                <h2>البحث عن العقارات المحلية بالموقع</h2>
+                                <h2>البحث عن {{ $adSort->adjective }} بالموقع</h2>
                                 <div class="sel1">
                                     <p> المنطقة </p>
                                     <div class="custom-select">
@@ -60,7 +60,7 @@
 
                                 <div class="more-ser">
                                     <button class="btn btnspe" type="submit">ابدأ البحث</button>
-                                   <button class="btn btn-more" onclick="moreSer()"> بحث عن المزيد </button>
+                                   <button class="btn btn-more" onclick="moreSer();return false;"> بحث عن المزيد </button>
                                </div>      
                 </div>            
 

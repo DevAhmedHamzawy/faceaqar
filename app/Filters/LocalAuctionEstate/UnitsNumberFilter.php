@@ -9,7 +9,11 @@ class UnitsNumberFilter implements Filter
     public function apply(Builder $builder, $value)
     {
         if($value !== null){
-            return $builder->where('units_number' , $value);
+            return $builder->whereHas('localEstate', function($q) use ($value){
+                $q->whereBetween('units_number' , [0, $value+10]);
+            })->whereHas('auctionEstate', function($q) use ($value){
+                $q->whereBetween('units_number' , [0, $value+10]);
+            });
         }
     }
 }

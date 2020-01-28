@@ -44,5 +44,31 @@
             maxFilesize:1,
             acceptedFiles: ".jpeg,.jpg,.png,.gif"
         };
+
+
+
+    function initMap() {
+    var myLatLng = {lat: 24.774265, lng: 46.738586};
+  
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: myLatLng,
+      zoom: 13
+    });
+  
+    var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!',
+          draggable: true
+        });
+  
+     google.maps.event.addListener(marker, 'dragend', function(marker) {
+        var latLng = marker.latLng;
+        document.getElementById('latlng').value = [latLng.lat(),latLng.lat()];
+     });
+     }
+  
+
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap&key=AIzaSyDqET1nIDZzMGEieGANkEF_xB1RSCkJTjk" async defer></script>
 @endsection

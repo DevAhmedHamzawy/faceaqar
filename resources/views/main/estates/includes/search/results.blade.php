@@ -53,7 +53,7 @@
                         <li>{{ $estate->code }}</li>
                         <li> {{ $estate->created_at }} </li>
                     </ul>
-                    <a href="#" title="" class="bg_tt"> {{ $estate->date }} </a>
+                    <a href="{{ route('estates.show', [$adSort->name, $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
                     <ul class="otherul">
                         @unless ($estate->category == null)
                             <li>{{ $estate->category->name }}<i class="fa fa-home"></i> </li>
@@ -84,8 +84,8 @@
                 </div>
             </div>     
             @endforeach
-           
         </div>
     <!-- end_block_ads_realestate -->
+    <div class="text-center">{{ $results->links() }}</div>
 </div>
 <!-- end_realestate_blocks -->

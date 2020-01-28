@@ -9,7 +9,11 @@ class SchemaNameFilter implements Filter
     public function apply(Builder $builder, $value)
     {
         if($value !== null){
-            return $builder->where('schema_name' , $value);
+            return $builder->whereHas('localEstate', function($q) use ($value){
+                $q->where('schema_name' , $value);
+            })->whereHas('auctionEstate', function($q) use ($value){
+                $q->where('schema_name' , $value);
+            });
         }
     }
 }
