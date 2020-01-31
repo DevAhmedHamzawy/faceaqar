@@ -71,7 +71,7 @@
                 <label for="">رقم المخطط</label>
             </div>
             <div class="col-md-8">
-                <input type="text" name="schema_number" value="{{ old('schema_number') }}" class="form-control" id="" placeholder=" اكتب رقم ">
+                <input type="number" name="schema_number" value="{{ old('schema_number') }}" class="form-control" id="" placeholder=" اكتب رقم ">
             </div>
         </div>
       </div>
@@ -81,7 +81,7 @@
                 <label for=""> رقم البلوك</label>
             </div>
             <div class="col-md-8">
-                <input type="text" name="block_number" value="{{ old('block_number') }}" class="form-control required" id="" placeholder=" رقم البلوك ">
+                <input type="number" name="block_number" value="{{ old('block_number') }}" class="form-control required" id="" placeholder=" رقم البلوك ">
             </div>
         </div>
       </div>
@@ -91,7 +91,7 @@
                 <label for=""> رقم القطعة </label>
             </div>
             <div class="col-md-8">
-                <input type="text" name="piece_number" value="{{ old('piece_number')}}" class="form-control required" id="" placeholder=" رقم القطعة ">
+                <input type="number" name="piece_number" value="{{ old('piece_number')}}" class="form-control required" id="" placeholder=" رقم القطعة ">
             </div>
         </div>
       </div>
@@ -221,7 +221,7 @@
         <div class="row">
             <div class="col-md-12">
                 <label for="">اكتب الملاحظات</label>
-                <textarea class="form-control" rows="2" placeholder="اكتب اي ملاحظات هنا"></textarea>
+                <textarea class="form-control" name="description" rows="2" placeholder="اكتب اي ملاحظات هنا"></textarea>
             </div>
         </div>
      </div>
@@ -230,7 +230,7 @@
 
     
     <div class="col-md-12 pd-top local-test">
-            <input type="checkbox" name="choice-type" id="Showmorein">
+            <input type="checkbox" name="choice_type" id="Showmorein">
             <label for="choice-type-number" class="imp-n-ss">
                 ادخل المزيد عن بيانات العقار
             </label>

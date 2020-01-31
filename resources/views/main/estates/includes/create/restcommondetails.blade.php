@@ -42,7 +42,7 @@
         <label for="">اســم المعلن <em>*</em></label>
     </div>
     <div class="col-md-4">
-        <input type="text" name="name" class="form-control" id="" placeholder="">
+        <input type="text" name="advertiser_name" class="form-control" id="" placeholder="">
     </div>
     
     <div class="col-md-2">
@@ -101,7 +101,7 @@
         <label for="">البريد الإلكتروني</label>
     </div>
     <div class="col-md-4">
-        <input type="number" name="email" class="form-control required" id="" placeholder="">
+        <input type="email" name="email" class="form-control required" id="" placeholder="">
     </div>
     
 
@@ -150,7 +150,7 @@
         <label for=""> اختر مــدة الإضافة <em>*</em></label>
     </div>
     <div class="col-md-4">
-        <select class="form-control required">
+        <select class="form-control required" name="duration_publish">
             <option>اختر</option>
             <option>شهر</option>
             <option>3 شهور</option>

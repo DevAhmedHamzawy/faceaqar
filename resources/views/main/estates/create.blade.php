@@ -6,12 +6,25 @@
 @endsection
 
 @section('content')
-    
+
+@if($errors->any())
+    <div class="alert alert-danger">
+        <p><strong>Opps Something went wrong</strong></p>
+        <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+        </ul>
+    </div>
+@endif
+
 <!-- add_auctions -->
 <section id="add_international">
     <div class="container">
         <div class="row">
             @include('main.estates.includes.create.location')
+
+            <input type="hidden" name="adSort" value="{{ $adSort->name }}">
 
             @if($adSort->name == 'local_estate' || $adSort->name == 'auction_estate')
                 @include('main.estates.includes.create.commontwo')                

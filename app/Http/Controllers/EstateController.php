@@ -6,6 +6,7 @@ use App\Advertiser;
 use App\AuctionEstate;
 use App\Category;
 use App\Estate;
+use App\Http\Requests\EstateFormRequest;
 use App\LocalEstate;
 use App\RequestEstate;
 use Illuminate\Http\Request;
@@ -81,8 +82,9 @@ class EstateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($adSort, Request $request)
+    public function store($adSort, EstateFormRequest $request)
     {
+
         $latlngArray = explode(',' , $request->input('latlng'));
         
         $request->merge(['code' => rand(10,5000), 'ad_sort_id' => DB::table('ad_sort')->whereName($adSort)->pluck('id')[0], 'lat' => $latlngArray[0] , 'lng' => $latlngArray[1] , 'user_id' => auth()->user()->id]);
