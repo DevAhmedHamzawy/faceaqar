@@ -17,7 +17,7 @@
             </div>
             <div class="col-md-8">
                 <select class="form-control selectOption" name="category_id" required>
-                    <option value="choose" disabled>اختر</option>
+                    <option value="choose"  >اختر</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
@@ -32,7 +32,7 @@
             </div>
             <div class="col-md-8">
                 <select class="form-control" name="sort_id" required>
-                    <option disabled>اختر</option>
+                    <option  >اختر</option>
                     @foreach ($sorts as $sort)
                         <option value="{{ $sort->id }}">{{ $sort->name }}</option>
                     @endforeach
@@ -47,7 +47,7 @@
             </div>
             <div class="col-md-8">
                 <select class="form-control" name="offer_id">
-                    <option value="choose" disabled>اختر</option>
+                    <option value="choose"  >اختر</option>
                     @foreach ($offers as $offer)
                         <option value="{{ $offer->id }}">{{ $offer->name }}</option>
                     @endforeach
@@ -102,7 +102,7 @@
             </div>
             <div class="col-md-8">
                 <select class="form-control required" name="streets_number">
-                    <option disabled>اختر</option>
+                    <option  >اختر</option>
                     <option>شارع واحد  </option>
                     <option>شارعين  </option>
                     <option>3 شوارع </option>
@@ -118,7 +118,7 @@
             </div>
             <div class="col-md-8">
                 <select class="form-control required" name="destination_id">
-                    <option value="choose" disabled>اختر</option>
+                    <option value="choose"  >اختر</option>
                     @foreach ($destinations as $destination)
                         <option value="{{ $destination->id }}">{{ $destination->name }}</option>
                     @endforeach
@@ -154,7 +154,7 @@
             </div>
             <div class="col-md-8">
                 <select class="form-control required" name="price_sort_id">
-                    <option disabled>اختر</option>
+                    <option  >اختر</option>
                     @foreach ($priceSorts as $priceSort)
                         <option value="{{ $priceSort->id }}">{{ $priceSort->name }}</option>
                     @endforeach
@@ -169,7 +169,7 @@
             </div>
             <div class="col-md-8">
                 <select class="form-control required" name="payment_sort_id">
-                    <option disabled>اختر</option>
+                    <option  >اختر</option>
                     @foreach ($paymentSorts as $paymentSort)
                         <option value="{{ $paymentSort->id }}">{{ $paymentSort->name }}</option>
                     @endforeach
@@ -184,7 +184,7 @@
             </div>
             <div class="col-md-8">
                 <select class="form-control" name="docs">
-                    <option disabled>اختر  </option>
+                    <option  >اختر  </option>
                     <option>بصك  </option>
                     <option>بدون صك   </option>
                     <option>أخرى</option>
@@ -200,7 +200,7 @@
             </div>
             <div class="col-md-8">
                 <select class="form-control" name="delivery_method">
-                    <option disabled>اختر   </option>
+                    <option  >اختر   </option>
                     <option>فورى   </option>
                     <option>أخرى  </option>
                 </select>
@@ -230,7 +230,7 @@
 
     
     <div class="col-md-12 pd-top local-test">
-            <input type="checkbox" name="choice_type" id="Showmorein">
+            <input type="checkbox" id="Showmorein">
             <label for="choice-type-number" class="imp-n-ss">
                 ادخل المزيد عن بيانات العقار
             </label>
@@ -254,7 +254,7 @@
                         </div>
                         <div class="col-md-8">
                             <select class="form-control" name="building_design">
-                                <option class="choose" disabled> اختر </option>
+                                <option class="choose"  > اختر </option>
                                 <option> 0   </option>
                                 <option> 00  </option>
                             </select>
@@ -378,7 +378,7 @@
                         </div>
                         <div class="col-md-8">
                             <select class="form-control" name="floor_tanks_sort">
-                                <option class="choose" disabled> اختر </option>
+                                <option class="choose"  > اختر </option>
                                 <option> نوع    </option>
                                 <option> نوع اخر   </option>
                             </select>
@@ -392,7 +392,7 @@
                         </div>
                         <div class="col-md-8">
                             <select class="form-control" name="overhead_tanks_sort">
-                                <option class="choose" disabled> اختر </option>
+                                <option class="choose"  > اختر </option>
                                 <option> نوع    </option>
                                 <option> نوع اخر   </option>
                             </select>
@@ -406,9 +406,9 @@
                         </div>
                         <div class="col-md-8">
                             <select class="form-control" name="basement">
-                                <option class="choose" disabled> اختر </option>
-                                <option> يوجد   </option>
-                                <option> لا يوجد  </option>
+                                <option class="choose"  > اختر </option>
+                                <option>يوجد</option>
+                                <option>لا يوجد</option>
                             </select>
                         </div>
                     </div>
@@ -420,9 +420,9 @@
                         </div>
                         <div class="col-md-8">
                             <select class="form-control" name="parking">
-                                <option class="choose" disabled> اختر </option>
-                                <option> يوجد   </option>
-                                <option> لا يوجد  </option>
+                                <option class="choose"  > اختر </option>
+                                <option>يوجد</option>
+                                <option>لا يوجد</option>
                             </select>
                         </div>
                     </div>
@@ -434,9 +434,9 @@
                         </div>
                         <div class="col-md-8">
                             <select class="form-control" name="electricity_network">
-                                <option class="choose" disabled> اختر </option>
-                                <option> يوجد   </option>
-                                <option> لا يوجد  </option>
+                                <option class="choose"  > اختر </option>
+                                <option>يوجد</option>
+                                <option>لا يوجد</option>
                             </select>
                         </div>
                     </div>
@@ -448,9 +448,9 @@
                         </div>
                         <div class="col-md-8">
                             <select class="form-control" name="water_network">
-                                <option class="choose" disabled> اختر </option>
-                                <option> يوجد   </option>
-                                <option> لا يوجد  </option>
+                                <option class="choose"  > اختر </option>
+                                <option>يوجد</option>
+                                <option>لا يوجد</option>
                             </select>
                         </div>
                     </div>
@@ -462,9 +462,9 @@
                         </div>
                         <div class="col-md-8">
                             <select class="form-control" name="gas_network">
-                                <option class="choose" disabled> اختر </option>
-                                <option> يوجد   </option>
-                                <option> لا يوجد  </option>
+                                <option class="choose"  > اختر </option>
+                                <option>يوجد</option>
+                                <option>لا يوجد</option>
                             </select>
                         </div>
                     </div>
@@ -476,9 +476,9 @@
                         </div>
                         <div class="col-md-8">
                             <select class="form-control" name="sewerage_network">
-                                <option class="choose" disabled> اختر </option>
-                                <option> يوجد   </option>
-                                <option> لا يوجد  </option>
+                                <option class="choose"  > اختر </option>
+                                <option>يوجد</option>
+                                <option>لا يوجد</option>
                             </select>
                         </div>
                     </div>

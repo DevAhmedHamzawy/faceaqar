@@ -23,7 +23,7 @@ Route::post('admin/logout', 'Auth\AdminLoginController@logout')->name('admin.log
 Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/login'],function(){
 
     Route::resource('settings', 'SettingsController');
-    Route::resource('lawyers', 'Admin\LawyersController');    
+    Route::resource('lawyers', 'Admin\LawyerController');    
 
 });
 
@@ -33,7 +33,20 @@ Auth::routes(['verify' => true]);
 Route::get('/auth/social/{social}', 'Auth\SocialLoginController@redirectToSocial')->name('social');
 Route::get('/auth/{social}/callback', 'Auth\SocialLoginController@handleSocialCallback');
 
+//Route::group(['middleware' => 'verified'], function (){
+
 Route::get('home', 'HomeController@index')->name('home');
+
+Route::post('sendmessage', 'MessageController@store');
+
+Route::post('reportestate', 'ReportController@store');
+
+Route::post('like', 'LikeController@like');
+Route::post('dislike', 'LikeController@dislike');
+
+
+//});
+
 Route::get('estates/{adSort}', 'SearchController@searchByAdSort')->name('search-by-ad-sort');
 Route::get('estates/{adSort}/index', 'EstateController@index');
 Route::get('estates/{adSort}/create', 'EstateController@create')->name('estate.createestate');

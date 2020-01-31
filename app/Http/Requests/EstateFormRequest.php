@@ -49,7 +49,7 @@ class EstateFormRequest extends FormRequest
             'website' => 'required|string|min:10',
 
             'duration_id' => 'required|numeric',
-            'duration_publish' => 'in:شهر, 3 شهور,6 شهور,سنة',
+            'duration_publish' => 'in:شهر,3 شهور,6 شهور,سنه',
             'g-recaptcha-response' => 'required|captcha',
            
         ];
@@ -60,7 +60,7 @@ class EstateFormRequest extends FormRequest
             'schema_number' => 'required|numeric',
             'block_number' => 'required|numeric',
             'piece_number' => 'required|numeric',
-            'streets_number' => 'required|numeric',
+            'streets_number' => 'in:شارع واحد,شارعين,3 شوارع,4 شوارع',
             'destination_id' => 'required|numeric',
             'estate_space' => 'required|numeric',
             'price' => 'required|numeric',
@@ -84,12 +84,12 @@ class EstateFormRequest extends FormRequest
             'lifts_number' => 'required|numeric',
             'floor_tanks_sort' => 'in:نوع,نوع اخر',
             'overhead_tanks_sort' => 'in:نوع,نوع اخر',
-            'basement' => 'in:يوجد, لا يوجد',
-            'parking' => 'in:يوجد, لا يوجد',
-            'electricity_network' => 'in:يوجد, لا يوجد',
-            'water_network' => 'in:يوجد, لا يوجد',
-            'gas_network' => 'in:يوجد, لا يوجد',
-            'sewerage_network' => 'in:يوجد, لا يوجد',
+            'basement' => 'in:يوجد,لا يوجد',
+            'parking' => 'in:يوجد,لا يوجد',
+            'electricity_network' => 'in:يوجد,لا يوجد',
+            'water_network' => 'in:يوجد,لا يوجد',
+            'gas_network' => 'in:يوجد,لا يوجد',
+            'sewerage_network' => 'in:يوجد,لا يوجد',
             'internal_services' => 'required|min:3|max:1000',
             'external_services' => 'required|min:3|max:1000',
 
@@ -101,7 +101,7 @@ class EstateFormRequest extends FormRequest
         ];
 
         switch ($this->adSort) {
-            case 'local_estate' && $this->choice_type == "on":
+            case 'local_estate':
                 $estateValidation = array_merge($estateValidation, $localAuctionEstateValidation);
                 break;
             

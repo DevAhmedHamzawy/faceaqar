@@ -59,24 +59,28 @@
     <div class="col-sm-6 col-xs-12">
         <div class="form_cont form_cont_00">
         <h3 class="title_contct_us">ارسال رسالة خاصة إلى المعلن</h3>
+            
+            <div id="success-message"></div>
+
             <form>
                 <div class="form-group">
                     <label for=""> <i class="fa fa-user"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i> الأسم </label>
-                    <input type="text" class="form-control" id="" placeholder="">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="">
                 </div>	
                 <div class="form-group">
                     <label for=""> <i class="fa fa-phone"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i> رقم الجوال </label>
-                    <input type="text" class="form-control" id="" placeholder="">
+                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="">
                 </div>
                 <div class="form-group">
                     <label for=""> <i class="fas fa-envelope"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i> البريد الإلكترونى </label>
-                    <input type="text" class="form-control" id="" placeholder="">
+                    <input type="text" class="form-control" name="email" id="email" placeholder="">
                 </div>
                 <div class="form-group">
                     <label for=""> <i class="fas fa-envelope-open-text"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i> النص </label>
-                    <textarea class="form-control" rows="6"></textarea>
-                </div>	
-                <button type="submit" class="btn btn-default btn_web">إرســال</button>
+                    <textarea class="form-control" name="body" id="body" rows="6"></textarea>
+                </div>
+                <input type="hidden" name="to" id="to" value="{{ $estate->user_id }}">	
+                <button onclick="sendMessage();return false;" class="btn btn-default btn_web">إرســال</button>
             </form>
         </div>
     </div>

@@ -96,13 +96,13 @@ class EstateController extends Controller
 
         switch ($adSort) {
             case 'auction_estate':
-                AuctionEstate::create($request->except('user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
+                AuctionEstate::create($request->except('duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
                 break;
             case 'local_estate':
-                LocalEstate::create($request->except('user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
+                LocalEstate::create($request->except('duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
                 break;
             case  'request_estate':
-                RequestEstate::create($request->except('user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
+                RequestEstate::create($request->except('duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
                 break;
         }
 

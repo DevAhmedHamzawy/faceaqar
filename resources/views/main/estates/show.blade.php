@@ -1,5 +1,14 @@
 @extends('main.layouts.app')
 
+@section('header')
+
+<style>
+    .swal2-modal{
+        width:600px !important;
+        height: 200px;
+    }
+</style>    
+@endsection
 @section('content')
     <!-- details_real -->
     <section id="details_real">
@@ -198,7 +207,7 @@
                 <div class="row">
                     <div class="col-md-6 col-xs-12 visible-xs">
                         <div class="report">
-                            <button type="submit" class="btn btn-default btn_web btn_red"  data-toggle="modal" data-target="#report">الإبلاغ عن المحتوى</button>
+                            <button onclick="reportEstate()" class="btn btn-default btn_web btn_red"  data-toggle="modal" data-target="#report">الإبلاغ عن المحتوى</button>
                         </div>
                     </div>
 
@@ -206,17 +215,17 @@
                         <h4 class="rateing">تقييم المحتوى</h4>
                         <div class="rateing_icons d-flex flex-row justify-content-cente">
                             <div class="p-2"> 
-                                <i id="like1" class="fa fa-thumbs-up"></i> <div id="like1-bs3"></div>
+                                <i id="like1" onclick="like()" class="fa fa-thumbs-up"></i> <div id="like1-bs3"></div>
                             </div>
                             
                             <div class="p-2">
-                                <i id="dislike1" class="fa fa-thumbs-down"></i> <div id="dislike1-bs3"></div>
+                                <i id="dislike1" onclick="dislike()" class="fa fa-thumbs-down"></i> <div id="dislike1-bs3"></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-12 hidden-xs">
                         <div class="report">
-                            <button type="submit" class="btn btn-default btn_web btn_red"  data-toggle="modal" data-target="#report">الإبلاغ عن المحتوى</button>
+                            <button onclick="reportEstate()" class="btn btn-default btn_web btn_red"  data-toggle="modal" data-target="#report">الإبلاغ عن المحتوى</button>
                         </div>
                     </div>
                 </div>
@@ -228,4 +237,103 @@
         </div>
     </section>
     <!-- end_details_real -->
+@endsection
+
+
+@section('footer')
+
++   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <script>
+
+
+        function reportEstate(){
+            if(AuthUser){
+                let report = {
+                    estate_id: {!! $estate->id !!},
+                }
+            axios.post('../../reportestate', report)
+                .then((data) => {
+
+                    
+                        $('.report').append('<div class="alert alert-success mt-3" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>تم الإبلاغ عن الإعلان .... إدارة الموقع ستراجع البلاغ المقدم!</div></div>');
+                        setTimeout(() => {
+                            $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                                $(this).remove() 
+                            });
+                        }, 2000);
+                    
+                }).catch((error) => {
+
+                })
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    position: 'center',
+                    type: 'error',
+                    title: "تنبيه",
+                    html:
+                    '<h5>الرجاء تسجيل الدخول أو الإنضمام للموقع</h5> <br/>' +
+                    '<a class="btn btn-info" href="{{ route("login") }}">دخول الموقع</a> ' +
+                    '<a class="btn btn-info" href="{{ route("register") }}">الإنضمام للموقع</a> ' +
+                    '<a class="btn btn-info" onclick="swal.closeModal(); return false;">شكراً ... ربما لاحقاً</a> ',
+                    showConfirmButton: false,
+                   
+                })
+            }
+        }
+
+      
+        function sendMessage(){
+            let message = {
+                name: $('#name').val(),
+                mobile: $('#mobile').val(),
+                email: $('#email').val(),
+                body: $('#body').val(),
+                to: $("#to").val(),
+            }
+
+            axios.post('../../sendmessage', message)
+                .then((data) => {
+                    
+                    $('#name').val("");
+                    $('#mobile').val("");
+                    $('#email').val("");
+                    $('#body').val("");
+                    $("#to").val("");
+
+
+                    $('#success-message').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإرسال!</strong> الرسالة قد تم إرسالها بنجاح!</div></div>');
+                    setTimeout(() => {
+                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                            $(this).remove() 
+                        });
+                    }, 2000);
+                }).catch((error) => {
+
+                })
+
+                
+        }
+
+
+        function like(){
+            axios.post('../../like', {estate_id: {!! $estate->id !!}})
+                .then((data) => {
+
+                })
+        }
+
+
+        function dislike(){
+            axios.post('../../dislike', {estate_id: {!! $estate->id !!}})
+                .then((data) => {
+
+                })
+        }
+       
+
+    </script>
+    
 @endsection
