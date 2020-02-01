@@ -49,10 +49,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'area_id' => ['required', 'numeric'],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'confirmed'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'mobile' => ['required', 'numeric', 'min:10'],
             'g-recaptcha-response' => 'required|captcha',
+            'accept' => ['required'],
         ]);
     }
 

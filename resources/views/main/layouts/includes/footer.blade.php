@@ -53,30 +53,31 @@
             <div class="col-md-4 col-xs-12">
                 <div class="center-footer">
                     <h2> اشترك في النشرة التسويقية الالكترونية </h2>
+                    <div id="success-message-footer"></div>
                     <form>
-                         <input type="text" placeholder="اكتب الاسم ">
+                         <input type="text" id="name-newsletter-footer" placeholder="اكتب الاسم ">
                         <select>
-                          <option value="volvo">اختر اسم الدولة</option>
-                          <option value="saab">مصر</option>
-                          <option value="mercedes">المغرب</option>
-                          <option value="audi">الامارات</option>
+                          <option value="0">اختر اسم الدولة</option>
+                          <option value="1">مصر</option>
+                          <option value="2">المغرب</option>
+                          <option value="3">الامارات</option>
                         </select>
                          <select>
-                           <option value="volvo">اختر اسم المنطقة</option>
-                           <option value="saab">مصر</option>
-                           <option value="mercedes">المغرب</option>
-                           <option value="audi">الامارات</option>
+                           <option value="0">اختر اسم المنطقة</option>
+                           <option value="1">مصر</option>
+                           <option value="2">المغرب</option>
+                           <option value="3">الامارات</option>
                          </select>
-                         <select>
-                           <option value="volvo">اختر اسم المدينة</option>
-                           <option value="saab">مصر</option>
-                           <option value="mercedes">المغرب</option>
-                           <option value="audi">الامارات</option>
+                         <select id="area-id-newsletter-footer">
+                           <option value="0">اختر اسم المدينة</option>
+                           <option value="1">مصر</option>
+                           <option value="2">المغرب</option>
+                           <option value="3">الامارات</option>
                          </select>
-                        <input type="text" placeholder="اسم الحي">
-                        <input type="number" placeholder="رقم الجوال">
-                        <input type="email" placeholder="البريد الالكتروني">
-                        <button class="btn">اشترك</button>
+                        <input type="text" id="neighborhood-newsletter-footer" placeholder="اسم الحي">
+                        <input type="number" id="mobile-newsletter-footer" placeholder="رقم الجوال">
+                        <input type="email" id="email-newsletter-footer" placeholder="البريد الالكتروني">
+                        <button onclick="subscribefooter();return false;" class="btn">اشترك</button>
                     </form>
                     <div class="photo-cen">
                         <ul>
@@ -216,6 +217,10 @@ jQuery("body").toggleClass("mobb");
 });  
 
 
+
+
+
+
 window.AuthUser = '{!! auth()->user() !!}'
     window.__auth = function () {
         try {
@@ -227,5 +232,177 @@ window.AuthUser = '{!! auth()->user() !!}'
 
 
 });
+
+function submitregister(){
+    let register = {
+        area_id: $('.area-id-register').val(),
+        name: $('.name-register').val(),
+        password: $('.password-register').val(),
+        password_confirmation: $('.password-confirmation').val(),
+        email: $('.email-register').val(),
+        email_confirmation: $('.email-confirmation').val(),
+        mobile: $('.mobile-register').val(),
+    }
+
+
+    axios.post('../../register', register)
+            .then((data) => {
+
+            }).catch((error) => {
+                $('.area-id-register-error').empty();
+                $('.name-register-error').empty();
+                $('.password-register-error').empty();
+                $('.email-register-error').empty();
+                $('.mobile-register-error').empty();
+                console.log(error.response.data.errors);
+                if(error.response.data.errors.area_id){
+                    $('.area-id-register-error').append('<strong>'+error.response.data.errors.area_id+'</strong>');
+                    $('.area-id-register').addClass('is-invalid')
+                }
+                if(error.response.data.errors.name){
+                    $('.name-register-error').append('<strong>'+error.response.data.errors.name+'</strong>');
+                    $('.name-register').addClass('is-invalid')
+                }
+                if(error.response.data.errors.email){
+                    $('.email-register-error').append('<strong>'+error.response.data.errors.email+'</strong>');
+                    $('.email-register').addClass('is-invalid')
+                }
+                if(error.response.data.errors.password){
+                    $('.password-register-error').append('<strong>'+error.response.data.errors.password+'</strong>');
+                    $('.password-register').addClass('is-invalid')
+                }
+                if(error.response.data.errors.mobile){
+                    $('.mobile-register-error').append('<strong>'+error.response.data.errors.mobile+'</strong>');
+                    $('.mobile-register').addClass('is-invalid')
+                }
+                if(error.response.data.errors.recaptcha){
+                    console.log(error.response.data.errors.recaptcha);
+                    $('.g-recaptcha-response-register-error').append('<strong>'+error.response.data.errors.recaptcha+'</strong>');
+                }
+                
+                if(error.response.data.errors.accept){
+                    console.log(error.response.data.errors.accept);
+                    $('.g-recaptcha-response-register-error').append('<strong>'+error.response.data.errors.accept+'</strong>');
+                }
+            })
+    
+
+}
+
+
+
+function submitmemberlogin(){
+    let login = {
+       email: $('.email-login').val(),
+       password: $('.password-login').val(),
+       remember: $('.remember-login').val()
+    }
+
+    axios.post('../../login', login)
+            .then((data) => {
+
+            }).catch((error) => {
+                $('.email-login-error').empty();
+                $('.password-login-error').empty();
+                if(error.response.data.errors.email){
+                    $('.email-login-error').append('<strong>'+error.response.data.errors.email+'</strong>');
+                    $('.email-login').addClass('is-invalid')
+                }
+                if(error.response.data.errors.password){
+                    $('.password-login-error').append('<strong>'+error.response.data.errors.password+'</strong>');
+                    $('.password-login').addClass('is-invalid')
+                }
+            })
+    
+}
+
+function subscribeheaderone(){
+    //console.log('subscribeheaderone');
+    let newsletter = {
+        name: $('#name-newsletter-head-one').val(),
+        area_id: $('#area-id-newsletter-head-one').val(),
+        neighborhood: $('#neighborhood-newsletter-head-one').val(),
+        mobile: $('#mobile-newsletter-head-one').val(),
+        email: $('#email-newsletter-head-one').val(),
+    }
+
+    axios.post('../../savenewsletter', newsletter)
+            .then((data) => {
+
+                $('#name-newsletter-head-one').val("");
+                $('#area-id-newsletter-head-one').val("");
+                $('#neighborhood-newsletter-head-one').val("");
+                $('#mobile-newsletter-head-one').val("");
+                $('#email-newsletter-head-one').val("");
+
+                $('#success-message-head').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإشتراك!</strong>تم الإشتراك فى النشرة التسويقية !</div></div>');
+                setTimeout(() => {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                        $(this).remove() 
+                    });
+                    $('#submod').modal('hide');
+                }, 2000);
+
+
+            });
+}
+
+function subscribeheadertwo(){
+    //console.log('subscribeheadertwo');
+
+    let newsletter = {
+        name: $('#name-newsletter-head-two').val(),
+        area_id: $('#area-id-newsletter-head-two').val(),
+        neighborhood: $('#neighborhood-newsletter-head-two').val(),
+        mobile: $('#mobile-newsletter-head-two').val(),
+        email: $('#email-newsletter-head-two').val(),
+    }
+
+    axios.post('../../savenewsletter', newsletter)
+      .then((data) => {
+
+            $('#name-newsletter-head-two').val("");
+            $('#area-id-newsletter-head-two').val("");
+            $('#neighborhood-newsletter-head-two').val("");
+            $('#mobile-newsletter-head-two').val("");
+            $('#email-newsletter-head-two').val("");
+
+            $('#success-message-head').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإشتراك!</strong>تم الإشتراك فى النشرة التسويقية !</div></div>');
+            setTimeout(() => {
+                $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove() 
+                });
+            }, 2000);
+        });
+}
+
+function subscribefooter(){
+    //console.log('subscribefooter');
+
+    let newsletter = {
+        name: $('#name-newsletter-footer').val(),
+        area_id: $('#area-id-newsletter-footer').val(),
+        neighborhood: $('#neighborhood-newsletter-footer').val(),
+        mobile: $('#mobile-newsletter-footer').val(),
+        email: $('#email-newsletter-footer').val(),
+    }
+
+    axios.post('../../savenewsletter', newsletter)
+      .then((data) => {
+
+            $('#name-newsletter-footer').val("");
+            $('#area-id-newsletter-footer').val("");
+            $('#neighborhood-newsletter-footer').val("");
+            $('#mobile-newsletter-footer').val("");
+            $('#email-newsletter-footer').val("");
+
+            $('#success-message-footer').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإشتراك!</strong>تم الإشتراك فى النشرة التسويقية !</div></div>');
+            setTimeout(() => {
+                $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove() 
+                });
+            }, 2000);
+        });
+}
 
 </script>

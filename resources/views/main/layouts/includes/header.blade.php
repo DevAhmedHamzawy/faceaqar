@@ -341,13 +341,14 @@
             </div>
             <div class="modal-body">
                 <div class="row left-con">
+                    <div id="success-message-head"></div>
                     <form>
                         <div class="col-xs-12 col-sm-6">
                             <div class="icon-con">
                                 <i class="far fa-user"></i>
                             </div>
                             <h2>أكتب الأسم   </h2>
-                            <input type="text">
+                            <input id="name-newsletter-head-one" type="text">
                         </div>
                         <div class="col-xs-12 col-sm-6">
                             <div class="icon-con">
@@ -379,11 +380,11 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <h2>اختر المدينة</h2>
-                            <select>
-                                <option value="volvo">الرياض</option>
-                                <option value="saab">مصر</option>
-                                <option value="mercedes">المغرب</option>
-                                <option value="audi">الامارات</option>
+                            <select id="area-id-newsletter-head-one">
+                                <option value="0">الرياض</option>
+                                <option value="1">مصر</option>
+                                <option value="2">المغرب</option>
+                                <option value="3">الامارات</option>
                             </select>
                         </div>
                         <div class="col-xs-12 col-sm-6">
@@ -391,7 +392,7 @@
                                 <i class="fas fa-map-marked-alt"></i>
                             </div>
                             <h2>اسم الحي</h2>
-                            <input type="text" placeholder="">
+                            <input type="text" id="neighborhood-newsletter-head-one" placeholder="">
                         </div>
                         
 
@@ -401,21 +402,21 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <h2>رقم الجوال</h2>
-                            <input type="text">
+                            <input type="text" id="mobile-newsletter-head-one">
                         </div>
                         <div class="col-xs-12 col-sm-12">
                             <div class="icon-con">
                                 <i class="fa fa-envelope "></i>
                             </div>
                             <h2>عنوان البريد الالكتروني</h2>
-                            <input type="text">
+                            <input type="text" id="email-newsletter-head-one">
                         </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">اغلاق</button>
-            <button type="button" class="btn btn-default1">اشتراك</button>
+            <button type="button" onclick="subscribeheaderone()" class="btn btn-default1">اشتراك</button>
             </div>
         </div>
     
@@ -433,18 +434,20 @@
             <h4 class="modal-title"> دخول المكاتب العقارية</h4>
             </div>
             <div class="modal-body">
-            <form method="post" id="member-login" action="{{ route('login') }}">
+            <form id="member-login">
                 @csrf
                 <p> ادخل رقم جوالك او الايميل او اسم المستخدم</p>
-                <input type="text" name="email" class="form-control">
+                <input type="text" class="email-login form-control">
+                <span class="email-login-error invalid-feedback" role="alert"></span>
                 <p>ادخل كلمة المرور</p>
-                <input type="password" name="password" class="form-control">
+                <input type="password" class="password-login form-control">
+                <span class="password-login-error invalid-feedback" role="alert"></span>
                 <div class="clearfix"></div>
                 <div class="lastchek">
                     <div class="checkbox">
                         
                         <label>تذكرنى</label>
-                        <input class="form-check-input" type="checkbox" name="remember" class="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" class="remember-login remember" {{ old('remember') ? 'checked' : '' }}>
                     </div>
                     <a href="#" class="fordid">هـل نسيت كلمة المرور؟</a>
                 </div>
@@ -490,7 +493,7 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">اغلاق</button>
-            <button type="button" onclick="submitmemberloginone()" class="btn btn-default1">دخول</button>
+            <button type="button" onclick="submitmemberlogin()" class="btn btn-default1">دخول</button>
                 <button type="button" class="btn btn-default1 regs">تسجيل جديد</button>
             </div>
         </div>
@@ -512,14 +515,16 @@
             <form method="post" id="member-login-one" action="{{ route('login') }}">
                 @csrf
                 <p> ادخل رقم جوالك او الايميل او اسم المستخدم</p>
-                <input type="text" name="email" class="form-control">
+                <input type="text" class="email-login form-control">
+                <span class="email-login-error invalid-feedback" role="alert"></span>
                 <p>ادخل كلمة المرور</p>
-                <input type="password" name="password" class="form-control">
+                <input type="password" class="password-login form-control">
+                <span class="password-login-error invalid-feedback" role="alert"></span>
                 <div class="clearfix"></div>
                 <div class="lastchek">
                     <div class="checkbox">
                         <label>تذكرنى</label>
-                        <input class="form-check-input" type="checkbox" name="remember" class="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" class="remember-login remember" {{ old('remember') ? 'checked' : '' }}>
                     </div>
                     <a href="#" class="fordid">هـل نسيت كلمة المرور؟</a>
                 </div>
@@ -585,7 +590,7 @@
             </div>
             <div class="modal-body">
                 <div class="row left-con">
-                    <form method="post" id="register" action="{{ route('register') }}">
+                    <form>
                         @csrf
                         <div class="col-xs-12">
                             <div class="icon-con">
@@ -616,66 +621,79 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <h2>اختر المدينة</h2>
-                            <select>
-                                <option value="volvo">الرياض</option>
-                                <option value="saab">مصر</option>
-                                <option value="mercedes">المغرب</option>
-                                <option value="audi">الامارات</option>
+                            <select class="area-id-register">
+                                <option value="0">الرياض</option>
+                                <option value="1">مصر</option>
+                                <option value="2">المغرب</option>
+                                <option value="3">الامارات</option>
                             </select>
+                            <span class="area-id-register-error invalid-feedback" role="alert"></span>
                         </div>
                         <div class="col-xs-12">
                             <div class="icon-con">
                                 <i class="fa fa-user"></i>
                             </div>
                             <h2> اسم المستخدم</h2>
-                            <input type="text" name="name">
+                            <input type="text" class="name-register">
+                            <span class="name-register-error invalid-feedback" role="alert"></span>
                         </div>
                         <div class="col-xs-6 col-sm-6">
                             <div class="icon-con">
                                 <i class="fas fa-unlock-alt"></i>
                             </div>
                             <h2>  كلمة المرور </h2>
-                            <input type="password" name="password">
+                            <input type="password" class="password-register">
+                            <span class="password-register-error invalid-feedback" role="alert"></span>
                         </div>
                         <div class="col-xs-6 col-sm-6">
                             <div class="icon-con">
                                 <i class="fas fa-unlock-alt"></i>
                             </div>
                             <h2>   إعادة كلمة المرور </h2>
-                            <input type="password" name="password_confirmation">
+                            <input type="password" class="password-confirmation">
+                            <span class="password-confirmation-error invalid-feedback" role="alert"></span>
                         </div>
                         <div class="col-xs-6 col-sm-6">
                             <div class="icon-con">
                                 <i class="fa fa-envelope "></i>
                             </div>
                             <h2>عنوان البريد الالكتروني</h2>
-                            <input type="text" name="email">
+                            <input type="text" class="email-register">
+                            <span class="email-register-error invalid-feedback" role="alert"></span>
                         </div>
                         <div class="col-xs-6 col-sm-6">
                             <div class="icon-con">
                                 <i class="fa fa-envelope "></i>
                             </div>
                             <h2>  تأكيد عنوان البريد الإلكترونى </h2>
-                            <input type="text" name="email_confirmation">
+                            <input type="text" class="email-confirmation">
+                            <span class="email-confirmation-error invalid-feedback" role="alert"></span>
                         </div>
                         <div class="col-xs-12 col-sm-12">
                             <div class="icon-con">
                                 <i class="fa fa-phone"></i>
                             </div>
                             <h2>رقم الجوال</h2>
-                            <input type="text" name="phone">
+                            <input type="text" class="mobile-register">
+                            <span class="mobile-register-error invalid-feedback" role="alert"></span>
                         </div>
+                        
+                        <div class="col-xs-12 col-sm-12">
 
-                        <div class="col-xs-12">
+                       
                             {!! NoCaptcha::renderJs() !!}
                             {!! NoCaptcha::display() !!}
+
+                            <span class="g-recaptcha-response-register-error invalid-feedback" role="alert"></span>
+
                         </div>
 
                         <div class="col-xs-12">
                             <div class="lastchek">
                             <div class="checkbox">
                                 <label>أوافق على كافة الأحكام والشروط للموقع الإلكتروني والإلتزام بما جاء فيها    </label>
-                                <input type="checkbox" name="accept" class="chekreg">
+                                <input type="checkbox" class="accept chekreg">
+                                <span class="accept-terms-register-error invalid-feedback" role="alert"></span>
                             </div>
                             </div>
                             
@@ -707,13 +725,14 @@
             </div>
             <div class="modal-body">
                 <div class="row left-con">
+                    <div id="success-message-head"></div>
                     <form>
                         <div class="col-xs-12 col-sm-6">
                             <div class="icon-con">
                                 <i class="far fa-user"></i>
                             </div>
                             <h2>أكتب الأسم   </h2>
-                            <input type="text">
+                            <input type="text" id="name-newsletter-head-two">
                         </div>
                         <div class="col-xs-12 col-sm-6">
                             <div class="icon-con">
@@ -745,11 +764,11 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <h2>اختر المدينة</h2>
-                            <select>
-                                <option value="volvo">الرياض</option>
-                                <option value="saab">مصر</option>
-                                <option value="mercedes">المغرب</option>
-                                <option value="audi">الامارات</option>
+                            <select id="area-id-newsletter-head-two">
+                                <option value="0">الرياض</option>
+                                <option value="1">مصر</option>
+                                <option value="2">المغرب</option>
+                                <option value="3">الامارات</option>
                             </select>
                         </div>
                         <div class="col-xs-12 col-sm-6">
@@ -757,12 +776,7 @@
                                 <i class="fas fa-map-marked-alt"></i>
                             </div>
                             <h2>اختر الحي</h2>
-                            <select>
-                                <option value="volvo">الرياض</option>
-                                <option value="saab">مصر</option>
-                                <option value="mercedes">المغرب</option>
-                                <option value="audi">الامارات</option>
-                            </select>
+                            <input type="text" id="neighborhood-newsletter-head-two">
                         </div>
                         
 
@@ -772,21 +786,21 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <h2>رقم الجوال</h2>
-                            <input type="text">
+                            <input type="text" id="mobile-newsletter-head-two">
                         </div>
                         <div class="col-xs-12 col-sm-12">
                             <div class="icon-con">
                                 <i class="fa fa-envelope "></i>
                             </div>
                             <h2>عنوان البريد الالكتروني</h2>
-                            <input type="text">
+                            <input type="text" id="email-newsletter-head-two">
                         </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">اغلاق</button>
-            <button type="button" class="btn btn-default1">اشتراك</button>
+            <button type="button" onclick="subscribeheadertwo()" class="btn btn-default1">اشتراك</button>
             </div>
         </div>
     

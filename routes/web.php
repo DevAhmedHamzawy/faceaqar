@@ -44,6 +44,10 @@ Route::post('reportestate', 'ReportController@store');
 Route::post('like', 'LikeController@like');
 Route::post('dislike', 'LikeController@dislike');
 
+Route::post('sendcontact', 'ContactUsController@store');
+
+Route::post('savenewsletter', 'NewsLetterController@store');
+
 
 //});
 
