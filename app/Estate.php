@@ -11,7 +11,7 @@ class Estate extends Model
 {
     protected $guarded = [];
 
-    protected $with = ['category'];
+    protected $with = ['category','images'];
 
     public function getRouteKeyName()
     {   
@@ -42,6 +42,11 @@ class Estate extends Model
     public function auctionEstate()
     {
         return $this->hasOne('App\AuctionEstate');
+    }
+
+    public function images()
+    {
+        return $this->hasOne('App\EstateImage', 'estate_id');
     }
 
     

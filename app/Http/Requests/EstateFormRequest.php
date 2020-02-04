@@ -50,7 +50,7 @@ class EstateFormRequest extends FormRequest
 
             'duration_id' => 'required|numeric',
             'duration_publish' => 'in:شهر,3 شهور,6 شهور,سنه',
-            'g-recaptcha-response' => 'required|captcha',
+            //'g-recaptcha-response' => 'required|captcha',
            
         ];
 

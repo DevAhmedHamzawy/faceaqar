@@ -6,6 +6,7 @@ use App\Advertiser;
 use App\AuctionEstate;
 use App\Category;
 use App\Estate;
+use App\EstateImage;
 use App\Http\Requests\EstateFormRequest;
 use App\LocalEstate;
 use App\RequestEstate;
@@ -96,17 +97,38 @@ class EstateController extends Controller
 
         switch ($adSort) {
             case 'auction_estate':
-                AuctionEstate::create($request->except('duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
+                AuctionEstate::create($request->except('estateimages','duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
                 break;
             case 'local_estate':
-                LocalEstate::create($request->except('duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
+                LocalEstate::create($request->except('estateimages','duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
                 break;
             case  'request_estate':
-                RequestEstate::create($request->except('duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
+                RequestEstate::create($request->except('estateimages','duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
                 break;
         }
 
         Advertiser::create($request->only('estate_id','advertiser_sort_id','name','mobile1','mobile2','telephone','fax','central','email','website'));
+
+      
+        //EstateImage::create($request->only('estate_id','images'));
+
+        if($request->hasfile('estateimages'))
+         {
+            $estate_name = $request->name;
+
+            foreach($request->file('estateimages') as $image)
+            {
+                $name=$image->getClientOriginalName();
+                $image->storePubliclyAs("public/estates/${estate_name}", $name);  
+                $data[] = $name;  
+            }
+         }
+
+         $estateimage= new EstateImage();
+         $estateimage->img=json_encode($data);
+         $estateimage->estate_id=$request->estate_id;
+        
+        $estateimage->save();
 
         return redirect('estates/'.$adSort.'/'.$estate->name);
     }
@@ -121,6 +143,16 @@ class EstateController extends Controller
     {
         $estate->advertiser = Advertiser::where('estate_id',$estate->id)->first();
         $adSort = Estate::checkAdSort($adSort);
+        $estate_name = $estate->name;
+        $images = json_decode($estate->images->img);
+        $storage_images = [];
+        foreach($images as $image){
+            $image = asset("storage/estates/${estate_name}/${image}");
+            array_push($storage_images, $image);
+        }
+
+        //dd($storage_images);
+        $estate->images = $storage_images;
 
         //TODO :- Check About AdsortID To Avoid Mistakes
 

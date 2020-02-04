@@ -56,6 +56,8 @@ Route::get('estates/{adSort}/index', 'EstateController@index');
 Route::get('estates/{adSort}/create', 'EstateController@create')->name('estate.createestate');
 Route::post('estates/{adSort}/create', 'EstateController@store')->name('estates.create');
 Route::get('estates/{adSort}/{estate}', 'EstateController@show')->name('estates.show');
+
+
 Route::get('search', 'SearchController@index')->name('search');
 Route::get('search/filters', 'SearchController@getFilters')->name('getresults');
 

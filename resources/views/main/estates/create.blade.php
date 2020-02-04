@@ -1,9 +1,6 @@
 @extends('main.layouts.app')
 
-@section('header')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>   
-@endsection
+
 
 @section('content')
 
@@ -51,14 +48,23 @@
 
 @section('footer')
     <script type="text/javascript">
-        Dropzone.autoDiscover = false;
+       
 
-        Dropzone.options.imageUpload = {
-            maxFilesize:1,
-            acceptedFiles: ".jpeg,.jpg,.png,.gif"
-        };
-
-
+       function addImages(){
+            //console.log($('.images').find('.form-group').length);
+             
+            if($('.images').find('.form-group').length < 4){
+                $('.images').append('<div class="form-group"><input type="file" name="estateimages[]" class="form-control" id="" placeholder=""></div>');
+            }else{
+                $('.images-danger').css('display', 'block');
+                $('.images-danger').append('<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم تجاوز الحد الأقصى من الصور !</div></div>');
+                setTimeout(() => {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                        $(this).remove() 
+                    });
+                }, 2000);
+            }
+        }
 
     function initMap() {
     var myLatLng = {lat: 24.774265, lng: 46.738586};

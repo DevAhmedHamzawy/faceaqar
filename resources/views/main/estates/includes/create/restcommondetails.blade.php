@@ -11,13 +11,14 @@
 <div class="row">
     <div class="col-md-12">
         <h4>ارفاق صور عن {{ $adSort->title }} </h4>
+        <button class="btn btn-primary add-image" onclick="addImages();return false;">إضافة صور أخرى</button>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12 dropzone" id="image-upload">
-        
-    </div>
+<div class="form-group">
+    <input type="file" name="estateimages[]" class="form-control" id="" placeholder="">
 </div>
+<div class="images"></div>
+<div class="images-danger" style="margin-top:250px;display:none;"></div>
 <div class="row">
     <div class="col-md-12">
         <h4>حدد موقع المخطط {{ $adSort->title }} الجغرافي على مخطط ماب</h4>
@@ -186,3 +187,4 @@
 </div>	
 </form>
 </div>
+
