@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Portfolio;
+use App\Traits\UploadFiles;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
 {
+    use UploadFiles;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,7 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.portfolios.index', ['portfolios' => Portfolio::all()]);
     }
 
     /**
@@ -35,7 +37,12 @@ class PortfolioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:portfolios|max:191',
+            'file' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+        ]);
+        $request->merge(['img' => UploadFiles::upload_image($request->file, $request->name, 'portfolio')]);
+        Portfolio::create($request->except('file'));
     }
 
     /**

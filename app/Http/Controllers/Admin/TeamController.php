@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Client;
-use App\User;
-use App\Traits\UploadFiles;
+use DB;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ClientController extends Controller
+class TeamController extends Controller
 {
-    use UploadFiles;
-
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +15,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('admin.clients.index', ['clients' => User::all()]);
+        return view('admin.teams.index', ['teams' => User::all()]);
     }
 
     /**
@@ -40,20 +37,18 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:clients|max:191',
-            'file' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'user_id' => 'required|unique:teams',
         ]);
-        $request->merge(['img' => UploadFiles::upload_image($request->file, $request->name, 'clients')]);
-        Client::create($request->except('file'));
+        DB::table('teams')->insert(['user_id' => $request->user_id]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Client  $client
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show(User $user)
     {
         //
     }
@@ -61,10 +56,10 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Client  $client
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(User $user)
     {
         //
     }
@@ -73,10 +68,10 @@ class ClientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Client  $client
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -84,10 +79,10 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Client  $client
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy(User $user)
     {
         //
     }
