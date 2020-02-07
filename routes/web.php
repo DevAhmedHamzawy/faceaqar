@@ -76,3 +76,11 @@ Route::get('terms', 'TermsController@show')->name('terms');
 Route::get('clients', 'ClientController@index')->name('clients');
 Route::get('portfolio', 'PortfolioController@index')->name('portfolio');
 Route::get('teams', 'TeamsController@index')->name('teams');
+
+Route::resource('payments', 'PaymentController');
+Route::get('success', 'PaymentController@success')->name('payment.success');
+Route::get('cancel', 'PaymentController@cancel')->name('payment.cancel');
+
+Route::resource('tickets', 'TicketController');
+
+Route::resource('brokers', 'BrokerController');

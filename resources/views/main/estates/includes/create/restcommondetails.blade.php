@@ -171,7 +171,7 @@
     <div class="col-md-12">
         <div class="checkbox form-group Terms_line text-right">
         <label>
-            <input type="checkbox">
+            <input type="checkbox" name="agree">
 اوافق على كافة الأحكام والشروط للموقع الإلكتروني والإلتزام بما جاء فيها.
         </label>
     </div>
