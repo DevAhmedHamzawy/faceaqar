@@ -28,7 +28,10 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
     Route::resource('lawyers', 'Admin\LawyerController'); 
     Route::resource('clients', 'Admin\ClientController');       
     Route::resource('portfolios', 'Admin\PortfolioController');       
-    Route::resource('teams', 'Admin\TeamController');       
+    Route::resource('teams', 'Admin\TeamController');   
+    
+    Route::resource('contacts', 'Admin\ContactController');       
+    Route::resource('tickets', 'Admin\TicketController');
 
 });
 
