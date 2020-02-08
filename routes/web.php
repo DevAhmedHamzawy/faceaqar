@@ -22,7 +22,9 @@ Route::post('admin/logout', 'Auth\AdminLoginController@logout')->name('admin.log
 
 Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/login'],function(){
 
-    Route::resource('settings', 'SettingsController');
+    Route::get('settings/{sort}/1', 'Admin\SettingsController@edit')->name('settings.edit');
+    Route::patch('settings/update', 'Admin\SettingsController@update')->name('settings.update');
+
     Route::resource('lawyers', 'Admin\LawyerController'); 
     Route::resource('clients', 'Admin\ClientController');       
     Route::resource('portfolios', 'Admin\PortfolioController');       

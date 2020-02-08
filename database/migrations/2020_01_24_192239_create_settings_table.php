@@ -28,6 +28,18 @@ class CreateSettingsTable extends Migration
             $table->string('email');
             $table->text('about');
             $table->text('terms');
+            $table->string('facebook');
+            $table->string('googleplus');
+            $table->string('youtube');
+            $table->string('twitter');
+            $table->string('telegram');
+            $table->string('whatsapp');
+            $table->string('snapchat');
+            $table->string('linkedin');
+            $table->string('play_store');
+            $table->string('app_store');
+            $table->string('microsoft_store');
+            $table->string('qr_code');
             $table->timestamps();
         });
     }
