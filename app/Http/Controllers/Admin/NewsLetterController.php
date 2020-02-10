@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Mail\SendNewsLetterMessage;
 use App\NewsLetter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class NewsLetterController extends Controller
 {
@@ -15,9 +16,14 @@ class NewsLetterController extends Controller
 
     public function store(Request $request)
     {
-        $request->merge(['area_id' => 0]);
-        Contact::create($request->except('receiver_email','receiver_name'));
+        $ids= rtrim($request->formIds,',');
+        $idsArray=explode(',',$ids);
 
-        Mail::to($request->receiver_email)->send(new SendNewsLetterMessage($request->name, $request->receiver_name, $request->message));
+        foreach($idsArray as $id){
+            $newsletter=NewsLetter::findOrFail($id);
+            Mail::to($newsletter->email)->send(new SendNewsLetterMessage($newsletter->name,auth()->user()->name,$request->message));
+        }
+
+        //Mail::to($request->receiver_email)->send(new SendNewsLetterMessage($request->name, $request->receiver_name, $request->message));
     }
 }

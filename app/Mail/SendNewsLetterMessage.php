@@ -10,15 +10,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class SendNewsLetterMessage extends Mailable
 {
     use Queueable, SerializesModels;
+    public $sender_name;
+    public $reciever_name;
+    public $message;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($sender_name, $reciever_name, $message)
     {
-        //
+        $this->sender_name = $sender_name;
+        $this->reciever_name = $reciever_name;
+        $this->message = $message;
     }
 
     /**
@@ -28,6 +33,6 @@ class SendNewsLetterMessage extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('newsletter.name');
     }
 }

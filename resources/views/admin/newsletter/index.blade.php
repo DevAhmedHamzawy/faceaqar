@@ -7,6 +7,42 @@
             <div class="card">
                 <div class="card-header">
                     Dashboard
+
+                    Check All<input type="checkbox" id="check_all">
+
+                    <button type="button" id="modal-btn" class="btn btn-danger" data-toggle="modal" data-target="#form">
+                        See Modal with Form
+                    </button>  
+
+                    <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header border-bottom-0">
+                              <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <form>
+                              <div class="modal-body">
+
+                                <input type="hidden" id="formIds" name="ids" value="">
+                               
+                                <div class="form-group">
+                                  <label for="message">Message</label>
+                                  <textarea name="message" id="message" class="form-control" cols="30" rows="10"></textarea>
+                                </div>
+                               
+                               
+                              </div>
+                              <div class="modal-footer border-top-0 d-flex justify-content-center">
+                                <button class="btn btn-success" id="send-newsletter">Submit</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="card-body">
@@ -26,8 +62,11 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Operations</th>
+                                    <th scope="col">Neighborhood</th>
+                                    <th scope="col">Area_id</th>
+                                    <th scope="col">Mobile</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Check</th>
                                 </tr>
                             </thead>
                             @forelse ($newsletters as $newsletter)
@@ -35,46 +74,14 @@
                                 <tr>
                                     <td scope="row">#</td>
                                     <td>{{ $newsletter->name  }}</td>
-                                    <td>{{ $newsletter->img }}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#form">
-                                            See Modal with Form
-                                        </button>  
-
-
-                                        
-
-                                    </td>
+                                    <td>{{ $newsletter->neighborhood }}</td>
+                                    <td>{{ $newsletter->area_id }}</td>
+                                    <td>{{ $newsletter->mobile }}</td>
+                                    <td>{{ $newsletter->email }}</td>
+                                    <td><input type="checkbox" class="checkboxes" data-id="{{$newsletter->id}}"></td>
                                 </tr>
                             </tbody>
-                            <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header border-bottom-0">
-                                      <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <form>
-                                      <div class="modal-body">
-        
-                                        <input type="hidden" name="name" value="{{ $newsletter->name }}">
-                                        <input type="hidden" name="email" value="{{ $newsletter->email }}">
-                                        <div class="form-group">
-                                          <label for="message">Message</label>
-                                          <textarea name="message" id="message" class="form-control" cols="30" rows="10"></textarea>
-                                        </div>
-                                       
-                                       
-                                      </div>
-                                      <div class="modal-footer border-top-0 d-flex justify-content-center">
-                                        <button class="btn btn-success" id="reply">Submit</button>
-                                      </div>
-                                    </form>
-                                  </div>
-                                </div>
-                            </div>
+                            
                             @empty
                                 <li class="list-group-item">
                                     لا يوجد رسائل
@@ -94,33 +101,18 @@
 @section('footer')
 
 <script>
-
-
     
-    window.form_data = new FormData();
-
-    $(document).on('change','#file',function(e){
-
-    let file_data = $('#file').prop('files')[0];
-    form_data.append('file', file_data);
-
-
-    });
-    
-    $(document).on("click", "#reply", function(e){
+    $(document).on("click", "#send-newsletter", function(e){
 
         e.preventDefault();
 
-        form_data.append('name', '{!! auth()->user()->user_name !!}')
-        form_data.append('mobile', '{!! $settings->telephone  !!}')
-        form_data.append('email', '{!! $settings->email  !!}')
-        form_data.append('service_id', 100)
-        form_data.append('body', $('#message').val())
-        form_data.append('receiver_email', $('#email').val())
-        form_data.append('receiver_name', $('#name').val())
+       
+        let formIds = $('#formIds').val();
+        let message = $('#message').val();
+        
 
 
-        axios.post('../admin/newsletters', form_data)
+        axios.post('../admin/newsletters', {formIds, message})
         .then((response) => {
             $('#success-message').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإرسال!</strong> تم إضافة عميل جديد بنجاح!</div></div>');
                 setTimeout(() => {
@@ -136,6 +128,43 @@
             }
         })
 
+    });
+
+    $("#modal-btn").attr("disabled", "disabled");
+
+    $('#check_all').on('click',function(){
+        if($(this).prop('checked')==true){
+            $('.checkboxes').prop('checked',true);
+            $("#modal-btn").removeAttr("disabled");
+        }else {
+            $('.checkboxes').prop('checked',false);
+            $("#modal-btn").attr("disabled", "disabled");
+        }
+    });
+
+    $('.checkboxes').on('click',function(){
+        if($('.checkboxes').filter(":checked").length==0){
+            $("#modal-btn").attr("disabled", "disabled");
+        }else {
+            $("#modal-btn").removeAttr("disabled");
+        }
+
+        if($('.checkboxes').filter(":checked").length==$('.checkboxes').length) {
+            $('#check_all').prop('checked',true);
+        }else {
+            $('#check_all').prop('checked',false);
+        }
+    });
+
+
+    $('#modal-btn').on('click',function(){
+        var ids='';
+        $('.checkboxes').each(function(){
+            if($(this).prop('checked')==true){
+            ids+=$(this).data('id')+',';}
+        });
+        $('#formIds').attr('value',ids);
+        $('#form').modal('show');
     });
 
 </script>

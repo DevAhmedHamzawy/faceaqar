@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.1.3/css/bootstrap.min.css" integrity="sha384-Jt6Tol1A2P9JBesGeCxNrxkmRFSjWCBW1Af7CSQSKsfMVQCqnUVWhZzG0puJMCK6" crossorigin="anonymous">    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('adminpanel/css/style.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Logo</title>
@@ -110,13 +109,13 @@
         <div class="sideMenu bg-mattBlackLight">
             <div class="sidebar">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a href="{{ url('admin/dashboard') }}" class="nav-link px-2"><i class="material-icons icon">dashboard</i><span class="text">Dashboard</span></a></li>
-                    <li class="nav-item"><a href="{{ url('admin/categories') }}" class="nav-link px-2"><i class="material-icons icon">collections</i><span class="text">Categories</span></a></li>
-                    <li class="nav-item"><a href="{{ url('admin/contacts') }}" class="nav-link px-2"><i class="material-icons icon">accessibility</i><span class="text">Contacts</span></a></li>
-                    <li class="nav-item"><a href="{{ url('admin/newsletter') }}" class="nav-link px-2"><i class="material-icons icon">account_box</i><span class="text">Newsletter</span></a></li>
-                    <li class="nav-item"><a href="{{ url('admin/settings/1/edit') }}" class="nav-link px-2"><i class="material-icons icon">account_circle</i><span class="text">Settings</span></a></li>
-                    <li class="nav-item"><a href="{{ url('admin/admins') }}" class="nav-link px-2"><i class="material-icons icon">face</i><span class="text">Admins</span></a></li>
-                    <li class="nav-item"><a href="{{ url('admin/users') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">Users</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/dashboard') }}" class="nav-link px-2"><i class="material-icons icon">dashboard</i><span class="text">لوحة التحكم</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/lawyers') }}" class="nav-link px-2"><i class="material-icons icon">collections</i><span class="text">المحامين</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/contacts') }}" class="nav-link px-2"><i class="material-icons icon">accessibility</i><span class="text">رسائل تواصل معنا</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/newsletters') }}" class="nav-link px-2"><i class="material-icons icon">account_box</i><span class="text">النشرة التسويقية البريدية</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/admins') }}" class="nav-link px-2"><i class="material-icons icon">face</i><span class="text">المديرين</span></a></li>
+                    {{--<li class="nav-item"><a href="{{ url('admin/users') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">المستخدمين</span></a></li>--}}
+                    <li class="nav-item"><a href="{{ url('admin/settings/index/1') }}" class="nav-link px-2"><i class="material-icons icon">account_circle</i><span class="text">إعدادات الموقع</span></a></li>
                     <li class="nav-item"><a href="#" class="nav-link sideMenuToggler px-2"><span class="text">ex</span><i class="material-icons icon">ex</i></a></li>
                 </ul>
             </div>

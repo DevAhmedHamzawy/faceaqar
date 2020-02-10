@@ -33,6 +33,12 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
     Route::resource('contacts', 'Admin\ContactController');       
     Route::resource('tickets', 'Admin\TicketController');
 
+    Route::resource('newsletters', 'Admin\NewsletterController');
+
+    Route::resource('admins', 'Admin\AdminController');
+
+
+    Route::get('dashboard', 'Admin\DashboardController@index');
 });
 
 
