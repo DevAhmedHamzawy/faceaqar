@@ -41,6 +41,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $with = ['profile'];
 
 
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
     public function roles()
     {
         return $this->belongsToMany('App\Role');

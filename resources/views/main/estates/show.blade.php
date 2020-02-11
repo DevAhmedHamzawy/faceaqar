@@ -185,10 +185,12 @@
                         <div class="rateing_icons d-flex flex-row justify-content-cente">
                             <div class="p-2"> 
                                 <i id="like1" onclick="like()" class="fa fa-thumbs-up"></i> <div id="like1-bs3"></div>
+                                <span id="likes">{{ count($estate->likes) }}</span>
                             </div>
                             
                             <div class="p-2">
                                 <i id="dislike1" onclick="dislike()" class="fa fa-thumbs-down"></i> <div id="dislike1-bs3"></div>
+                                <span id="dislikes">{{ count($estate->dislikes) }}</span>
                             </div>
                         </div>
                     </div>
@@ -322,17 +324,32 @@
 
 
         function like(){
-            axios.post('../../like', {estate_id: {!! $estate->id !!}})
+            axios.post('../../check', {estate_id: {!! $estate->id !!}})
                 .then((data) => {
-
+                    if(data.data.length == 0){ window.checkuserlike = 0; }else{ window.checkuserlike = 1; }
+                    axios.post('../../like', {estate_id: {!! $estate->id !!}})
+                    .then((data) => {
+                        $('#likes').html(parseInt($('#likes').html(), 10)+1)
+                        if(checkuserlike != 0){
+                            $('#dislikes').html(parseInt($('#dislikes').html(), 10)-1)
+                        }
+                    })
                 })
+           
         }
 
 
         function dislike(){
-            axios.post('../../dislike', {estate_id: {!! $estate->id !!}})
+            axios.post('../../check', {estate_id: {!! $estate->id !!}})
                 .then((data) => {
-
+                    if(data.data.length == 0){ window.checkuserdislike = 0; }else{ window.checkuserdislike = 1; }
+                    axios.post('../../dislike', {estate_id: {!! $estate->id !!}})
+                    .then((data) => {
+                        $('#dislikes').html(parseInt($('#dislikes').html(), 10)+1)
+                        if(checkuserdislike != 0){
+                            $('#likes').html(parseInt($('#dislikes').html(), 10)-1)
+                        }
+                    })
                 })
         }
        

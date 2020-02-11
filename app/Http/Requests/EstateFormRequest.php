@@ -32,10 +32,10 @@ class EstateFormRequest extends FormRequest
             'street' => 'required|min:10',
             'address' => 'required|min:10',
             'name' => 'required',
-            'category_id' => 'required|numeric',
-            'sort_id' => 'required|numeric',
-            'offer_id' => 'required|numeric',
-            'youtube' => 'required',
+            //'category_id' => 'required|numeric',
+            //'sort_id' => 'required|numeric',
+            //'offer_id' => 'required|numeric',
+            //'youtube' => 'required',
 
             'latlng' => 'required',
             'advertiser_name' => 'required|min:10',
@@ -97,7 +97,7 @@ class EstateFormRequest extends FormRequest
 
         $auctionEstateValidation = [
             'date' => 'required|date',
-            'time' => 'required|time',
+            //'time' => 'required|time',
         ];
 
         switch ($this->adSort) {

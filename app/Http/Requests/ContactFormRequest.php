@@ -24,11 +24,11 @@ class ContactFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'area_id' => 'required|numeric',
+            //'area_id' => 'required|numeric',
             'name' => 'required|min:10|max:191',
-            'mobile' => 'required|numeric|min:10',
+            //'mobile' => 'required|numeric|min:10',
             'email' => 'required|string|email',
-            'service_id' => 'required|numeric',
+            //'service_id' => 'required|numeric',
             'body' => 'required'
         ];
     }

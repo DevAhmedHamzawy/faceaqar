@@ -35,7 +35,7 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        !auth()->user() ? : $request->merge(['from' => auth()->user->id]);
+        !auth()->user() ? : $request->merge(['from' => auth()->user()->id]);
         Message::create($request->all());
         return 'OK';
     }

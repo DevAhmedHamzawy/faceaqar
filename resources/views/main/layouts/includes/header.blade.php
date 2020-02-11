@@ -28,7 +28,7 @@
                                 <a href="#"><img src="{{ url('main/images/puy.png') }}"> طرق الدفع </a>
                             </li>
                             <li>  
-                                <a href="{{ route('search') }}"><img src="{{ url('main/images/search.png') }}"> البحث </a>
+                                <a href="{{ route('search', 'general') }}"><img src="{{ url('main/images/search.png') }}"> البحث </a>
                             </li>
                         </ul>
         </div>
@@ -66,7 +66,7 @@
                                 <img src="{{ url('main/images/about.png') }}">
                             </li>
                             <li>
-                                <a href="{{ route('register') }}"> تسجيل الدخول </a>
+                                <a href="{{ route('login') }}"> تسجيل الدخول </a>
                                 <img src="{{ url('main/images/login.png') }}">
                             </li>
                             @endguest
@@ -291,7 +291,7 @@
                                 <img src="{{ url('main/images/about.png') }}">
                             </li>
                             <li>
-                                <a href="{{ route('register') }}"> تسجيل الدخول </a>
+                                <a href="{{ route('login') }}"> تسجيل الدخول </a>
                                 <img src="{{ url('main/images/login.png') }}">
                             </li>
                             @endguest
@@ -349,6 +349,7 @@
                             </div>
                             <h2>أكتب الأسم   </h2>
                             <input id="name-newsletter-head-one" type="text">
+                            <span class="name-newsletter-head-one-error invalid-feedback" role="alert"></span>
                         </div>
                         <div class="col-xs-12 col-sm-6">
                             <div class="icon-con">
@@ -393,6 +394,8 @@
                             </div>
                             <h2>اسم الحي</h2>
                             <input type="text" id="neighborhood-newsletter-head-one" placeholder="">
+                            <span class="neighborhood-newsletter-head-one-error invalid-feedback" role="alert"></span>
+
                         </div>
                         
 
@@ -403,6 +406,8 @@
                             </div>
                             <h2>رقم الجوال</h2>
                             <input type="text" id="mobile-newsletter-head-one">
+                            <span class="mobile-newsletter-head-one-error invalid-feedback" role="alert"></span>
+
                         </div>
                         <div class="col-xs-12 col-sm-12">
                             <div class="icon-con">
@@ -410,6 +415,8 @@
                             </div>
                             <h2>عنوان البريد الالكتروني</h2>
                             <input type="text" id="email-newsletter-head-one">
+                            <span class="email-newsletter-head-one-error invalid-feedback" role="alert"></span>
+
                         </div>
                     </form>
                 </div>
@@ -434,7 +441,7 @@
             <h4 class="modal-title"> دخول المكاتب العقارية</h4>
             </div>
             <div class="modal-body">
-            <form id="member-login">
+            <form method="POST" id="member-login" action="{{ route('login') }}">
                 @csrf
                 <p> ادخل رقم جوالك او الايميل او اسم المستخدم</p>
                 <input type="text" class="email-login form-control">
@@ -449,7 +456,7 @@
                         <label>تذكرنى</label>
                         <input class="form-check-input" type="checkbox" class="remember-login remember" {{ old('remember') ? 'checked' : '' }}>
                     </div>
-                    <a href="#" class="fordid">هـل نسيت كلمة المرور؟</a>
+                    <a href="{{ route('password.request') }}" class="fordid">هـل نسيت كلمة المرور؟</a>
                 </div>
 
             </form>
@@ -512,21 +519,21 @@
             <h4 class="modal-title"> دخول الأعضاء</h4>
             </div>
             <div class="modal-body">
-            <form method="post" id="member-login-one" action="{{ route('login') }}">
+            <form method="POST" id="member-login-one" action="{{ route('login') }}">
                 @csrf
                 <p> ادخل رقم جوالك او الايميل او اسم المستخدم</p>
-                <input type="text" class="email-login form-control">
+                <input type="text" class="email-one-login form-control">
                 <span class="email-login-error invalid-feedback" role="alert"></span>
                 <p>ادخل كلمة المرور</p>
-                <input type="password" class="password-login form-control">
+                <input type="password" class="password-one-login form-control">
                 <span class="password-login-error invalid-feedback" role="alert"></span>
                 <div class="clearfix"></div>
                 <div class="lastchek">
                     <div class="checkbox">
                         <label>تذكرنى</label>
-                        <input class="form-check-input" type="checkbox" class="remember-login remember" {{ old('remember') ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" class="remember-one-login remember" {{ old('remember') ? 'checked' : '' }}>
                     </div>
-                    <a href="#" class="fordid">هـل نسيت كلمة المرور؟</a>
+                    <a href="{{ route('password.request') }}" class="fordid">هـل نسيت كلمة المرور؟</a>
                 </div>
 
             </form>
@@ -570,7 +577,7 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">اغلاق</button>
-            <button type="button" onclick="submitmemberlogin()" class="btn btn-default1">دخول</button>
+            <button type="button" onclick="submitmemberonelogin()" class="btn btn-default1">دخول</button>
                 <button type="button" class="btn btn-default1 regs">تسجيل جديد</button>
             </div>
         </div>
@@ -692,7 +699,7 @@
                             <div class="lastchek">
                             <div class="checkbox">
                                 <label>أوافق على كافة الأحكام والشروط للموقع الإلكتروني والإلتزام بما جاء فيها    </label>
-                                <input type="checkbox" class="accept chekreg">
+                                <input type="checkbox" name="accept" class="accept chekreg">
                                 <span class="accept-terms-register-error invalid-feedback" role="alert"></span>
                             </div>
                             </div>
@@ -733,6 +740,7 @@
                             </div>
                             <h2>أكتب الأسم   </h2>
                             <input type="text" id="name-newsletter-head-two">
+                            <span class="name-newsletter-head-two-error invalid-feedback" role="alert"></span>
                         </div>
                         <div class="col-xs-12 col-sm-6">
                             <div class="icon-con">
@@ -777,6 +785,7 @@
                             </div>
                             <h2>اختر الحي</h2>
                             <input type="text" id="neighborhood-newsletter-head-two">
+                            <span class="neighborhood-newsletter-head-two-error invalid-feedback" role="alert"></span>
                         </div>
                         
 
@@ -787,6 +796,7 @@
                             </div>
                             <h2>رقم الجوال</h2>
                             <input type="text" id="mobile-newsletter-head-two">
+                            <span class="mobile-newsletter-head-two-error invalid-feedback" role="alert"></span>
                         </div>
                         <div class="col-xs-12 col-sm-12">
                             <div class="icon-con">
@@ -794,6 +804,7 @@
                             </div>
                             <h2>عنوان البريد الالكتروني</h2>
                             <input type="text" id="email-newsletter-head-two">
+                            <span class="email-newsletter-head-two-error invalid-feedback" role="alert"></span>
                         </div>
                     </form>
                 </div>
@@ -845,7 +856,7 @@
                                 <a href="#"><img src="{{ url('main/images/puy.png') }}"> طرق الدفع </a>
                             </li>
                             <li>  
-                                <a href="{{ route('search') }}"><img src="{{ url('main/images/search.png') }}"> البحث </a>
+                                <a href="{{ route('search', 'general') }}"><img src="{{ url('main/images/search.png') }}"> البحث </a>
                             </li>
                         </ul>
                     </div>

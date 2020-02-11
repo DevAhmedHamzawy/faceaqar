@@ -56,6 +56,7 @@
                     <div id="success-message-footer"></div>
                     <form>
                          <input type="text" id="name-newsletter-footer" placeholder="اكتب الاسم ">
+                         <span class="name-newsletter-footer-error invalid-feedback" role="alert"></span>
                         <select>
                           <option value="0">اختر اسم الدولة</option>
                           <option value="1">مصر</option>
@@ -75,8 +76,11 @@
                            <option value="3">الامارات</option>
                          </select>
                         <input type="text" id="neighborhood-newsletter-footer" placeholder="اسم الحي">
+                        <span class="neighborhood-newsletter-footer-error invalid-feedback" role="alert"></span>
                         <input type="number" id="mobile-newsletter-footer" placeholder="رقم الجوال">
+                        <span class="mobile-newsletter-footer-error invalid-feedback" role="alert"></span>
                         <input type="email" id="email-newsletter-footer" placeholder="البريد الالكتروني">
+                        <span class="email-newsletter-footer-error invalid-feedback" role="alert"></span>
                         <button onclick="subscribefooter();return false;" class="btn">اشترك</button>
                     </form>
                     <div class="photo-cen">
@@ -247,7 +251,7 @@ function submitregister(){
 
     axios.post('../../register', register)
             .then((data) => {
-
+                window.location.href = '/home';
             }).catch((error) => {
                 $('.area-id-register-error').empty();
                 $('.name-register-error').empty();
@@ -300,7 +304,33 @@ function submitmemberlogin(){
 
     axios.post('../../login', login)
             .then((data) => {
+                window.location.href = '/home';
+            }).catch((error) => {
+                $('.email-login-error').empty();
+                $('.password-login-error').empty();
+                if(error.response.data.errors.email){
+                    $('.email-login-error').append('<strong>'+error.response.data.errors.email+'</strong>');
+                    $('.email-login').addClass('is-invalid')
+                }
+                if(error.response.data.errors.password){
+                    $('.password-login-error').append('<strong>'+error.response.data.errors.password+'</strong>');
+                    $('.password-login').addClass('is-invalid')
+                }
+            })
+    
+}
 
+
+function submitmemberonelogin(){
+    let login = {
+       email: $('.email-one-login').val(),
+       password: $('.password-one-login').val(),
+       remember: $('.remember-one-login').val()
+    }
+
+    axios.post('../../login', login)
+            .then((data) => {
+                window.location.href = '/home';
             }).catch((error) => {
                 $('.email-login-error').empty();
                 $('.password-login-error').empty();
@@ -342,9 +372,33 @@ function subscribeheaderone(){
                     });
                     $('#submod').modal('hide');
                 }, 2000);
+            }).catch((error) => {
 
+                $('.name-newsletter-head-one-error').empty();
+                $('.neighborhood-newsletter-head-one-error').empty();
+                $('.mobile-newsletter-head-one-error').empty();
+                $('.email-newsletter-head-one-error').empty();
 
-            });
+                if(error.response.data.errors.name){
+                    $('.name-newsletter-head-one-error').append('<strong>'+error.response.data.errors.neighborhood+'</strong>');
+                    $('.name-newsletter').addClass('is-invalid')
+                }
+                if(error.response.data.errors.neighborhood){
+                    $('.neighborhood-newsletter-head-one-error').append('<strong>'+error.response.data.errors.neighborhood+'</strong>');
+                    $('.neighborhood-newsletter').addClass('is-invalid')
+                }
+                if(error.response.data.errors.mobile){
+                    $('.mobile-newsletter-head-one-error').append('<strong>'+error.response.data.errors.mobile+'</strong>');
+                    $('.mobile-newsletter').addClass('is-invalid')
+                }
+                if(error.response.data.errors.email){
+                    $('.email-newsletter-head-one-error').append('<strong>'+error.response.data.errors.email+'</strong>');
+                    $('.email-newsletter').addClass('is-invalid')
+                }
+
+            });    
+
+            
 }
 
 function subscribeheadertwo(){
@@ -373,6 +427,29 @@ function subscribeheadertwo(){
                     $(this).remove() 
                 });
             }, 2000);
+        }).catch((error) => {
+
+            $('.name-newsletter-head-two-error').empty();
+            $('.neighborhood-newsletter-head-two-error').empty();
+            $('.mobile-newsletter-head-two-error').empty();
+            $('.email-newsletter-head-two-error').empty();
+
+            if(error.response.data.errors.name){
+                $('.name-newsletter-head-two-error').append('<strong>'+error.response.data.errors.neighborhood+'</strong>');
+                $('.name-newsletter').addClass('is-invalid')
+            }
+            if(error.response.data.errors.neighborhood){
+                $('.neighborhood-newsletter-head-two-error').append('<strong>'+error.response.data.errors.neighborhood+'</strong>');
+                $('.neighborhood-newsletter').addClass('is-invalid')
+            }
+            if(error.response.data.errors.mobile){
+                $('.mobile-newsletter-head-two-error').append('<strong>'+error.response.data.errors.mobile+'</strong>');
+                $('.mobile-newsletter').addClass('is-invalid')
+            }
+            if(error.response.data.errors.email){
+                $('.email-newsletter-head-two-error').append('<strong>'+error.response.data.errors.email+'</strong>');
+                $('.email-newsletter').addClass('is-invalid')
+            }
         });
 }
 
@@ -396,12 +473,40 @@ function subscribefooter(){
             $('#mobile-newsletter-footer').val("");
             $('#email-newsletter-footer').val("");
 
+            $('.name-newsletter-footer-error').empty();
+            $('.neighborhood-newsletter-footer-error').empty();
+            $('.mobile-newsletter-footer-error').empty();
+            $('.email-newsletter-footer-error').empty();
+
             $('#success-message-footer').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإشتراك!</strong>تم الإشتراك فى النشرة التسويقية !</div></div>');
             setTimeout(() => {
                 $(".alert").fadeTo(500, 0).slideUp(500, function(){
                     $(this).remove() 
                 });
             }, 2000);
+        }).catch((error) => {
+                $('.name-newsletter-footer-error').empty();
+                $('.neighborhood-newsletter-footer-error').empty();
+                $('.mobile-newsletter-footer-error').empty();
+                $('.email-newsletter-footer-error').empty();
+
+                if(error.response.data.errors.name){
+                    $('.name-newsletter-footer-error').append('<strong>'+error.response.data.errors.name+'</strong>');
+                    $('.name-newsletter').addClass('is-invalid')
+                }
+                if(error.response.data.errors.neighborhood){
+                    $('.neighborhood-newsletter-footer-error').append('<strong>'+error.response.data.errors.neighborhood+'</strong>');
+                    $('.neighborhood-newsletter').addClass('is-invalid')
+                }
+                if(error.response.data.errors.mobile){
+                    $('.mobile-newsletter-footer-error').append('<strong>'+error.response.data.errors.mobile+'</strong>');
+                    $('.mobile-newsletter').addClass('is-invalid')
+                }
+                if(error.response.data.errors.email){
+                    $('.email-newsletter-footer-error').append('<strong>'+error.response.data.errors.email+'</strong>');
+                    $('.email-newsletter').addClass('is-invalid')
+                }
+
         });
 }
 

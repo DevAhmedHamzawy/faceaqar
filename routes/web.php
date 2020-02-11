@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main.welcome');
-});
+Route::get('/', 'HomeController@welcome');
 
 // DON'T Put it inside the '/admin' Prefix , Otherwise you'll never get the page due to assign.guard that will redirect you too many times
 Route::get('admin/login', 'Auth\AdminLoginController@showLoginForm');
@@ -47,7 +45,7 @@ Auth::routes(['verify' => true]);
 Route::get('/auth/social/{social}', 'Auth\SocialLoginController@redirectToSocial')->name('social');
 Route::get('/auth/{social}/callback', 'Auth\SocialLoginController@handleSocialCallback');
 
-//Route::group(['middleware' => 'verified'], function (){
+Route::group(['middleware' => 'verified'], function (){
 
 Route::get('home', 'HomeController@index')->name('home');
 
@@ -57,28 +55,43 @@ Route::post('reportestate', 'ReportController@store');
 
 Route::post('like', 'LikeController@like');
 Route::post('dislike', 'LikeController@dislike');
+Route::post('check', 'LikeController@check');
 
 Route::post('sendcontact', 'ContactUsController@store');
 
 Route::post('savenewsletter', 'NewsLetterController@store');
 
+Route::get('estates/{adSort}/create', 'EstateController@create')->name('estate.createestate');
+Route::post('estates/{adSort}/create', 'EstateController@store')->name('estates.create');
 
-//});
+
+Route::resource('payments', 'PaymentController');
+Route::get('success', 'PaymentController@success')->name('payment.success');
+Route::get('cancel', 'PaymentController@cancel')->name('payment.cancel');
+
+Route::get('profile/{user}/edit', 'UsersController@edit')->name('edit-profile');
+Route::put('profile/{user}/edit', 'UsersController@update')->name('update-profile');
+
+Route::resource('tickets', 'TicketController');
+
+Route::resource('brokers', 'BrokerController');
+
+});
+
+Route::get('profile/{user}', 'UsersController@show')->name('profile');
+
 
 Route::get('estates/{adSort}', 'SearchController@searchByAdSort')->name('search-by-ad-sort');
 Route::get('estates/{adSort}/index', 'EstateController@index');
-Route::get('estates/{adSort}/create', 'EstateController@create')->name('estate.createestate');
-Route::post('estates/{adSort}/create', 'EstateController@store')->name('estates.create');
+
 Route::get('estates/{adSort}/{estate}', 'EstateController@show')->name('estates.show');
 
 
-Route::get('search', 'SearchController@index')->name('search');
+Route::get('search/{adSort}', 'SearchController@index')->name('search');
 Route::get('search/filters', 'SearchController@getFilters')->name('getresults');
 
 
-Route::get('profile/{user}', 'UsersController@show')->name('profile');
-Route::get('profile/{user}/edit', 'UsersController@edit')->name('edit-profile');
-Route::put('profile/{user}/edit', 'UsersController@update')->name('update-profile');
+
 
 Route::get('lawyers/{user}', 'LawyerController@show');
 
@@ -90,11 +103,3 @@ Route::get('terms', 'TermsController@show')->name('terms');
 Route::get('clients', 'ClientController@index')->name('clients');
 Route::get('portfolio', 'PortfolioController@index')->name('portfolio');
 Route::get('teams', 'TeamsController@index')->name('teams');
-
-Route::resource('payments', 'PaymentController');
-Route::get('success', 'PaymentController@success')->name('payment.success');
-Route::get('cancel', 'PaymentController@cancel')->name('payment.cancel');
-
-Route::resource('tickets', 'TicketController');
-
-Route::resource('brokers', 'BrokerController');

@@ -16,4 +16,9 @@ class LikeController extends Controller
     {
         return auth()->user() ?  Like::updateOrCreate(['user_id' => auth()->user()->id, 'estate_id' => $request->estate_id], ['like' => '-1']) :  'الرجاء من فضلك تسجيل الدخول أو الإنضمام للموقع';
     }
+
+    public function check(Request $request)
+    {
+        return auth()->user() ? Like::whereUserId(auth()->user()->id)->whereEstateId($request->estate_id)->first() : 'الرجاء من فضلك تسجيل الدخول أو الإنضمام للموقع';
+    }
 }

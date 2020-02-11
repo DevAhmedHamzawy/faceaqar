@@ -54,11 +54,8 @@ class SearchController extends Controller
 {
     public function index($adSort = null)
     {  
-        if($adSort == null){
-            
-        }else{
-            
-        }
+        $adSort == 'general' ? : $adSort = Estate::checkAdSort($adSort);
+
         return view('main.estates.search', 
         [
             'categories' => Category::getVisibleCategories(),
@@ -67,7 +64,8 @@ class SearchController extends Controller
             'destinations' => Estate::getAllDestinations(),
             'priceSorts' => Estate::getAllPriceSorts(),
             'paymentSorts' => Estate::getAllPaymentSorts(),
-            'result' => 0
+            'result' => 0,
+            'adSort' => $adSort,
         ]);
     }
 

@@ -9,7 +9,7 @@
     <div class="all-ser-pages">
             <div class="container">
                             <div class="center-sepag ser-pages">
-                                <h2>البحث عن {{ $adSort->adjective }} بالموقع</h2>
+                                <h2>البحث عن {{ $adSort->adjective ?? 'العقارات' }} بالموقع</h2>
                                 <div class="sel1">
                                     <p> المنطقة </p>
                                     <div class="custom-select">

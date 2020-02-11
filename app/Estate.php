@@ -11,7 +11,7 @@ class Estate extends Model
 {
     protected $guarded = [];
 
-    protected $with = ['category','images'];
+    protected $with = ['category','images','likes','dislikes'];
 
     public function getRouteKeyName()
     {   
@@ -47,6 +47,16 @@ class Estate extends Model
     public function images()
     {
         return $this->hasOne('App\EstateImage', 'estate_id');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Like', 'estate_id')->whereLike(1);
+    }
+
+    public function dislikes()
+    {
+        return $this->hasMany('App\Like', 'estate_id')->whereLike(-1);
     }
 
     

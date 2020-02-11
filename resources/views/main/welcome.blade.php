@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-12 no-pad">
                         <div class="right-sepag">
-                            <img src="images/se-pag.png">
+                            <img src="{{ url('main/images/se-pag.png') }}">
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12 no-pad">
@@ -42,9 +42,9 @@
                                 <div class="custom-select">
                                 <select>
                                   <option value="volvo">اختر نوع الصفحة الاعلانية</option>
-                                  <option value="saab">الرياض</option>
-                                  <option value="mercedes">الرياض</option>
-                                  <option value="audi">الرياض</option>
+                                  @foreach ($adSorts as $adSort)
+                                    <option value="{{ $adSort }}">{{ $adSort }}</option>
+                                  @endforeach
                                 </select>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
     <div class="ser-marketing">
         <div class="container">
             <div class="all-titles">
-                <h2> الخدمات التسويقية الالكترونية <img src="images/sermark.png"> </h2> <p></p>
+                <h2> الخدمات التسويقية الالكترونية <img src="{{ url('main/images/sermark.png') }}"> </h2> <p></p>
                 <a href="#"> </a>
             </div>
             <div class="items-marketing">
@@ -82,36 +82,36 @@
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/mark1.png">
+                                <img src="{{ url('main/images/mark1.png') }}">
                                 <h2> الصفحات العقارية الالكترونية </h2>
                                 <p>الصفحات الالكترونية العقارية وكيفية التعامل معها بالشكل الصحيح المباشر المبسط لعملاء الكرام نحن في خدمتكم</p>
                                 <a href="local.html">... اقرأ المزيد</a>
                             </div>
                             <div class="desk-item-mark">
-                                <h4> <a href="local.html"> العقارات المحلية </a> </h4>
-                                <h4><a href="international.html"> العقارات الدولية </a></h4>
-                                <h4><a href="projects.html"> المشاريع العقارية </a></h4>
-                                <h4><a href="auction.html"> المزادات العقارية </a></h4>
-                                <h4><a href="requsts.html"> الطلبات العقارية </a></h4>
-                                <h4><a href="plans.html"> المخططات العقارية </a></h4>
-                                <h4><a href="office.html"> المكاتب العقارية الإلكترونية </a></h4>
+                                <h4> <a href="{{ route('search-by-ad-sort', 'local_estate') }}"> العقارات المحلية </a> </h4>
+                                <h4><a href="{{ route('search-by-ad-sort', 'global_estate') }}"> العقارات الدولية </a></h4>
+                                <h4><a href="{{ route('search-by-ad-sort', 'project_estate') }}"> المشاريع العقارية </a></h4>
+                                <h4><a href="{{ route('search-by-ad-sort', 'auction_estate') }}"> المزادات العقارية </a></h4>
+                                <h4><a href="{{ route('search-by-ad-sort', 'request_estate') }}"> الطلبات العقارية </a></h4>
+                                <h4><a href="{{ route('search-by-ad-sort', 'schema_estate') }}"> المخططات العقارية </a></h4>
+                                <h4><a href="{{ route('search-by-ad-sort', 'office_estate') }}"> المكاتب العقارية الإلكترونية </a></h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/mark2.png">
+                                <img src="{{ url('main/images/mark2.png') }}">
                                 <h2>وسيط واجهة العقار الالكتروني </h2>
                                 <p>الصفحات الالكترونية العقارية وكيفية التعامل معها بالشكل الصحيح المباشر المبسط لعملاء الكرام نحن في خدمتكم</p>
                                 <a href="form-broker.html">... اقرأ المزيد</a>
                             </div>
                             <div class="desk-item-mark">
-                                <h4> <a href="form-broker.html"> الصور الاعلانية </a> </h4>
-                                <h4><a href="form-broker.html"> النصوص الاعلانية </a></h4>
-                                <h4><a href="form-broker.html"> حسابات التواصل الاجتماعي </a></h4>
-                                <h4><a href="form-broker.html"> الكروت الاعلانية الالكترونية </a></h4>
-                                <h4><a href="form-broker.html"> حجز صفحة اعلانية كاملة </a></h4>
+                                <h4> <a href="{{ route('brokers.create') }}"> الصور الاعلانية </a> </h4>
+                                <h4><a href="{{ route('brokers.create') }}"> النصوص الاعلانية </a></h4>
+                                <h4><a href="{{ route('brokers.create') }}"> حسابات التواصل الاجتماعي </a></h4>
+                                <h4><a href="{{ route('brokers.create') }}"> الكروت الاعلانية الالكترونية </a></h4>
+                                <h4><a href="{{ route('brokers.create') }}"> حجز صفحة اعلانية كاملة </a></h4>
                                 
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/mark3.png">
+                                <img src="{{ url('main/images/mark3.png') }}">
                                 <h2> التثبيت الاعلاني الالكتروني </h2>
                                 <p>الصفحات الالكترونية العقارية وكيفية التعامل معها بالشكل الصحيح المباشر المبسط لعملاء الكرام نحن في خدمتكم</p>
                                 <a href="form_electronic.html">... اقرأ المزيد</a>
@@ -135,7 +135,7 @@
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/mark4.png">
+                                <img src="{{ url('main/images/mark4.png') }}">
                                 <h2> الرسائل الاعلانية الالكترونية </h2>
                                 <p>الصفحات الالكترونية العقارية وكيفية التعامل معها بالشكل الصحيح المباشر المبسط لعملاء الكرام نحن في خدمتكم</p>
                                 <a href="#">... اقرأ المزيد</a>
@@ -155,14 +155,14 @@
     <!-- banner 1 -->
     <div class="banner1">
         <div class="container">
-           <a href="#"> <img src="images/banner1.png"> </a> 
+           <a href="#"> <img src="{{ url('main/images/banner1.png') }}"> </a> 
         </div>
     </div>
 
     <!-- estate services -->
     <div class="ser-marketing">
         <div class="container">
-                 <div class="all-titles"> <h2> الخدمات العقارية <img src="images/estate.png"> </h2> <p></p> <a href="#"></a> </div>
+                 <div class="all-titles"> <h2> الخدمات العقارية <img src="{{ url('main/images/estate.png') }}"> </h2> <p></p> <a href="#"></a> </div>
             <div class="items-marketing">
                 <div class="row">
                     <div class="col-md-3 col-sm-4 col-xs-6">
@@ -217,7 +217,7 @@
     <div class="ser-marketing">
         <div class="container">
             <div class="all-titles">
-                <h2> الخدمات الحكومية الالكترونية <img src="images/gover.png"> </h2>
+                <h2> الخدمات الحكومية الالكترونية <img src="{{ url('main/images/gover.png') }}"> </h2>
                 <p></p>
                 <a href="#"></a>
             </div>
@@ -230,7 +230,7 @@
                                     <div class="tit-item-mark">
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-6">
-                                                <img src="images/rightgov.png">
+                                                <img src="{{ url('main/images/rightgov.png') }}">
                                                 <h2> البرامج الحكومية الالكترونية </h2>
                                             </div>
                                             <div class="col-xs-12 col-sm-6">
@@ -268,7 +268,7 @@
                                     <div class="tit-item-mark">
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-6">
-                                                <img src="images/leftgov.png">
+                                                <img src="{{ url('main/images/leftgov.png') }}">
                                                 <h2> برامج السلامة للمنشئات </h2>
                                             </div>
                                             <div class="col-xs-12 col-sm-6">
@@ -309,77 +309,77 @@
     <div class="ser-marketing">
         <div class="container">
             <div class="all-titles">
-                <h2> احجز صفحتك الاعلانية العقارية بالموقع حسب نوع نشاطك العقاري <img src="images/regmedia.png"> </h2>
+                <h2> احجز صفحتك الاعلانية العقارية بالموقع حسب نوع نشاطك العقاري <img src="{{ url('main/images/regmedia.png') }}"> </h2>
                 <p> </p>
                 <a href="#"></a>
             </div>
             <div class="items-marketing regpage-items">
                 <div class="row">
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                        <a href="add_local.html">
+                        <a href="{{ route('estate.createestate', 'local_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag1.png">
+                                <img src="{{ url('main/images/regpag1.png') }}">
                                 <h2> اضافة عقار محلي </h2>
                             </div>
                         </div>
                         </a>
                     </div>
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                        <a href="addinternational.html">
+                        <a href="{{ route('estate.createestate', 'global_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag22.png">
+                                <img src="{{ url('main/images/regpag22.png') }}">
                                 <h2> اضافة عقار دولي </h2>
                             </div>
                         </div>
 
                         </a></div>
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                        <a href="add_project.html">
+                        <a href="{{ route('estate.createestate', 'project_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag3.png">
+                                <img src="{{ url('main/images/regpag3.png') }}">
                                 <h2> اضافة مشروع عقاري </h2>
                             </div>
                         </div>
                         </a>
                     </div>
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                        <a href="addauction.html">
+                        <a href="{{ route('estate.createestate', 'auction_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag4.png">
+                                <img src="{{ url('main/images/regpag4.png') }}">
                                 <h2> اضافة مزاد عقاري </h2>
                             </div>
                         </div>
                         </a>
                     </div>
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                        <a href="add_requests.html">
+                        <a href="{{ route('estate.createestate', 'request_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag5.png">
+                                <img src="{{ url('main/images/regpag5.png') }}">
                                 <h2> اضافة طلب عقاري </h2>
                             </div>
                         </div>
 
                         </a></div>
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                        <a href="add_plans.html">
+                        <a href="{{ route('estate.createestate', 'schema_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag6.png">
+                                <img src="{{ url('main/images/regpag6.png') }}">
                                 <h2> اضافة مخطط عقاري </h2>
                             </div>
                         </div>
                         </a>
                     </div>
                     <div class="col-md-2 col-sm-4 col-xs-12">
-                        <a href="add_office.html">
+                        <a href="{{ route('register') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag7.png">
+                                <img src="{{ url('main/images/regpag7.png') }}">
                                 <h2> اضافة مكتب عقاري </h2>
                             </div>
                         </div>
@@ -394,77 +394,77 @@
     <div class="ser-marketing">
         <div class="container">
             <div class="all-titles">
-                <h2>ابحث عن عقارك المناسب بالموقع <img src="images/searchaqar.png"> </h2>
+                <h2>ابحث عن عقارك المناسب بالموقع <img src="{{ url('main/images/searchaqar.png') }}"> </h2>
                 <p></p>
                 <a href="#"></a>
             </div>
             <div class="items-marketing regpage-items">
                 <div class="row">
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                        <a href="search_local.html">
+                        <a href="{{ route('search', 'local_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag111.png">
+                                <img src="{{ url('main/images/regpag111.png') }}">
                                 <h2> بحث عقار محلي </h2>
                             </div>
                         </div>
                         </a>
                     </div>
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                        <a href="search_international.html">
+                        <a href="{{ route('search', 'global_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag222.png">
+                                <img src="{{ url('main/images/regpag222.png') }}">
                                 <h2> بحث عقار دولي </h2>
                             </div>
                         </div>
                         </a>
                     </div>
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                        <a href="search_project.html">
+                        <a href="{{ route('search', 'project_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag333.png">
+                                <img src="{{ url('main/images/regpag333.png') }}">
                                 <h2> بحث مشروع عقاري </h2>
                             </div>
                         </div>
                         </a>
                     </div>
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                        <a href="search_mzad.html">
+                        <a href="{{ route('search', 'auction_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag444.png">
+                                <img src="{{ url('main/images/regpag444.png') }}">
                                 <h2> بحث مزاد عقاري </h2>
                             </div>
                         </div>
                         </a>
                     </div>
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                        <a href="search_reguest.html">
+                        <a href="{{ route('search', 'request_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag555.png">
+                                <img src="{{ url('main/images/regpag555.png') }}">
                                 <h2> بحث طلب عقاري </h2>
                             </div>
                         </div>
                         </a>
                     </div>
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                        <a href="search_plans.html">
+                        <a href="{{ route('search', 'schema_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag666.png">
+                                <img src="{{ url('main/images/regpag666.png') }}">
                                 <h2> بحث مخطط عقاري </h2>
                             </div>
                         </div>
                         </a>
                     </div>
                     <div class="col-md-2 col-sm-4 col-xs-12">
-                        <a href="search_office.html">
+                        <a href="{{ route('search', 'office_estate') }}">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="images/regpag777.png">
+                                <img src="{{ url('main/images/regpag777.png') }}">
                                 <h2> بحث مكتب عقاري </h2>
                             </div>
                         </div>
@@ -480,24 +480,11 @@
         <div class="container">
             <h1>عملائنا</h1>
             <div class="owl-carousel customers">
-              <div class="item"> 
-                  <a href="#"> <img src="images/cust1.png"> <h4>فيلا بحمام سباحة <img src="images/slidpos.png"> </h4> </a> 
+            @foreach ($clients as $client)
+                <div class="item"> 
+                    <a href="#"> <img src="{{ $client->img_path }}"> <h4>{{ $client->name }} <img src="{{ url('main/images/slidpos.png') }}"> </h4> </a> 
                 </div>
-              <div class="item">
-                  <a href="#"> <img src="images/cust2.png"> <h4>فيلا بحمام سباحة <img src="images/slidpos.png"></h4> </a> 
-              </div>
-              <div class="item">
-                  <a href="#"> <img src="images/cust3.png"> <h4>فيلا بحمام سباحة <img src="images/slidpos.png"></h4> </a> 
-              </div>
-              <div class="item">
-                  <a href="#"> <img src="images/cust4.png"> <h4>فيلا بحمام سباحة <img src="images/slidpos.png"></h4> </a> 
-              </div>
-              <div class="item">
-                  <a href="#"> <img src="images/cust2.png"> <h4>فيلا بحمام سباحة <img src="images/slidpos.png"></h4> </a> 
-              </div>
-              <div class="item">
-                  <a href="#"> <img src="images/cust1.png"> <h4>فيلا بحمام سباحة <img src="images/slidpos.png"></h4> </a> 
-              </div>
+            @endforeach  
             </div>
         </div>
     </div>
@@ -507,66 +494,18 @@
         <div class="container">
             <h1>أعمالنا</h1>
             <div class="owl-carousel customers">
-              <div class="item"> 
-                  <a href="#"> 
-                      <img src="images/cust1.png"> 
-                      <div class="ourwork-desk">
-                          <h4>فيلا بحمام سباحة  </h4>
-                          <p>اكتوبر 2016</p>
-                          <img src="images/slidpos.png">
-                      </div>
-                  </a> 
+              @foreach ($portfolios as $portfolio)
+                <div class="item"> 
+                    <a href="#"> 
+                        <img src="{{ $portfolio->img_path }}"> 
+                        <div class="ourwork-desk">
+                            <h4>{{ $portfolio->name }}</h4>
+                            <p>{{ $portfolio->date }}</p>
+                            <img src="{{ url('main/images/slidpos.png') }}">
+                        </div>
+                    </a> 
                 </div>
-              <div class="item">
-                  <a href="#"> 
-                      <img src="images/cust2.png"> 
-                      <div class="ourwork-desk">
-                          <h4>فيلا بحمام سباحة  </h4>
-                          <p>اكتوبر 2016</p>
-                          <img src="images/slidpos.png">
-                      </div>
-                  </a> 
-              </div>
-              <div class="item">
-                  <a href="#"> 
-                      <img src="images/cust3.png"> 
-                      <div class="ourwork-desk">
-                          <h4>فيلا بحمام سباحة  </h4>
-                          <p>اكتوبر 2016</p>
-                          <img src="images/slidpos.png">
-                      </div>
-                  </a> 
-              </div>
-              <div class="item">
-                  <a href="#"> 
-                      <img src="images/cust4.png"> 
-                      <div class="ourwork-desk">
-                          <h4>فيلا بحمام سباحة  </h4>
-                          <p>اكتوبر 2016</p>
-                          <img src="images/slidpos.png">
-                      </div>
-                  </a> 
-              </div>
-              <div class="item">
-                  <a href="#"> 
-                      <img src="images/cust2.png"> 
-                      <div class="ourwork-desk">
-                          <h4>فيلا بحمام سباحة  </h4>
-                          <p>اكتوبر 2016</p>
-                          <img src="images/slidpos.png">
-                      </div>
-                  </a> 
-              </div>
-              <div class="item">
-                  <a href="#"> 
-                      <img src="images/cust1.png"> 
-                      <div class="ourwork-desk">
-                          <h4>فيلا بحمام سباحة  </h4>
-                          <p>اكتوبر 2016</p>
-                          <img src="images/slidpos.png">
-                      </div>
-                  </a> 
-              </div>
+              @endforeach  
             </div>
         </div>
     </div>
@@ -577,36 +516,13 @@
             <h1 class="tit-las">فريق العمل</h1>
             <div class="items-team">
                 <div class="row">
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                        <img src="images/team1.png">
-                        <h4>وائل القاضي</h4>
-                        <p>مدير ادارة الموقع</p>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                        <img src="images/team2.png">
-                        <h4>وائل القاضي</h4>
-                        <p>مدير ادارة الموقع</p>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                        <img src="images/team1.png">
-                        <h4>وائل القاضي</h4>
-                        <p>مدير ادارة الموقع</p>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                        <img src="images/team2.png">
-                        <h4>وائل القاضي</h4>
-                        <p>مدير ادارة الموقع</p>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                        <img src="images/team1.png">
-                        <h4>وائل القاضي</h4>
-                        <p>مدير ادارة الموقع</p>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                        <img src="images/team2.png">
-                        <h4>وائل القاضي</h4>
-                        <p>مدير ادارة الموقع</p>
-                    </div>
+                    @foreach ($teams as $team)
+                        <div class="col-md-2 col-sm-4 col-xs-6">
+                            <img src="{{ url('main/images/team1.png') }}">
+                            <h4>{{ $team->name }}</h4>
+                            <p>{{ $team->role ?? 'ادارة الموقع' }}</p>
+                        </div> 
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -619,7 +535,7 @@
             <div class="row">
                 <div class="col-md-6 col-xs-12">
                     <div class="right-con">
-                        <img src="images/rightcon.png">
+                        <img src="{{ url('main/images/logo.png') }}">
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
@@ -635,67 +551,67 @@
                         <div class="item-info">
                             <i class="fas fa-map-marker-alt"></i>
                             <h4> العنوان </h4>
-                            <p class="formob" style="margin:0">المكتب الرئيسي في المدينة المنورة</p>
+                            <p class="formob" style="margin:0">{{ $settings->address }}</p>
                         </div>
                         <div class="item-info">
                             <i class="fas fa-mobile-alt"></i>
                             <h4> ادارة الموقع </h4>
-                            <a href="#" title="..."><p>32462452482687236+</p></a>
+                            <a href="#" title="..."><p>{{ $settings->site_manager_phone }}</p></a>
                         </div>
                         <div class="item-info">
                             <i class="fas fa-mobile-alt"></i>
                             <h4> الخدمات التسويقية </h4>
-                            <a href="#" title="..."><p>32462452482687236+</p></a>
+                            <a href="#" title="..."><p>{{ $settings->marketing_services }}</p></a>
                         </div>
                         <div class="item-info">
                             <i class="fas fa-mobile-alt"></i>
                             <h4> الخدمات العقارية </h4>
-                            <a href="#" title="..."><p>32462452482687236+</p></a>
+                            <a href="#" title="..."><p>{{ $settings->estate_services }}</p></a>
                         </div>
                         <div class="item-info">
                             <i class="fas fa-mobile-alt"></i>
                             <h4> الخدمات الحكومية </h4>
-                            <a href="#" title="..."><p>32462452482687236+</p></a>
+                            <a href="#" title="..."><p>{{ $settings->government_services }}</p></a>
                         </div>
                         <div class="item-info">
                             <i class="fas fa-mobile-alt"></i>
                             <h4> الرقم الموحد  </h4>
-                            <a href="#" title="..."><p>32462452482687236+</p></a>
+                            <a href="#" title="..."><p>{{ $settings->unified_number }}</p></a>
                         </div>
                         <div class="item-info">
                             <i class="fas fa-mobile-alt"></i>
                             <h4> خدمة العملاء </h4>
-                            <a href="#" title="..."><p>32462452482687236+</p></a>
+                            <a href="#" title="..."><p>{{ $settings->customer_service }}</p></a>
                         </div>
                         <div class="item-info">
                             <i class="fas fa-phone"></i>
                             <h4> التلفون </h4>
-                            <a href="#" title="..."><p>32462452482687236+</p></a>
+                            <a href="#" title="..."><p>{{ $settings->telephone }}</p></a>
                         </div>
                         <div class="item-info">
                             <i class="fas fa-phone"></i>
                             <h4> السنترال </h4>
-                            <a href="#" title="..."><p>32462452482687236+</p></a>
+                            <a href="#" title="..."><p>{{ $settings->central }}</p></a>
                         </div>
                         <div class="item-info">
                             <i class="fas fa-fax"></i>
                             <h4> فاكس </h4>
-                            <a href="#" title="..."><p>32462452482687236+</p></a>
+                            <a href="#" title="..."><p>{{ $settings->fax }}</p></a>
                         </div>
                         <div class="item-info">
                             <i class="far fa-envelope"></i>
                             <h4> صندوق البريد </h4>
-                            <a href="#" title="..."><p>32462452482687236+</p></a>
+                            <a href="#" title="..."><p>{{ $settings->postal_code }}</p></a>
                         </div>
                         <div class="item-info">
                             <i class="far fa-envelope"></i>
                             <h4> الرمز البريدي </h4>
-                            <a href="#" title="..."><p>32462452482687236+</p></a>
+                            <a href="#" title="..."><p>{{ $settings->postal_number }}</p></a>
                         </div>
                         <div class="item-info" style="border: 0">
                             <i class="far fa-envelope"></i>
                             <h4> البريد الالكتروني </h4>
-                            <a href="#" title="..."><p>32462452482687236+</p></a>
+                            <a href="#" title="..."><p>{{ $settings->email }}</p></a>
                         </div>
                     </div>
                 </div>
@@ -762,7 +678,7 @@
                                     <i class="fa fa-envelope "></i>
                                 </div>
                                 <h2>عنوان البريد الالكتروني</h2>
-                                <input type="text" class="email">
+                                <input type="email" class="email">
                                 <span class="email-contact-error invalid-feedback" role="alert"></span>
                             </div>
                             <div class="col-xs-12 ">
@@ -814,7 +730,7 @@
 $(document).on('change','#file',function(e){
 
 let file_data = $('#file').prop('files')[0];
-form_data.append('file', file_data);
+form_data.append('file_data', file_data);
 
 
 });
@@ -830,6 +746,21 @@ function sendContact(){
 
     axios.post('../../sendcontact', form_data)
                 .then((data) => {
+
+
+                     //$(".area_id").val('');
+                     $(".name").val('');
+                    $(".mobile").val('');
+                    $(".email").val('');
+                    //$(".service_id").val('');
+                    $(".body").val('');
+
+                    $('.name-contact-error').empty();
+                    $('.body-contact-error').empty();
+                    $('.mobile-contact-error').empty();
+                    $('.email-contact-error').empty();
+
+
                     $('#success-message').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإرسال!</strong> الرسالة قد تم إرسالها بنجاح!</div></div>');
                     setTimeout(() => {
                         $(".alert").fadeTo(500, 0).slideUp(500, function(){
@@ -837,6 +768,12 @@ function sendContact(){
                         });
                     }, 2000);
                 }).catch((error) => {
+
+                    $('.name-contact-error').empty();
+                    $('.body-contact-error').empty();
+                    $('.mobile-contact-error').empty();
+                    $('.email-contact-error').empty();
+
                     if(error.response.data.errors.area_id){
                     $('.area-id-contact-error').append('<strong>'+error.response.data.errors.area_id+'</strong>');
                     $('.area-id-contact').addClass('is-invalid')

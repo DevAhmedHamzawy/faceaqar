@@ -120,7 +120,7 @@
                                         <i class="fa fa-envelope "></i>
                                     </div>
                                     <h2>عنوان البريد الالكتروني</h2>
-                                    <input class="email" type="text">
+                                    <input class="email" type="email">
                                     <span class="email-contact-error invalid-feedback" role="alert"></span>
                                 </div>
                                 <div class="col-xs-12 ">
@@ -235,7 +235,7 @@
 $(document).on('change','#file',function(e){
 
 let file_data = $('#file').prop('files')[0];
-form_data.append('file', file_data);
+form_data.append('file_data', file_data);
 
 
 });
@@ -251,6 +251,20 @@ function sendContact(){
 
     axios.post('../../sendcontact', form_data)
                 .then((data) => {
+
+                    //$(".area_id").val('');
+                    $(".name").val('');
+                    $(".mobile").val('');
+                    $(".email").val('');
+                    //$(".service_id").val('');
+                    $(".body").val('');
+
+                    $('.name-contact-error').empty();
+                    $('.body-contact-error').empty();
+                    $('.mobile-contact-error').empty();
+                    $('.email-contact-error').empty();
+
+
                     $('#success-message').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإرسال!</strong> الرسالة قد تم إرسالها بنجاح!</div></div>');
                     setTimeout(() => {
                         $(".alert").fadeTo(500, 0).slideUp(500, function(){
@@ -258,6 +272,12 @@ function sendContact(){
                         });
                     }, 2000);
                 }).catch((error) => {
+
+                    $('.name-contact-error').empty();
+                    $('.body-contact-error').empty();
+                    $('.mobile-contact-error').empty();
+                    $('.email-contact-error').empty();
+
                     if(error.response.data.errors.area_id){
                     $('.area-id-contact-error').append('<strong>'+error.response.data.errors.area_id+'</strong>');
                     $('.area-id-contact').addClass('is-invalid')

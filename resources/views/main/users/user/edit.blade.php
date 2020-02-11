@@ -7,13 +7,13 @@
         <div class="row">
             <!-- title_pages -->
             <div class="title_pages">
-                <h2>تعبئة بيانات لإضافة مكتب عقاري</h2>
+                <h2>تعديل بيانات المستخدم {{ $user->name }}</h2>
                 <span></span>
             </div>
             <!-- end_title_pages -->
 
             <div class="add_auctions">
-                <h4>بيانات عنوان المكتب العقارى</h4>
+                <h4>البيانات الشخصية</h4>
                 <form method="POST" action="{{ route('update-profile' , $user->id) }}">
                     @csrf
                     @method('put')
