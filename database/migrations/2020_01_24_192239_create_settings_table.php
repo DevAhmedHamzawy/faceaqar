@@ -28,6 +28,10 @@ class CreateSettingsTable extends Migration
             $table->string('email');
             $table->text('about');
             $table->text('terms');
+            $table->text('services');
+            $table->text('branches');
+            $table->text('financial_fees');
+            $table->text('payment_methods');
             $table->string('facebook');
             $table->string('googleplus');
             $table->string('youtube');

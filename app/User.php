@@ -38,7 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = ['profile'];
+    protected $with = ['profile','estates'];
 
 
     public function getRouteKeyName()
@@ -54,5 +54,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function profile()
     {
         return $this->hasOne('App\Profile');
+    }
+
+    public function estates()
+    {
+        return $this->hasMany('App\Estate');
     }
 }

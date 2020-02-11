@@ -34,4 +34,24 @@ class HomeController extends Controller
     {
         return view('main.home');
     }
+
+    public function services()
+    {
+        return view('main.services');
+    }
+
+    public function branches()
+    {
+        return view('main.branches');
+    }
+
+    public function financial_fees()
+    {
+        return view('main.financial_fees');
+    }
+
+    public function payment_methods()
+    {
+        return view('main.payment_methods');
+    }
 }

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Admin') }}</div>
+                <div class="card-header"><h5 class="text-center">بيانات المدير {{ $admin->user_name }}</h5></div>
 
                 <div class="card-body">
 
@@ -27,9 +27,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="user_name" class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
+                            <label for="user_name" class="col-md-2 col-form-label text-md-right">إسم المستخدم</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <input id="user_name" type="text" class="form-control @error('user_name') is-invalid @enderror" name="user_name" value="{{ $admin->user_name }}" required autocomplete="user_name" autofocus>
 
                                 @error('user_name')
@@ -42,9 +42,9 @@
 
 
                         <div class="form-group row">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+                            <label for="first_name" class="col-md-2 col-form-label text-md-right">الإسم الأول</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ $admin->first_name }}" required autocomplete="first_name" autofocus>
 
                                 @error('first_name')
@@ -56,9 +56,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+                            <label for="last_name" class="col-md-2 col-form-label text-md-right">الإسم الأخير</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ $admin->last_name }}" required autocomplete="last_name" autofocus>
 
                                 @error('last_name')
@@ -71,9 +71,9 @@
 
 
                         <div class="form-group row">
-                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('lawyer Description') }}</label>
+                            <label for="description" class="col-md-2 col-form-label text-md-right">الوصف</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror textarea" cols="30" rows="10" autocompleted="description">{{ $admin->description }}</textarea>
 
                                 @error('description')
@@ -85,9 +85,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-2 col-form-label text-md-right">البريد الإلكترونى</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $admin->email }}" required autocomplete="email">
 
                                 @error('email')
@@ -100,9 +100,9 @@
 
                        
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-2 col-form-label text-md-right">كلمة المرور</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
@@ -115,11 +115,9 @@
 
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Admin') }}
-                                </button>
-                            </div>
+                            <button type="submit" class="btn btn-primary col-md-12">
+                                التعديل على بيانات المدير {{ $admin->user_name }}
+                            </button>
                         </div>
                     </form>
                 </div>

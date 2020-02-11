@@ -6,8 +6,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
-                    <a href="{{ route('admins.create') }}" class="btn btn-primary" style="float:right">Create admin</a>
+                    مديرين الموقع
+                    <a href="{{ route('admins.create') }}" class="btn btn-primary" style="float:left">إضافة مدير جديد</a>
                 </div>
 
                 <div class="card-body">
@@ -22,8 +22,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Image</th>
+                                    <th scope="col">الإسم</th>
+                                    <th scope="col">البريد الإلكترونى</th>
+                                    <th scope="col">الصورة</th>
                                     <th scope="col">Operations</th>
                                 </tr>
                             </thead>
@@ -32,14 +33,15 @@
                                 <tr>
                                     <td scope="row">#</td>
                                     <td>{{ $admin->user_name  }}</td>
-                                    <td>{{ $admin->img }}</td>
+                                    <td>{{ $admin->email }}</td>
+                                    <td>{{ $admin->img_path }}</td>
                                     <td>
-                                        <a href="{{ route('admins.show', $admin->user_name) }}" class="btn btn-primary">Show</a>
-                                        <a href="{{ route('admins.edit', $admin->user_name) }}" class="btn btn-warning">Edit</a>
+                                        {{--<a href="{{ route('admins.show', $admin->user_name) }}" class="btn btn-primary">Show</a>--}}
+                                        <a href="{{ route('admins.edit', $admin->user_name) }}" class="btn btn-warning">تعديل</a>
                                         <form action="{{ route('admins.destroy', $admin->user_name) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
+                                            <button class="btn btn-danger" type="submit">حذف</button>
                                         </form>
                                     </td>
                                 </tr>

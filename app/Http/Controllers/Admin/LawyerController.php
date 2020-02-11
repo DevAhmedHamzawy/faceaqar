@@ -36,7 +36,7 @@ class LawyerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->merge(['password' => bcrypt($request->password), 'area_id' => 0]);
+        $request->merge(['area_id' => 0]);
         $user = User::create($request->only('name','email','password'));
         $user->profile()->create($request->except('name','password'));
 
@@ -63,7 +63,7 @@ class LawyerController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.users.lawyers.edit', ['lawyer' => $user]);
     }
 
     /**
@@ -86,6 +86,6 @@ class LawyerController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        return redirect()->back()->withSuccess('تم الحذف بنجاح');
     }
 }

@@ -103,3 +103,8 @@ Route::get('terms', 'TermsController@show')->name('terms');
 Route::get('clients', 'ClientController@index')->name('clients');
 Route::get('portfolio', 'PortfolioController@index')->name('portfolio');
 Route::get('teams', 'TeamsController@index')->name('teams');
+
+Route::get('services', 'HomeController@services')->name('services');
+Route::get('branches', 'HomeController@branches')->name('branches');
+Route::get('financial_fees', 'HomeController@financial_fees')->name('financial_fees');
+Route::get('payment_methods', 'HomeController@payment_methods')->name('payment_methods');

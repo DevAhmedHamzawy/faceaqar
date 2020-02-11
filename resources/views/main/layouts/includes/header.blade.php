@@ -7,10 +7,10 @@
         <div class="overlay-content">
                         <ul>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/services.png') }}"> خدماتنا </a>
+                                <a href="{{ route('services') }}"><img src="{{ url('main/images/services.png') }}"> خدماتنا </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/loction.png') }}"> فروعنا </a>
+                                <a href="{{ route('branches') }}"><img src="{{ url('main/images/loction.png') }}"> فروعنا </a>
                             </li>
                             <li>
                                 <a href="{{ route('clients') }}"><img src="{{ url('main/images/custmoer.png') }}"> عملائنا </a>
@@ -22,10 +22,10 @@
                                 <a href="{{ route('teams') }}"><img src="{{ url('main/images/team.png') }}"> فريق العمل </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/money.png') }}"> الرسوم المالية </a>
+                                <a href="{{ route('financial_fees') }}"><img src="{{ url('main/images/money.png') }}"> الرسوم المالية </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/puy.png') }}"> طرق الدفع </a>
+                                <a href="{{ route('payment_methods') }}"><img src="{{ url('main/images/puy.png') }}"> طرق الدفع </a>
                             </li>
                             <li>  
                                 <a href="{{ route('search', 'general') }}"><img src="{{ url('main/images/search.png') }}"> البحث </a>
@@ -835,10 +835,10 @@
                     <div class="navbar-header">
                         <ul>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/services.png') }}"> خدماتنا </a>
+                                <a href="{{ route('services') }}"><img src="{{ url('main/images/services.png') }}"> خدماتنا </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/loction.png') }}"> فروعنا </a>
+                                <a href="{{ route('branches') }}"><img src="{{ url('main/images/loction.png') }}"> فروعنا </a>
                             </li>
                             <li>
                                 <a href="{{ route('clients') }}"><img src="{{ url('main/images/custmoer.png') }}"> عملائنا </a>
@@ -850,10 +850,10 @@
                                 <a href="{{ route('teams') }}"><img src="{{ url('main/images/team.png') }}"> فريق العمل </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/money.png') }}"> الرسوم المالية </a>
+                                <a href="{{ route('financial_fees') }}"><img src="{{ url('main/images/money.png') }}"> الرسوم المالية </a>
                             </li>
                             <li>
-                                <a href="#"><img src="{{ url('main/images/puy.png') }}"> طرق الدفع </a>
+                                <a href="{{ route('payment_methods') }}"><img src="{{ url('main/images/puy.png') }}"> طرق الدفع </a>
                             </li>
                             <li>  
                                 <a href="{{ route('search', 'general') }}"><img src="{{ url('main/images/search.png') }}"> البحث </a>

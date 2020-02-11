@@ -6,13 +6,16 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
+                    النشرة التسويقية الإلكترونية
 
-                    Check All<input type="checkbox" id="check_all">
+                    <div style="float:left">
+                        إختر الكل<input type="checkbox" id="check_all">
 
-                    <button type="button" id="modal-btn" class="btn btn-danger" data-toggle="modal" data-target="#form">
-                        See Modal with Form
-                    </button>  
+                        <button type="button" id="modal-btn" class="btn btn-danger" data-toggle="modal" data-target="#form">
+                           إضافة إعلان جديد
+                        </button>  
+                    </div>
+                   
 
                     <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -61,12 +64,12 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Neighborhood</th>
-                                    <th scope="col">Area_id</th>
-                                    <th scope="col">Mobile</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Check</th>
+                                    <th scope="col">الإسم</th>
+                                    <th scope="col">الحى</th>
+                                    <th scope="col">المنطقة</th>
+                                    <th scope="col">رقم الجوال</th>
+                                    <th scope="col">البريد الإلكترونى</th>
+                                    <th scope="col">إختر</th>
                                 </tr>
                             </thead>
                             @forelse ($newsletters as $newsletter)

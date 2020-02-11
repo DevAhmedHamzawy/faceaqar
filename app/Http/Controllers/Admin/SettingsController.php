@@ -29,6 +29,18 @@ class SettingsController extends Controller
             case 'terms':
                 return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
                 break;
+            case 'services':
+                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
+                break;
+            case 'branches':
+                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
+                break;
+            case 'financial_fees':
+                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
+                break;
+            case 'payment_methods':
+                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
+                break;
             case 'index':
                 return view('admin.settings.index');
                 break;       
@@ -42,8 +54,11 @@ class SettingsController extends Controller
      * @param  \App\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Settings $setting)
+    public function update(Request $request, Settings $settings)
     {
-        dd($request->all());
+        //dd($request->all());
+        //$settings->update($request->all());
+        Settings::whereId(1)->update($request->except('_token','_method','1','0'));
+        return redirect()->back();
     }
 }

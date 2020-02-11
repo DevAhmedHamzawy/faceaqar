@@ -6,8 +6,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
-                    <a href="{{ route('lawyers.create') }}" class="btn btn-primary" style="float:right">Create lawyer</a>
+                    المحامين
+                    <a href="{{ route('lawyers.create') }}" class="btn btn-primary" style="float:left">إضافة محامى جديد</a>
                 </div>
 
                 <div class="card-body">
@@ -22,9 +22,12 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Operations</th>
+                                    <th scope="col">الإسم</th>
+                                    <th scope="col">العنوان</th>
+                                    <th scope="col">رقم الجوال</th>
+                                    <th scope="col">رقم الهاتف</th>
+                                    <th scope="col">رقم الفاكس</th>
+                                    <th scope="col">العمليات</th>
                                 </tr>
                             </thead>
                             @forelse ($lawyers as $lawyer)
@@ -32,15 +35,18 @@
                                 <tr>
                                     <td scope="row">#</td>
                                     <td>{{ $lawyer->name  }}</td>
-                                    <td>{{ $lawyer->img }}</td>
+                                    <td>{{ $lawyer->profile->address ?? 'غير موجود' }}</td>
+                                    <td>{{ $lawyer->profile->mobile ?? 'غير موجود' }}</td>
+                                    <td>{{ $lawyer->profile->telephone ?? 'غير موجود' }}</td>
+                                    <td>{{ $lawyer->profile->fax ?? 'غير موجود' }}</td>
                                     <td>
-                                        <a href="{{ route('lawyers.show', $lawyer->name) }}" class="btn btn-primary">Show</a>
-                                        <a href="{{ route('lawyers.edit', $lawyer->name) }}" class="btn btn-warning">Edit</a>
-                                        <form action="{{ route('lawyers.destroy', $lawyer->name) }}" method="post">
+                                        {{--<a href="{{ route('lawyers.show', $lawyer->name) }}" class="btn btn-primary">عرض</a>--}}
+                                        {{--<a href="{{ route('lawyers.edit', $lawyer->name) }}" class="btn btn-warning">Edit</a>--}}
+                                        {{--<form action="{{ route('lawyers.destroy', $lawyer->name) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
+                                            <button class="btn btn-danger" type="submit">حذف</button>
+                                        </form>--}}
                                     </td>
                                 </tr>
                             </tbody>

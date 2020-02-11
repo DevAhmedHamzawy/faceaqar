@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
+                    <h4 class="text-center">رسائل تواصل معنا</h4>
                 </div>
 
                 <div class="card-body">
@@ -25,9 +25,12 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Operations</th>
+                                    <th scope="col">الإسم</th>
+                                    <th scope="col">رقم الجوال</th>
+                                    <th scope="col">البريد الإلكترونى</th>
+                                    <th scope="col">الملف المرفق</th>
+                                    <th scope="col">نص الرسالة</th>
+                                    <th scope="col">العمليات</th>
                                 </tr>
                             </thead>
                             @forelse ($contacts as $contact)
@@ -35,15 +38,14 @@
                                 <tr>
                                     <td scope="row">#</td>
                                     <td>{{ $contact->name  }}</td>
-                                    <td>{{ $contact->img }}</td>
+                                    <td>{{ $contact->mobile }}</td>
+                                    <td>{{ $contact->email }}</td>
+                                    <td>{{ $contact->file_path }}</td>
+                                    <td>{{ $contact->body }}</td>
                                     <td>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#form">
-                                            See Modal with Form
+                                           كتابة رد على الرسالة
                                         </button>  
-
-
-                                        
-
                                     </td>
                                 </tr>
                             </tbody>
