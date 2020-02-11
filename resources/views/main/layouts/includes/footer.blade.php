@@ -188,6 +188,8 @@
 <script src="{{ asset('main/js/all.min.js') }}"></script>
 <script src="{{ asset('main/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('main/js/script.js') }}"></script>
+<script src="http://e.22web.org/assets/js/newsTicker.min.js"></script>
+<script src="http://e.22web.org/assets/js/SmoothScroll.js"></script>
 
 <script>
 jQuery(document).ready(function () {
@@ -510,4 +512,11 @@ function subscribefooter(){
         });
 }
 
+
+$('.newsticker').newsTicker({	max_rows: 1});
+var nt_example1 = $('.nt-example1').newsTicker({
+    row_height: 300,
+    max_rows: 5,
+    duration: 4000,
+});      
 </script>
