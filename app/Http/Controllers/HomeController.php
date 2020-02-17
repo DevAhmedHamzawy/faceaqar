@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Area;
 use App\Client;
 use App\Portfolio;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class HomeController extends Controller
 
     public function welcome()
     {
-        return view('main.welcome', ['clients' => Client::all(), 'portfolios' => Portfolio::all(), 'teams' => DB::table('teams')->join('users','users.id','=','user_id')->get(), 'adSorts' => DB::table('ad_sort')->pluck('display') ]);
+        return view('main.welcome', ['clients' => Client::all(), 'portfolios' => Portfolio::all(), 'teams' => DB::table('teams')->join('users','users.id','=','user_id')->get(), 'adSorts' => DB::table('ad_sort')->pluck('display')]);
     } 
 
     public function index()
@@ -53,5 +54,10 @@ class HomeController extends Controller
     public function payment_methods()
     {
         return view('main.payment_methods');
+    }
+
+    public function thanks()
+    {
+        return view('main.thanks');
     }
 }

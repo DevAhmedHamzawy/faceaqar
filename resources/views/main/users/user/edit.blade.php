@@ -14,7 +14,7 @@
 
             <div class="add_auctions">
                 <h4>البيانات الشخصية</h4>
-                <form method="POST" action="{{ route('update-profile' , $user->id) }}">
+                <form method="POST" action="{{ route('update-profile' , $user->name) }}">
                     @csrf
                     @method('put')
                     <div class="block_form_1 row">

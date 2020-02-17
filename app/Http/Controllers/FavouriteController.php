@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Area;
+use App\Favourite;
 use Illuminate\Http\Request;
 
-class AreaController extends Controller
+class FavouriteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,27 +35,27 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return auth()->user()->favourites()->whereEstateId($request->estate_id)->exists() ? auth()->user()->favourites()->whereEstateId($request->estate_id)->delete() : auth()->user()->favourites()->create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Area  $area
+     * @param  \App\Favourite  $favourite
      * @return \Illuminate\Http\Response
      */
-    public function show(Area $area)
+    public function show(Favourite $favourite)
     {
-        return Area::whereParentId($area->id)->get();
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Area  $area
+     * @param  \App\Favourite  $favourite
      * @return \Illuminate\Http\Response
      */
-    public function edit(Area $area)
+    public function edit(Favourite $favourite)
     {
         //
     }
@@ -64,10 +64,10 @@ class AreaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Area  $area
+     * @param  \App\Favourite  $favourite
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Area $area)
+    public function update(Request $request, Favourite $favourite)
     {
         //
     }
@@ -75,10 +75,10 @@ class AreaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Area  $area
+     * @param  \App\Favourite  $favourite
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Area $area)
+    public function destroy(Favourite $favourite)
     {
         //
     }

@@ -69,9 +69,9 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->profile->update($request->except('_token', '_method', 'namefield6', 'namefield5' , 'name' , 'email'));
+        $user->profile->update($request->except('_token', '_method', 'namefield6', 'namefield5' , 'name' , 'email', 'choice-type'));
         $user->update($request->only('name','email'));
-        return redirect()->back();
+        return redirect('/home');
     }
 
     /**

@@ -3,12 +3,17 @@
 namespace App;
 
 use App\Filters\BaseFilter;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use CyrildeWit\EloquentViewable\Viewable;
+use CyrildeWit\EloquentViewable\Contracts\Viewable as ViewableContract;
 use Illuminate\Support\Facades\DB;
 
-class Estate extends Model
+class Estate extends Model implements ViewableContract
 {
+    use Viewable;
+
     protected $guarded = [];
 
     protected $with = ['category','images','likes','dislikes'];
@@ -57,6 +62,41 @@ class Estate extends Model
     public function dislikes()
     {
         return $this->hasMany('App\Like', 'estate_id')->whereLike(-1);
+    }
+
+    public function advertiser()
+    {
+        return $this->hasOne('App\Advertiser');
+    }
+
+    // this is a recommended way to declare event handlers
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($estate) { 
+             $estate->localEstate()->delete();
+             $estate->requestEstate()->delete();
+             $estate->auctionEstate()->delete();
+             $estate->images()->delete();
+             $estate->likes()->delete();
+             $estate->dislikes()->delete();
+             $estate->advertiser()->delete();
+        });
+    }
+
+    public function getcreatedAtAttribute()
+    {
+        return Carbon::parse($this->create_at)->translatedFormat('d F Y');
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return Carbon::parse($this->update_at)->translatedFormat('d F Y');
+    }
+
+    public function getFavouriteAttribute()
+    {
+        return auth()->user()->favourites()->whereEstateId($this->id)->exists();
     }
 
     

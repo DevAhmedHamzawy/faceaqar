@@ -30,11 +30,10 @@
                             <div class="sel1">
                                 <p>اختر المنطقة</p>
                                 <div class="custom-select">
-                                <select>
-                                  <option value="volvo">الكل</option>
-                                  <option value="saab">الرياض</option>
-                                  <option value="mercedes">الرياض</option>
-                                  <option value="audi">الرياض</option>
+                                <select onchange="getCities(this);">
+                                  @foreach ($areas as $area)
+                                    <option value="{{ $area }}">{{ $area->name }}</option>
+                                  @endforeach
                                 </select>
                                 </div>
                             </div>
@@ -625,11 +624,10 @@
                                     <i class="fa fa-map"></i>
                                 </div>
                                 <h2>اختر الدولة</h2>
-                                <select>
-                                  <option value="volvo">السعودية</option>
-                                  <option value="saab">مصر</option>
-                                  <option value="mercedes">المغرب</option>
-                                  <option value="audi">الامارات</option>
+                                <select onchange="getCities(this);">
+                                    @foreach ($areas as $area)
+                                      <option value="{{ $area->name }}">{{ $area->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-xs-12 col-sm-6">
@@ -637,11 +635,8 @@
                                    <i class="fas fa-map-marked-alt"></i>
                                 </div>
                                 <h2>اختر المنطقة</h2>
-                                <select>
-                                  <option value="volvo">الرياض</option>
-                                  <option value="saab">مصر</option>
-                                  <option value="mercedes">المغرب</option>
-                                  <option value="audi">الامارات</option>
+                                <select id="cities" onchange="getSubCities(this);">
+                                
                                 </select>
                             </div>
                             <div class="col-xs-12 col-sm-6">
@@ -650,10 +645,7 @@
                                 </div>
                                 <h2>اختر المدينة</h2>
                                 <select id="area_id">
-                                  <option value="0">الرياض</option>
-                                  <option value="1">مصر</option>
-                                  <option value="2">المغرب</option>
-                                  <option value="3">الامارات</option>
+                                  
                                 </select>
                                 <span id="area-id-contact-error invalid-feedback" role="alert"></span>
                             </div>
@@ -725,6 +717,12 @@
 
 @section('footer')
     <script>
+
+
+
+
+
+
         window.form_data = new FormData();
 
 $(document).on('change','#file',function(e){
@@ -734,6 +732,9 @@ form_data.append('file_data', file_data);
 
 
 });
+
+
+
 
 
 function sendContact(){

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Listeners\Users\CreateUserProfile;
 use App\Listeners\Users\SendWelcomeMessageAfterRegister;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
@@ -18,10 +19,11 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            SendEmailVerificationNotification::class
         ],
         Verified::class => [
-            SendWelcomeMessageAfterRegister::class
+            SendWelcomeMessageAfterRegister::class,
+            CreateUserProfile::class
         ]
     ];
 

@@ -33,6 +33,7 @@ use App\Filters\OverheadTanksSortFilter;
 use App\Filters\ParkingFilter;
 use App\Filters\PaymentSortFilter;
 use App\Filters\PieceNumberFilter;
+use App\Filters\PriceFilter;
 use App\Filters\PriceSortFilter;
 use App\Filters\ReceptionsNumberFilter;
 use App\Filters\RoomsNumberFilter;
@@ -40,6 +41,7 @@ use App\Filters\SchemaNameFilter;
 use App\Filters\SchemaNumberFilter;
 use App\Filters\SewerageNetworkFilter;
 use App\Filters\SortFilter;
+use App\Filters\SpaceFilter;
 use App\Filters\StoresNumberFilter;
 use App\Filters\StreetFilter;
 use App\Filters\StreetsNumberFilter;
@@ -54,8 +56,8 @@ class SearchController extends Controller
 {
     public function index($adSort = null)
     {  
-        $adSort == 'general' ? : $adSort = Estate::checkAdSort($adSort);
-
+        $adSort == 'general' || $adSort == 'filters' ? : $adSort = Estate::checkAdSort($adSort);
+        
         return view('main.estates.search', 
         [
             'categories' => Category::getVisibleCategories(),
@@ -150,6 +152,8 @@ class SearchController extends Controller
             'date' => new AuctionDateFilter,
             'basement' => new BasementFilter,
             'bathrooms_number' => new BathroomsNumberFilter,
+            'space' => new SpaceFilter,
+            'price' => new PriceFilter,
             'block_number' => new BlockNumberFilter,
             'building_design' => new BuildingDesignFilter,
             'building_space' => new BuildingSpaceFilter,

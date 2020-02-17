@@ -75,7 +75,16 @@
                                     
                                     @unless($estate->advertiser == null)
                                     <span>{{ $estate->advertiser->name }}<i class="fas fa-user-circle"></i>  </span>
+                                
                                     @endunless
+                                    <span><a href="{{ route('estates.edit', ['local_estate', $estate->name]) }}">تعديل</a></span>
+                                    <span>
+                                        <form action="{{ route('estates.destroy', $estate->name) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger" type="submit">حذف</button>
+                                        </form>
+                                    </span>
                                 </div>
                             </div>
                             @empty
@@ -89,80 +98,144 @@
 
                 </div>
 
+
                 <div class="ser-marketing">
                     <div class="container">
                         <div class="all-titles">
-                            <h2> احجز صفحتك الاعلانية العقارية بالموقع حسب نوع نشاطك العقاري <img src="http://localhost:8000/main/images/regmedia.png"> </h2>
+                            <h2>عقاراتى المفضلة</h2>
+                            <p></p>
+                            <a href="#"></a>
+                        </div>
+                    </div>
+
+
+                    <!-- block_ads_realestate -->
+                    <div class="block_ads_realestate">
+                        <div class="row all-ads">
+                            @forelse (auth()->user()->favourites as $favourite)
+                            <div class="col-sm-3 col-xs-12">
+                                <div class="block_ads_local block_ads_inter " style="padding-bottom: 10px;">
+                                    <ul>
+                                        <li>{{ $favourite->estate->code }}</li>
+                                        <li> {{ $favourite->estate->created_at }} </li>
+                                    </ul>
+                                    <a href="{{ route('estates.show', ['local_estate', $favourite->estate->name]) }}" title="" class="bg_tt"> {{ $favourite->estate->name }} </a>
+                                    <ul class="otherul">
+                                        @unless ($favourite->estate->category == null)
+                                            <li>{{ $favourite->estate->category->name }}<i class="fa fa-home"></i> </li>
+                                        @endunless
+                                        <li class="qt3a"> {{ $favourite->estate->sortName[0] }} <i class="fas fa-building"></i> </li>
+                                        <li>  {{ $favourite->estate->offerName[0] }}  <i class="far fa-gem"></i>   </li>
+                                    </ul>
+                                        
+                                        @unless($favourite->estate->localAuctionEstate == null)
+
+                                        <ul>
+                                        <li> {{ $favourite->estate->localAuctionEstate->rooms_number }} <i class="fas fa-bed"></i>
+                                        <li> {{ $favourite->estate->localAuctionEstate->bathrooms_number }} <i class="fas fa-bath"></i> </li>
+                                        <li class="masaha"> <span class="Grey40" style="font-size:1.5em">م</span> <sup class="Grey40">2</sup> {{ $favourite->estate->localAuctionEstate->space }} </li>
+                                        <li> {{ $favourite->estate->localAuctionEstate->price }} <i class="fas fa-tag"></i>  </li>
+                                        </ul>
+
+                                        @endunless
+                                        
+                                    <img src="{{ url('main/images/pic_offer.jpg') }}" class="img-responsive" alt=""/>
+
+                                    <span class="paddd"> {{ $favourite->estate->center }}  <i class="fas fa-map-marker-alt"></i></span>
+                                    <span> {{ $favourite->estate->neighborhood }} <i class="fas fa-map-marker-alt"></i> </span>
+                                    
+                                    @unless($favourite->estate->advertiser == null)
+                                    <span>{{ $favourite->estate->advertiser->name }}<i class="fas fa-user-circle"></i>  </span>
+                                
+                                    @endunless
+                                </div>
+                            </div>
+                            @empty
+                            <h1 class="text-center">لم تقم بإضافة أى عقار إلى المفضلة الان</h1>     
+                            @endforelse
+                        </div>
+                        <!-- end_block_ads_realestate -->
+                        <div class="text-center">{{-- auth()->user()->estates->links() --}}</div>
+                    </div>
+                    <!-- end_realestate_blocks -->
+
+                </div>
+
+                <!-- register your page -->
+                <div class="ser-marketing">
+                    <div class="container">
+                        <div class="all-titles">
+                            <h2> احجز صفحتك الاعلانية العقارية بالموقع حسب نوع نشاطك العقاري <img src="{{ url('main/images/regmedia.png') }}"> </h2>
                             <p> </p>
                             <a href="#"></a>
                         </div>
                         <div class="items-marketing regpage-items">
                             <div class="row">
                                 <div class="col-md-2 col-sm-4 col-xs-6">
-                                    <a href="http://localhost:8000/estates/local_estate/create">
+                                    <a href="{{ route('estate.createestate', 'local_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag1.png">
+                                            <img src="{{ url('main/images/regpag1.png') }}">
                                             <h2> اضافة عقار محلي </h2>
                                         </div>
                                     </div>
                                     </a>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-xs-6">
-                                    <a href="http://localhost:8000/estates/global_estate/create">
+                                    <a href="{{ route('estate.createestate', 'global_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag22.png">
+                                            <img src="{{ url('main/images/regpag22.png') }}">
                                             <h2> اضافة عقار دولي </h2>
                                         </div>
                                     </div>
-            
+
                                     </a></div>
                                 <div class="col-md-2 col-sm-4 col-xs-6">
-                                    <a href="http://localhost:8000/estates/project_estate/create">
+                                    <a href="{{ route('estate.createestate', 'project_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag3.png">
+                                            <img src="{{ url('main/images/regpag3.png') }}">
                                             <h2> اضافة مشروع عقاري </h2>
                                         </div>
                                     </div>
                                     </a>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-xs-6">
-                                    <a href="http://localhost:8000/estates/auction_estate/create">
+                                    <a href="{{ route('estate.createestate', 'auction_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag4.png">
+                                            <img src="{{ url('main/images/regpag4.png') }}">
                                             <h2> اضافة مزاد عقاري </h2>
                                         </div>
                                     </div>
                                     </a>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-xs-6">
-                                    <a href="http://localhost:8000/estates/request_estate/create">
+                                    <a href="{{ route('estate.createestate', 'request_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag5.png">
+                                            <img src="{{ url('main/images/regpag5.png') }}">
                                             <h2> اضافة طلب عقاري </h2>
                                         </div>
                                     </div>
-            
+
                                     </a></div>
                                 <div class="col-md-2 col-sm-4 col-xs-6">
-                                    <a href="http://localhost:8000/estates/schema_estate/create">
+                                    <a href="{{ route('estate.createestate', 'schema_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag6.png">
+                                            <img src="{{ url('main/images/regpag6.png') }}">
                                             <h2> اضافة مخطط عقاري </h2>
                                         </div>
                                     </div>
                                     </a>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-xs-12">
-                                    <a href="http://localhost:8000/register">
+                                    <a href="{{ route('register') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag7.png">
+                                            <img src="{{ url('main/images/regpag7.png') }}">
                                             <h2> اضافة مكتب عقاري </h2>
                                         </div>
                                     </div>
@@ -173,80 +246,84 @@
                     </div>
                 </div>
 
+
+                
+                
+                <!-- register your page -->
                 <div class="ser-marketing">
                     <div class="container">
                         <div class="all-titles">
-                            <h2>ابحث عن عقارك المناسب بالموقع <img src="http://localhost:8000/main/images/searchaqar.png"> </h2>
+                            <h2>ابحث عن عقارك المناسب بالموقع <img src="{{ url('main/images/searchaqar.png') }}"> </h2>
                             <p></p>
                             <a href="#"></a>
                         </div>
                         <div class="items-marketing regpage-items">
                             <div class="row">
                                 <div class="col-md-2 col-sm-4 col-xs-6">
-                                    <a href="http://localhost:8000/search/local_estate">
+                                    <a href="{{ route('search', 'local_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag111.png">
+                                            <img src="{{ url('main/images/regpag111.png') }}">
                                             <h2> بحث عقار محلي </h2>
                                         </div>
                                     </div>
                                     </a>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-xs-6">
-                                    <a href="http://localhost:8000/search/global_estate">
+                                    <a href="{{ route('search', 'global_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag222.png">
+                                            <img src="{{ url('main/images/regpag222.png') }}">
                                             <h2> بحث عقار دولي </h2>
                                         </div>
                                     </div>
                                     </a>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-xs-6">
-                                    <a href="http://localhost:8000/search/project_estate">
+                                    <a href="{{ route('search', 'project_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag333.png">
+                                            <img src="{{ url('main/images/regpag333.png') }}">
                                             <h2> بحث مشروع عقاري </h2>
                                         </div>
                                     </div>
                                     </a>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-xs-6">
-                                    <a href="http://localhost:8000/search/auction_estate">
+                                    <a href="{{ route('search', 'auction_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag444.png">
+                                            <img src="{{ url('main/images/regpag444.png') }}">
                                             <h2> بحث مزاد عقاري </h2>
                                         </div>
                                     </div>
                                     </a>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-xs-6">
-                                    <a href="http://localhost:8000/search/request_estate">
+                                    <a href="{{ route('search', 'request_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag555.png">
+                                            <img src="{{ url('main/images/regpag555.png') }}">
                                             <h2> بحث طلب عقاري </h2>
                                         </div>
                                     </div>
                                     </a>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-xs-6">
-                                    <a href="http://localhost:8000/search/schema_estate">
+                                    <a href="{{ route('search', 'schema_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag666.png">
+                                            <img src="{{ url('main/images/regpag666.png') }}">
                                             <h2> بحث مخطط عقاري </h2>
                                         </div>
                                     </div>
                                     </a>
                                 </div>
                                 <div class="col-md-2 col-sm-4 col-xs-12">
-                                    <a href="http://localhost:8000/search/office_estate">
+                                    <a href="{{ route('search', 'office_estate') }}">
                                     <div class="item-mark">
                                         <div class="tit-item-mark">
-                                            <img src="http://localhost:8000/main/images/regpag777.png">
+                                            <img src="{{ url('main/images/regpag777.png') }}">
                                             <h2> بحث مكتب عقاري </h2>
                                         </div>
                                     </div>
@@ -256,7 +333,6 @@
                         </div>
                     </div>
                 </div>
-
         </div>
     </div>
 </div>

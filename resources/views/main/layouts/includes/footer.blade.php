@@ -57,23 +57,18 @@
                     <form>
                          <input type="text" id="name-newsletter-footer" placeholder="اكتب الاسم ">
                          <span class="name-newsletter-footer-error invalid-feedback" role="alert"></span>
-                        <select>
-                          <option value="0">اختر اسم الدولة</option>
-                          <option value="1">مصر</option>
-                          <option value="2">المغرب</option>
-                          <option value="3">الامارات</option>
-                        </select>
-                         <select>
+                         <select onchange="getCitiesFooter(this);">
+                            <option value="0">اختر اسم الدولة</option>
+                            @foreach ($areas as $area)
+                                <option value="{{ $area->name }}">{{ $area->name }}</option>
+                            @endforeach
+                         </select>
+                         <select id="cities-footer" onchange="getSubCitiesFooter(this);">
                            <option value="0">اختر اسم المنطقة</option>
-                           <option value="1">مصر</option>
-                           <option value="2">المغرب</option>
-                           <option value="3">الامارات</option>
                          </select>
                          <select id="area-id-newsletter-footer">
                            <option value="0">اختر اسم المدينة</option>
-                           <option value="1">مصر</option>
-                           <option value="2">المغرب</option>
-                           <option value="3">الامارات</option>
+                           
                          </select>
                         <input type="text" id="neighborhood-newsletter-footer" placeholder="اسم الحي">
                         <span class="neighborhood-newsletter-footer-error invalid-feedback" role="alert"></span>
@@ -236,7 +231,6 @@ window.AuthUser = '{!! auth()->user() !!}'
         }
 }
 
-
 });
 
 function submitregister(){
@@ -253,7 +247,7 @@ function submitregister(){
 
     axios.post('../../register', register)
             .then((data) => {
-                window.location.href = '/home';
+                window.location.href = '/thanks';
             }).catch((error) => {
                 $('.area-id-register-error').empty();
                 $('.name-register-error').empty();
@@ -513,10 +507,123 @@ function subscribefooter(){
 }
 
 
-$('.newsticker').newsTicker({	max_rows: 1});
+function getCities(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#cities').empty()
+           for(city of data.data){
+           $('#cities').append('<option value="'+city.name+'">'+city.name+'</option>')
+           }  
+        })
+}
+
+
+function getSubCities(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#area_id').empty()
+           for(subcity of data.data){
+           $('#area_id').append('<option value="'+subcity.id+'">'+subcity.name+'</option>')
+           }  
+        })
+}
+
+
+
+
+function getCitiesNewsletterOne(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#cities-newsletter-one').empty()
+           for(city of data.data){
+           $('#cities-newsletter-one').append('<option value="'+city.name+'">'+city.name+'</option>')
+           }  
+        })
+}
+
+
+function getSubCitiesNewsletterOne(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#area-id-newsletter-head-one').empty()
+           for(subcity of data.data){
+           $('#area-id-newsletter-head-one').append('<option value="'+subcity.id+'">'+subcity.name+'</option>')
+           }  
+        })
+}
+
+
+function getCitiesNewslettertwo(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#cities-newsletter-two').empty()
+           for(city of data.data){
+           $('#cities-newsletter-two').append('<option value="'+city.name+'">'+city.name+'</option>')
+           }  
+        })
+}
+
+
+function getSubCitiesNewslettertwo(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#area-id-newsletter-head-two').empty()
+           for(subcity of data.data){
+           $('#area-id-newsletter-head-two').append('<option value="'+subcity.id+'">'+subcity.name+'</option>')
+           }  
+        })
+}
+
+
+function getCitiesRegister(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#cities-register').empty()
+           for(city of data.data){
+           $('#cities-register').append('<option value="'+city.name+'">'+city.name+'</option>')
+           }  
+        })
+}
+
+
+function getSubCitiesRegister(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#area-id-register').empty()
+           for(subcity of data.data){
+           $('#area-id-register').append('<option value="'+subcity.id+'">'+subcity.name+'</option>')
+           }  
+        })
+}
+
+
+
+function getCitiesFooter(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#cities-footer').empty()
+           for(city of data.data){
+           $('#cities-footer').append('<option value="'+city.name+'">'+city.name+'</option>')
+           }  
+        })
+}
+
+
+function getSubCitiesFooter(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#area-id-newsletter-footer').empty()
+           for(subcity of data.data){
+           $('#area-id-newsletter-footer').append('<option value="'+subcity.id+'">'+subcity.name+'</option>')
+           }  
+        })
+}
+
+
+/*$('.newsticker').newsTicker({	max_rows: 1});
 var nt_example1 = $('.nt-example1').newsTicker({
     row_height: 300,
     max_rows: 5,
     duration: 4000,
-});      
+});  */    
 </script>

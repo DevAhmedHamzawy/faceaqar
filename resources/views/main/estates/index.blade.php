@@ -81,7 +81,8 @@
                     <div class="col-sm-3  col-xs-12">
                         <div class="search_btn search_btn_engin">
                             <h2>
-                                <a href="#" title="" target="_blank" data-toggle="modal" data-target="#elc_real_se">
+                                
+                                <a href="{{ route('estates-map', $adSort->name) }}" title="" target="_blank" data-toggle="modal" data-target="#elc_real_se">
                                 شاهد العقارات على الخريطة
                                     <i class="fa fa-eye" aria-hidden="true" style="margin-left: 10px"></i>
                                     
@@ -125,7 +126,7 @@
                                 <li>{{ $estate->code }}</li>
                                 <li> {{ $estate->created_at }} </li>
                             </ul>
-                            <a href="#" title="" class="bg_tt"> {{ $estate->name }} </a>
+                            <a href="{{ route('estates.show', [$adSort->name, $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
                             <ul class="otherul">
                                 @unless ($estate->category == null)
                                     <li>{{ $estate->category->name }}<i class="fa fa-home"></i> </li>

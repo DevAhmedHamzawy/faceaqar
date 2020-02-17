@@ -57,9 +57,7 @@ Route::post('like', 'LikeController@like');
 Route::post('dislike', 'LikeController@dislike');
 Route::post('check', 'LikeController@check');
 
-Route::post('sendcontact', 'ContactUsController@store');
 
-Route::post('savenewsletter', 'NewsLetterController@store');
 
 Route::get('estates/{adSort}/create', 'EstateController@create')->name('estate.createestate');
 Route::post('estates/{adSort}/create', 'EstateController@store')->name('estates.create');
@@ -76,7 +74,17 @@ Route::resource('tickets', 'TicketController');
 
 Route::resource('brokers', 'BrokerController');
 
+Route::resource('favourites', 'FavouriteController');
+
+
 });
+
+
+Route::get('thanks', 'HomeController@thanks');
+
+Route::post('sendcontact', 'ContactUsController@store');
+
+Route::post('savenewsletter', 'NewsLetterController@store');
 
 Route::get('profile/{user}', 'UsersController@show')->name('profile');
 
@@ -86,10 +94,16 @@ Route::get('estates/{adSort}/index', 'EstateController@index');
 
 Route::get('estates/{adSort}/{estate}', 'EstateController@show')->name('estates.show');
 
+Route::get('estates/{adSort}/{estate}/edit', 'EstateController@edit')->name('estates.edit');
+Route::patch('estates/{adSort}/{estate}/edit', 'EstateController@update')->name('estates.update');
+
+Route::delete('estates/{estate}', 'EstateController@destroy')->name('estates.destroy');
+
 
 Route::get('search/{adSort}', 'SearchController@index')->name('search');
-Route::get('search/filters', 'SearchController@getFilters')->name('getresults');
+Route::get('search/{adSort}/filters', 'SearchController@getFilters')->name('getresults');
 
+Route::resource('areas' , 'AreaController');
 
 
 
@@ -108,3 +122,5 @@ Route::get('services', 'HomeController@services')->name('services');
 Route::get('branches', 'HomeController@branches')->name('branches');
 Route::get('financial_fees', 'HomeController@financial_fees')->name('financial_fees');
 Route::get('payment_methods', 'HomeController@payment_methods')->name('payment_methods');
+
+Route::get('estates-map/{adSort}', 'EstatesMapController@show')->name('estates-map');

@@ -51,7 +51,7 @@
                 <div class="block_ads_local block_ads_inter " style="padding-bottom: 10px;">
                     <ul>
                         <li>{{ $estate->code }}</li>
-                        <li> {{ $estate->created_at }} </li>
+                        <li> {{ $estate->created_at->format('Y-m-d') }} </li>
                     </ul>
                     <a href="{{ route('estates.show', [$adSort->name, $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
                     <ul class="otherul">

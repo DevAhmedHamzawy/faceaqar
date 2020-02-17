@@ -356,11 +356,10 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <h2>أختر الدولة</h2>
-                            <select>
-                                <option value="volvo">الرياض</option>
-                                <option value="saab">مصر</option>
-                                <option value="mercedes">المغرب</option>
-                                <option value="audi">الامارات</option>
+                            <select onchange="getCitiesNewsletterOne(this);">
+                                @foreach ($areas as $area)
+                                    <option value="{{ $area->name }}">{{ $area->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="clearfix"></div>
@@ -369,11 +368,8 @@
                                 <i class="fas fa-map-marked-alt"></i>
                             </div>
                             <h2>اختر المنطقة </h2>
-                            <select>
-                                <option value="volvo">الرياض</option>
-                                <option value="saab">مصر</option>
-                                <option value="mercedes">المغرب</option>
-                                <option value="audi">الامارات</option>
+                            <select id="cities-newsletter-one" onchange="getSubCitiesNewsletterOne(this);">
+                               
                             </select>
                         </div>
                         <div class="col-xs-12 col-sm-6">
@@ -382,10 +378,7 @@
                             </div>
                             <h2>اختر المدينة</h2>
                             <select id="area-id-newsletter-head-one">
-                                <option value="0">الرياض</option>
-                                <option value="1">مصر</option>
-                                <option value="2">المغرب</option>
-                                <option value="3">الامارات</option>
+                                
                             </select>
                         </div>
                         <div class="col-xs-12 col-sm-6">
@@ -604,11 +597,10 @@
                                 <i class="fa fa-map"></i>
                             </div>
                             <h2>اختر الدولة</h2>
-                            <select>
-                                <option value="volvo">السعودية</option>
-                                <option value="saab">مصر</option>
-                                <option value="mercedes">المغرب</option>
-                                <option value="audi">الامارات</option>
+                            <select onchange="getCitiesRegister(this);">
+                                @foreach ($areas as $area)
+                                    <option value="{{ $area->name }}">{{ $area->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-xs-12 col-sm-6">
@@ -616,11 +608,8 @@
                                 <i class="fas fa-map-marked-alt"></i>
                             </div>
                             <h2>اختر المنطقة</h2>
-                            <select>
-                                <option value="volvo">الرياض</option>
-                                <option value="saab">مصر</option>
-                                <option value="mercedes">المغرب</option>
-                                <option value="audi">الامارات</option>
+                            <select id="cities-register" onchange="getSubCitiesRegister(this);">
+                                
                             </select>
                         </div>
                         <div class="col-xs-12 col-sm-6">
@@ -628,11 +617,8 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <h2>اختر المدينة</h2>
-                            <select class="area-id-register">
-                                <option value="0">الرياض</option>
-                                <option value="1">مصر</option>
-                                <option value="2">المغرب</option>
-                                <option value="3">الامارات</option>
+                            <select class="area-id-register" id="area-id-register">
+                                
                             </select>
                             <span class="area-id-register-error invalid-feedback" role="alert"></span>
                         </div>
@@ -747,11 +733,10 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <h2>أختر الدولة</h2>
-                            <select>
-                                <option value="volvo">الرياض</option>
-                                <option value="saab">مصر</option>
-                                <option value="mercedes">المغرب</option>
-                                <option value="audi">الامارات</option>
+                            <select onchange="getCitiesNewsletterTwo(this);">
+                                @foreach ($areas as $area)
+                                    <option value="{{ $area->name }}">{{ $area->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="clearfix"></div>
@@ -760,11 +745,8 @@
                                 <i class="fas fa-map-marked-alt"></i>
                             </div>
                             <h2>اسم المنطقة </h2>
-                            <select>
-                                <option value="volvo">الرياض</option>
-                                <option value="saab">مصر</option>
-                                <option value="mercedes">المغرب</option>
-                                <option value="audi">الامارات</option>
+                            <select id="cities-newsletter-two" onchange="getSubCitiesNewsletterTwo(this);">
+                                
                             </select>
                         </div>
                         <div class="col-xs-12 col-sm-6">
@@ -773,10 +755,7 @@
                             </div>
                             <h2>اختر المدينة</h2>
                             <select id="area-id-newsletter-head-two">
-                                <option value="0">الرياض</option>
-                                <option value="1">مصر</option>
-                                <option value="2">المغرب</option>
-                                <option value="3">الامارات</option>
+                                
                             </select>
                         </div>
                         <div class="col-xs-12 col-sm-6">

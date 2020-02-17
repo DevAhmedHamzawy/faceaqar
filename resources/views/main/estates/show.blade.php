@@ -7,6 +7,11 @@
         width:600px !important;
         height: 200px;
     }
+
+    #social-links ul li{
+        display: inline;
+        padding: 50px;
+    }
 </style>    
 @endsection
 @section('content')
@@ -31,17 +36,17 @@
                         </div>
                         <div class="col-sm-3 col-xs-12 padd_none">
                             <span>
-                                <strong> تاريخ الإضافة </strong> : &nbsp; <i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($estate->create_at)->diffForHumans() }}
+                                <strong> تاريخ الإضافة </strong> : &nbsp; <i class="far fa-clock"></i> {{ $estate->created_at}}
                             </span>
                         </div>
                         <div class="col-sm-3 col-xs-12 padd_none">
                             <span>
-                                <strong> أخر تحديث </strong> : <i class="far fa-calendar-alt"></i> sالخميس 17 محرم 1438&nbsp;
+                                <strong> أخر تحديث </strong> : <i class="far fa-calendar-alt"></i> {{ $estate->updated_at }}&nbsp;
                             </span>
                         </div>
                         <div class="col-sm-3 col-xs-12 padd_right">
                             <span>
-                                <strong> عدد المشاهدات : </strong> <i class="fa fa-eye"></i> s60 مشاهدة
+                                <strong> عدد المشاهدات : </strong> <i class="fa fa-eye"></i> {{ $views }} مشاهدة
                             </span>
                         </div>
                     </div>
@@ -120,7 +125,7 @@
                         </div>
 
                         <div class="col-md-4 col-sm-12 col-xs-12 pull-left">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d27626.27366240017!2d31.35026109284309!3d30.057386886394237!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1485270685978" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                            <iframe src="https://www.google.com/maps/embed/v1/place?q={{$estate->lat}},{{$estate->lng}}&amp;key=AIzaSyA2obCxpDHFCwyBJe7z5EyrBTgdI1vm8RE&center={{$estate->lat}},{{$estate->lng}}&zoom=6" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
                             <div class="block_ads_local block_time no-eff">
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-12">
@@ -129,8 +134,8 @@
                                         </a>
                                     </div>
                                     <div class="col-sm-6 col-xs-12 padd_right no-eff">
-                                        <a href="#" title="">
-                                            <i class="fa fa-save"></i> حفظ
+                                        <a href="javascript:void(0)" onclick="favourite()" id="favouriting" title="">
+                                            <i class="{{ $estate->favourite ? "fa fa-heart" : "far fa-heart" }}"></i> {{ $estate->favourite ? "إلغاء المفضلة"  :  "مفضلة" }}
                                         </a>
                                     </div>
                                     <div class="col-sm-6 col-xs-12">
@@ -139,7 +144,7 @@
                                         </a>
                                     </div>
                                     <div class="col-sm-6 col-xs-12 padd_right no-eff">
-                                        <a href="#" title="">
+                                        <a href="#" onclick="window.print()" title="">
                                             <i class="fa fa-print"></i> طباعة
                                         </a>
                                     </div>
@@ -206,11 +211,31 @@
             </div>
             <!-- end_content_details_real -->
         </div>
+
+
+       
+
     </section>
     <!-- end_details_real -->
 
 
+    <div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+              مشاركة الصفحة الإعلانية الإلكترونية
+            </div>
+            <div class="modal-body">
 
+               
+                {!! Share::currentPage()->facebook()->twitter()->linkedin()->whatsapp()->telegram() !!}
+               
+               
+            </div>
+              
+          </div>
+        </div>
+    </div>
 
     <script>
         var slideIndex = 1;
@@ -249,6 +274,7 @@
 
 +   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="{{ asset('js/share.js') }}"></script>
 
     <script>
 
@@ -353,6 +379,20 @@
                 })
         }
        
+        function favourite()
+        {
+            axios.post('../../favourites', {estate_id: {!! $estate->id !!}})
+                .then((data) => {
+                    console.log(data.data)
+                    if(data.data == 1){
+                        $('#favouriting').empty() 
+                        $('#favouriting').append('<i class="far fa-heart"></i> مفضلة')
+                    }else{
+                        $('#favouriting').empty() 
+                        $('#favouriting').append('<i class="fa fa-heart"></i> إلغاء المفضلة')
+                    }
+                })   
+        }
 
     </script>
     
