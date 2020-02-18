@@ -49,12 +49,16 @@
 @section('footer')
     <script type="text/javascript">
        
-
+       let imagesCount = Math.abs({!! count($estate->images) !!} - 6);
+       let estate = {!! $estate !!};
        function addImages(){
             //console.log($('.images').find('.form-group').length);
-             
-            if($('.images').find('.form-group').length < 4){
-                $('.images').append('<div class="form-group"><input type="file" name="estateimages[]" class="form-control" id="" placeholder=""></div>');
+            console.log(imagesCount);
+            //imagesCount--;
+            let imageFilesLength = ($('.images').find('.form-group').length) + 1;
+            console.log(imageFilesLength);
+            if(imageFilesLength < imagesCount){
+                $('.images').append('<div class="form-group"><input type="file" name="estateimages[]" class="form-control" id="" placeholder="" accept="image/*"></div>');
             }else{
                 $('.images-danger').css('display', 'block');
                 $('.images-danger').append('<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم تجاوز الحد الأقصى من الصور !</div></div>');
@@ -86,6 +90,52 @@
         document.getElementById('latlng').value = [latLng.lat(),latLng.lat()];
      });
      }
+
+
+    let imgs = [];
+    function add(b){
+
+       if(!(imgs.includes(b))) { imgs.push(b); }
+       
+       $("input[name=imgs]").val(JSON.stringify(imgs)); //store array
+       
+       $('#'+b).css('display' , 'none');
+       $('#'+b).css('transition' , '0.2s all ease-in-out');
+
+       /*let estate = {
+        estate: {!! $estate !!},
+        index: b,
+       
+       }*/
+      
+       axios.delete(`../../../estate-images/${estate.name}/${b}`)
+        .then((data) => {
+           imagesCount++
+        })
+
+    }
+
+
+    function getCities(item){
+    axios.get('../../../areas/'+item.value)
+        .then((data) => {
+           $('#cities').empty()
+           for(city of data.data){
+           $('#cities').append('<option value="'+city.name+'">'+city.name+'</option>')
+           }  
+        })
+}
+
+
+function getSubCities(item){
+    axios.get('../../../areas/'+item.value)
+        .then((data) => {
+           $('#area_id').empty()
+           for(subcity of data.data){
+           $('#area_id').append('<option value="'+subcity.id+'">'+subcity.name+'</option>')
+           }  
+        })
+}
   
 
     </script>

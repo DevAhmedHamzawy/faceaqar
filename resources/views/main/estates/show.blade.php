@@ -36,12 +36,12 @@
                         </div>
                         <div class="col-sm-3 col-xs-12 padd_none">
                             <span>
-                                <strong> تاريخ الإضافة </strong> : &nbsp; <i class="far fa-clock"></i> {{ $estate->created_at}}
+                                <strong> تاريخ الإضافة </strong> : &nbsp; <i class="far fa-clock"></i> {{ $estate->create_at}}
                             </span>
                         </div>
                         <div class="col-sm-3 col-xs-12 padd_none">
                             <span>
-                                <strong> أخر تحديث </strong> : <i class="far fa-calendar-alt"></i> {{ $estate->updated_at }}&nbsp;
+                                <strong> أخر تحديث </strong> : <i class="far fa-calendar-alt"></i> {{ $estate->update_at }}&nbsp;
                             </span>
                         </div>
                         <div class="col-sm-3 col-xs-12 padd_right">

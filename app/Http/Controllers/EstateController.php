@@ -229,6 +229,17 @@ class EstateController extends Controller
     public function edit($adSort, Estate $estate)
     {
 
+        $estate_name = $estate->name;
+        $images = json_decode($estate->images->img);
+        $storage_images = [];
+        foreach($images as $image){
+            $image = asset("storage/estates/${estate_name}/${image}");
+            array_push($storage_images, $image);
+        }
+
+        //dd($storage_images);
+        $estate->images = $storage_images;
+
         $bladeVariables = [
             'estate' => $estate,
             'adSort' => Estate::checkAdSort($adSort),
@@ -252,6 +263,8 @@ class EstateController extends Controller
                 $bladeVariables['local_auction_estate'] = AuctionEstate::whereEstateId($estate->id)->firstOrFail();
                 break;
         }
+
+       
 
         return view('main.estates.edit', $bladeVariables);
     }
@@ -307,7 +320,7 @@ class EstateController extends Controller
         $estateimage->img=json_encode($data);
         $estateimage->estate_id=$request->estate_id;
         
-        $estateimage->save();
+        $estateimage->update();
 
         return redirect('/home');
     }

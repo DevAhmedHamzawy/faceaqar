@@ -77,7 +77,7 @@ class SearchController extends Controller
 
         $adSort = DB::table('ad_sort')->whereName($adSort)->first();
 
-        $estates = Estate::whereAdSortId($adSortId)->get();
+        $estates = Estate::whereAdSortId($adSortId)->orderByDesc('created_at')->paginate(16);
 
         foreach($estates as $estate){
             $estate->sortName = Estate::getSort($estate->sort_id);

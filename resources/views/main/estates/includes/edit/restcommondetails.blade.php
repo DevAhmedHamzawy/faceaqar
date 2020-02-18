@@ -10,15 +10,30 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <h4>ارفاق صور عن {{ $adSort->title }} </h4>
-        <button class="btn btn-primary add-image" onclick="addImages();return false;">إضافة صور أخرى</button>
+        <h4>صور {{ $adSort->title }} </h4>
+        @foreach ($estate->images as $key=>$img)
+            <div class="col-md-2">
+                <img src="{{ $img }}" width="150" height="150" id="{{$key}}" srcset="">
+                <a href="javascript:void(0)" onclick="add({{$key}})"><span class="fa fa-times"></span>حذف</a>
+            </div>
+        @endforeach
+        <div style="clear:both"></div>
+        @if(count($estate->images) == 6)
+        <div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم تجاوز الحد الأقصى من الصور !</div></div>
+        @else
+            <h4>ارفاق صور عن {{ $adSort->title }} </h4>
+            <button class="btn btn-primary add-image" onclick="addImages();return false;">إضافة صور أخرى</button>
+            <div class="form-group images-files">
+                <br>
+                <input type="file" name="estateimages[]" class="form-control" id="" placeholder="" accept="image/*">
+            </div>
+            <div class="images"></div>
+            <div class="images-danger" style="margin-top:250px;display:none;"></div>
+        @endif
     </div>
 </div>
-<div class="form-group">
-    <input type="file" name="estateimages[]" class="form-control" id="" placeholder="">
-</div>
-<div class="images"></div>
-<div class="images-danger" style="margin-top:250px;display:none;"></div>
+
+
 <div class="row">
     <div class="col-md-12">
         <h4>حدد موقع المخطط {{ $adSort->title }} الجغرافي على مخطط ماب</h4>

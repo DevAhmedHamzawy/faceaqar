@@ -84,14 +84,19 @@ class Estate extends Model implements ViewableContract
         });
     }
 
-    public function getcreatedAtAttribute()
+    public function getcreateAtAttribute()
     {
-        return Carbon::parse($this->create_at)->translatedFormat('d F Y');
+        return Carbon::parse($this->created_at)->translatedFormat('d M Y');
     }
 
-    public function getUpdatedAtAttribute()
+    public function getUpdateAtAttribute()
     {
-        return Carbon::parse($this->update_at)->translatedFormat('d F Y');
+        return Carbon::parse($this->updated_at)->translatedFormat('d M Y');
+    }
+
+    public function getAgoAttribute()
+    {
+        return $this->created_at->diffForHumans();
     }
 
     public function getFavouriteAttribute()

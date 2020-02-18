@@ -47,7 +47,7 @@ class EstatesMapController extends Controller
      * @param  \App\Estate  $estate
      * @return \Illuminate\Http\Response
      */
-    public function show($adSort, Estate $estate)
+    public function show($adSort)
     {
         $adSortId = DB::table('ad_sort')->whereName($adSort)->pluck('id');
 

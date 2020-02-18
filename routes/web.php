@@ -76,6 +76,7 @@ Route::resource('brokers', 'BrokerController');
 
 Route::resource('favourites', 'FavouriteController');
 
+Route::delete('estate-images/{estate}/{index}', 'EstateImageController@destroy');
 
 });
 

@@ -7,7 +7,7 @@
     <div class="container">
         <!-- title_pages -->
         <div class="title_pages">
-            <h2>صفحة العقارات المحليه فى المدينة</h2>
+            <h2>صفحة {{ $adSort->adjective }} فى المدينة</h2>
             <span></span>
         </div>
         <!-- end_title_pages -->
@@ -19,49 +19,49 @@
                 <ul>
                     <li>
                         <a href="{{ route('search-by-ad-sort' , 'local_estate') }}" title="">
-                            <img src="{{ url('images/icon_r_2.png') }}" class="img-responsive" alt=""/>
+                            <img src="{{ url('main/images/icon_r_2.png') }}" class="img-responsive" alt=""/>
                             <span>العقارات المحلية</span>
                         </a>	
                     </li>
                     <li>
                         <a href="{{ route('search-by-ad-sort' , 'global_estate') }}" title="">
-                            <img src="{{ url('images/icon_r_6.png') }}" class="img-responsive" alt=""/>
+                            <img src="{{ url('main/images/icon_r_6.png') }}" class="img-responsive" alt=""/>
                             <span>العقارات الدولية</span>
                         </a>	
                     </li>
                     <li>
                         <a href="{{ route('search-by-ad-sort' , 'project_estate') }}" title="">
-                            <img src="{{ url('images/icon_r_1.png') }}" class="img-responsive" alt=""/>
+                            <img src="{{ url('main/images/icon_r_1.png') }}" class="img-responsive" alt=""/>
                             <span>المشاريع العقارية</span>
                         </a>	
                     </li>
                     <li>
                         <a href="{{ route('search-by-ad-sort' , 'auction_estate') }}" title="">
-                            <img src="{{ url('images/icon_r_4.png') }}" class="img-responsive" alt=""/>
+                            <img src="{{ url('main/images/icon_r_4.png') }}" class="img-responsive" alt=""/>
                             <span>المزادات العقارية</span>
                         </a>	
                     </li>
                     <li>
                         <a href="{{ route('search-by-ad-sort' , 'request_estate') }}" title="">
-                            <img src="{{ url('images/icon_r_5.png') }}" class="img-responsive" alt=""/>
+                            <img src="{{ url('main/images/icon_r_5.png') }}" class="img-responsive" alt=""/>
                             <span>الطلبات العقارية</span>
                         </a>	
                     </li>
                     <li>
                         <a href="{{ route('search-by-ad-sort' , 'schema_estate') }}" title="">
-                            <img src="{{ url('images/ss.png') }}" class="img-responsive" alt=""/>
+                            <img src="{{ url('main/images/ss.png') }}" class="img-responsive" alt=""/>
                             <span>المخططات العقارية</span>
                         </a>	
                     </li>
                     <li>
                         <a href="{{ route('search-by-ad-sort' , 'office_estate') }}" title="">
-                            <img src="{{ url('images/regpag88.png') }}" class="img-responsive" alt=""/>
+                            <img src="{{ url('main/images/regpag88.png') }}" class="img-responsive" alt=""/>
                             <span>المكاتب العقارية الإلكترونية</span>
                         </a>	
                     </li>
                     <li>
                         <a href="{{ route('search-by-ad-sort' , 'middleware_estate') }}" title="">
-                            <img src="{{ url('images/regpag4141.png') }}" class="img-responsive" alt=""/>
+                            <img src="{{ url('main/images/regpag4141.png') }}" class="img-responsive" alt=""/>
                             <span>وسيط واجهة العقار الالكتروني</span>
                         </a>	
                     </li>
@@ -76,7 +76,7 @@
             <div class="realestate_number">
                 <div class="row">
                     <div class="col-sm-3 col-xs-12">
-                        <h3 class="number_real" style="margin-top: 10px;">عدد العقارات المحليه = 200 عقار</h3>
+                        <h3 class="number_real" style="margin-top: 10px;">عدد {{ $adSort->adjective }}  = {{ $estates->total() }} عقار</h3>
                     </div>
                     <div class="col-sm-3  col-xs-12">
                         <div class="search_btn search_btn_engin">
@@ -124,7 +124,7 @@
                         <div class="block_ads_local block_ads_inter " style="padding-bottom: 10px;">
                             <ul>
                                 <li>{{ $estate->code }}</li>
-                                <li> {{ $estate->created_at }} </li>
+                                <li> {{ $estate->ago }} </li>
                             </ul>
                             <a href="{{ route('estates.show', [$adSort->name, $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
                             <ul class="otherul">
@@ -167,38 +167,6 @@
 </section>
 <!-- end_local_page -->
 
-@endsection
+<div class="text-center">{{ $estates->links() }}</div>
 
-
-@section('footer')
-
-    <script src="{{ asset('js/app.js') }}"></script>
-
-    <script>
-        /*function getEstateSort(adSort){
-            axios.get(`../../estates/${adSort}`).then((data) => {
-                $('.all-ads').empty();
-                
-                for(let d of data.data){
-                $('.all-ads').append('<div class="col-sm-3 col-xs-12"><div class="block_ads_local block_ads_inter " style="padding-bottom: 10px;">');
-                let date = new Date(d.created_at)
-                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
-                date = date.toLocaleDateString('ar-EG', options);
-                $('.block_ads_inter').append('<ul><li>'+d.code+'</li><li>'+date+'</li></ul><a href="#" title="" class="bg_tt">'+d.name+'</a>');
-                $('.block_ads_inter').append('<ul class="otherul"><li>'+d.category.name+'<i class="fa fa-home"></i> </li><li class="qt3a">'+d.sortName[0]+'<i class="fas fa-building"></i> </li><li>'+d.offerName[0]+'<i class="far fa-gem"></i>   </li></ul>');
-                if(d.localAuctionEstate != null){
-                    $('.block_ads_inter').append('<ul><li>'+d.localAuctionEstate.rooms_number+'<i class="fas fa-bed"></i><li>'+d.localAuctionEstate.bathrooms_number+'<i class="fas fa-bath"></i> </li><li class="masaha"> <span class="Grey40" style="font-size:1.5em">م</span> <sup class="Grey40">2</sup>'+d.space+'</li><li>'+d.price+'<i class="fas fa-tag"></i>  </li></ul>');
-                }
-                $('.block_ads_inter').append('<img src="{{ asset('main/images/pic_offer.jpg') }}" class="img-responsive" alt=""/><span class="paddd">'+d.center+'<i class="fas fa-map-marker-alt"></i></span><span>'+d.neighborhood+'<i class="fas fa-map-marker-alt"></i> </span>');
-                
-                if(d.advertiser != null){
-                    $('.block_ads_inter').append('<span>'+d.advertiser.name+'<i class="fas fa-user-circle"></i></span><br/><br/>');
-                }
-                
-                $('.block_ads_inter').append('</div></div>');
-                }
-            });
-        }*/
-    </script>
 @endsection
