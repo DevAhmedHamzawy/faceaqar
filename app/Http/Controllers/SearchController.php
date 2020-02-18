@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Advertiser;
+use App\Broker;
 use App\Category;
 use App\Estate;
 use App\Filters\AdSortFilter;
@@ -49,6 +50,7 @@ use App\Filters\UnitNumberFilter;
 use App\Filters\UnitsNumberFilter;
 use App\Filters\WaterNetworkFilter;
 use App\LocalEstate;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -74,10 +76,17 @@ class SearchController extends Controller
     public function searchByAdSort($adSort)
     {
         $adSortId = DB::table('ad_sort')->whereName($adSort)->pluck('id');
-
         $adSort = DB::table('ad_sort')->whereName($adSort)->first();
 
-        $estates = Estate::whereAdSortId($adSortId)->orderByDesc('created_at')->paginate(16);
+        if($adSort->name !== 'office_estate' && $adSort->name !== 'broker_estate'){
+
+            $estates = Estate::whereAdSortId($adSortId)->orderByDesc('created_at')->paginate(16);
+
+        }else{
+            $adSort->name == 'office_estate' ? $estates = User::withRole('estate_office')->paginate(16) : $estates = Broker::paginate(16);
+        }
+
+        if($adSort->name !== 'office_estate' && $adSort->name !== 'broker_estate'){
 
         foreach($estates as $estate){
             $estate->sortName = Estate::getSort($estate->sort_id);
@@ -104,6 +113,7 @@ class SearchController extends Controller
                 
         }
 
+        }
         }
 
         //return json_encode($estates);

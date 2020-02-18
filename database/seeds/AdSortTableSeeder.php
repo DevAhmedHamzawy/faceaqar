@@ -19,6 +19,8 @@ class AdSortTableSeeder extends Seeder
             ['name' => 'project_estate' , 'display' => 'مشروع عقارى', 'title' => 'المشروع العقارى', 'adjective' => 'المشاريع العقارية'],
             ['name' => 'request_estate' , 'display' => 'طلب عقارى', 'title' => 'الطلب العقارى', 'adjective' => 'الطلبات العقارية'],
             ['name' => 'auction_estate' , 'display' => 'مزاد عقارى', 'title' => 'المزاد العقارى', 'adjective' => 'المزادات العقارية'],
+            ['name' => 'office_estate' , 'display' => 'مكتب عقارى', 'title' => 'المكتب العقارى', 'adjective' => 'المكاتب العقارية'],
+            ['name' => 'broker_estate' , 'display' => 'وسيط عقارى', 'title' => 'الوسيط العقارى', 'adjective' => 'الوسائط العقارية'],
         ]);
     }
 }

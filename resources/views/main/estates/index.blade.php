@@ -60,7 +60,7 @@
                         </a>	
                     </li>
                     <li>
-                        <a href="{{ route('search-by-ad-sort' , 'middleware_estate') }}" title="">
+                        <a href="{{ route('search-by-ad-sort' , 'broker_estate') }}" title="">
                             <img src="{{ url('main/images/regpag4141.png') }}" class="img-responsive" alt=""/>
                             <span>وسيط واجهة العقار الالكتروني</span>
                         </a>	
@@ -93,7 +93,7 @@
                     <div class="col-sm-3 col-xs-12">
                         <div class="search_btn search_btn_engin">
                             <h2>
-                                <a href="#" title="" target="_blank" data-toggle="modal" data-target="#elc_real_se">
+                                <a href="{{ route('estate.createestate', $adSort->name) }}" title="" target="_blank">
                                                                         إضـافة {{ $adSort->display }} 
 
                                     <i class="fa fa-plus-circle" style="margin-left: 10px;"></i>
@@ -104,7 +104,7 @@
                     <div class="col-sm-3 col-xs-12">
                         <div class="search_btn search_btn_engin">
                             <h2>
-                                <a href="#" title="" target="_blank" data-toggle="modal" data-target="#elc_real_se">
+                                <a href="{{ route('search', $adSort->name) }}" title="" target="_blank">
                                     ابحث عن {{ $adSort->display }}
                                         <i class="fa fa-search-plus" style="margin-left: 10px;"></i>
                                 
@@ -119,20 +119,24 @@
             <!-- block_ads_realestate -->
             <div class="block_ads_realestate">
                 <div class="row all-ads">
-                    @foreach ($estates as $estate)
+                    @forelse ($estates as $estate)
                     <div class="col-sm-3 col-xs-12">
                         <div class="block_ads_local block_ads_inter " style="padding-bottom: 10px;">
+                            @unless($adSort->name == 'office_estate' || $adSort->name == 'broker_estate')
                             <ul>
                                 <li>{{ $estate->code }}</li>
                                 <li> {{ $estate->ago }} </li>
                             </ul>
-                            <a href="{{ route('estates.show', [$adSort->name, $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
+                            @endunless
+                            <a href="{{ route('estates.show', [$adSort->name, $estate->name]) }}" title=""  @if($adSort->name === 'office_estate' || $adSort->name === 'broker_estate') style="margin-top:0;"  @endif  class="bg_tt"> {{ $estate->name }} </a>
                             <ul class="otherul">
                                 @unless ($estate->category == null)
-                                    <li>{{ $estate->category->name }}<i class="fa fa-home"></i> </li>
+                                    <li>{{ $estate->category->name ?? 'غير معروف' }}<i class="fa fa-home"></i> </li>
                                 @endunless
-                                <li class="qt3a"> {{ $estate->sortName[0] }} <i class="fas fa-building"></i> </li>
-                                <li>  {{ $estate->offerName[0] }}  <i class="far fa-gem"></i>   </li>
+                                @unless($adSort->name === 'office_estate' || $adSort->name === 'broker_estate')
+                                <li class="qt3a"> {{ $estate->sortName[0] ?? '' }} <i class="fas fa-building"></i> </li>
+                                <li>  {{ $estate->offerName[0] ?? '' }}  <i class="far fa-gem"></i>   </li>
+                                @endunless
                             </ul>
                                 
                                 @unless($estate->localAuctionEstate == null)
@@ -147,16 +151,21 @@
                                 @endunless
                                 
                             <img src="{{ url('main/images/pic_offer.jpg') }}" class="img-responsive" alt=""/>
+                            @unless($adSort->name === 'office_estate' || $adSort->name === 'broker_estate')
 
                             <span class="paddd"> {{ $estate->center }}  <i class="fas fa-map-marker-alt"></i></span>
                             <span> {{ $estate->neighborhood }} <i class="fas fa-map-marker-alt"></i> </span>
                             
                             @unless($estate->advertiser == null)
                             <span>{{ $estate->advertiser->name }}<i class="fas fa-user-circle"></i>  </span>
+
+                            @endunless
                             @endunless
                         </div>
                     </div>     
-                    @endforeach
+                    @empty
+                    <h1 class="text-center">غير متاحة الان</h1>
+                    @endforelse
                    
                 </div>
             <!-- end_block_ads_realestate -->

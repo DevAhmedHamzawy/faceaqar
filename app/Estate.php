@@ -128,7 +128,7 @@ class Estate extends Model implements ViewableContract
 
     public static function getOffer($id)
     {
-        return DB::table('sort')->whereId($id)->pluck('name');
+        return DB::table('offer')->whereId($id)->pluck('name');
     }
 
     public static function getAllDestinations()
