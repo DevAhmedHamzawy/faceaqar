@@ -46,7 +46,7 @@
                                 <div class="block_ads_local block_ads_inter " style="padding-bottom: 10px;">
                                     <ul>
                                         <li>{{ $estate->code }}</li>
-                                        <li> {{ $estate->created_at }} </li>
+                                        <li> {{ $estate->ago }} </li>
                                     </ul>
                                     <a href="{{ route('estates.show', ['local_estate', $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
                                     <ul class="otherul">
@@ -117,7 +117,7 @@
                                 <div class="block_ads_local block_ads_inter " style="padding-bottom: 10px;">
                                     <ul>
                                         <li>{{ $favourite->estate->code }}</li>
-                                        <li> {{ $favourite->estate->created_at }} </li>
+                                        <li> {{ $favourite->estate->ago }} </li>
                                     </ul>
                                     <a href="{{ route('estates.show', ['local_estate', $favourite->estate->name]) }}" title="" class="bg_tt"> {{ $favourite->estate->name }} </a>
                                     <ul class="otherul">

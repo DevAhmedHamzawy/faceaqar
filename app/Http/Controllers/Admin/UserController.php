@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use App\Profile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.users.users.index', ['users' => User::all()]);
     }
 
     /**
@@ -25,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.users.add');
     }
 
     /**
@@ -36,7 +37,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $latlngArray = explode(',' , $request->input('latlng'));
+
+        
+        $request->merge(['password' => bcrypt($request->password)]);
+        //dd($request->all());
+        $user = User::create($request->only('name','email','password'));
+        $request->merge(['user_id' => $user->id]);
+        $profile = Profile::create($request->except('_token','name','password','role','latlng'));
+        if($request->role == 1) { 
+            $request->merge(['lat' => $latlngArray[0] , 'lng' => $latlngArray[1]]);
+        }
+        $user->attachRole($request->role);
+        return 'done';
     }
 
     /**
@@ -58,7 +71,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.users.users.edit', ['user' => $user]);
     }
 
     /**

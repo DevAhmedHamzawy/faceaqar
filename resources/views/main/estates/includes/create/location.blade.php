@@ -34,7 +34,7 @@
                             <label for=""> اختر اسم المدينة  <em>*</em></label>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-control selectOption required" name="area_id" id="area_id" required>
+                            <select class="form-control selectOption required" name="area_id" id="area_id" onchange="setMap(this);" required>
                                 <option>اختر المدينة</option>
                             </select>													
                         </div>

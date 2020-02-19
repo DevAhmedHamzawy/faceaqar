@@ -66,8 +66,9 @@
             }
         }
 
-    function initMap() {
-    var myLatLng = {lat: 24.774265, lng: 46.738586};
+    function initMap(lat = null, lng = null) {
+    
+     if(lat == null){ var myLatLng = {lat: 24.774265, lng: 46.738586} } else{ var myLatLng = {lat, lng} } ;
   
     var map = new google.maps.Map(document.getElementById('map'), {
       center: myLatLng,
@@ -83,10 +84,18 @@
   
      google.maps.event.addListener(marker, 'dragend', function(marker) {
         var latLng = marker.latLng;
-        document.getElementById('latlng').value = [latLng.lat(),latLng.lat()];
+        document.getElementById('latlng').value = [latLng.lat(),latLng.lng()];
      });
      }
-  
+
+
+     function setMap(item)
+     {
+        let lat = $('option:selected', item).data("lat");
+        let lng = $('option:selected', item).data("lng");
+        initMap(Math.floor(lat), Math.floor(lng));
+     }
+     
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap&key=AIzaSyDqET1nIDZzMGEieGANkEF_xB1RSCkJTjk" async defer></script>

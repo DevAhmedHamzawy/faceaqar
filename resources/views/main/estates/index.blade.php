@@ -78,11 +78,12 @@
                     <div class="col-sm-3 col-xs-12">
                         <h3 class="number_real" style="margin-top: 10px;">عدد {{ $adSort->adjective }}  = {{ $estates->total() }} عقار</h3>
                     </div>
+                    @unless($adSort->name == 'broker_estate')
                     <div class="col-sm-3  col-xs-12">
                         <div class="search_btn search_btn_engin">
                             <h2>
                                 
-                                <a href="{{ route('estates-map', $adSort->name) }}" title="" target="_blank" data-toggle="modal" data-target="#elc_real_se">
+                                <a href="{{ route('estates-map', $adSort->name) }}" title="" target="_blank">
                                 شاهد العقارات على الخريطة
                                     <i class="fa fa-eye" aria-hidden="true" style="margin-left: 10px"></i>
                                     
@@ -90,6 +91,7 @@
                             </h2>
                         </div>
                     </div>
+                    @endunless
                     <div class="col-sm-3 col-xs-12">
                         <div class="search_btn search_btn_engin">
                             <h2>
@@ -101,6 +103,7 @@
                             </h2>
                         </div>
                     </div>
+                    @unless($adSort->name == 'broker_estate')
                     <div class="col-sm-3 col-xs-12">
                         <div class="search_btn search_btn_engin">
                             <h2>
@@ -112,6 +115,7 @@
                             </h2>
                         </div>
                     </div>
+                    @endunless
                 </div>
             </div>
             <!-- end_realestate_number -->

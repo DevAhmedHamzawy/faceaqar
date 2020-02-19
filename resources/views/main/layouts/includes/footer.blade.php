@@ -512,7 +512,7 @@ function getCities(item){
         .then((data) => {
            $('#cities').empty()
            for(city of data.data){
-           $('#cities').append('<option value="'+city.name+'">'+city.name+'</option>')
+           $('#cities').append('<option value="'+city.name+'" data-lat="'+city.latitude+'" data-lng="'+city.longitude+'">'+city.name+'</option>')
            }  
         })
 }
@@ -523,7 +523,7 @@ function getSubCities(item){
         .then((data) => {
            $('#area_id').empty()
            for(subcity of data.data){
-           $('#area_id').append('<option value="'+subcity.id+'">'+subcity.name+'</option>')
+           $('#area_id').append('<option value="'+subcity.id+'" data-lat="'+subcity.latitude+'" data-lng="'+subcity.longitude+'">'+subcity.name+'</option>')
            }  
         })
 }
