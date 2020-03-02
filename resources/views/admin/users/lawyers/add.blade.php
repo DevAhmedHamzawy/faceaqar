@@ -151,6 +151,9 @@
                         </div>
                         كلمة المرور تضاف للمحامى باعتبار انه سيدخل لوحة التحكم التى ستعرض له فقط الرسائل الخاصة به
 
+
+                          
+
                         <div class="form-group row mb-0">
                             <button type="submit" class="btn btn-primary col-md-12">
                                 إضافة محامى جديد

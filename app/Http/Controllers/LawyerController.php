@@ -16,7 +16,8 @@ class LawyerController extends Controller
      */
     public function show(User $user)
     {
-        return $user->hasRole('lawyer') ? view('main.lawyers', ['lawyer' => $user]) : abort(404);
+        views($user)->record();
+        return $user->hasRole('lawyer') ? view('main.lawyers', ['lawyer' => $user, 'views' => views($user)->unique()->count() ]) : abort(404);
     }
 
 }

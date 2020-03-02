@@ -14,12 +14,12 @@
             <div class="row_00">
                 <div class="col-sm-6 col-xs-12 padd_none">
                     <span>
-                        <strong> أخر تحديث </strong> : {{ $lawyer->profile->updated_at }}&nbsp;<i class="fa fa-calendar-check"></i>
+                        <strong> أخر تحديث </strong> : {{ $lawyer->update_at }}&nbsp;<i class="fa fa-calendar-check"></i>
                     </span>
                 </div>
                                 <div class="col-sm-6 col-xs-12 padd_none">
                     <span>
-                        <strong> عدد المشاهدات : </strong> {{ $lawyer->profile->views }} مشاهدة
+                        <strong> عدد المشاهدات : </strong> {{ $views }} مشاهدة
                     <i class="fa fa-eye"></i>
                     </span>
                 </div>
@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="col-sm-3 col-xs-12 padd_right no-eff">
                                         <a href="#" title="">
-                                            <i class="fa fa-save"></i> حفظ
+                                            <i class="fa fa-heart"></i> مفضلة
                                         </a>
                                     </div>
                                     <div class="col-sm-3 col-xs-12">
@@ -82,7 +82,7 @@
                                         </a>
                                     </div>
                                     <div class="col-sm-3 col-xs-12 padd_right no-eff">
-                                        <a href="#" title="">
+                                        <a href="#" onclick="window.print()" title="">
                                             <i class="fa fa-print"></i> طباعة
                                         </a>
                                     </div>
@@ -130,7 +130,7 @@
         </div>
                         <div class="col-sm-6 col-xs-12 ">
                         
-            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d27626.27366240017!2d31.35026109284309!3d30.057386886394237!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1485270685978" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                            <iframe src="https://www.google.com/maps/embed/v1/place?q={{$lawyer->profile->lat ?? 13.4118760}},{{$lawyer->profile->lng ?? 135.6190250}}&amp;key=AIzaSyA2obCxpDHFCwyBJe7z5EyrBTgdI1vm8RE&center={{$lawyer->profile->lat ?? 13.4118760}},{{$lawyer->profile->lng ?? 135.6190250}}&zoom=6" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
                             </div>
             
         </div>
@@ -139,5 +139,23 @@
 </section>
 <!-- end_lawyer_page -->
 
+
+<div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+          مشاركة الصفحة الإعلانية الإلكترونية
+        </div>
+        <div class="modal-body">
+
+           
+            {!! Share::currentPage()->facebook()->twitter()->linkedin()->whatsapp()->telegram() !!}
+           
+           
+        </div>
+          
+      </div>
+    </div>
+</div>
 
 @endsection

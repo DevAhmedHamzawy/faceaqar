@@ -2,14 +2,17 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use CyrildeWit\EloquentViewable\Viewable;
+use CyrildeWit\EloquentViewable\Contracts\Viewable as ViewableContract;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, ViewableContract
 {
-    use Notifiable, EntrustUserTrait;
+    use Notifiable, EntrustUserTrait, Viewable;
 
     /**
      * The attributes that are mass assignable.
@@ -79,5 +82,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getCommercialImgPathAttribute()
     {
         return url('storage/users/' . $this->name . '/commercial_image/' . $this->profile->commercial_register_img);
+    }
+
+    public function getUpdateAtAttribute()
+    {
+        return Carbon::parse($this->profile->updated_at)->translatedFormat('d M Y');
     }
 }
