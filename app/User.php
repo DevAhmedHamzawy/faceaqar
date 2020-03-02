@@ -65,4 +65,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Favourite');
     }
+
+    public function getImgPathAttribute()
+    {
+        return url('storage/users/' . $this->img);
+    }
+
+    public function getNationalImgPathAttribute()
+    {
+        return url('storage/users/' . $this->name . '/national_image/' . $this->profile->national_identity_img);
+    }
+
+    public function getCommercialImgPathAttribute()
+    {
+        return url('storage/users/' . $this->name . '/commercial_image/' . $this->profile->commercial_register_img);
+    }
 }

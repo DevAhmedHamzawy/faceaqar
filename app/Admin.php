@@ -18,4 +18,9 @@ class Admin extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    public function getImgPathAttribute()
+    {
+        return url('storage/admins/' . $this->img);
+    }
 }

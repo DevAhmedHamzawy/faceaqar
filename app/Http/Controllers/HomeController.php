@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Area;
 use App\Client;
 use App\Portfolio;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -33,7 +34,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('main.home');
+        return view('main.home', ['roles' => Role::where('name', '!=', 'lawyer')->get()]);
     }
 
     public function services()

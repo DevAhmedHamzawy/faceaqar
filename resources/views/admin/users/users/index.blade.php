@@ -32,9 +32,9 @@
                             <tbody>
                                 <tr>
                                     <td scope="row">#</td>
-                                    <td>{{ $user->user_name  }}</td>
+                                    <td>{{ $user->name  }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->img_path }}</td>
+                                    <td><img src="{{ $user->img_path }}" alt="" srcset=""></td>
                                     <td>
                                         {{--<a href="{{ route('users.show', $user->user_name) }}" class="btn btn-primary">Show</a>--}}
                                         <a href="{{ route('users.edit', $user->name) }}" class="btn btn-warning">تعديل</a>

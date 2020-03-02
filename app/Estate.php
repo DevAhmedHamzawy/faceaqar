@@ -64,6 +64,11 @@ class Estate extends Model implements ViewableContract
         return $this->hasMany('App\Like', 'estate_id')->whereLike(-1);
     }
 
+    public function reports()
+    {
+        return $this->hasMany('App\Report');
+    }
+
     public function advertiser()
     {
         return $this->hasOne('App\Advertiser');
@@ -80,6 +85,7 @@ class Estate extends Model implements ViewableContract
              $estate->images()->delete();
              $estate->likes()->delete();
              $estate->dislikes()->delete();
+             $estate->reports()->delete();
              $estate->advertiser()->delete();
         });
     }
@@ -108,8 +114,11 @@ class Estate extends Model implements ViewableContract
 
     public static function checkAdSort($adSort)
     {
-        return DB::table('ad_sort')->whereName($adSort)->doesntExist() ? abort(404) : DB::table('ad_sort')->whereName($adSort)->first();
+        return DB::table('ad_sort')->whereName($adSort)->orWhere('id', $adSort)->doesntExist() ? abort(404) : DB::table('ad_sort')->whereName($adSort)->orWhere('id', $adSort)->first();
     }
+
+   
+
 
     public static function getAllSorts()
     {
@@ -164,5 +173,17 @@ class Estate extends Model implements ViewableContract
         return (new BaseFilter(request()))->apply($builder, $filters);
     }
 
+    /*public static function getEstatesAdmin//()
+    //{
+        self::with(['likes' => function($query){
+            $query->groupBy('estate_id');
+        }])->with(['dislikes' => function($query){
+            $query->groupBy('estate_id');
+        }])->with(['reports' => function($query){
+            $query->groupBy('estate_id');
+        }])->get();
+    }*/
 
+
+    
 }

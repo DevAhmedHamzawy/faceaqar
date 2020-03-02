@@ -36,15 +36,7 @@
                             </div>
                             <div class="col-md-4">
                                 <select class="form-control required">
-                                    <option> اختر </option>
-                                    <option>مكتب عقاري</option>
-                                    <option>مطور عقارى  </option>
-                                    <option> شركة عقارية</option>
-                                    <option>مكتب مزاد عقاري</option>
-                                    <option>مكتب هندسي</option>
-                                    <option> مالك</option>
-                                    <option> وسيط </option>
-                                    <option> اخرى </option>
+                                    <option selected disabled>{{ auth()->user()->roles[0]->display_name }}</option>
                                 </select>
                             </div>
 
@@ -146,17 +138,12 @@
                             </div>
                             <div class="col-md-3 hidden-xs"></div>
                             <div class="clearfix"></div>         
-                            <div class="col-md-3 hidden-xs"></div>
-                            <div class="col-md-2 add-code">
-                                <label for=""> <i class="fa fa-qrcode"></i> ادخل  رمز التحقق <em>*</em></label>
-                            </div>
+                            <div class="col-md-4 hidden-xs"></div>
                             <div class="col-md-4 add-code">
-                                <div class="form-group sdf required">
-                                    <img src="images/number_code.png" class="img-responsive" alt="">
-                                    <input type="text" class="form-control required" id="" placeholder="" name="namefield6">
-                                </div>
-
+                                {!! NoCaptcha::renderJs() !!}
+                                {!! NoCaptcha::display() !!}
                             </div>
+                            
                             <div class="col-md-3 hidden-xs"></div>
                             <div class="col-md-12">
                                 <div class="checkbox form-group Terms_line text-right">

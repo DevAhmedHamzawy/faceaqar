@@ -1,6 +1,34 @@
 @extends('main.layouts.app')
 
 @section('content')
+
+
+@if(auth()->user()->roles->isEmpty())
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-2"></div>
+        <div class="col-md-9">
+
+            <form action="{{ route('assign-role') }}" class="form-group" method="post">
+                @csrf
+                <select name="role" class="form-control">
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}">{{ $role->display_name }}</option>
+                    @endforeach
+                </select>
+            
+                <button type="submit" class="btn btn-primary col-md-12">حفظ</button>
+            
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+
+@else
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -37,7 +65,6 @@
                         </div>
                     </div>
 
-
                     <!-- block_ads_realestate -->
                     <div class="block_ads_realestate">
                         <div class="row all-ads">
@@ -48,7 +75,7 @@
                                         <li>{{ $estate->code }}</li>
                                         <li> {{ $estate->ago }} </li>
                                     </ul>
-                                    <a href="{{ route('estates.show', ['local_estate', $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
+                                    <a href="{{ route('estates.show', [$estate->ad_sort_id, $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
                                     <ul class="otherul">
                                         @unless ($estate->category == null)
                                             <li>{{ $estate->category->name }}<i class="fa fa-home"></i> </li>
@@ -77,7 +104,7 @@
                                     <span>{{ $estate->advertiser->name }}<i class="fas fa-user-circle"></i>  </span>
                                 
                                     @endunless
-                                    <span><a href="{{ route('estates.edit', ['local_estate', $estate->name]) }}">تعديل</a></span>
+                                    <span><a href="{{ route('estates.edit', [$estate->ad_sort_id, $estate->name]) }}">تعديل</a></span>
                                     <span>
                                         <form action="{{ route('estates.destroy', $estate->name) }}" method="post">
                                             @csrf
@@ -119,7 +146,7 @@
                                         <li>{{ $favourite->estate->code }}</li>
                                         <li> {{ $favourite->estate->ago }} </li>
                                     </ul>
-                                    <a href="{{ route('estates.show', ['local_estate', $favourite->estate->name]) }}" title="" class="bg_tt"> {{ $favourite->estate->name }} </a>
+                                    <a href="{{ route('estates.show', [$estate->ad_sort_id, $favourite->estate->name]) }}" title="" class="bg_tt"> {{ $favourite->estate->name }} </a>
                                     <ul class="otherul">
                                         @unless ($favourite->estate->category == null)
                                             <li>{{ $favourite->estate->category->name }}<i class="fa fa-home"></i> </li>
@@ -336,4 +363,7 @@
         </div>
     </div>
 </div>
+@endif
+
+
 @endsection

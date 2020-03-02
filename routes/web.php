@@ -36,6 +36,10 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
     Route::resource('admins', 'Admin\AdminController');
     Route::resource('users', 'Admin\UserController');
 
+    Route::resource('brokers', 'Admin\BrokerController');
+    Route::resource('reports', 'Admin\ReportController');
+
+    Route::resource('estates', 'Admin\EstateController');
 
     Route::get('dashboard', 'Admin\DashboardController@index');
 });
@@ -126,3 +130,5 @@ Route::get('financial_fees', 'HomeController@financial_fees')->name('financial_f
 Route::get('payment_methods', 'HomeController@payment_methods')->name('payment_methods');
 
 Route::get('estates-map/{adSort}', 'EstatesMapController@show')->name('estates-map');
+
+Route::post('home', 'RoleController@store')->name('assign-role');
