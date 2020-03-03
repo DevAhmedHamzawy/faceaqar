@@ -114,6 +114,7 @@ Route::resource('areas' , 'AreaController');
 
 
 Route::get('lawyers/{user}', 'LawyerController@show');
+Route::post('sendlawyercontact', 'LawyerContactsController@store');
 
 
 Route::get('contactus', 'ContactUsController@show')->name('contactus');

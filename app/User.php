@@ -88,4 +88,10 @@ class User extends Authenticatable implements MustVerifyEmail, ViewableContract
     {
         return Carbon::parse($this->profile->updated_at)->translatedFormat('d M Y');
     }
+
+    public function getFavouriteAttribute()
+    {
+        if(!auth()->user()) { return false; }
+        return auth()->user()->favourites()->whereLawyerId($this->id)->exists();
+    }
 }

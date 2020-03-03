@@ -72,8 +72,8 @@
                                         </a>
                                     </div>
                                     <div class="col-sm-3 col-xs-12 padd_right no-eff">
-                                        <a href="#" title="">
-                                            <i class="fa fa-heart"></i> مفضلة
+                                        <a href="javascript:void(0)" onclick="favourite()" id="favouriting" title="">
+                                            <i class="{{ $lawyer->favourite ? "fa fa-heart" : "far fa-heart" }}"></i> {{ $lawyer->favourite ? "إلغاء المفضلة"  :  "مفضلة" }}
                                         </a>
                                     </div>
                                     <div class="col-sm-3 col-xs-12">
@@ -102,28 +102,36 @@
             
         <div class="form_cont form_cont_00">
                 <h3 class="title_contct_us">ارسل رسالة خاصة الى  محامي الموقع </h3>
+                <div id="success-message"></div>
                 <form>
                     <div class="form-group">
                         <label for="">  الأسم <i class="fa fa-user"></i></label>
-                        <input type="text" class="form-control " id="" placeholder="">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="">
+                        <span class="name-contact-error invalid-feedback" role="alert"></span>
                     </div>	
                     <div class="form-group">
                         <label for=""> رقم الجوال <i class="fa fa-phone"></i> </label>
-                        <input type="text" class="form-control" id="" placeholder="">
+                        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="">
+                        <span class="mobile-contact-error invalid-feedback" role="alert"></span>
                     </div>
                     <div class="form-group">
                         <label for="">  البريد الإلكترونى <i class="fa fa-envelope-square"></i> </label>
-                        <input type="text" class="form-control" id="" placeholder="">
+                        <input type="text" class="form-control" name="email" id="email" placeholder="">
+                        <span class="email-contact-error invalid-feedback" role="alert"></span>
                     </div>
                     <div class="form-group">
                         <label for="">ارفاق ملف <i class="fa fa-file"></i></label>
-                        <input type="file" class="form-control" id="" placeholder="">
+                        <input type="file" class="form-control" name="file" id="file" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="">  النص <i class="fa fa-file-alt"></i></label>
-                        <textarea class="form-control" rows="6"></textarea>
+                        <textarea class="form-control" name="body" id="body" rows="6"></textarea>
+                        <span class="body-contact-error invalid-feedback" role="alert"></span>
                     </div>	
-                    <button type="submit" class="btn btn-default btn_web">إرســال</button>
+                    {!! NoCaptcha::renderJs() !!}
+                    {!! NoCaptcha::display() !!}
+                    <input type="hidden" name="to" id="to" value="{{ $lawyer->id }}">	
+                    <button type="submit" onclick="sendContact();return false;" class="btn btn-default btn_web">إرســال</button>
                 </form>
             </div>
 
@@ -158,4 +166,98 @@
     </div>
 </div>
 
+@endsection
+
+
+@section('footer')
+
+
+    <script>
+
+        function favourite()
+        {
+            axios.post('../../favourites', {lawyer_id: {!! $lawyer->id !!}})
+                .then((data) => {
+                    console.log(data.data)
+                    if(data.data == 1){
+                        $('#favouriting').empty() 
+                        $('#favouriting').append('<i class="far fa-heart"></i> مفضلة')
+                    }else{
+                        $('#favouriting').empty() 
+                        $('#favouriting').append('<i class="fa fa-heart"></i> إلغاء المفضلة')
+                    }
+                })   
+        }
+
+   
+  window.form_data = new FormData();
+
+$(document).on('change','#file',function(e){
+
+let file_data = $('#file').prop('files')[0];
+form_data.append('file_data', file_data);
+
+
+});
+
+
+function sendContact(){
+    form_data.append('name', $("#name").val())
+    form_data.append('mobile', $("#mobile").val())
+    form_data.append('email', $("#email").val())
+    form_data.append('body', $("#body").val())
+    form_data.append('to', $("#to").val())
+
+    axios.post('../../sendlawyercontact', form_data)
+                .then((data) => {
+
+                    $("#name").val('');
+                    $("#mobile").val('');
+                    $("#email").val('');
+                    $("#body").val('');
+
+                    $('.name-contact-error').empty();
+                    $('.body-contact-error').empty();
+                    $('.mobile-contact-error').empty();
+                    $('.email-contact-error').empty();
+
+
+                    $('#success-message').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإرسال!</strong> الرسالة قد تم إرسالها بنجاح!</div></div>');
+                    setTimeout(() => {
+                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                            $(this).remove() 
+                        });
+                    }, 2000);
+                }).catch((error) => {
+
+                    $('.name-contact-error').empty();
+                    $('.body-contact-error').empty();
+                    $('.mobile-contact-error').empty();
+                    $('.email-contact-error').empty();
+
+                   
+                if(error.response.data.errors.name){
+                    $('.name-contact-error').append('<strong>'+error.response.data.errors.name+'</strong>');
+                    $('.name').addClass('is-invalid')
+                }
+                if(error.response.data.errors.email){
+                    $('.email-contact-error').append('<strong>'+error.response.data.errors.email+'</strong>');
+                    $('.email').addClass('is-invalid')
+                }
+                if(error.response.data.errors.mobile){
+                    $('.mobile-contact-error').append('<strong>'+error.response.data.errors.mobile+'</strong>');
+                    $('.mobile').addClass('is-invalid')
+                }
+                if(error.response.data.errors.body){
+                    $('.body-contact-error').append('<strong>'+error.response.data.errors.body+'</strong>');
+                    $('.body').addClass('is-invalid')
+                }
+                });
+
+}
+
+ 
+ 
+ </script>
+    
 @endsection

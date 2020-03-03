@@ -107,6 +107,7 @@ class Estate extends Model implements ViewableContract
 
     public function getFavouriteAttribute()
     {
+        if(!auth()->user()) { return false; }
         return auth()->user()->favourites()->whereEstateId($this->id)->exists();
     }
 
