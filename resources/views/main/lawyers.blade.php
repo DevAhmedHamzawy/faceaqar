@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-sm-3 col-xs-12">
                 <div class="img_lawyer">
-                    <img src="images/pic_doc.jpg" class="img-thumbnail img-responsive">
+                    <img src="{{ url('main/images/pic_doc.jpg') }}" class="img-thumbnail img-responsive">
                 </div>
 
             </div>

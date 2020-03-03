@@ -38,7 +38,7 @@ class BrokerController extends Controller
         //dd($request->all());
         $request->merge(['area_id' => 1]);
         Broker::create($request->except('g-recaptcha-response','agree','namefield1','mycheckbox','mycheckbox2','namefield7'));
-        return 'done';
+        return redirect('home');
     }
 
     /**
@@ -49,7 +49,7 @@ class BrokerController extends Controller
      */
     public function show(Broker $broker)
     {
-        //
+        return view('main.brokers.show', ['broker' => $broker]);
     }
 
     /**

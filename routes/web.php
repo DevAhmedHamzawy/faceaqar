@@ -86,6 +86,8 @@ Route::delete('estate-images/{estate}/{index}', 'EstateImageController@destroy')
 });
 
 
+Route::get('brokers/{broker}', 'BrokerController@show')->name('brokers.show');
+
 Route::get('thanks', 'HomeController@thanks');
 
 Route::post('sendcontact', 'ContactUsController@store');

@@ -67,7 +67,7 @@
                                         <div class="col-md-4">
                                             <label for="">البريد الإلكترونى</label>
 
-                                            <input type="text" class="form-control required" name="email" placeholder="انسخ عنوان البريد الالكتروني">
+                                            <input type="email" class="form-control required" name="email" placeholder="انسخ عنوان البريد الالكتروني">
                                         </div>
                                     </div>
                                 </div>

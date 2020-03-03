@@ -36,9 +36,13 @@ class LawyerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->merge(['area_id' => 0]);
+
+        $latlngArray = explode(',' , $request->input('latlng'));
+        
+        $request->merge(['lat' => $latlngArray[0] , 'lng' => $latlngArray[1]]);
+
         $user = User::create($request->only('name','email','password'));
-        $user->profile()->create($request->except('name','password'));
+        $user->profile()->create($request->except('name','password','image','latlng'));
 
         $user->attachRole(Role::whereName('lawyer')->first()->id);
         return redirect()->route('lawyers.index');

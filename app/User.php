@@ -41,7 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail, ViewableContract
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = ['profile','estates','favourites.estate'];
+    protected $with = ['profile','estates','images','favourites.estate'];
 
 
     public function getRouteKeyName()
@@ -52,6 +52,11 @@ class User extends Authenticatable implements MustVerifyEmail, ViewableContract
     public function roles()
     {
         return $this->belongsToMany('App\Role');
+    }
+
+    public function images()
+    {
+        return $this->hasOne('App\UserImage', 'user_id');
     }
 
     public function profile()
@@ -82,6 +87,11 @@ class User extends Authenticatable implements MustVerifyEmail, ViewableContract
     public function getCommercialImgPathAttribute()
     {
         return url('storage/users/' . $this->name . '/commercial_image/' . $this->profile->commercial_register_img);
+    }
+
+    public function getcreateAtAttribute()
+    {
+        return Carbon::parse($this->created_at)->translatedFormat('d M Y');
     }
 
     public function getUpdateAtAttribute()

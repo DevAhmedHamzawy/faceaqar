@@ -50,7 +50,8 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-       if($user->hasRole('estate_office')){ return view('main.users.estate_office.show'); } else { dd($user);  }
+       views($user)->record();
+       if($user->hasRole('estate_office')){ return view('main.users.estate_office.show', [ 'user' => $user, 'views' => views($user)->unique()->count()]); } else { dd($user);  }
     }
 
     /**

@@ -132,7 +132,15 @@
                                 <li> {{ $estate->ago }} </li>
                             </ul>
                             @endunless
-                            <a href="{{ route('estates.show', [$adSort->name, $estate->name]) }}" title=""  @if($adSort->name === 'office_estate' || $adSort->name === 'broker_estate') style="margin-top:0;"  @endif  class="bg_tt"> {{ $estate->name }} </a>
+
+                            @if($adSort->name === 'office_estate')
+                            <a href="{{ route('profile', [$estate->name]) }}" title=""   style="margin-top:0;"  class="bg_tt"> {{ $estate->name }} </a>
+                            @elseif($adSort->name === 'broker_estate')
+                            <a href="{{ route('brokers.show', [$estate->name]) }}" title="" style="margin-top:0;" class="bg_tt"> {{ $estate->name }} </a>
+                            @else
+                            <a href="{{ route('estates.show', [$adSort->name, $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
+                            @endif
+                            
                             <ul class="otherul">
                                 @unless ($estate->category == null)
                                     <li>{{ $estate->category->name ?? 'غير معروف' }}<i class="fa fa-home"></i> </li>
