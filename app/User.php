@@ -104,4 +104,76 @@ class User extends Authenticatable implements MustVerifyEmail, ViewableContract
         if(!auth()->user()) { return false; }
         return auth()->user()->favourites()->whereLawyerId($this->id)->exists();
     }
+
+    
+    // For Charts
+
+    public Static function FindUsersByMonth($monthNumber)
+    {
+        return Self::whereHas('roles', function ($query) {
+            $query->whereName('owner')
+            ->orWhere('name', 'middleware')
+            ->orWhere('name', 'other');
+        })->whereYear('created_at' , Carbon::now()->year)
+        ->whereMonth('created_at' , $monthNumber)
+        ->count();
+    }
+
+    public static function CountUsers()
+    {
+        return Self::whereHas('roles', function ($query) {
+            $query->whereName('owner')
+            ->orWhere('name', 'middleware')
+            ->orWhere('name', 'other');
+        })->count();
+    }
+
+    public Static function FindOfficesByMonth($monthNumber)
+    {
+        return Self::whereHas('roles', function ($query) {
+            $query->whereName('estate_office')
+            ->orWhere('name', 'estate_agency')
+            ->orWhere('name', 'estate_company')
+            ->orWhere('name', 'estate_auction_office')
+            ->orWhere('name', 'engineering_office');
+        })
+        ->whereYear('created_at' , Carbon::now()->year)
+        ->whereMonth('created_at' , $monthNumber)
+        ->count();
+    }
+
+    public static function CountOffices()
+    {
+        return Self::whereHas('roles', function ($query) {
+            $query->whereName('estate_office')
+            ->orWhere('name', 'estate_agency')
+            ->orWhere('name', 'estate_company')
+            ->orWhere('name', 'estate_auction_office')
+            ->orWhere('name', 'engineering_office');
+        })->count();
+    }
+
+
+    public Static function FindLawyersByMonth($monthNumber)
+    {
+        return Self::whereHas('roles', function ($query) {
+            $query->whereName('lawyer');
+        })
+        ->whereYear('created_at' , Carbon::now()->year)
+        ->whereMonth('created_at' , $monthNumber)
+        ->count();
+    }
+
+    public static function CountLawyers()
+    {
+        return Self::whereHas('roles', function ($query) {
+            $query->whereName('lawyer');
+        })->count();
+    }
+
+    public static function TopFiveUserEstates()
+    {
+        return self::withCount('estates')->take(5)->orderByDesc('estates_count')->get();
+    }
+
 }
