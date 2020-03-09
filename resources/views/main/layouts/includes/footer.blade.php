@@ -625,5 +625,6 @@ var nt_example1 = $('.nt-example1').newsTicker({
     row_height: 300,
     max_rows: 5,
     duration: 4000,
-});  */    
+});  */  
+
 </script>

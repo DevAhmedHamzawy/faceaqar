@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace App\SocialProcess;
 
 use App\SocialAccount;
 use App\User;

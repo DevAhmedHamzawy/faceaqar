@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Traits\SocialAccountService;
+use App\SocialProcess\SocialAccountService;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialLoginController extends Controller
@@ -18,7 +18,7 @@ class SocialLoginController extends Controller
         try {
             $user = $service->setOrGetUser(Socialite::driver($social)->stateless());
             auth()->login($user);
-            return redirect('/');
+            return redirect('/home');
         } catch (\Exception $e) {
             return $e;
         }

@@ -97,7 +97,7 @@
         </a>
         <div class="overlay-content">
                         <div class="time-date">
-                        <p>الخميس 17 محرم 1438 - 20 يناير 2018</p>
+                        <p>{{ $hijridate }}</p>
                         <img src="{{ url('main/images/date.png') }}">
                     </div>
         </div>
@@ -321,7 +321,7 @@
                 </div>
                 <div class="col-md-3 col-sm-12">
                     <div class="time-date">
-                        <p>الخميس 17 محرم 1438 - 20 يناير 2018</p>
+                        <p>{{ $hijridate }}</p>
                         <img src="{{ url('main/images/date.png') }}">
                     </div>
                 </div>

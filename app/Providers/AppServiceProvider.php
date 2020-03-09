@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Alkoumi\LaravelHijriDate\Hijri;
 use App\Area;
 use App\Settings;
 use Carbon\Carbon;
@@ -32,6 +33,6 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale(config('app.locale'));
         view()->share('settings', Settings::findOrFail(1));
         view()->share('areas', Area::getMainAreas());
-
+        view()->share('hijridate', Hijri::DateFullFormat(Carbon::now()));
     }
 }
