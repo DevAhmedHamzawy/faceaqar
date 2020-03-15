@@ -66,6 +66,17 @@
                 </div>
             </div>
 
+
+            @foreach ($pages as $page)
+
+            <div class="col-md-3">
+                <div class="card">
+                    <a href="{{ route('pages.show', $page->id) }}"><h1 class="text-center">{{ $page->title }}</h1></a>
+                </div>
+            </div>
+                
+            @endforeach
+
             
 
           

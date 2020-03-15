@@ -94,6 +94,23 @@
                     @endunless
                     <div class="col-sm-3 col-xs-12">
                         <div class="search_btn search_btn_engin">
+                            @if($adSort->name == 'office_estate')
+                            <h2>
+                                <a href="{{ route('register') }}" title="" target="_blank">
+                                                                        إضـافة {{ $adSort->display }} 
+
+                                    <i class="fa fa-plus-circle" style="margin-left: 10px;"></i>
+                                </a>
+                            </h2>
+                            @elseif($adSort->name == 'broker_estate')
+                            <h2>
+                                <a href="{{ route('brokers.create') }}" title="" target="_blank">
+                                                                        إضـافة {{ $adSort->display }} 
+
+                                    <i class="fa fa-plus-circle" style="margin-left: 10px;"></i>
+                                </a>
+                            </h2>
+                            @else
                             <h2>
                                 <a href="{{ route('estate.createestate', $adSort->name) }}" title="" target="_blank">
                                                                         إضـافة {{ $adSort->display }} 
@@ -101,6 +118,9 @@
                                     <i class="fa fa-plus-circle" style="margin-left: 10px;"></i>
                                 </a>
                             </h2>
+                            @endif
+
+
                         </div>
                     </div>
                     @unless($adSort->name == 'broker_estate')
@@ -161,8 +181,8 @@
                                 </ul>
 
                                 @endunless
-                                
-                            <img src="{{ url('main/images/pic_offer.jpg') }}" class="img-responsive" alt=""/>
+                               
+                            <img src="{{ $estate->main_img_path ?? url('main/images/pic_offer.jpg') }}" class="img-responsive" alt=""/>
                             @unless($adSort->name === 'office_estate' || $adSort->name === 'broker_estate')
 
                             <span class="paddd"> {{ $estate->center }}  <i class="fas fa-map-marker-alt"></i></span>

@@ -41,6 +41,18 @@ Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/log
 
     Route::resource('estates', 'Admin\EstateController');
 
+    Route::resource('pages', 'Admin\PageController');
+    Route::get('pages/{page}/create', 'Admin\PageController@create')->name('pages.create');
+    Route::post('pages/{page}', 'Admin\PageController@store')->name('pages.store');
+    Route::get('pages/{page}/{id}', 'Admin\PageController@edit')->name('pages.edit');
+    Route::post('pages/{page}/{id}', 'Admin\PageController@update')->name('pages.update');
+
+    Route::get('icons/{place}', 'Admin\IconController@index');
+    Route::post('icons/{place}', 'Admin\IconController@store');
+
+    Route::resource('links', 'Admin\LinksController');
+    Route::get('positions/{place}', 'Admin\LinksController@getPositions');
+
     Route::get('dashboard', 'Admin\DashboardController@index');
 });
 
@@ -133,5 +145,7 @@ Route::get('financial_fees', 'HomeController@financial_fees')->name('financial_f
 Route::get('payment_methods', 'HomeController@payment_methods')->name('payment_methods');
 
 Route::get('estates-map/{adSort}', 'EstatesMapController@show')->name('estates-map');
+
+Route::resource('pages', 'PageController');
 
 Route::post('home', 'RoleController@store')->name('assign-role');

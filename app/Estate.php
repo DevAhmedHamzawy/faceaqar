@@ -111,6 +111,16 @@ class Estate extends Model implements ViewableContract
         return auth()->user()->favourites()->whereEstateId($this->id)->exists();
     }
 
+    public function getMainImgPathAttribute()
+    {
+        if(!empty($this->images)){
+            $images = json_decode($this->images->img);
+            return url('storage/estates/'. $this->name . '/' .$images[0]);
+        }else{
+            return null;
+        }
+    }
+
     
 
     public static function checkAdSort($adSort)
@@ -278,6 +288,5 @@ class Estate extends Model implements ViewableContract
 
         return $countCategories;
     }
-    
     
 }

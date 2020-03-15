@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Page;
 use App\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -42,7 +43,7 @@ class SettingsController extends Controller
                 return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
                 break;
             case 'index':
-                return view('admin.settings.index');
+                return view('admin.settings.index', ['pages' => Page::whereNull('Parent_id')->get()]);
                 break;       
         }
     }

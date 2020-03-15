@@ -7,28 +7,28 @@
         <div class="overlay-content">
                         <ul>
                             <li>
-                                <a href="{{ route('services') }}"><img src="{{ url('main/images/services.png') }}"> خدماتنا </a>
+                                <a href="{{ route('services') }}"><img src="{{ $header2[0]->icon_path }}"> خدماتنا </a>
                             </li>
                             <li>
-                                <a href="{{ route('branches') }}"><img src="{{ url('main/images/loction.png') }}"> فروعنا </a>
+                                <a href="{{ route('branches') }}"><img src="{{ $header2[1]->icon_path }}"> فروعنا </a>
                             </li>
                             <li>
-                                <a href="{{ route('clients') }}"><img src="{{ url('main/images/custmoer.png') }}"> عملائنا </a>
+                                <a href="{{ route('clients') }}"><img src="{{ $header2[2]->icon_path }}"> عملائنا </a>
                             </li>
                             <li>
-                                <a href="{{ route('portfolio') }}"><img src="{{ url('main/images/portfolio.png') }}"> أعمالنا </a>
+                                <a href="{{ route('portfolio') }}"><img src="{{ $header2[3]->icon_path }}"> أعمالنا </a>
                             </li>
                             <li>
-                                <a href="{{ route('teams') }}"><img src="{{ url('main/images/team.png') }}"> فريق العمل </a>
+                                <a href="{{ route('teams') }}"><img src="{{ $header2[4]->icon_path }}"> فريق العمل </a>
                             </li>
                             <li>
-                                <a href="{{ route('financial_fees') }}"><img src="{{ url('main/images/money.png') }}"> الرسوم المالية </a>
+                                <a href="{{ route('financial_fees') }}"><img src="{{ $header2[5]->icon_path }}"> الرسوم المالية </a>
                             </li>
                             <li>
-                                <a href="{{ route('payment_methods') }}"><img src="{{ url('main/images/puy.png') }}"> طرق الدفع </a>
+                                <a href="{{ route('payment_methods') }}"><img src="{{ $header2[6]->icon_path }}"> طرق الدفع </a>
                             </li>
                             <li>  
-                                <a href="{{ route('search', 'general') }}"><img src="{{ url('main/images/search.png') }}"> البحث </a>
+                                <a href="{{ route('search', 'general') }}"><img src="{{ $header2[7]->icon_path }}"> البحث </a>
                             </li>
                         </ul>
         </div>
@@ -42,32 +42,32 @@
                         <ul>
                             <li>
                                 <a href="{{ route('contactus') }}"> اتصل بنا </a>
-                                <img src="{{ url('main/images/contact.png') }}">
+                                <img src="{{ $header1[7]->icon_path }}">
                             </li>
                             <li>
                                 <a href="{{ route('about') }}"> من نحن </a>
-                                <img src="{{ url('main/images/how.png') }}">
+                                <img src="{{ $header1[6]->icon_path }}">
                             </li>
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#submod"> الاشتراك </a>
-                                <img src="{{ url('main/images/sub.png') }}">
+                                <img src="{{ $header1[5]->icon_path }}">
                             </li>
                             @guest
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#regmod"> تسجيل جديد </a>
-                                <img src="{{ url('main/images/reg.png') }}">
+                                <img src="{{ $header1[4]->icon_path }}">
                             </li>
                             <li>
                                 <a href="#"  data-toggle="modal" data-target="#clientsmod"> دخول الاعضاء </a>
-                                <img src="{{ url('main/images/loginaug.png') }}">
+                                <img src="{{ $header1[3]->icon_path }}">
                             </li>
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#makatbmod"> دخول المكاتب العقارية </a>
-                                <img src="{{ url('main/images/about.png') }}">
+                                <img src="{{ $header1[2]->icon_path }}">
                             </li>
                             <li>
                                 <a href="{{ route('login') }}"> تسجيل الدخول </a>
-                                <img src="{{ url('main/images/login.png') }}">
+                                <img src="{{ $header1[1]->icon_path }}">
                             </li>
                             @endguest
 
@@ -96,9 +96,9 @@
             <i class="far fa-times-circle"></i>
         </a>
         <div class="overlay-content">
-                        <div class="time-date">
+                        <div class="time-date" style="color:#fff">
                         <p>{{ $hijridate }}</p>
-                        <img src="{{ url('main/images/date.png') }}">
+                        <img src="{{ $header1[7]->icon_path }}">
                     </div>
         </div>
     </div>
@@ -111,60 +111,35 @@
             
             <ul class="first-top-list">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">قائمة الخدمات التسويقية العقارية</a>
-                    <ul class="dropdown-menu dropdown-menu-list">
-                        <li><a href="tickets.html">قائمة الخدمات</a></li>
-                        <li><a href="projects.html">الخدمات</a></li>
-                        <li><a href="addauction.html">قائمة الخدمات</a></li>
-                        <li><a href="details-aucations.html">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                    </ul>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">أنواع العقارات</a>
+                        <ul class="dropdown-menu dropdown-menu-list">
+                           
+                            <li> <a href="{{ route('search-by-ad-sort', 'local_estate') }}"> العقارات المحلية </a> </li>
+                            <li><a href="{{ route('search-by-ad-sort', 'global_estate') }}"> العقارات الدولية </a></li>
+                            <li><a href="{{ route('search-by-ad-sort', 'project_estate') }}"> المشاريع العقارية </a></li>
+                            <li><a href="{{ route('search-by-ad-sort', 'auction_estate') }}"> المزادات العقارية </a></li>
+                            <li><a href="{{ route('search-by-ad-sort', 'request_estate') }}"> الطلبات العقارية </a></li>
+                            <li><a href="{{ route('search-by-ad-sort', 'schema_estate') }}"> المخططات العقارية </a></li>
+                            <li><a href="{{ route('search-by-ad-sort', 'office_estate') }}"> المكاتب العقارية الإلكترونية </a></li>
+                        
+                        </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> قائمة الخدمات العقارية</a>
-                    <ul class="dropdown-menu dropdown-menu-list">
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> قائمة الاضافات العقارية</a>
-                    <ul class="dropdown-menu dropdown-menu-list">
-                        <li><a href="international.html">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> قائمة البحث العقاري</a>
-                    <ul class="dropdown-menu dropdown-menu-list">
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> قائمة الخدمات الحكومية الالكترونية</a>
-                    <ul class="dropdown-menu dropdown-menu-list">
-                        <li><a href="lawyer.html">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                    </ul>
-                </li>
+
+                @foreach ($menuonelinks as $link)
+
+                    <li class="dropdown">
+                        
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $link->name }}</a>
+                        <ul class="dropdown-menu dropdown-menu-list">
+                           
+                            @foreach ($link->children as $child)
+                                <li><a href="tickets.html">{{ $child->name }}</a></li>
+                            @endforeach
+                           
+                        </ul>
+                    </li>
+
+                @endforeach
             </ul>             
                         
         </div>
@@ -209,49 +184,7 @@
 </div>
 </header>
 
-<!-- navbar mobile s
-<div class="nav-mob visible-xs">
-<div id="wrapper" class="">
-    <div class="overlay" style="display: none;"></div>
-    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-        <div class="navnar-mobile">
-                        <ul>
-                            <li>
-                                <a href="#"> خدماتنا </a>
-                            </li>
-                            <li>
-                                <a href="#"> فروعنا </a>
-                            </li>
-                            <li>
-                                <a href="#"> عملائنا </a>
-                            </li>
-                            <li>
-                                <a href="#"> أعمالنا </a>
-                            </li>
-                            <li>
-                                <a href="#"> فريق العمل </a>
-                            </li>
-                            <li>
-                                <a href="#"> الرسوم المالية </a>
-                            </li>
-                            <li>
-                                <a href="#"> طرق الدفع </a>
-                            </li>
-                            <li>  
-                                <a href="#"> البحث </a>
-                            </li>
-                        </ul>
-        </div>
-    </nav>
 
-    <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-        <span class="hamb-top"></span>
-        <span class="hamb-middle"></span>
-        <span class="hamb-bottom"></span>
-        <p>الأقسام والإعدادات</p>
-    </button>
-</div>
-</div>-->
 
 
 
@@ -267,32 +200,32 @@
                         <ul>
                             <li>
                                 <a href="{{ route('contactus') }}"> اتصل بنا </a>
-                                <img src="{{ url('main/images/contact.png') }}">
+                                <img src="{{ $header1[7]->icon_path }}">
                             </li>
                             <li>
                                 <a href="{{ route('about') }}"> من نحن </a>
-                                <img src="{{ url('main/images/how.png') }}">
+                                <img src="{{ $header1[6]->icon_path }}">
                             </li>
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#submod"> الاشتراك </a>
-                                <img src="{{ url('main/images/sub.png') }}">
+                                <img src="{{ $header1[5]->icon_path }}">
                             </li>
                             @guest
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#regmod"> تسجيل جديد </a>
-                                <img src="{{ url('main/images/reg.png') }}">
+                                <img src="{{ $header1[4]->icon_path }}">
                             </li>
                             <li>
                                 <a href="#"  data-toggle="modal" data-target="#clientsmod"> دخول الاعضاء </a>
-                                <img src="{{ url('main/images/loginaug.png') }}">
+                                <img src="{{ $header1[3]->icon_path }}">
                             </li>
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#makatbmod"> دخول المكاتب العقارية </a>
-                                <img src="{{ url('main/images/about.png') }}">
+                                <img src="{{$header1[2]->icon_path }}">
                             </li>
                             <li>
                                 <a href="{{ route('login') }}"> تسجيل الدخول </a>
-                                <img src="{{ url('main/images/login.png') }}">
+                                <img src="{{ $header1[1]->icon_path }}">
                             </li>
                             @endguest
 
@@ -313,7 +246,7 @@
                                 </li>
                             @endauth
                             <li>  
-                                <a href="https://aqar1.lic2.com"> <img src="{{ url('main/images/home.png') }}"> </a>
+                                <a href="{{ url('/') }}"> <img src="{{ $header1[0]->icon_path }}"> </a>
                             </li>
                         </ul>
 
@@ -322,7 +255,7 @@
                 <div class="col-md-3 col-sm-12">
                     <div class="time-date">
                         <p>{{ $hijridate }}</p>
-                        <img src="{{ url('main/images/date.png') }}">
+                        <img src="{{ $header1[7]->icon_path }}">
                     </div>
                 </div>
             </div>
@@ -814,28 +747,28 @@
                     <div class="navbar-header">
                         <ul>
                             <li>
-                                <a href="{{ route('services') }}"><img src="{{ url('main/images/services.png') }}"> خدماتنا </a>
+                                <a href="{{ route('services') }}"><img src="{{ $header2[0]->icon_path }}"> خدماتنا </a>
                             </li>
                             <li>
-                                <a href="{{ route('branches') }}"><img src="{{ url('main/images/loction.png') }}"> فروعنا </a>
+                                <a href="{{ route('branches') }}"><img src="{{ $header2[1]->icon_path }}"> فروعنا </a>
                             </li>
                             <li>
-                                <a href="{{ route('clients') }}"><img src="{{ url('main/images/custmoer.png') }}"> عملائنا </a>
+                                <a href="{{ route('clients') }}"><img src="{{ $header2[2]->icon_path }}"> عملائنا </a>
                             </li>
                             <li>
-                                <a href="{{ route('portfolio') }}"><img src="{{ url('main/images/portfolio.png') }}"> أعمالنا </a>
+                                <a href="{{ route('portfolio') }}"><img src="{{ $header2[3]->icon_path }}"> أعمالنا </a>
                             </li>
                             <li>
-                                <a href="{{ route('teams') }}"><img src="{{ url('main/images/team.png') }}"> فريق العمل </a>
+                                <a href="{{ route('teams') }}"><img src="{{ $header2[4]->icon_path }}"> فريق العمل </a>
                             </li>
                             <li>
-                                <a href="{{ route('financial_fees') }}"><img src="{{ url('main/images/money.png') }}"> الرسوم المالية </a>
+                                <a href="{{ route('financial_fees') }}"><img src="{{ $header2[5]->icon_path }}"> الرسوم المالية </a>
                             </li>
                             <li>
-                                <a href="{{ route('payment_methods') }}"><img src="{{ url('main/images/puy.png') }}"> طرق الدفع </a>
+                                <a href="{{ route('payment_methods') }}"><img src="{{ $header2[6]->icon_path }}"> طرق الدفع </a>
                             </li>
                             <li>  
-                                <a href="{{ route('search', 'general') }}"><img src="{{ url('main/images/search.png') }}"> البحث </a>
+                                <a href="{{ route('search', 'general') }}"><img src="{{ $header2[7]->icon_path }}"> البحث </a>
                             </li>
                         </ul>
                     </div>
@@ -844,7 +777,7 @@
                 <!-- call us -->
                 <div class="col-md-2 col-sm-12">
                     <div class="callus">
-                        <a href="#"> <img src="{{ url('main/images/callus.png') }}"> </a>
+                        <a href="#"> <img src="{{ $header2[8]->icon_path }}"> </a>
                     </div>
                 </div>
                 
@@ -859,24 +792,24 @@
                 <div class="col-sm-6 col-xs-12">
                     <div class="and-ios">
                         <ul>
-                            <li> <a href="#"> <img src="{{ url('main/images/io.png') }}"> </a> </li>
-                            <li> <a href="#"> <img src="{{ url('main/images/pl.png') }}"> </a> </li>
-                            <li> <a href="#"> <img src="{{ url('main/images/mi.png') }}"> </a> </li>
+                            <li> <a href="#"> <img src="{{ $header3[0]->icon_path }}"> </a> </li>
+                            <li> <a href="#"> <img src="{{ $header3[1]->icon_path }}"> </a> </li>
+                            <li> <a href="#"> <img src="{{ $header3[2]->icon_path }}"> </a> </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xs-12">
                     <div class="social-media">
                         <ul>
-                            <li> <a href="#"> <img src="{{ url('main/images/te.png') }}"> </a> </li>
-                            <li> <a href="#"> <img src="{{ url('main/images/fb.png') }}"> </a> </li>
-                            <li> <a href="#"> <img src="{{ url('main/images/tw.png') }}"> </a> </li>
-                            <li> <a href="#"> <img src="{{ url('main/images/in.png') }}"> </a> </li>
-                            <li> <a href="#"> <img src="{{ url('main/images/yo.png') }}"> </a> </li>
-                            <li> <a href="#"> <img src="{{ url('main/images/li.png') }}"> </a> </li>
-                            <li> <a href="#"> <img src="{{ url('main/images/go.png') }}"> </a> </li>
-                            <li> <a href="#"> <img src="{{ url('main/images/wh.png') }}"> </a> </li>
-                            <li> <a href="#"> <img src="{{ url('main/images/sn.png') }}"> </a> </li>
+                            <li> <a href="#"> <img src="{{ $header3[3]->icon_path }}"> </a> </li>
+                            <li> <a href="#"> <img src="{{ $header3[4]->icon_path }}"> </a> </li>
+                            <li> <a href="#"> <img src="{{ $header3[5]->icon_path }}"> </a> </li>
+                            <li> <a href="#"> <img src="{{ $header3[6]->icon_path }}"> </a> </li>
+                            <li> <a href="#"> <img src="{{ $header3[7]->icon_path }}"> </a> </li>
+                            <li> <a href="#"> <img src="{{ $header3[8]->icon_path }}"> </a> </li>
+                            <li> <a href="#"> <img src="{{ $header3[9]->icon_path }}"> </a> </li>
+                            <li> <a href="#"> <img src="{{ $header3[10]->icon_path }}"> </a> </li>
+                            <li> <a href="#"> <img src="{{ $header3[11]->icon_path }}"> </a> </li>
                         </ul>
                     </div>
                 </div>
@@ -888,61 +821,39 @@
     <div class="last-navbar hidden-xs">
         <div class="container">
             <ul class="first-top-list">
+
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">قائمة الخدمات التسويقية العقارية</a>
-                    <ul class="dropdown-menu dropdown-menu-list">
-                        <li><a href="tickets.html">قائمة الخدمات</a></li>
-                        <li><a href="projects.html">الخدمات</a></li>
-                        <li><a href="addauction.html">قائمة الخدمات</a></li>
-                        <li><a href="details-aucations.html">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                    </ul>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">أنواع العقارات</a>
+                        <ul class="dropdown-menu dropdown-menu-list">
+                           
+                            <li> <a href="{{ route('search-by-ad-sort', 'local_estate') }}"> العقارات المحلية </a> </li>
+                            <li><a href="{{ route('search-by-ad-sort', 'global_estate') }}"> العقارات الدولية </a></li>
+                            <li><a href="{{ route('search-by-ad-sort', 'project_estate') }}"> المشاريع العقارية </a></li>
+                            <li><a href="{{ route('search-by-ad-sort', 'auction_estate') }}"> المزادات العقارية </a></li>
+                            <li><a href="{{ route('search-by-ad-sort', 'request_estate') }}"> الطلبات العقارية </a></li>
+                            <li><a href="{{ route('search-by-ad-sort', 'schema_estate') }}"> المخططات العقارية </a></li>
+                            <li><a href="{{ route('search-by-ad-sort', 'office_estate') }}"> المكاتب العقارية الإلكترونية </a></li>
+                        
+                        </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> قائمة الخدمات العقارية</a>
-                    <ul class="dropdown-menu dropdown-menu-list">
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> قائمة الاضافات العقارية</a>
-                    <ul class="dropdown-menu dropdown-menu-list">
-                        <li><a href="international.html">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> قائمة البحث العقاري</a>
-                    <ul class="dropdown-menu dropdown-menu-list">
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> قائمة الخدمات الحكومية الالكترونية</a>
-                    <ul class="dropdown-menu dropdown-menu-list">
-                        <li><a href="lawyer.html">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                        <li><a href="#">قائمة الخدمات</a></li>
-                        <li><a href="#">الخدمات</a></li>
-                    </ul>
-                </li>
+
+                @foreach ($menuonelinks as $link)
+
+                    <li class="dropdown">
+                        
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $link->name }}</a>
+                        <ul class="dropdown-menu dropdown-menu-list">
+                           
+                            @foreach ($link->children as $child)
+                                <li><a href="tickets.html">{{ $child->name }}</a></li>
+                            @endforeach
+                           
+                        </ul>
+                    </li>
+
+                @endforeach
+               
+                
             </ul>
         </div>
     </div>

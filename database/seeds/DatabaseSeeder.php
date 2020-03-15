@@ -6,7 +6,10 @@ use App\Area;
 use App\AuctionEstate;
 use App\Client;
 use App\Estate;
+use App\EstateImage;
+use App\Links;
 use App\LocalEstate;
+use App\Page;
 use App\Portfolio;
 use App\Profile;
 use App\RequestEstate;
@@ -103,6 +106,17 @@ class DatabaseSeeder extends Seeder
         //factory(Client::class, 15)->create();
 
         //factory(Portfolio::class, 15)->create();
+
+        //$this->call(PageTableSeeder::class);
+
+        //factory(Page::class, 50)->create();
+
+        //$this->call(IconTableSeeder::class);
+
+        //factory(Links::class, 20)->create();
+
+        factory(EstateImage::class, 139)->create();
+
 
     }
 }

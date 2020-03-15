@@ -7,46 +7,36 @@
                     <div class="logo-footer"><a href="#" title="..."><img src="{{ url('main/images/logofooter.png') }}"></a></div>
                     <div class="social-footer">
                         <ul>
-                            <li> <a href="#"> <i class="far fa-paper-plane"></i> </a> </li>
-                            <li> <a href="#"> <i class="fab fa-facebook-f"></i>  </a> </li>
-                            <li> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
-                            <li> <a href="#"> <i class="fab fa-instagram"></i> </a> </li>
-                            <li> <a href="#"> <i class="fab fa-youtube"></i> </a> </li>
-                            <li> <a href="#"> <i class="fab fa-linkedin-in"></i> </a> </li>
-                            <li> <a href="#"> <i class="fab fa-google-plus-g"></i> </a> </li>
-                            <li> <a href="#"> <i class="fab fa-whatsapp"></i> </a> </li>
-                            <li> <a href="#"> <i class="fab fa-snapchat-ghost"></i> </a> </li>
+                            <li> <a href="{{ $settings->telegram }}"> <i class="far fa-paper-plane"></i> </a> </li>
+                            <li> <a href="{{ $settings->facebook }}"> <i class="fab fa-facebook-f"></i>  </a> </li>
+                            <li> <a href="{{ $settings->twitter }}"> <i class="fab fa-twitter"></i> </a> </li>
+                            <li> <a href="{{ $settings->instagram }}"> <i class="fab fa-instagram"></i> </a> </li>
+                            <li> <a href="{{ $settings->youtube }}"> <i class="fab fa-youtube"></i> </a> </li>
+                            <li> <a href="{{ $settings->linkedin }}"> <i class="fab fa-linkedin-in"></i> </a> </li>
+                            <li> <a href="{{ $settings->googleplus }}"> <i class="fab fa-google-plus-g"></i> </a> </li>
+                            <li> <a href="{{ $settings->whatsapp }}"> <i class="fab fa-whatsapp"></i> </a> </li>
+                            <li> <a href="{{ $settings->snapchat }}"> <i class="fab fa-snapchat-ghost"></i> </a> </li>
                         </ul>
                     </div>
                     <div class="links-right-footer">
-                        <div class="item-ri-footer">
-                            <div class="icon-ri">
-                                <i class="fa fa-angle-left"></i>
+                        @foreach ($footerthreelinks as $link)
+                            <div class="item-ri-footer">
+                                <div class="icon-ri">
+                                    <i class="fa fa-angle-left"></i>
+                                </div>
+                                <a href="#">{{ $link->name }}</a>
                             </div>
-                            <a href="#"> خدمات موقع واجهة العقار الالكتروني </a>
-                        </div>
-                        <div class="item-ri-footer">
-                            <div class="icon-ri">
-                                <i class="fa fa-angle-left"></i>
-                            </div>
-                            <a href="#"> خدمات مكاتب واجهة العقار الالكتروني </a>
-                        </div>
-                        <div class="item-ri-footer">
-                            <div class="icon-ri">
-                                <i class="fa fa-angle-left"></i>
-                            </div>
-                            <a href="#"> محامي موقع واجهة العقار الالكتروني </a>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="down-apps">
                         <p>تعامل اسهل حمل تطبيقنا</p>
-                        <a href="#" title="..."><img src="{{ url('main/images/appios.png') }}"></a>
-                        <a href="#" title="..."><img src="{{ url('main/images/playand.png') }}"></a>
-                        <a href="#" title="..."><img src="{{ url('main/images/winapp.png') }}"></a>
+                        <a href="#" title="..."><img src="{{ $footer[0]->icon_path }}"></a>
+                        <a href="#" title="..."><img src="{{ $footer[1]->icon_path }}"></a>
+                        <a href="#" title="..."><img src="{{ $footer[2]->icon_path }}"></a>
                     </div>
                     <div class="barcode">
                         <p>بار كود الموقع</p>
-                        <img src="{{ url('main/images/barcode.png') }}">
+                        <img src="{{ $footer[3]->icon_path }}">
                     </div>
                 </div>
             </div>
@@ -81,25 +71,10 @@
                     <div class="photo-cen">
                         <ul>
                             <div class="fir-ph">
-                                <li> <img src="{{ url('main/images/img123.png') }}"> </li>
-                                <li> <img src="{{ url('main/images/pho2.png') }}"> </li>
-                                <li> <img src="{{ url('main/images/pho3.png') }}"> </li>
-                                <li> <img src="{{ url('main/images/pho4.png') }}"> </li>
-                                <li> <img src="{{ url('main/images/pho5.png') }}"> </li>
-                            </div>
-                            <div class="fir-ph">
-                                <li> <img src="{{ url('main/images/pho6.png') }}"> </li>
-                                <li> <img src="{{ url('main/images/pho7.png') }}"> </li>
-                                <li> <img src="{{ url('main/images/pho8.png') }}"> </li>
-                                <li> <img src="{{ url('main/images/pho9.png') }}"> </li>
-                                <li> <img src="{{ url('main/images/pho1.png') }}"> </li>
-                            </div>
-                            <div class="fir-ph">
-                                <li> <img src="{{ url('main/images/pho10.png') }}"> </li>
-                                <li> <img src="{{ url('main/images/pho11.png') }}"> </li>
-                                <li> <img src="{{ url('main/images/pho12.png') }}"> </li>
-                                <li> <img src="{{ url('main/images/pho13.png') }}"> </li>
-                                <li> <img src="{{ url('main/images/pho14.png') }}"> </li>
+
+                                @foreach($footer_payment as $footer)
+                                <li> <img src="{{ $footer->icon_path }}"> </li>
+                                @endforeach
                             </div>
                         </ul>
                     </div>
@@ -107,17 +82,11 @@
             </div>
             <div class="col-md-4 col-xs-12">
                 <div class="left-footer">
-                    <h2>رابطة الموقع</h2>
+                    <h2>روابط الموقع</h2>
                     <ul>
-                        <li> <span> <i class="fa fa-angle-left"></i> </span> <a href="#"> معرفة الرسوم المالية </a> </li>
-                        <li> <span> <i class="fa fa-angle-left"></i> </span> <a href="#"> طرق دفع الرسوم المالية </a> </li>
-                        <li> <span> <i class="fa fa-angle-left"></i> </span> <a href="#"> انشاء التذكرة المالية رقم ١  </a> </li>
-                        <li> <span> <i class="fa fa-angle-left"></i> </span> <a href="#"> انشاء التذكرة المالية رقم 2  </a> </li>
-                        <li> <span> <i class="fa fa-angle-left"></i> </span> <a href="#"> شروط الخدمات التسويقية </a> </li>
-                        <li> <span> <i class="fa fa-angle-left"></i> </span> <a href="#"> شروط الخدمات العقارية </a> </li>
-                        <li> <span> <i class="fa fa-angle-left"></i> </span> <a href="#"> شروط الخدمات الحكومية </a> </li>
-                        <li> <span> <i class="fa fa-angle-left"></i> </span> <a href="#"> روابط عقارية الكترونية </a> </li>
-                        <li> <span> <i class="fa fa-angle-left"></i> </span> <a href="#"> القائمة السوداء </a> </li>
+                        @foreach ($footeronelinks as $link)
+                            <li> <span> <i class="fa fa-angle-left"></i> </span> <a href="#">{{ $link->name }}</a> </li>                            
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -128,47 +97,40 @@
 <div class="last-footer">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-xs-12">
+            <div class="col-md-4 col-xs-12">
                 <div class="right-lasfo hidden-xs">
                     <ul>
-                        <li> <a href="#"> سياسة الخصوصية </a> </li><span>/</span>
-                        <li> <a href="#"> اتفاقية استخدام الموقع </a> </li><span>/</span>
-                        <li> <a href="#"> خريطة الموقع </a> </li><span>/</span>
-                        <li> <a href="#"> اسئلة واستفسارات </a> </li>
+                        @foreach ($footertwolinks as $link)
+                            <li> <a href="#"> {{ $link->name }} </a> </li><span>/</span>                            
+                        @endforeach
+                        <li> <a href="#"> خريطة الموقع </a> </li>
                     </ul>
                 </div>
                 <div class="right-lasfo visible-xs">
-                                        <div class="links-right-footer">
-                        <div class="item-ri-footer">
-                            <div class="icon-ri">
-                                <i class="fa fa-angle-left"></i>
-                            </div>
-                            <a href="#">  سياسة الخصوصية </a>
-                        </div>
-                        <div class="item-ri-footer">
-                            <div class="icon-ri">
-                                <i class="fa fa-angle-left"></i>
-                            </div>
-                            <a href="#"> اتفاقية استخدام الموقع </a>
-                        </div>
+                    <div class="links-right-footer">
+                       
+                        @foreach ($footertwolinks as $link)
+                            <div class="item-ri-footer">
+                                <div class="icon-ri">
+                                    <i class="fa fa-angle-left"></i>
+                                </div>
+                                <a href="#"> {{ $link->name }}  </a>
+                            </div>                          
+                        @endforeach
+                       
                         <div class="item-ri-footer">
                             <div class="icon-ri">
                                 <i class="fa fa-angle-left"></i>
                             </div>
                             <a href="#"> خريطة الموقع </a>
                         </div>
-                        <div class="item-ri-footer">
-                            <div class="icon-ri">
-                                <i class="fa fa-angle-left"></i>
-                            </div>
-                            <a href="#"> اسئلة واستفسارات </a>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-xs-12">
-                <p> اخر تحديث للموقع <span>/</span> تاريخ هجري <span>/</span> تاريخ ميلادي </p>
-                <p>جميع الحقوق محفوظة لموقع واجهة العقار الالكتروني 2018</p>
+            <div class="col-md-8 col-xs-12">
+                <p> اخر تحديث للموقع <span>/</span> {{ $settings->last_update_hijri }}  <span>/</span> {{ $settings->last_update }}  </p>
+                <p>جميع الحقوق محفوظة لموقع واجهة العقار الالكتروني 2020</p>
             </div>
         </div>
     </div>
@@ -185,6 +147,83 @@
 <script src="{{ asset('main/js/script.js') }}"></script>
 <script src="http://e.22web.org/assets/js/newsTicker.min.js"></script>
 <script src="http://e.22web.org/assets/js/SmoothScroll.js"></script>
+
+
+
+<script type="text/javascript">
+    var elementPosition = $('#header-mob').offset();
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > elementPosition.top) {
+            $('#header-mob').css('position', 'fixed').css('top', '0');
+             $('#header-mob').addClass('fixed-nav');
+        } else {
+            $('#header-mob').css('position', 'static');
+        }
+     });
+</script>
+
+<script>
+function opennav() {
+    document.getElementById("myNav").style.width = "270px";
+     $('.mobile').css("right","-270px");
+};
+
+function closenav() {
+    document.getElementById("myNav").style.width = "0%";
+     $('.mobile').css("right","0");
+} ;
+    
+function opensearch() {
+    document.getElementById("mysearch").style.width = "270px";
+     $('.mobile').css("right","-270px");
+};
+
+function closesearch() {
+    document.getElementById("mysearch").style.width = "0%";
+     $('.mobile').css("right","0");
+} ;
+    
+function opencart() {
+    document.getElementById("Mycart").style.width = "270px";
+     $('.mobile').css("right","-270px");
+};
+
+function closecart() {
+    document.getElementById("Mycart").style.width = "0%";
+     $('.mobile').css("right","0");
+} ;
+
+function openopt() {
+    document.getElementById("Myopt").style.width = "270px";
+     $('.mobile').css("right","-270px");
+};
+
+function closeopt() {
+    document.getElementById("Myopt").style.width = "0%";
+     $('.mobile').css("right","0");
+} ;
+</script>
+
+	<script type="text/javascript">
+            $(function() {
+                $('#optselector').change(function(){
+                    $('.optitem').hide();
+                    $('#' + $(this).val()).show();
+                });
+            });
+        </script>
+        <script type="text/javascript">
+$('#mycheckbox').change(function() {
+    $('#mycheckboxdiv').toggle();
+});
+</script>
+        <script type="text/javascript">
+$('#mycheckbox2').change(function() {
+    $('#mycheckboxdiv2').toggle();
+});
+</script>
+
 
 <script>
 jQuery(document).ready(function () {
@@ -618,13 +657,4 @@ function getSubCitiesFooter(item){
            }  
         })
 }
-
-
-/*$('.newsticker').newsTicker({	max_rows: 1});
-var nt_example1 = $('.nt-example1').newsTicker({
-    row_height: 300,
-    max_rows: 5,
-    duration: 4000,
-});  */  
-
 </script>

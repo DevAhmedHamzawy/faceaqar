@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Area;
 use App\Client;
+use App\Page;
 use App\Portfolio;
 use App\Role;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class HomeController extends Controller
 
     public function welcome()
     {
-        return view('main.welcome', ['clients' => Client::all(), 'portfolios' => Portfolio::all(), 'teams' => DB::table('teams')->join('users','users.id','=','user_id')->get(), 'adSorts' => DB::table('ad_sort')->pluck('display')]);
+        return view('main.welcome', ['clients' => Client::all(), 'portfolios' => Portfolio::all(), 'teams' => DB::table('teams')->join('users','users.id','=','user_id')->get(), 'adSorts' => DB::table('ad_sort')->pluck('display'), 'pages' => Page::getParents() ]);
     } 
 
     public function index()

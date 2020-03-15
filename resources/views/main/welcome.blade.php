@@ -18,7 +18,7 @@
                             <h2>البحث عن الصفحات الاعلانية الالكترونية بالموقع</h2>
                             <div class="sel1">
                                 <p>اختر المدينة</p>
-                                <div class="custom-select">
+                                <div class="custom-select" id="cities">
                                 <select>
                                   <option value="0">الكل</option>
                                   <option value="1">الرياض</option>
@@ -81,68 +81,60 @@
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="{{ url('main/images/mark1.png') }}">
-                                <h2> الصفحات العقارية الالكترونية </h2>
-                                <p>الصفحات الالكترونية العقارية وكيفية التعامل معها بالشكل الصحيح المباشر المبسط لعملاء الكرام نحن في خدمتكم</p>
-                                <a href="local.html">... اقرأ المزيد</a>
+                                <img src="{{ $pages[0]->icon_path }}">
+                                <h2> {{ $pages[0]->title }} </h2>
+                                <p>{{ str_limit($pages[0]->body, 100) }}</p>
+                                <a href="{{ route('pages.show', $pages[0]->id) }}">... اقرأ المزيد</a>
                             </div>
                             <div class="desk-item-mark">
-                                <h4> <a href="{{ route('search-by-ad-sort', 'local_estate') }}"> العقارات المحلية </a> </h4>
-                                <h4><a href="{{ route('search-by-ad-sort', 'global_estate') }}"> العقارات الدولية </a></h4>
-                                <h4><a href="{{ route('search-by-ad-sort', 'project_estate') }}"> المشاريع العقارية </a></h4>
-                                <h4><a href="{{ route('search-by-ad-sort', 'auction_estate') }}"> المزادات العقارية </a></h4>
-                                <h4><a href="{{ route('search-by-ad-sort', 'request_estate') }}"> الطلبات العقارية </a></h4>
-                                <h4><a href="{{ route('search-by-ad-sort', 'schema_estate') }}"> المخططات العقارية </a></h4>
-                                <h4><a href="{{ route('search-by-ad-sort', 'office_estate') }}"> المكاتب العقارية الإلكترونية </a></h4>
+                               @foreach ($pages[0]->children as $child)
+                                    <h4><a href="{{ route('pages.show', $child->id) }}">{{ $child->title }}</a></h4>
+                               @endforeach
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="{{ url('main/images/mark2.png') }}">
-                                <h2>وسيط واجهة العقار الالكتروني </h2>
-                                <p>الصفحات الالكترونية العقارية وكيفية التعامل معها بالشكل الصحيح المباشر المبسط لعملاء الكرام نحن في خدمتكم</p>
-                                <a href="form-broker.html">... اقرأ المزيد</a>
+                                <img src="{{ $pages[1]->icon_path }}">
+                                <h2> {{ $pages[1]->title }} </h2>
+                                <p>{{ str_limit($pages[1]->body, 100) }}</p>
+                                <a href="{{ route('pages.show', $pages[1]->id) }}">... اقرأ المزيد</a>
                             </div>
                             <div class="desk-item-mark">
-                                <h4> <a href="{{ route('brokers.create') }}"> الصور الاعلانية </a> </h4>
-                                <h4><a href="{{ route('brokers.create') }}"> النصوص الاعلانية </a></h4>
-                                <h4><a href="{{ route('brokers.create') }}"> حسابات التواصل الاجتماعي </a></h4>
-                                <h4><a href="{{ route('brokers.create') }}"> الكروت الاعلانية الالكترونية </a></h4>
-                                <h4><a href="{{ route('brokers.create') }}"> حجز صفحة اعلانية كاملة </a></h4>
-                                
+                               @foreach ($pages[1]->children as $child)
+                                    <h4><a href="{{ route('pages.show', $child->id) }}">{{ $child->title }}</a></h4>
+                               @endforeach
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="{{ url('main/images/mark3.png') }}">
-                                <h2> التثبيت الاعلاني الالكتروني </h2>
-                                <p>الصفحات الالكترونية العقارية وكيفية التعامل معها بالشكل الصحيح المباشر المبسط لعملاء الكرام نحن في خدمتكم</p>
-                                <a href="form_electronic.html">... اقرأ المزيد</a>
+                                <img src="{{ $pages[2]->icon_path }}">
+                                <h2> {{ $pages[2]->title }} </h2>
+                                <p>{{ str_limit($pages[2]->body, 100) }}</p>
+                                <a href="{{ route('pages.show', $pages[2]->id) }}">... اقرأ المزيد</a>
                             </div>
                             <div class="desk-item-mark">
-                                <h4> <a href="form_electronic.html"> الصورة الاعلانية الكبيرة </a> </h4>
-                                <h4> <a href="form_electronic.html"> الشريط الاعلاني المتحرك </a> </h4>
-                                <h4> <a href="form_electronic.html"> الصفحات العقارية الالكترونية </a> </h4>
-                                <h4> <a href="form-broker.html"> وسيط واجهة العقار الالكتروني </a> </h4>
+                               @foreach ($pages[2]->children as $child)
+                                    <h4><a href="{{ route('pages.show', $child->id) }}">{{ $child->title }}</a></h4>
+                               @endforeach
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="item-mark">
                             <div class="tit-item-mark">
-                                <img src="{{ url('main/images/mark4.png') }}">
-                                <h2> الرسائل الاعلانية الالكترونية </h2>
-                                <p>الصفحات الالكترونية العقارية وكيفية التعامل معها بالشكل الصحيح المباشر المبسط لعملاء الكرام نحن في خدمتكم</p>
-                                <a href="#">... اقرأ المزيد</a>
+                                <img src="{{ $pages[3]->icon_path }}">
+                                <h2> {{ $pages[3]->title }} </h2>
+                                <p>{{ str_limit($pages[3]->body, 100) }}</p>
+                                <a href="{{ route('pages.show', $pages[3]->id) }}">... اقرأ المزيد</a>
                             </div>
                             <div class="desk-item-mark">
-                                <h4> <a href="#">(SMS) الرسائل الاعلانية النصية  </a> </h4>
-                                <h4><a href="#">(Email) الرسائل الاعلانية البريدية  </a></h4>
-                                <h4><a href="#">(MMS) الرسائل الاعلانية للوسائط المتعددة  </a></h4>
+                               @foreach ($pages[3]->children as $child)
+                                    <h4><a href="{{ route('pages.show', $child->id) }}">{{ $child->title }}</a></h4>
+                               @endforeach
                             </div>
                         </div>
                     </div>
@@ -164,47 +156,14 @@
                  <div class="all-titles"> <h2> الخدمات العقارية <img src="{{ url('main/images/estate.png') }}"> </h2> <p></p> <a href="#"></a> </div>
             <div class="items-marketing">
                 <div class="row">
-                    <div class="col-md-3 col-sm-4 col-xs-6">
-                        <div class="item-mark">
-                            <div class="desk-item-mark">
-                                <h4> <a href="#"> محامي الموقع </a> </h4>
-                                <h4><a href="#"> المكاتب العقارية المعتمدة </a></h4>
-                                <h4><a href="#"> الخدمة العقارية الشاملة </a></h4>
-                                <h4><a href="#"> الإستشارة العقارية </a></h4>
-                                <h4><a href="#"> التسويق العقاري </a></h4>
+                    <div class="col-md-12">
+                        @foreach ($pages[4]->children as $child)
+                            <div class="item-mark">
+                                <div class="desk-item-mark col-md-3 col-sm-4 col-xs-6">
+                                    <h4><a href="{{ route('pages.show', $child->id) }}">{{ $child->title }}</a></h4>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-xs-6">
-                        <div class="item-mark">
-                            <div class="desk-item-mark">
-                                <h4> <a href="#">البحث العقاري </a> </h4>
-                                <h4><a href="#"> العروض والطلبات العقارية </a></h4>
-                                <h4><a href="#"> البيع والايجار العقاري </a></h4>
-                                <h4><a href="#"> بيع العقار علي الخريطة </a></h4>
-                                <h4> <a href="#"> الاستثمار العقاري </a> </h4>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="col-md-3 col-sm-4 col-xs-6">
-                        <div class="item-mark">
-                            <div class="desk-item-mark">
-                                
-                                <h4><a href="#"> التثمين العقاري </a></h4>
-                                <h4><a href="#"> المزاد العقاري </a></h4>
-                                <h4><a href="#"> ادارة الاملاك العقارية </a></h4>
-                                <h4> <a href="#"> كتابة العقود العقارية </a> </h4>
-                                <h4><a href="#"> نظام البيع والايجار الموحد الإلكتروني</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-xs-6">
-                        <div class="item-mark">
-                            <div class="desk-item-mark">
-                                <h4><a href="#"> الهيئة العامة للعقار </a></h4>
-                                <h4><a href="#"> وزارة الاسكان </a></h4>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -229,34 +188,25 @@
                                     <div class="tit-item-mark">
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-6">
-                                                <img src="{{ url('main/images/rightgov.png') }}">
-                                                <h2> البرامج الحكومية الالكترونية </h2>
+                                                <img src="{{ $pages[4]->icon_path }}">
+                                                <h2> {{ $pages[4]->title }} </h2>
                                             </div>
                                             <div class="col-xs-12 col-sm-6">
-                                                <p>الصفحات الالكترونية العقارية وكيفية التعامل معها بالشكل الصحيح المباشر المبسط لعملاء الكرام نحن في خدمتكم</p>
-                                                <a href="#">... اقرأ المزيد</a>
+                                                <p>{{ str_limit($pages[4]->body, 100) }}</p>
+                                                <a href="{{ route('pages.show', $pages[4]->id) }}">... اقرأ المزيد</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-xs-12">
-                                <div class="item-mark">
-                                    <div class="desk-item-mark">
-                                        <h4> <a href="#"> الصور الاعلانية </a> </h4>
-                                        <h4><a href="#"> التواصل الاجتماعي </a></h4>
-                                        <h4><a href="#"> الرسائل البريدية </a></h4>
+                            <div class="col-md-12">
+                                @foreach ($pages[4]->children as $child)
+                                    <div class="item-mark">
+                                        <div class="desk-item-mark col-md-6 col-xs-12">
+                                            <h4><a href="{{ route('pages.show', $child->id) }}">{{ $child->title }}</a></h4>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-xs-12">
-                                <div class="item-mark">
-                                    <div class="desk-item-mark">
-                                        <h4> <a href="#"> الصور الاعلانية </a> </h4>
-                                        <h4><a href="#"> التواصل الاجتماعي </a></h4>
-                                        <h4><a href="#"> الرسائل البريدية </a></h4>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -267,34 +217,25 @@
                                     <div class="tit-item-mark">
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-6">
-                                                <img src="{{ url('main/images/leftgov.png') }}">
-                                                <h2> برامج السلامة للمنشئات </h2>
+                                                <img src="{{ $pages[5]->icon_path }}">
+                                                <h2> {{ $pages[5]->title }} </h2>
                                             </div>
                                             <div class="col-xs-12 col-sm-6">
-                                                <p>الصفحات الالكترونية العقارية وكيفية التعامل معها بالشكل الصحيح المباشر المبسط لعملاء الكرام نحن في خدمتكم</p>
-                                                <a href="#">... اقرأ المزيد</a>
+                                                <p>{{ str_limit($pages[5]->body, 100) }}</p>
+                                                <a href="{{ route('pages.show', $pages[5]->id) }}">... اقرأ المزيد</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-xs-12">
-                                <div class="item-mark">
-                                    <div class="desk-item-mark">
-                                        <h4> <a href="#"> الصور الاعلانية </a> </h4>
-                                        <h4><a href="#"> التواصل الاجتماعي </a></h4>
-                                        <h4><a href="#"> الرسائل البريدية </a></h4>
+                            <div class="col-md-12">
+                                @foreach ($pages[4]->children as $child)
+                                    <div class="item-mark">
+                                        <div class="desk-item-mark col-md-6 col-xs-12">
+                                            <h4><a href="{{ route('pages.show', $child->id) }}">{{ $child->title }}</a></h4>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-xs-12">
-                                <div class="item-mark">
-                                    <div class="desk-item-mark">
-                                        <h4> <a href="#"> الصور الاعلانية </a> </h4>
-                                        <h4><a href="#"> التواصل الاجتماعي </a></h4>
-                                        <h4><a href="#"> الرسائل البريدية </a></h4>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
