@@ -8,13 +8,13 @@ class Area extends Model
 {
     protected $guarded = [];
 
-    public static function getMainAreas()
-    {
-        return self::whereParentId(1)->get();
-    }
-
     public function getRouteKeyName()
     {
         return 'name';
+    }
+
+    public static function getMainAreas()
+    {
+        return self::whereParentId(1)->get();
     }
 }

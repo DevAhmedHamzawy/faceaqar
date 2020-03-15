@@ -28,6 +28,11 @@ class Estate extends Model implements ViewableContract
         return 'name';
     }
 
+    public static function scopeFilter(Builder $builder, $filters)
+    {
+        return (new BaseFilter(request()))->apply($builder, $filters);
+    }   
+    
     // this is a recommended way to declare event handlers
     public static function boot() {
         parent::boot();
@@ -43,9 +48,4 @@ class Estate extends Model implements ViewableContract
              $estate->advertiser()->delete();
         });
     }
-
-    public static function scopeFilter(Builder $builder, $filters)
-    {
-        return (new BaseFilter(request()))->apply($builder, $filters);
-    }    
 }

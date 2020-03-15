@@ -53,6 +53,25 @@ Trait Queries
         return DB::table('payment_sort')->get();
     }
 
+    //Get Local Estate Or Auction Estate Data
+    public static function getData($id)
+    {
+        $auctionEstate = self::whereEstateId($id)->first();
+        return !empty($auctionEstate) ? $auctionEstate : '';
+    }
+
+    //Get Price Sort
+    public static function getPriceSort($id)
+    {
+        return DB::table('price_sort')->whereId($id)->pluck('name');
+    }
+
+    //Get Payment Sort
+    public static function getPaymentSort($id)
+    {
+        return DB::table('payment_sort')->whereId($id)->pluck('name');
+    }
+
     //Get Main Area
     public static function getMainArea($id)
     {
