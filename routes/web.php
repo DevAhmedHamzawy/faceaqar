@@ -1,151 +1,71 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', 'HomeController@welcome');
-
-// DON'T Put it inside the '/admin' Prefix , Otherwise you'll never get the page due to assign.guard that will redirect you too many times
-Route::get('admin/login', 'Auth\AdminLoginController@showLoginForm');
-Route::post('admin/login', 'Auth\AdminLoginController@login')->name('admin.login');
-Route::post('admin/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
-
-Route::group(['prefix' => '/admin','middleware' => 'assign.guard:admin,admin/login'],function(){
-
-    Route::get('settings/{sort}/1', 'Admin\SettingsController@edit')->name('settings.edit');
-    Route::patch('settings/update', 'Admin\SettingsController@update')->name('settings.update');
-
-    Route::resource('lawyers', 'Admin\LawyerController'); 
-    Route::resource('clients', 'Admin\ClientController');       
-    Route::resource('portfolios', 'Admin\PortfolioController');       
-    Route::resource('teams', 'Admin\TeamController');   
-    
-    Route::resource('contacts', 'Admin\ContactController');       
-    Route::resource('tickets', 'Admin\TicketController');
-
-    Route::resource('newsletters', 'Admin\NewsletterController');
-
-    Route::resource('admins', 'Admin\AdminController');
-    Route::resource('users', 'Admin\UserController');
-
-    Route::resource('brokers', 'Admin\BrokerController');
-    Route::resource('reports', 'Admin\ReportController');
-
-    Route::resource('estates', 'Admin\EstateController');
-
-    Route::resource('pages', 'Admin\PageController');
-    Route::get('pages/{page}/create', 'Admin\PageController@create')->name('pages.create');
-    Route::post('pages/{page}', 'Admin\PageController@store')->name('pages.store');
-    Route::get('pages/{page}/{id}', 'Admin\PageController@edit')->name('pages.edit');
-    Route::post('pages/{page}/{id}', 'Admin\PageController@update')->name('pages.update');
-
-    Route::get('icons/{place}', 'Admin\IconController@index');
-    Route::post('icons/{place}', 'Admin\IconController@store');
-
-    Route::resource('links', 'Admin\LinksController');
-    Route::get('positions/{place}', 'Admin\LinksController@getPositions');
-
-    Route::get('dashboard', 'Admin\DashboardController@index');
-});
-
-
-
+// Auth Verification Routes
 Auth::routes(['verify' => true]);
+
+
+
+
+//Social Login
 Route::get('/auth/social/{social}', 'Auth\SocialLoginController@redirectToSocial')->name('social');
 Route::get('/auth/{social}/callback', 'Auth\SocialLoginController@handleSocialCallback');
 
+
+
+
+//After User Authenticated & Verified
 Route::group(['middleware' => 'verified'], function (){
 
-Route::get('home', 'HomeController@index')->name('home');
+    // Assign User Role After Verification
+    Route::post('home', 'RoleController@store')->name('assign-role');
 
-Route::post('sendmessage', 'MessageController@store');
+    // User Home Dashboard
+    Route::get('home', 'HomeController@index')->name('home');
 
-Route::post('reportestate', 'ReportController@store');
+    // Update User Profile
+    Route::get('profile/{user}/edit', 'UsersController@edit')->name('edit-profile');
+    Route::put('profile/{user}/edit', 'UsersController@update')->name('update-profile');
 
-Route::post('like', 'LikeController@like');
-Route::post('dislike', 'LikeController@dislike');
-Route::post('check', 'LikeController@check');
+    // Estate Create Process
+    Route::get('estates/{adSort}/create', 'EstateController@create')->name('estate.createestate');
+    Route::post('estates/{adSort}/create', 'EstateController@store')->name('estates.create');
 
+    // Estate Update Process
+    Route::get('estates/{adSort}/{estate}/edit', 'EstateController@edit')->name('estates.edit');
+    Route::patch('estates/{adSort}/{estate}/edit', 'EstateController@update')->name('estates.update');
 
+    //Delete Estate Images
+    Route::delete('estate-images/{estate}/{index}', 'EstateImageController@destroy');
 
-Route::get('estates/{adSort}/create', 'EstateController@create')->name('estate.createestate');
-Route::post('estates/{adSort}/create', 'EstateController@store')->name('estates.create');
+    //Delete Estate
+    Route::delete('estates/{estate}', 'EstateController@destroy')->name('estates.destroy');
 
+    //Message With Estate Owner
+    Route::post('sendmessage', 'MessageController@store');
 
-Route::resource('payments', 'PaymentController');
-Route::get('success', 'PaymentController@success')->name('payment.success');
-Route::get('cancel', 'PaymentController@cancel')->name('payment.cancel');
+    //Report Estate
+    Route::post('reportestate', 'ReportController@store');
 
-Route::get('profile/{user}/edit', 'UsersController@edit')->name('edit-profile');
-Route::put('profile/{user}/edit', 'UsersController@update')->name('update-profile');
+    //Estate Like & Dislike
+    Route::post('like', 'LikeController@like');
+    Route::post('dislike', 'LikeController@dislike');
+    Route::post('check', 'LikeController@check');
 
-Route::resource('tickets', 'TicketController');
+    //Brokers
+    Route::resource('brokers', 'BrokerController');
 
-Route::resource('brokers', 'BrokerController');
+    //Create payment ticket For Premium MemberShip
+    Route::resource('tickets', 'TicketController', ['only' => ['create']]);
 
-Route::resource('favourites', 'FavouriteController');
+    //Payment Process
+    Route::post('payments', 'PaymentController@store')->name('payments.store');
+    Route::get('success', 'PaymentController@success')->name('payment.success');
+    Route::get('cancel', 'PaymentController@cancel')->name('payment.cancel');
 
-Route::delete('estate-images/{estate}/{index}', 'EstateImageController@destroy');
+    //store favourite Estate
+    Route::resource('favourites', 'FavouriteController', ['only' => ['store']]);
+
+    ///Contact With Lawyer
+    Route::post('sendlawyercontact', 'LawyerContactsController@store');
 
 });
-
-
-Route::get('brokers/{broker}', 'BrokerController@show')->name('brokers.show');
-
-Route::get('thanks', 'HomeController@thanks');
-
-Route::post('sendcontact', 'ContactUsController@store');
-
-Route::post('savenewsletter', 'NewsLetterController@store');
-
-Route::get('profile/{user}', 'UsersController@show')->name('profile');
-
-
-Route::get('estates/{adSort}', 'SearchController@searchByAdSort')->name('search-by-ad-sort');
-Route::get('estates/{adSort}/index', 'EstateController@index');
-
-Route::get('estates/{adSort}/{estate}', 'EstateController@show')->name('estates.show');
-
-Route::get('estates/{adSort}/{estate}/edit', 'EstateController@edit')->name('estates.edit');
-Route::patch('estates/{adSort}/{estate}/edit', 'EstateController@update')->name('estates.update');
-
-Route::delete('estates/{estate}', 'EstateController@destroy')->name('estates.destroy');
-
-
-Route::get('search/{adSort}', 'SearchController@index')->name('search');
-Route::get('search/{adSort}/filters', 'SearchController@getFilters')->name('getresults');
-
-Route::resource('areas' , 'AreaController');
-
-
-
-Route::get('lawyers/{user}', 'LawyerController@show');
-Route::post('sendlawyercontact', 'LawyerContactsController@store');
-
-
-Route::get('contactus', 'ContactUsController@show')->name('contactus');
-Route::get('about', 'AboutController@show')->name('about');
-Route::get('terms', 'TermsController@show')->name('terms');
-
-Route::get('clients', 'ClientController@index')->name('clients');
-Route::get('portfolio', 'PortfolioController@index')->name('portfolio');
-Route::get('teams', 'TeamsController@index')->name('teams');
-
-Route::get('services', 'HomeController@services')->name('services');
-Route::get('branches', 'HomeController@branches')->name('branches');
-Route::get('financial_fees', 'HomeController@financial_fees')->name('financial_fees');
-Route::get('payment_methods', 'HomeController@payment_methods')->name('payment_methods');
-
-Route::get('estates-map/{adSort}', 'EstatesMapController@show')->name('estates-map');
-
-Route::resource('pages', 'PageController');
-
-Route::post('home', 'RoleController@store')->name('assign-role');
