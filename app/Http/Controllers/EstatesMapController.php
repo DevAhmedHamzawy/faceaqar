@@ -11,43 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class EstatesMapController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Estate  $estate
-     * @return \Illuminate\Http\Response
-     */
     public function show($adSort)
     {
         $adSortId = DB::table('ad_sort')->whereName($adSort)->pluck('id');
@@ -105,37 +69,4 @@ class EstatesMapController extends Controller
         return view('main.estates.map', ['estates' => $estates, 'adSort' => $adSort]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Estate  $estate
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Estate $estate)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Estate  $estate
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Estate $estate)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Estate  $estate
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Estate $estate)
-    {
-        //
-    }
 }

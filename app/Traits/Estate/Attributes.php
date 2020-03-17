@@ -2,6 +2,8 @@
 
 namespace App\Traits\Estate;
 
+use Carbon\Carbon;
+
 Trait Attributes
 {
 

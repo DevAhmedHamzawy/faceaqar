@@ -15,6 +15,7 @@ class Ticket extends Model
         return $this->belongsTo('App\User');
     }
 
+    //Get All Payment Details
     public function getPaymentAttribute()
     {
         return unserialize($this->payment_data);

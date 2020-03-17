@@ -23,14 +23,6 @@ class ContactUsController extends Controller
         return 'ok';
     }
 
-    
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\setting  $setting
-     * @return \Illuminate\Http\Response
-     */
     public function show()
     {
         return view('main.contact');

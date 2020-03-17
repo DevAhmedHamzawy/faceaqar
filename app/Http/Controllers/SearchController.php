@@ -57,7 +57,7 @@ use Illuminate\Support\Facades\DB;
 class SearchController extends Controller
 {
     public function index($adSort = null)
-    {  
+    {
         $adSort == 'general' || $adSort == 'filters' ? : $adSort = Estate::checkAdSort($adSort);
         
         return view('main.estates.search', 

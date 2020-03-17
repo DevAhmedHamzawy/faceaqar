@@ -11,6 +11,6 @@ class Category extends Model
 
     public static function getVisibleCategories()
     {
-        return self::where('visible', 1)->get();
+        return self::whereVisible(1)->get();
     }
 }

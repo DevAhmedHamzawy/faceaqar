@@ -2,6 +2,9 @@
 
 namespace App\Traits\Estate;
 
+use App\Area;
+use Illuminate\Support\Facades\DB;
+
 Trait Queries
 {
     
