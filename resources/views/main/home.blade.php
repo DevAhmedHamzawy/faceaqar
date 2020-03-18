@@ -45,6 +45,7 @@
                     <img src="{{ url('main/images/team1.png') }}" class="center-block img-circle" alt="Cinque Terre">
                     <h1 class="text-center">{{ auth()->user()->name }}</h1>
                     <a href="{{ route('edit-profile', auth()->user()->name) }}" class="btn btn-primary" style="margin: 10px 45% 0 0;"><h5>تعديل بياناتى</h5></a>
+                    <a href="{{ route('inbox', auth()->user()->name) }}" class="btn btn-primary" style="margin: 10px 45% 0 0;"><h5>صندوق الرسائل</h5></a>
                 </div>
                
 

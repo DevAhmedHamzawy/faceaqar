@@ -4,7 +4,7 @@ namespace App\Traits\User;
 
 Trait Relations
 {
-    public function roles()
+    public function userRoles()
     {
         return $this->belongsToMany('App\Role');
     }

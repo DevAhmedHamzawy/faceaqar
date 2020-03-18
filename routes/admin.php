@@ -19,7 +19,7 @@ Route::resource('users', 'Admin\UserController');
 Route::resource('brokers', 'Admin\BrokerController');
 Route::resource('reports', 'Admin\ReportController');
 
-Route::resource('estates', 'Admin\EstateController');
+Route::resource('show-estates', 'Admin\EstateController');
 
 Route::resource('pages', 'Admin\PageController');
 Route::get('pages/{page}/create', 'Admin\PageController@create')->name('pages.create');

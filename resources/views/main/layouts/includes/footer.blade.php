@@ -261,15 +261,7 @@ jQuery("body").toggleClass("mobb");
 
 
 
-window.AuthUser = '{!! auth()->user() !!}'
-    window.__auth = function () {
-        try {
-            return JSON.parse(AuthUser)
-        } catch (error) {
-            return null
-        }
-}
-
+    
 });
 
 function submitregister(){
@@ -657,4 +649,6 @@ function getSubCitiesFooter(item){
            }  
         })
 }
+
+
 </script>

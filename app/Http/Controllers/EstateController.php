@@ -33,7 +33,7 @@ class EstateController extends Controller
             $estate->advertiser = Advertiser::where('estate_id',$estate->id)->first();
             //$estate->areaName = Estate::getMainArea($estate->area_id);
 
-              //TODO :- Check About AdsortID To Avoid Mistakes
+            //TODO :- Check About AdsortID To Avoid Mistakes
 
         switch ($adSort) {
             

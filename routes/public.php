@@ -80,7 +80,7 @@ Route::get('lawyers/{user}', 'LawyerController@show');
 
 /*General*/
 //Show Areas
-Route::get('areas' , 'AreaController@show')->name('areas.show');
+Route::get('areas/{area}' , 'AreaController@show')->name('areas.show');
 
 //Thanks Page After Registeration
 Route::get('thanks', 'HomeController@thanks');

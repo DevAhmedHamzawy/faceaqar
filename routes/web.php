@@ -68,4 +68,10 @@ Route::group(['middleware' => 'verified'], function (){
     ///Contact With Lawyer
     Route::post('sendlawyercontact', 'LawyerContactsController@store');
 
+    //Messages Inbox
+    Route::get('{user}/messages', 'MessageController@index')->name('inbox');
+
+    //Show Messages
+    Route::get('{user}/{from}/{to}/messages', 'MessageController@show')->name('messages.show');
+
 });

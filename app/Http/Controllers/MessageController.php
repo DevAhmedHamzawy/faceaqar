@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Advertiser;
 use App\Message;
+use App\Notifications\MessageNotification;
+use App\User;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -14,17 +17,16 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+       $ids =  Message::whereFrom(auth()->user()->id)->whereNotNull('to')->orderByDesc('created_at')->pluck('from','to');
+       $messages = [];
+       $i = 0;
+       foreach($ids as $key => $value){
+           if($i == 0) { $firstId = $key; }
+           array_push($messages, Message::getLastChatMessage(auth()->user()->id, $key));
+           $i++;
+       }
+       
+       return view('main.messages.index', ['messages' => $messages, 'latestmessage' => Message::getAChatMessages(auth()->user()->id, $firstId)]);
     }
 
     /**
@@ -35,9 +37,12 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->name == 'owner'){ $advertiser = Advertiser::findOrFail(auth()->user()->id); $request->merge(['name' => $advertiser->name, 'mobile' => $advertiser->mobile1, 'email' => $advertiser->email]); }
         !auth()->user() ? : $request->merge(['from' => auth()->user()->id]);
-        Message::create($request->all());
-        return 'OK';
+        $message = Message::create($request->all());
+        $reciever = User::findOrFail($request->to);
+        $reciever->notify(new MessageNotification($request->from, $request->to, $request->body));
+        return $message;
     }
 
     /**
@@ -46,42 +51,10 @@ class MessageController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show($user, $from, $to)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Message $message)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Message $message)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Message $message)
-    {
-        //
+        $temp = '';
+        if( $to ==  auth()->user()->id ) { $temp = $from; $from = $to; $to = $temp; }
+        return Message::getAChatMessages(auth()->user()->id, $to);
     }
 }
