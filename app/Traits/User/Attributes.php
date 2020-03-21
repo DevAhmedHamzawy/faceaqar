@@ -2,6 +2,8 @@
 
 namespace App\Traits\User;
 
+use Carbon\Carbon;
+
 Trait Attributes
 {
 
@@ -26,7 +28,7 @@ Trait Attributes
     //Get created_at In Arabic With Format ('d M Y')
     public function getcreateAtAttribute()
     {
-        return Carbon::parse($this->created_at)->translatedFormat('d M Y');
+        return Carbon::parse($this->profile->created_at)->translatedFormat('d M Y');
     }
 
     //Get updated_at In Arabic With Format ('d M Y')

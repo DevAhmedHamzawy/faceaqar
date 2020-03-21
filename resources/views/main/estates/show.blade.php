@@ -53,7 +53,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
                             <span class="color_blue">
-                                اسم {{ $adSort->title }}  
+                                {{ $estate->name }}  
                             </span>
                         </div>
                     </div>
@@ -66,8 +66,8 @@
                                 <span class="color_blue">
                                     <ul>
                                         <li>{{ $estate->category->name }} <i class="fa fa-home"></i> </li>
-                                        <li class="qt3a2">{!! $sortName[0] !!}<i class="fas fa-building"></i> </li>
-                                        <li>   {!! $offerName[0] !!}   <i class="far fa-gem"></i>   </li>
+                                        <li class="qt3a2">{!! $sortName !!}<i class="fas fa-building"></i> </li>
+                                        <li>   {!! $offerName !!}   <i class="far fa-gem"></i>   </li>
                                     </ul>
                                 </span>
                             </div>
@@ -101,7 +101,7 @@
 
                             @foreach ($estate->images as $key=>$img)
                                 <div class="mySlides">
-                                <div class="numbertext">{{ $key }} / {{ count($estate->images) }}</div>
+                                <div class="numbertext">{{ $key+1 }} / {{ count($estate->images) }}</div>
                                     <img src="{{ $img }}" style="width:100%">
                                 </div>
                             @endforeach
@@ -116,7 +116,7 @@
                                 
                                 @foreach ($estate->images as $key=>$img)
                                     <div class="column">
-                                        <img class="demo cursor" src="{{ $img }}" style="width:100%" onclick="currentSlide({{$key}})" alt="{{ $estate->name }}">
+                                        <img class="demo cursor" src="{{ $img }}" style="width:100%" onclick="currentSlide({{$key+1}})" alt="{{ $estate->name }}">
                                     </div>   
                                 @endforeach
                                 
@@ -164,7 +164,7 @@
 
                 <div class="service_text">
                     <h3>وصف أكثر عن العقار</h3>
-                    <p>{{ $estate->description }}</p>
+                    <p>{{ $estate->more_description }}</p>
                 </div>
 
                 <div class="tabel_details_rael">
@@ -172,7 +172,7 @@
                         <tbody class="table_oio">
                             <tr>
                                 <th class="title_table" width="30%">شاهد المخطط العقاري على اليوتيوب </th>
-                                <th class="title_table"><a href="{{ $estate->youtube }}"> <svg class="svg-inline--fa fa-youtube fa-w-18" aria-hidden="true" data-prefix="fab" data-icon="youtube" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg><!-- <i class="fab fa-youtube"></i> --> </a></th>
+                                <th class="title_table"><a href="{{ 'https://'.$estate->youtube }}"> <svg class="svg-inline--fa fa-youtube fa-w-18" aria-hidden="true" data-prefix="fab" data-icon="youtube" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg><!-- <i class="fab fa-youtube"></i> --> </a></th>
                             </tr>
                         </tbody>
                     </table>
@@ -280,7 +280,7 @@
 
 
         function reportEstate(){
-            if(AuthUser){
+            @auth
                 let report = {
                     estate_id: {!! $estate->id !!},
                 }
@@ -298,25 +298,16 @@
                 }).catch((error) => {
 
                 })
-            }else{
-                Swal.fire({
-                    icon: 'error',
-                    position: 'center',
-                    type: 'error',
-                    title: "تنبيه",
-                    html:
-                    '<h5>الرجاء تسجيل الدخول أو الإنضمام للموقع</h5> <br/>' +
-                    '<a class="btn btn-info" href="{{ route("login") }}">دخول الموقع</a> ' +
-                    '<a class="btn btn-info" href="{{ route("register") }}">الإنضمام للموقع</a> ' +
-                    '<a class="btn btn-info" onclick="swal.closeModal(); return false;">شكراً ... ربما لاحقاً</a> ',
-                    showConfirmButton: false,
-                   
-                })
+            @endauth
+            @guest
+                swalMessageIfUnauthenticated();
+             @endguest
             }
-        }
+        
 
       
         function sendMessage(){
+           
             let message = {
                 name: $('#name').val(),
                 mobile: $('#mobile').val(),
@@ -350,6 +341,10 @@
 
 
         function like(){
+            @guest
+                swalMessageIfUnauthenticated();
+             @endguest
+             @auth
             axios.post('../../check', {estate_id: {!! $estate->id !!}})
                 .then((data) => {
                     if(data.data.length == 0){ window.checkuserlike = 0; }else{ window.checkuserlike = 1; }
@@ -361,11 +356,16 @@
                         }
                     })
                 })
+                @endauth
            
         }
 
 
         function dislike(){
+            @guest
+                swalMessageIfUnauthenticated();
+             @endguest
+             @auth
             axios.post('../../check', {estate_id: {!! $estate->id !!}})
                 .then((data) => {
                     if(data.data.length == 0){ window.checkuserdislike = 0; }else{ window.checkuserdislike = 1; }
@@ -377,10 +377,15 @@
                         }
                     })
                 })
+                @endauth
         }
        
         function favourite()
         {
+            @guest
+                swalMessageIfUnauthenticated();
+             @endguest
+             @auth
             axios.post('../../favourites', {estate_id: {!! $estate->id !!}})
                 .then((data) => {
                     console.log(data.data)
@@ -392,6 +397,24 @@
                         $('#favouriting').append('<i class="fa fa-heart"></i> إلغاء المفضلة')
                     }
                 })   
+                @endauth
+        }
+
+        function swalMessageIfUnauthenticated()
+        {
+            Swal.fire({
+                    icon: 'error',
+                    position: 'center',
+                    type: 'error',
+                    title: "تنبيه",
+                    html:
+                    '<h5>الرجاء تسجيل الدخول أو الإنضمام للموقع</h5> <br/>' +
+                    '<a class="btn btn-info" href="{{ route("login") }}">دخول الموقع</a> ' +
+                    '<a class="btn btn-info" href="{{ route("register") }}">الإنضمام للموقع</a> ' +
+                    '<a class="btn btn-info" onclick="swal.closeModal(); return false;">شكراً ... ربما لاحقاً</a> ',
+                    showConfirmButton: false,
+                   
+                })
         }
 
     </script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Alkoumi\LaravelHijriDate\Hijri;
 use App\Advertiser;
 use App\AuctionEstate;
 use App\Category;
@@ -90,24 +91,28 @@ class EstateController extends Controller
         
         $request->merge(['code' => rand(10,5000), 'ad_sort_id' => DB::table('ad_sort')->whereName($adSort)->pluck('id')[0], 'lat' => $latlngArray[0] , 'lng' => $latlngArray[1] , 'user_id' => auth()->user()->id]);
 
-        $estate = Estate::create($request->only('user_id','code','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng'));
+        $request->merge(['visible' => 1]);
+
+        $estate = Estate::create($request->only('user_id','code','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','more_description','lat','lng','visible'));
         
         $request->merge(['estate_id' => $estate->id]);
 
 
         switch ($adSort) {
             case 'auction_estate':
-                AuctionEstate::create($request->except('agree','estateimages','duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
+                $request->merge(['date' => date("Y-m-d", strtotime($request->date))]);
+                
+                AuctionEstate::create($request->except('agree','estateimages','duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','more_description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email','visible'));
                 break;
             case 'local_estate':
-                LocalEstate::create($request->except('agree','estateimages','duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
+                LocalEstate::create($request->except('agree','estateimages','duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','more_description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email','visible'));
                 break;
             case  'request_estate':
-                RequestEstate::create($request->except('agree','estateimages','duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email'));
+                RequestEstate::create($request->except('agree','estateimages','duration_publish','adSort','user_id','latlng','g-recaptcha-response','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','more_description','lat','lng','choice-type','namefield6','code','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','website','email','visible'));
                 break;
         }
 
-        Advertiser::create($request->only('estate_id','advertiser_sort_id','name','mobile1','mobile2','telephone','fax','central','email','website'));
+        Advertiser::create($request->only('estate_id','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','email','website'));
 
       
         //EstateImage::create($request->only('estate_id','images'));
@@ -143,6 +148,9 @@ class EstateController extends Controller
     {
         views($estate)->record();
         $estate->advertiser = Advertiser::where('estate_id',$estate->id)->first();
+
+        $estate->advertiser->role = Advertiser::getRole($estate->advertiser->advertiser_sort_id);
+
         $adSort = Estate::checkAdSort($adSort);
         $estate_name = $estate->name;
         $images = json_decode($estate->images->img);
@@ -171,6 +179,7 @@ class EstateController extends Controller
                     'offerName' => Estate::getOffer($estate->offer_id),
                     'areaName' => Estate::getMainArea($estate->area_id),
                     'localAuctionEstate' => $localAuctionEstate,
+                    'destinationName' => Estate::getDestination($localAuctionEstate->destination_id),
                     'priceSortName' => AuctionEstate::getPriceSort($localAuctionEstate->price_sort_id),
                     'paymentSortName' => AuctionEstate::getPaymentSort($localAuctionEstate->payment_sort_id),
                 ]);
@@ -187,6 +196,7 @@ class EstateController extends Controller
                     'offerName' => Estate::getOffer($estate->offer_id),
                     'areaName' => Estate::getMainArea($estate->area_id),
                     'localAuctionEstate' => $localAuctionEstate,
+                    'destinationName' => Estate::getDestination($localAuctionEstate->destination_id),
                     'priceSortName' => LocalEstate::getPriceSort($localAuctionEstate->price_sort_id),
                     'paymentSortName' => LocalEstate::getPaymentSort($localAuctionEstate->payment_sort_id),
                 ]);
@@ -212,11 +222,7 @@ class EstateController extends Controller
                         'areaName' => Estate::getMainArea($estate->area_id),
                     ]);
                     break;
-        }
-
-       
-         
-    
+        }   
         
     }
 
@@ -280,7 +286,7 @@ class EstateController extends Controller
     {
         $latlngArray = explode(',' , $request->input('latlng'));
         
-        $request->merge(['code' => rand(10,5000), 'ad_sort_id' => DB::table('ad_sort')->whereName($adSort)->pluck('id')[0], 'lat' => $latlngArray[0] , 'lng' => $latlngArray[1] , 'user_id' => auth()->user()->id]);
+        $request->merge(['code' => $estate->code, 'ad_sort_id' => DB::table('ad_sort')->whereName($adSort)->pluck('id')[0], 'lat' => $latlngArray[0] , 'lng' => $latlngArray[1] , 'user_id' => auth()->user()->id]);
 
         $estate->update($request->only('user_id','code','ad_sort_id','area_id','category_id','sort_id','offer_id','premium_id','duration_id','center','neighborhood','street','address','name','youtube','description','lat','lng'));
         
@@ -299,7 +305,7 @@ class EstateController extends Controller
                 break;
         }
 
-        Advertiser::whereEstateId($estate->id)->update($request->only('estate_id','advertiser_sort_id','name','mobile1','mobile2','telephone','fax','central','email','website'));
+        Advertiser::whereEstateId($estate->id)->update($request->only('estate_id','advertiser_sort_id','advertiser_name','mobile1','mobile2','telephone','fax','central','email','website'));
 
       
         //EstateImage::create($request->only('estate_id','images'));

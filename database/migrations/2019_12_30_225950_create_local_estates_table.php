@@ -50,7 +50,7 @@ class CreateLocalEstatesTable extends Migration
             $table->enum('gas_network' , ['يوجد' , 'لا يوجد'])->nullable();
             $table->enum('sewerage_network' , ['يوجد' , 'لا يوجد'])->nullable();   
             $table->text('internal_services');
-            $table->text('external_services');         
+            $table->text('external_services'); 
             $table->timestamps();
         });
     }

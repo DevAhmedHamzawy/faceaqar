@@ -221,7 +221,7 @@
         <div class="row">
             <div class="col-md-12">
                 <label for="">اكتب الملاحظات</label>
-                <textarea class="form-control" name="description" rows="2" placeholder="اكتب اي ملاحظات هنا"></textarea>
+                <textarea class="form-control" name="description" rows="2" placeholder="اكتب اي ملاحظات هنا">{{ old('description') }}</textarea>
             </div>
         </div>
      </div>
@@ -277,7 +277,7 @@
                             <label for="">عدد الأدوار</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" name="floors_number" value="{{ old('floors_number') }}" min="0" id="">
+                            <input type="number" name="floors_number" class="form-control" value="{{ old('floors_number') }}" min="0" id="">
                         </div>
                     </div>
                  </div>
@@ -287,7 +287,7 @@
                             <label for="">عدد الوحدات</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" name="units_number" value="{{ old('units_number') }}" min="0" id="">
+                            <input type="number" name="units_number" class="form-control" value="{{ old('units_number') }}" min="0" id="">
                         </div>
                     </div>
                  </div>
@@ -297,7 +297,7 @@
                             <label for=""> رقم الدور </label>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" name="floor_number" value="{{ old('floor_number') }}" min="0" id="">
+                            <input type="number" name="floor_number" class="form-control" value="{{ old('floor_number') }}" min="0" id="">
                         </div>
                     </div>
                  </div>
@@ -307,7 +307,7 @@
                             <label for="">رقم الوحدة </label>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" name="unit_number" value="{{ old('unit_number') }}" min="0" id="">
+                            <input type="number" name="unit_number" class="form-control" value="{{ old('unit_number') }}" min="0" id="">
                         </div>
                     </div>
                  </div>
@@ -317,7 +317,7 @@
                             <label for="">عدد الغرف</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" name="rooms_number" value="{{ old('rooms_number') }}" min="0" id="">
+                            <input type="number" name="rooms_number" class="form-control" value="{{ old('rooms_number') }}" min="0" id="">
                         </div>
                     </div>
                  </div>
@@ -327,7 +327,7 @@
                             <label for="">عدد الصالات </label>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" name="receptions_number" value="{{ old('receptions_number') }}" min="0" id="">
+                            <input type="number" name="receptions_number" class="form-control" value="{{ old('receptions_number') }}" min="0" id="">
                         </div>
                     </div>
                  </div>
@@ -337,7 +337,7 @@
                             <label for="">عدد المطابخ</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" name="kitchens_number" value="{{ old('kitchens_number') }}" min="0" id="">
+                            <input type="number" name="kitchens_number" class="form-control" value="{{ old('kitchens_number') }}" min="0" id="">
                         </div>
                     </div>
                  </div>
@@ -347,7 +347,7 @@
                             <label for="">عدد المخازن</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" name="stores_number" value="{{ old('stores_number') }}" min="0" id="">
+                            <input type="number" name="stores_number" class="form-control" value="{{ old('stores_number') }}" min="0" id="">
                         </div>
                     </div>
                  </div>
@@ -357,7 +357,7 @@
                             <label for="">عدد الحمامات</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" name="bathrooms_number" value="{{ old('bathrooms_number') }}" min="0" id="">
+                            <input type="number" name="bathrooms_number" class="form-control" value="{{ old('bathrooms_number') }}" min="0" id="">
                         </div>
                     </div>
                  </div>
@@ -367,7 +367,7 @@
                             <label for="">المصاعد </label>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" name="lifts_number" value="{{ old('lifts_number') }}" min="0" id="">
+                            <input type="number" name="lifts_number" class="form-control" value="{{ old('lifts_number') }}" min="0" id="">
                         </div>
                     </div>
                  </div>
@@ -486,11 +486,11 @@
             <div class="col-md-12">
                 <h4> اكتب الخدمات الداخلية للعقار </h4>
                 <div class="form-group">
-                    <textarea class="form-control" name="internal_services" rows="6" placeholder="وصف عن العقار"> </textarea>
+                <textarea class="form-control" name="internal_services" rows="6" placeholder="وصف عن العقار">{{ old('internal_services') }}</textarea>
                 </div><br/>
                 <h4>اكتب الخدمات الخارجية للعقار </h4>
                 <div class="form-group">
-                    <textarea class="form-control" name="external_services" rows="6" placeholder="وصف عن العقار"> </textarea>
+                    <textarea class="form-control" name="external_services" rows="6" placeholder="وصف عن العقار">{{ old('external_services') }}</textarea>
                 </div>
                 </div>
             </div>

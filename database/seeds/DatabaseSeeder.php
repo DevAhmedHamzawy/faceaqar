@@ -16,6 +16,7 @@ use App\RequestEstate;
 use App\Role;
 use App\Setting;
 use App\User;
+use App\UserImage;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -115,8 +116,9 @@ class DatabaseSeeder extends Seeder
 
         //factory(Links::class, 20)->create();
 
-        factory(EstateImage::class, 139)->create();
+        //factory(EstateImage::class, 139)->create();
 
+        //factory(UserImage::class, 139)->create();
 
     }
 }

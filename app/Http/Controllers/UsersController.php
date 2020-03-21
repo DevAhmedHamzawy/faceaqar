@@ -15,6 +15,17 @@ class UsersController extends Controller
   
     public function show(User $user)
     {
+        $user_name = $user->name;
+        $images = json_decode($user->images->img);
+        $storage_images = [];
+        foreach($images as $image){
+            $image = asset("storage/estates/${user_name}/${image}");
+            array_push($storage_images, $image);
+        }
+
+        //dd($storage_images);
+        $user->images = $storage_images;
+
        if($user->hasRole('estate_office')){ views($user)->record(); return view('main.users.estate_office.show', [ 'user' => $user, 'views' => views($user)->unique()->count()]); } else { dd($user);  }
     }
 

@@ -1,5 +1,14 @@
 @extends('main.layouts.app')
 
+@section('header')
+    <style>
+        #social-links ul li{
+            display: inline;
+            padding: 50px;
+        }
+    </style>
+@endsection
+
 @section('content')
 
 

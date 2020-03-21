@@ -7,6 +7,7 @@ use App\Area;
 use App\Icon;
 use App\Links;
 use App\Settings;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;

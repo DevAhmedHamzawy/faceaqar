@@ -15,11 +15,11 @@
                             </div>
                             <div class="col-md-3">
                         <label for="">اختر التاريخ الهجري<em>*</em></label>  
-                                <input  class="form-control" type="date" name="date" placeholder="تقويم هجري">
+                                <input  class="form-control hijri-date-input" type="date" name="date" placeholder="تقويم هجري">
                             </div>
                             <div class="col-md-3">
                         <label for="">اختر التاريخ الميلادي<em>*</em></label>
-                                <input  class="form-control" type="date" name="date" placeholder="تقويم هجري">
+                                <input  class="form-control hijri-date-input" type="date" name="date" placeholder="تقويم هجري">
                             </div>
                             <div class="col-md-3">
                         <label for="">اختر الوقت<em>*</em></label>

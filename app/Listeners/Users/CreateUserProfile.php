@@ -28,6 +28,7 @@ class CreateUserProfile
         $event->user->profile()->create([
             'user_id' => $event->user->id,
             'area_id' => 0,
+            'code' => rand(10,5000)
         ]);
     }
 }

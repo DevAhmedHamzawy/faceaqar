@@ -27,21 +27,18 @@ Route::group(['middleware' => 'verified'], function (){
     Route::put('profile/{user}/edit', 'UsersController@update')->name('update-profile');
 
     // Estate Create Process
-    Route::get('estates/{adSort}/create', 'EstateController@create')->name('estate.createestate');
-    Route::post('estates/{adSort}/create', 'EstateController@store')->name('estates.create');
+    Route::get('new-estate/{adSort}/create', 'EstateController@create')->name('estate.createestate');
+    Route::post('new-estate/{adSort}/create', 'EstateController@store')->name('estates.create');
 
     // Estate Update Process
-    Route::get('estates/{adSort}/{estate}/edit', 'EstateController@edit')->name('estates.edit');
-    Route::patch('estates/{adSort}/{estate}/edit', 'EstateController@update')->name('estates.update');
+    Route::get('the-estate/{adSort}/{estate}/edit', 'EstateController@edit')->name('estates.edit');
+    Route::patch('the-estate/{adSort}/{estate}/edit', 'EstateController@update')->name('estates.update');
 
     //Delete Estate Images
     Route::delete('estate-images/{estate}/{index}', 'EstateImageController@destroy');
 
     //Delete Estate
     Route::delete('estates/{estate}', 'EstateController@destroy')->name('estates.destroy');
-
-    //Message With Estate Owner
-    Route::post('sendmessage', 'MessageController@store');
 
     //Report Estate
     Route::post('reportestate', 'ReportController@store');

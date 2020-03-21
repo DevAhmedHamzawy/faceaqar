@@ -23,6 +23,7 @@ class CreateEstatesTable extends Migration
             $table->integer('offer_id')->nullable();
             $table->integer('premium_id')->nullable();
             $table->integer('duration_id');
+            $table->boolean('visible');
             $table->integer('code');
             $table->string('center');
             $table->string('neighborhood');
@@ -30,10 +31,10 @@ class CreateEstatesTable extends Migration
             $table->text('address');
             $table->string('name');
             $table->string('youtube')->nullable();
-            $table->longText('description');
+            $table->longText('description')->nullable();
+            $table->longText('more_description');
             $table->decimal('lat', 10, 7);
             $table->decimal('lng', 10, 7);
-            $table->integer('views')->default(0);
             $table->timestamps();
         });
     }

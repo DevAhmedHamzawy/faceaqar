@@ -166,8 +166,8 @@
                                     <li>{{ $estate->category->name ?? 'غير معروف' }}<i class="fa fa-home"></i> </li>
                                 @endunless
                                 @unless($adSort->name === 'office_estate' || $adSort->name === 'broker_estate')
-                                <li class="qt3a"> {{ $estate->sortName[0] ?? '' }} <i class="fas fa-building"></i> </li>
-                                <li>  {{ $estate->offerName[0] ?? '' }}  <i class="far fa-gem"></i>   </li>
+                                <li class="qt3a"> {{ $estate->sortName ?? '' }} <i class="fas fa-building"></i> </li>
+                                <li>  {{ $estate->offerName ?? '' }}  <i class="far fa-gem"></i>   </li>
                                 @endunless
                             </ul>
                                 

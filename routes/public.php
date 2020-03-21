@@ -42,6 +42,9 @@ Route::get('pages', 'PageController@show')->name('pages.show');
 Route::get('contactus', 'ContactUsController@show')->name('contactus');
 Route::post('sendcontact', 'ContactUsController@store');
 
+//Message With Estate Owner
+Route::post('sendmessage', 'MessageController@store');
+
 
 
 

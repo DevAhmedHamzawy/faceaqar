@@ -17,6 +17,7 @@ class CreateProfilesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->integer('area_id');
+            $table->integer('code');
             $table->string('center')->nullable();
             $table->string('neighborhood')->nullable();
             $table->string('street')->nullable();
@@ -44,7 +45,6 @@ class CreateProfilesTable extends Migration
             $table->string('central')->nullable();
             $table->string('email')->nullable();
             $table->string('website')->nullable();
-            $table->integer('views')->default(0);
             $table->timestamps();
         });
     }

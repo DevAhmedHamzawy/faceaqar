@@ -44,7 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail, ViewableContract
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = ['profile','estates','images','favourites.estate'];
+    protected $with = ['profile','estates','images','favourites.estate','likes','dislikes'];
 
 
     public function getRouteKeyName()

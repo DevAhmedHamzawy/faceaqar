@@ -28,4 +28,14 @@ Trait Relations
     {
         return $this->hasMany('App\Favourite');
     }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Like', 'estate_id')->whereLike(1);
+    }
+
+    public function dislikes()
+    {
+        return $this->hasMany('App\Like', 'estate_id')->whereLike(-1);
+    }
 }

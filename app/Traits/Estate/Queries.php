@@ -23,7 +23,7 @@ Trait Queries
     //Get Specific Sort
     public static function getSort($id)
     {
-        return DB::table('sort')->whereId($id)->pluck('name');
+        return DB::table('sort')->whereId($id)->first()->name ?? 'لا يوجد';
     }
 
     //Get All Offers
@@ -35,13 +35,19 @@ Trait Queries
     //Get Specific Offer
     public static function getOffer($id)
     {
-        return DB::table('offer')->whereId($id)->pluck('name');
+        return DB::table('offer')->whereId($id)->first()->name ?? 'لا يوجد';
     }
 
     //Get All Destinations
     public static function getAllDestinations()
     {
         return DB::table('destination')->get();
+    }
+
+    //Get Specific Destination
+    public static function getDestination($id)
+    {
+         return DB::table('destination')->whereId($id)->first()->name ?? 'لا يوجد';
     }
 
     //Get All Price Sorts
@@ -66,13 +72,13 @@ Trait Queries
     //Get Price Sort
     public static function getPriceSort($id)
     {
-        return DB::table('price_sort')->whereId($id)->pluck('name');
+        return DB::table('price_sort')->whereId($id)->first()->name;
     }
 
     //Get Payment Sort
     public static function getPaymentSort($id)
     {
-        return DB::table('payment_sort')->whereId($id)->pluck('name');
+        return DB::table('payment_sort')->whereId($id)->first()->name;
     }
 
     //Get Main Area

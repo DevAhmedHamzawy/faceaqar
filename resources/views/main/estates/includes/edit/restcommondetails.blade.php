@@ -5,7 +5,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <textarea class="form-control" name="description" rows="6">{{ $estate->description }}</textarea>
+        <textarea class="form-control" name="more_description" rows="6">{{ $estate->more_description }}</textarea>
     </div>
 </div>
 <div class="row">
@@ -167,7 +167,7 @@
     </div>
     <div class="col-md-4">
         <select class="form-control required" name="duration_publish">
-            <option>اختر</option>
+            <option disabled>اختر</option>
             <option>شهر</option>
             <option>3 شهور</option>
             <option>6 شهور</option>

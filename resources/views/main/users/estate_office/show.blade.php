@@ -1,5 +1,19 @@
 @extends('main.layouts.app')
 
+@section('header')
+    <style>
+        .swal2-modal{
+            width:600px !important;
+            height: 200px;
+        }
+
+        #social-links ul li{
+            display: inline;
+            padding: 50px;
+        }
+    </style>    
+@endsection
+
 @section('content')
 
 <!-- details_real -->
@@ -19,17 +33,17 @@
                     <div class="row">
                         <div class="col-sm-3 col-xs-12  padd_left">
                             <span>
-                                <strong> كود الإعلان </strong> 4521
+                                <strong> كود الإعلان </strong> {{ $user->profile->code }}
                             </span>
                         </div>
                         <div class="col-sm-3 col-xs-12 padd_none">
                             <span>
-                                <strong> تاريخ الإضافة </strong> : &nbsp; <i class="far fa-clock"></i> {{ $user->profile->create_at }}
+                                <strong> تاريخ الإضافة </strong> : &nbsp; <i class="far fa-clock"></i> {{ $user->create_at }}
                             </span>
                         </div>
                         <div class="col-sm-3 col-xs-12 padd_none">
                             <span>
-                                <strong> أخر تحديث </strong> : <i class="far fa-calendar-alt"></i> {{ $user->profile->update_at }}&nbsp;
+                                <strong> أخر تحديث </strong> : <i class="far fa-calendar-alt"></i> {{ $user->update_at }}&nbsp;
                             </span>
                         </div>
                         <div class="col-sm-3 col-xs-12 padd_right">
@@ -54,7 +68,7 @@
                         </div>
                         <div class="col-sm-12 col-xs-12">
                             <span class="color_blue">
-                            نوع نشاط المكتب العقاري
+                            {{ $user->roles->first()->display_name  }}
                             </span>
                         </div>
                     </div>
@@ -73,7 +87,7 @@
                         </div>
                         <div class="col-sm-4 col-xs-12 padd_right">
                             <span class="color_blue">
-                        العنوان التفصيلي للمكتب العقاري	<i class="fas fa-map-marked-alt"></i> 
+                                {{ $user->profile->address }} 	<i class="fas fa-map-marked-alt"></i> 
                             </span>
                         </div>
                     </div>
@@ -84,13 +98,13 @@
                         <div class="col-sm-12 col-xs-12">
                             <div class="social-medianew">
                             <ul>
-                                <li> <a href="{{ $user->profile->facebook }}"> <img src="images/fb.png">
+                                <li> <a href="{{ $user->profile->facebook }}"> <img src="{{ $header3[4]->icon_path }}">
                                 </a> </li>
-                                <li> <a href="{{ $user->profile->instagram }}"> <img src="images/ins.png"> </a> </li>
-                                <li> <a href="{{ $user->profile->twitter }}"> <img src="images/tw.png"> </a> </li>
-                                <li> <a href="{{ $user->profile->youtube }}"> <img src="images/yo.png"> </a> </li>
-                                <li> <a href="{{ $user->profile->whatsapp }}"> <img src="images/wh.png"> </a> </li>
-                                <li> <a href="{{ $user->profile->snapchat }}"> <img src="images/sn.png"> </a> </li>
+                                <li> <a href="{{ $user->profile->instagram }}"> <img src="{{ $header3[8]->icon_path }}"> </a> </li>
+                                <li> <a href="{{ $user->profile->twitter }}"> <img src="{{ $header3[5]->icon_path }}"> </a> </li>
+                                <li> <a href="{{ $user->profile->youtube }}"> <img src="{{ $header3[7]->icon_path }}"> </a> </li>
+                                <li> <a href="{{ $user->profile->whatsapp }}"> <img src="{{ $header3[10]->icon_path }}"> </a> </li>
+                                <li> <a href="{{ $user->profile->snapchat }}"> <img src="{{ $header3[11]->icon_path }}"> </a> </li>
                             </ul>
                         </div>
                         </div>
@@ -101,33 +115,37 @@
                         <div class="map_cont">
                     <div class="row">
                     <div class="col-sm-12 col-xs-12 col-md-8 " >
-                            <div class="mySlides">
+                         
 
-                            {{--@foreach ($user->images as $key=>$img)
-                                <div class="mySlides">
-                                <div class="numbertext">{{ $key }} / {{ count($user->images) }}</div>
-                                    <img src="{{ $img }}" style="width:100%">
-                                </div>
-                            @endforeach--}}
+                        @foreach ($user->images as $key=>$img)
+                        <div class="mySlides">
+                        <div class="numbertext">{{ $key+1 }} / {{ count($user->images) }}</div>
+                            <img src="{{ $img }}" style="width:100%">
+                        </div>
+                    @endforeach
+                   
 
-<a class="prev" onclick="plusSlides(-1)">❮</a>
-<a class="next" onclick="plusSlides(1)">❯</a>
+                    <a class="prev" onclick="plusSlides(-1)">❮</a>
+                    <a class="next" onclick="plusSlides(1)">❯</a>
+
+                    
+
+                    <div class="row">
+                        
+                        @foreach ($user->images as $key=>$img)
+                            <div class="column">
+                                <img class="demo cursor" src="{{ $img }}" style="width:100%" onclick="currentSlide({{$key+1}})" alt="{{ $user->name }}">
+                            </div>   
+                        @endforeach
+                        
+                       
+                    </div>
 
 
-
-<div class="row">
-
-    {{--@foreach ($user->profile->images as $key=>$img)
-    <div class="column">
-        <img class="demo cursor" src="{{ $img }}" style="width:100%" onclick="currentSlide({{$key}})" alt="{{ $estate->name }}">
-    </div>   
-@endforeach--}}
-
-</div>
-</div>
+                    </div>
 
             <div class="col-md-4 col-sm-12 col-xs-12 pull-left">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d27626.27366240017!2d31.35026109284309!3d30.057386886394237!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1485270685978" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                            <iframe src="https://www.google.com/maps/embed/v1/place?q={{$user->profile->lat}},{{$user->profile->lng}}&amp;key=AIzaSyA2obCxpDHFCwyBJe7z5EyrBTgdI1vm8RE&center={{$user->profile->lat}},{{$user->profile->lng}}&zoom=6" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
                             <div class="block_ads_local block_time no-eff">
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-12">
@@ -136,8 +154,8 @@
                                         </a>
                                     </div>
                                     <div class="col-sm-6 col-xs-12 padd_right no-eff">
-                                        <a href="#" title="">
-                                            <i class="fa fa-save"></i> حفظ
+                                        <a href="javascript:void(0)" onclick="favourite()" id="favouriting" title="">
+                                            <i class="{{ $user->favourite ? "fa fa-heart" : "far fa-heart" }}"></i> {{ $user->favourite ? "إلغاء المفضلة"  :  "مفضلة" }}
                                         </a>
                                     </div>
                                     <div class="col-sm-6 col-xs-12">
@@ -146,7 +164,7 @@
                                         </a>
                                     </div>
                                     <div class="col-sm-6 col-xs-12 padd_right no-eff">
-                                        <a href="#" title="">
+                                        <a href="#" onclick="window.print()" title="">
                                             <i class="fa fa-print"></i> طباعة
                                         </a>
                                     </div>
@@ -189,103 +207,24 @@
                             <h4 class="rateing">تقييم المحتوى</h4>
                              <div class="rateing_icons d-flex flex-row justify-content-cente">
                                 <div class="p-2"> 
-                                    <i id="like1" class="fa fa-thumbs-up"></i> <div id="like1-bs3"></div>
+                                    <i id="like1" onclick="like()" class="fa fa-thumbs-up"></i> <div id="like1-bs3"></div>
+                                    <span id="likes">{{ count($user->likes) }}</span>
                                 </div>
                                 
                                 <div class="p-2">
-                                    <i id="dislike1" class="fa fa-thumbs-down"></i> <div id="dislike1-bs3"></div>
+                                    <i id="dislike1" onclick="dislike()" class="fa fa-thumbs-down"></i> <div id="dislike1-bs3"></div>
+                                    <span id="dislikes">{{ count($user->dislikes) }}</span>
                                 </div>
                             </div>
                         </div>
                             <div class="col-md-6 col-xs-12 hidden-xs">
                             <div class="report">
-                                <button type="submit" class="btn btn-default btn_web btn_red"  data-toggle="modal" data-target="#report">الإبلاغ عن المحتوى</button>
+                                <button onclick="reportOffice()" class="btn btn-default btn_web btn_red"  data-toggle="modal" data-target="#report">الإبلاغ عن المحتوى</button>
                             </div>
                         </div>
                     </div>
-                <div class="row" id="contact_us_page">
-                    <div class="col-sm-6 col-xs-12">
-                        <div class="info_foo_con info_foo_con_00">
-                            <h3 class="title_contct_us">معلومات التواصل</h3>
-                            <ul>
-                                <li>
-                                    <i class="fa fa-user" style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i>
-                                    <strong style="font-size: 16px">اسم المستخدم</strong>
-                                    <a href="tel" target="_blank" style="font-size: 16px;padding-right: 40px">{{ $user->profile->name }}</a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-user" style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i>
-                                    <strong style="font-size: 16px">اسم المعلن</strong>
-                                    <a href="tel" target="_blank" style="font-size: 16px;padding-right: 40px">{{ $user->profile->full_name }}</a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-user"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i>
-                                    <strong style="font-size: 16px">نوع المعلن</strong>
-                                    <a href="tel" target="_blank" style="font-size: 16px;padding-right: 40px">نص نص نص نص</a>
-                                </li>
-                                <li>
-                                    <i class="fas fa-mobile"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i>
-                                    <strong style="font-size: 16px">الجوال 1</strong>
-                                    <a href="tel" target="_blank" style="font-size: 16px;padding-right: 40px">{{ $user->profile->mobile1 }}</a>
-                                </li>
-                                <li>
-                                    <i class="fas fa-mobile"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i>
-                                    <strong style="font-size: 16px">الجوال 2</strong>
-                                    <a href="tel" target="_blank" style="font-size: 16px;padding-right: 40px">{{ $user->profile->mobile2 }}</a>
-                                </li>
-                                <li>
-                                    <i class="fas fa-mobile"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i>
-                                    <strong style="font-size: 16px">تلفون</strong>
-                                    <a href="tel" target="_blank" style="font-size: 16px;padding-right: 40px">{{ $user->profile->telephone }}</a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-fax"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i>
-                                    <strong style="font-size: 16px">فاكس</strong>
-                                    <a href="tel" target="_blank" style="font-size: 16px;padding-right: 40px">{{ $user->profile->fax }}</a>
-                                </li>
-                                <li>
-                                    <i class="fas fa-mobile"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i>
-                                    <strong style="font-size: 16px">سنترال</strong>
-                                    <a href="tel" target="_blank" style="font-size: 16px;padding-right: 40px">{{ $user->profile->central }}</a>
-                                </li>
-                                <li>
-                                    <i class="fas fa-envelope"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i>
-                                    <strong style="font-size: 16px">البريد الإلكترونى</strong>
-                                    <a href="tel" target="_blank" style="font-size: 16px;padding-right: 40px">{{ $user->profile->email }}</a>
-                                </li>
-                                <li>
-                                    <i class="fas fa-envelope"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i>
-                                    <strong style="font-size: 16px">الموقع الإلكترونى</strong>
-                                    <a href="tel" target="_blank"style="font-size: 16px;padding-right: 40px">{{ $user->profile->website }}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xs-12">
-                        <div class="form_cont form_cont_00">
-                        <h3 class="title_contct_us">ارسال رسالة خاصة إلى المعلن</h3>
-                            <form>
-                                <div class="form-group">
-                                    <label for=""> <i class="fa fa-user"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i> الأسم </label>
-                                    <input type="text" class="form-control" id="" placeholder="">
-                                </div>	
-                                <div class="form-group">
-                                    <label for=""> <i class="fa fa-phone"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i> رقم الجوال </label>
-                                    <input type="text" class="form-control" id="" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <label for=""> <i class="fas fa-envelope"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i> البريد الإلكترونى </label>
-                                    <input type="text" class="form-control" id="" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <label for=""> <i class="fas fa-envelope-open-text"  style="float: right;font-size: 20px;color: #2e6da4;padding-left: 3px;"></i> النص </label>
-                                    <textarea class="form-control" rows="6"></textarea>
-                                </div>	
-                                <button type="submit" class="btn btn-default btn_web">إرســال</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                    @include('main.users.estate_office.includes.contact')
+
                {{-- <div class="realestate_number">
                     <div class="row">
                         <div class="col-sm-4 col-xs-12">
@@ -416,4 +355,206 @@
 </section>
 <!-- end_details_real -->
 
+
+<div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+          مشاركة الصفحة الإعلانية الإلكترونية
+        </div>
+        <div class="modal-body">
+
+           
+            {!! Share::currentPage()->facebook()->twitter()->linkedin()->whatsapp()->telegram() !!}
+           
+           
+        </div>
+          
+      </div>
+    </div>
+</div>
+
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("demo");
+      var captionText = document.getElementById("caption");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+      captionText.innerHTML = dots[slideIndex-1].alt;
+    }
+    </script>
+
+@endsection
+
+
+@section('footer')
+
++   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="{{ asset('js/share.js') }}"></script>
+
+    <script>
+
+
+        function reportOffice(){
+            @auth
+                let report = {
+                    office_id: {!! $user->id !!},
+                }
+            axios.post('../../reportestate', report)
+                .then((data) => {
+
+                    
+                        $('.report').append('<div class="alert alert-success mt-3" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>تم الإبلاغ عن الإعلان .... إدارة الموقع ستراجع البلاغ المقدم!</div></div>');
+                        setTimeout(() => {
+                            $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                                $(this).remove() 
+                            });
+                        }, 2000);
+                    
+                }).catch((error) => {
+
+                })
+            @endauth
+            @guest
+                swalMessageIfUnauthenticated();
+             @endguest
+            }
+        
+
+      
+        function sendMessage(){
+           
+            let message = {
+                name: $('#name').val(),
+                mobile: $('#mobile').val(),
+                email: $('#email').val(),
+                body: $('#body').val(),
+                to: $("#to").val(),
+            }
+
+            axios.post('../../sendmessage', message)
+                .then((data) => {
+                    
+                    $('#name').val("");
+                    $('#mobile').val("");
+                    $('#email').val("");
+                    $('#body').val("");
+                    $("#to").val("");
+
+
+                    $('#success-message').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإرسال!</strong> الرسالة قد تم إرسالها بنجاح!</div></div>');
+                    setTimeout(() => {
+                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                            $(this).remove() 
+                        });
+                    }, 2000);
+                }).catch((error) => {
+
+                })
+
+                
+        }
+
+
+        function like(){
+            @guest
+                swalMessageIfUnauthenticated();
+             @endguest
+             @auth
+            axios.post('../../check', {office_id: {!! $user->id !!}})
+                .then((data) => {
+                    if(data.data.length == 0){ window.checkuserlike = 0; }else{ window.checkuserlike = 1; }
+                    axios.post('../../like', {office_id: {!! $user->id !!}})
+                    .then((data) => {
+                        $('#likes').html(parseInt($('#likes').html(), 10)+1)
+                        if(checkuserlike != 0){
+                            $('#dislikes').html(parseInt($('#dislikes').html(), 10)-1)
+                        }
+                    })
+                })
+                @endauth
+           
+        }
+
+
+        function dislike(){
+            @guest
+                swalMessageIfUnauthenticated();
+             @endguest
+             @auth
+            axios.post('../../check', {office_id: {!! $user->id !!}})
+                .then((data) => {
+                    if(data.data.length == 0){ window.checkuserdislike = 0; }else{ window.checkuserdislike = 1; }
+                    axios.post('../../dislike', {office_id: {!! $user->id !!}})
+                    .then((data) => {
+                        $('#dislikes').html(parseInt($('#dislikes').html(), 10)+1)
+                        if(checkuserdislike != 0){
+                            $('#likes').html(parseInt($('#dislikes').html(), 10)-1)
+                        }
+                    })
+                })
+                @endauth
+        }
+       
+        function favourite()
+        {
+            @guest
+                swalMessageIfUnauthenticated();
+             @endguest
+             @auth
+            axios.post('../../favourites', {office_id: {!! $user->id !!}})
+                .then((data) => {
+                    console.log(data.data)
+                    if(data.data == 1){
+                        $('#favouriting').empty() 
+                        $('#favouriting').append('<i class="far fa-heart"></i> مفضلة')
+                    }else{
+                        $('#favouriting').empty() 
+                        $('#favouriting').append('<i class="fa fa-heart"></i> إلغاء المفضلة')
+                    }
+                })   
+                @endauth
+        }
+
+        function swalMessageIfUnauthenticated()
+        {
+            Swal.fire({
+                    icon: 'error',
+                    position: 'center',
+                    type: 'error',
+                    title: "تنبيه",
+                    html:
+                    '<h5>الرجاء تسجيل الدخول أو الإنضمام للموقع</h5> <br/>' +
+                    '<a class="btn btn-info" href="{{ route("login") }}">دخول الموقع</a> ' +
+                    '<a class="btn btn-info" href="{{ route("register") }}">الإنضمام للموقع</a> ' +
+                    '<a class="btn btn-info" onclick="swal.closeModal(); return false;">شكراً ... ربما لاحقاً</a> ',
+                    showConfirmButton: false,
+                   
+                })
+        }
+
+    </script>
+    
 @endsection

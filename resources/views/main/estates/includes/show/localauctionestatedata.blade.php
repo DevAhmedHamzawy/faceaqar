@@ -3,15 +3,15 @@
         <h1>بيانات العقار</h1>
         <div class="itemm">
             <h3>نوع العقار</h3>
-            <p>فيلا</p>
+            <p>{{ $estate->category->name }}</p>
         </div>
         <div class="itemm">
             <h3>نوع القطعة</h3>
-            <p>سكني</p>
+            <p>{{ $sortName }}</p>
         </div>
         <div class="itemm">
             <h3>نوع العرض</h3>
-            <p>للبيع</p>
+            <p>{{ $offerName }}</p>
         </div>
         <div class="itemm">
             <h3>اسم المخطط </h3>
@@ -22,8 +22,8 @@
             <p>{{ $localAuctionEstate->schema_number }}</p>
         </div>
         <div class="itemm">
-            <h3> رقم البنوك </h3>
-            <p>{{ $localAuctionEstate->banks_number }}</p>
+            <h3> رقم البلوك </h3>
+            <p>{{ $localAuctionEstate->block_number }}</p>
         </div>
         <div class="itemm">
             <h3>رقم القطعة </h3>
@@ -43,7 +43,7 @@
         </div>
         <div class="itemm">
             <h3> نوع السعر </h3>
-            <p>{{ $priceSortName[0] }}</p>
+            <p>{{ $priceSortName }}</p>
         </div>
         
         <div class="itemm">
@@ -67,7 +67,7 @@
         
         <div class="itemm">
             <h3> مساحة البناء م2 </h3>
-            <p>{{ $localAuctionEstate->estate_space }} متر</p>
+            <p>{{ $localAuctionEstate->building_space }} متر</p>
         </div>
         <div class="itemm">
             <h3> تصميم البناء  </h3>
@@ -168,21 +168,21 @@
                         <th>اسم المخطط </th>
                     </tr>
                     <tr>
-                        <td> فيلا </td>
-                        <td> سكني </td>
-                        <td> للبيع </td>
+                        <td> {{ $estate->category->name }} </td>
+                        <td> {{ $sortName }} </td>
+                        <td> {{ $offerName }} </td>
                         <td> {{ $localAuctionEstate->schema_name }} </td>
                     </tr>
                     
                     <tr>
                         <th>رقم المخطط </th>
-                        <th>رقم البنوك </th>
+                        <th>رقم البلوك </th>
                         <th>رقم القطعة </th>
                         <th>عدد الشوارع  </th>
                     </tr>
                     <tr>
                         <td> {{ $localAuctionEstate->schema_number }} </td>
-                        <td> {{ $localAuctionEstate->banks_number }} </td>
+                        <td> {{ $localAuctionEstate->block_number }} </td>
                         <td> {{ $localAuctionEstate->piece_number }} </td>
                         <td> {{ $localAuctionEstate->streets_number }} </td>
                     </tr>
@@ -194,7 +194,7 @@
                         <th> نوع السعر </th>
                     </tr>
                     <tr>
-                        <td> الواجهة </td>
+                        <td> {{ $destinationName }} </td>
                         <td> {{ $localAuctionEstate->estate_space }} متر مربع </td>
                         <td> {{ $localAuctionEstate->price }} </td>
                         <td> {{ $priceSortName }} </td>
@@ -210,7 +210,7 @@
                         <td> {{ $paymentSortName }} </td>
                         <td> {{ $localAuctionEstate->docs }} </td>
                         <td> {{ $localAuctionEstate->delivery_method }} </td>
-                        <td class="youicon"> <i class="fab fa-youtube"></i> </td>
+                        <td class="youicon"> <a href="{{ 'https://'.$estate->youtube }}"><i class="fab fa-youtube"></i></a> </td>
                     </tr>
                 </tbody>
             </table>
@@ -220,7 +220,7 @@
                         <th class="fullnote">ملاحظات</th>
                     </tr>
                     <tr>
-                        <td class="fullnote full2n">تكتب هنا الملاحظات</td>
+                        <td class="fullnote full2n">{{ $estate->description }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -240,7 +240,7 @@
                         
                     </tr>
                     <tr>
-                        <td> {{ $localAuctionEstate->estate_space }}    </td>
+                        <td> {{ $localAuctionEstate->building_space }}    </td>
                         <td> {{ $localAuctionEstate->building_design }}    </td>
                         <td> {{ $localAuctionEstate->age }}    </td>
                         <td> {{ $localAuctionEstate->floors_number }}    </td>

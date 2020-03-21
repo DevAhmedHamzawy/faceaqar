@@ -1,6 +1,8 @@
 @extends('main.layouts.app')
 
-
+@section('header')
+    <link rel="stylesheet" href="{{ asset('main/css/bootstrap-datetimepicker.min.css') }}">
+@endsection
 
 @section('content')
 
@@ -147,4 +149,13 @@ initMap(Math.floor(lat), Math.floor(lng));
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap&key=AIzaSyDqET1nIDZzMGEieGANkEF_xB1RSCkJTjk" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+    <script src="{{ asset('main/js/bootstrap-hijri-datetimepicker.min.js') }}"></script>
+    <script>
+        $(function () {
+
+            $(".hijri-date-input").hijriDatePicker();
+
+        });
+    </script>
 @endsection

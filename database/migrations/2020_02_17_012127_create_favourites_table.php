@@ -18,6 +18,7 @@ class CreateFavouritesTable extends Migration
             $table->integer('user_id');
             $table->integer('estate_id')->nullable();
             $table->integer('lawyer_id')->nullable();
+            $table->integer('office_id')->nullable();
             $table->timestamps();
         });
     }
