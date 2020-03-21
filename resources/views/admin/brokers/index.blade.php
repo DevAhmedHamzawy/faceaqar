@@ -23,7 +23,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">الإسم</th>
                                     <th scope="col">البريد الإلكترونى</th>
-                                    <th scope="col">الصورة</th>
+                                    <th scope="col">الحالة</th>
                                     <th scope="col">Operations</th>
                                 </tr>
                             </thead>
@@ -31,13 +31,13 @@
                             <tbody>
                                 <tr>
                                     <td scope="row">#</td>
-                                    <td>{{ $broker->user_name  }}</td>
+                                    <td>{{ $broker->name  }}</td>
                                     <td>{{ $broker->email }}</td>
-                                    <td>{{ $broker->img_path }}</td>
+                                    <td>{{ $broker->visible == 1 ? 'مفعل' : 'غير مفعل' }}</td>
                                     <td>
                                         {{--<a href="{{ route('users.show', $broker->user_name) }}" class="btn btn-primary">Show</a>--}}
-                                        <a href="{{ route('users.edit', $broker->name) }}" class="btn btn-warning">تعديل</a>
-                                        <form action="{{ route('users.destroy', $broker->name) }}" method="post">
+                                        <a href="{{ route('brokers.activate', $broker->name) }}" class="btn btn-warning">تفعيل</a>
+                                        <form action="{{ route('the-brokers.destroy', $broker->name) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger" type="submit">حذف</button>

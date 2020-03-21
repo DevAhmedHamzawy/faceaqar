@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Broker;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class BrokerController extends Controller
@@ -18,7 +17,11 @@ class BrokerController extends Controller
         return view('admin.brokers.index', ['brokers' => Broker::all()]);
     }
 
-    
+    public function activate(Broker $broker)
+    {
+        $broker->update(['visible' => 1]);
+        return redirect()->back();
+    }
 
     
     /**
@@ -29,6 +32,7 @@ class BrokerController extends Controller
      */
     public function destroy(Broker $broker)
     {
-        //
+        $broker->delete();
+        return redirect()->back();
     }
 }

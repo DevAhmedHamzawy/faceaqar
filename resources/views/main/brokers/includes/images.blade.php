@@ -7,7 +7,7 @@
                          <label for="">ارفاق  صورة الإعلان <em>*</em></label>
                      </div>
                      <div class="col-md-4">
-                         <input type="file" name="file" class="form-control required" id="" placeholder="">
+                         <input type="file" name="image" class="form-control required" id="" placeholder="">
                      </div>
                  </div>
                  <div class="row">

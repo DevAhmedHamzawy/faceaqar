@@ -52,7 +52,9 @@
 </head>
 <body>
         @include('main.layouts.includes.header')
-        @include('main.layouts.includes.slider')
+        @if (url()->current() === env('APP_URL'))
+            @include('main.layouts.includes.slider')
+        @endif
 
             @yield('content')
 

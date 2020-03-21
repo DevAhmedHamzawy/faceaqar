@@ -19,7 +19,10 @@ Route::resource('newsletters', 'Admin\NewsletterController');
 Route::resource('admins', 'Admin\AdminController');
 Route::resource('users', 'Admin\UserController');
 
-Route::resource('brokers', 'Admin\BrokerController');
+Route::get('brokers', 'Admin\BrokerController@index')->name('brokers.index');
+Route::get('brokers/{broker}', 'Admin\BrokerController@activate')->name('brokers.activate');
+Route::delete('brokers/{broker}', 'Admin\BrokerController@destroy')->name('the-brokers.destroy');
+
 Route::resource('reports', 'Admin\ReportController');
 
 Route::resource('show-estates', 'Admin\EstateController');

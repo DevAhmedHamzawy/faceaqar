@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Area;
+use App\Broker;
 use App\Client;
 use App\Page;
 use App\Portfolio;
@@ -12,19 +13,10 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
-
+    
     public function welcome()
     {
-        return view('main.welcome', ['clients' => Client::all(), 'portfolios' => Portfolio::all(), 'teams' => DB::table('teams')->join('users','users.id','=','user_id')->get(), 'adSorts' => DB::table('ad_sort')->pluck('display'), 'pages' => Page::getParents() ]);
+        return view('main.welcome', ['clients' => Client::all(), 'portfolios' => Portfolio::all(), 'teams' => DB::table('teams')->join('users','users.id','=','user_id')->get(), 'adSorts' => DB::table('ad_sort')->pluck('display'), 'pages' => Page::getParents(), 'sliders' => Broker::getSlider(), 'tickers' => Broker::getTicker() ]);
     } 
 
     public function index()
