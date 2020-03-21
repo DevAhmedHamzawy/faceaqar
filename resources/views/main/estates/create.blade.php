@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') إضافة عقار (صفحة إلكترونية) جديد @endsection
+
 @section('header')
     <link rel="stylesheet" href="{{ asset('main/css/bootstrap-datetimepicker.min.css') }}">
 @endsection

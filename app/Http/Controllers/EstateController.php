@@ -11,6 +11,7 @@ use App\EstateImage;
 use App\Http\Requests\EstateFormRequest;
 use App\LocalEstate;
 use App\RequestEstate;
+use App\SeoLinks\SeoLinksShow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -162,6 +163,8 @@ class EstateController extends Controller
 
         //dd($storage_images);
         $estate->images = $storage_images;
+
+        SeoLinksShow::getLinks($estate->title, $estate->description, url()->current(), $estate->created_at, $estate->category, $estate->images);
 
         //TODO :- Check About AdsortID To Avoid Mistakes
 

@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') خريطة {{ $adSort->adjective }} @endsection
+
 @section('header')
 <script src="http://maps.google.com/maps/api/js?libraries=places&key=AIzaSyDqET1nIDZzMGEieGANkEF_xB1RSCkJTjk&language=AR"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>

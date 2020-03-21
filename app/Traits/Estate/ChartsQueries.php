@@ -2,6 +2,9 @@
 
 namespace App\Traits\Estate;
 
+use Carbon\Carbon;
+use DB;
+
 Trait ChartsQueries
 {
 

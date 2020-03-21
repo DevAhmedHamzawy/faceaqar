@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') شكراً   @endsection
+
 @section('content')
     <!-- terms_page -->
 	<section id="terms_page">

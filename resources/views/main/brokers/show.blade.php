@@ -1,6 +1,6 @@
 @extends('main.layouts.app')
 
-
+@section('title') {{ $broker->name }}   @endsection
 
 @section('content')
 

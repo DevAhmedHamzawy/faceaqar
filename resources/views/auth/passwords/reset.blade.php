@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') إعادة إدخال كلمة المرور    @endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

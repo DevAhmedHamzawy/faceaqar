@@ -1,7 +1,6 @@
 @extends('main.layouts.app')
 
-
-
+@section('title') بحث {{ $adSort->adjective }}  @endsection
 
 @section('content')
 

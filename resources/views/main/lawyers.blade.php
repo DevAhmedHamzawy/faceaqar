@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') {{ $lawyer->profile->full_name  }}  @endsection
+
 @section('header')
     <style>
         #social-links ul li{

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Area;
+use App\SeoLinks\SeoLinksShow;
 use App\Traits\UploadFiles;
 use App\User;
 use App\UserImage;
@@ -25,6 +26,8 @@ class UsersController extends Controller
 
         //dd($storage_images);
         $user->images = $storage_images;
+
+        SeoLinksShow::getLinks($user->profile->full_name, $user->profile->description, url()->current(), $user->created_at, $user->roles->first()->display_name, $user->images);
 
        if($user->hasRole('estate_office')){ views($user)->record(); return view('main.users.estate_office.show', [ 'user' => $user, 'views' => views($user)->unique()->count()]); } else { dd($user);  }
     }

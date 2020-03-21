@@ -1,3 +1,4 @@
+<title>لوحة التحكم</title>
 <link rel="stylesheet" href="{{ asset('adminpanel/css/login.css') }}">
 
 <!-- Main -->

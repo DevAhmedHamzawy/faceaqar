@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') فريق العمل  @endsection
+
 @section('content')
 
      <!-- team -->

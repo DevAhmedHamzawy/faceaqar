@@ -1,5 +1,6 @@
 @extends('main.layouts.app')
 
+@section('title') من نحن  @endsection
 
 @section('content')
 

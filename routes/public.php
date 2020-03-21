@@ -36,7 +36,7 @@ Route::get('financial_fees', 'HomeController@financial_fees')->name('financial_f
 Route::get('payment_methods', 'HomeController@payment_methods')->name('payment_methods');
 
 //Custom Pages
-Route::get('pages', 'PageController@show')->name('pages.show');
+Route::get('pages/{page}', 'PageController@show')->name('pages.show-page');
 
 //ContactUs
 Route::get('contactus', 'ContactUsController@show')->name('contactus');

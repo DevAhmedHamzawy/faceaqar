@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') تواصل معنا @endsection
+
 @section('content')
     <!-- contact_us_page -->
         <!-- contact us -->

@@ -1,5 +1,8 @@
 <?php
 
+Route::group(['middleware' => 'assign.guard:admin,admin/login'],function(){
+
+
 Route::get('settings/{sort}/1', 'Admin\SettingsController@edit')->name('settings.edit');
 Route::patch('settings/update', 'Admin\SettingsController@update')->name('settings.update');
 
@@ -34,3 +37,5 @@ Route::resource('links', 'Admin\LinksController');
 Route::get('positions/{place}', 'Admin\LinksController@getPositions');
 
 Route::get('dashboard', 'Admin\DashboardController@index');
+
+});

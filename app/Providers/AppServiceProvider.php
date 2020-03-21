@@ -6,6 +6,7 @@ use Alkoumi\LaravelHijriDate\Hijri;
 use App\Area;
 use App\Icon;
 use App\Links;
+use App\SeoLinks\SeoLinksIndex;
 use App\Settings;
 use App\User;
 use Carbon\Carbon;
@@ -33,9 +34,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
+        $settings = Settings::findOrFail(1);
+        \Config::set(['settings' => $settings]);
 
         Carbon::setLocale(config('app.locale'));
-        view()->share('settings', Settings::findOrFail(1));
+        view()->share('settings', $settings);
         view()->share('areas', Area::getMainAreas());
         view()->share('header1', Icon::wherePlace('header1')->get());
         view()->share('header2', Icon::wherePlace('header2')->get());
@@ -47,5 +50,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('footertwolinks', Links::wherePlace('footer2')->whereVisible(1)->orderBy('position')->get());
         view()->share('footerthreelinks', Links::wherePlace('footer3')->whereVisible(1)->orderBy('position')->get());
         view()->share('hijridate', Hijri::DateFullFormat(Carbon::now()));
+
+        SeoLinksIndex::getLinks($settings->name, $settings->about, env('APP_URL'), env('APP_URL'), $settings->twitter, $settings->logo1);
     }
 }

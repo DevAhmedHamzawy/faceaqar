@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') طرق الدفع   @endsection
+
 @section('content')
      <!-- terms_page -->
 	<section id="terms_page">

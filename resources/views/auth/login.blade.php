@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') تسجيل الدخول  @endsection
+
 @section('content')
 <div class="container">
     <div class="title_pages"><h2>تسجيل الدخول</h2></div>

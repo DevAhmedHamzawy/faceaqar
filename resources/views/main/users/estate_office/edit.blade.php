@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') تعديل بياناتى @endsection
+
 @section('content')
 <!-- add_auctions -->
 <section id="add_international">

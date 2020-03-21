@@ -1,6 +1,6 @@
 @extends('main.layouts.app')
 
-
+@section('title') إنشــاء تذكرة رسوم مالية @endsection
 
 @section('content')
 

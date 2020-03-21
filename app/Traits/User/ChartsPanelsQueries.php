@@ -2,6 +2,8 @@
 
 namespace App\Traits\User;
 
+use Carbon\Carbon;
+
 Trait ChartsPanelsQueries
 {
 

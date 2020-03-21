@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') {{ $estate->name }} @endsection
+
 @section('header')
 
 <style>

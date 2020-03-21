@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') أعمالنا  @endsection
+
 @section('content')
 
      <!-- customers -->

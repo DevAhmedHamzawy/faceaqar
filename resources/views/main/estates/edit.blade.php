@@ -1,5 +1,8 @@
 @extends('main.layouts.app')
 
+@section('title') تعديل البيانات ل{{ $estate->name }}  @endsection
+
+
 @section('header')
     <link rel="stylesheet" href="{{ asset('main/css/bootstrap-datetimepicker.min.css') }}">
 @endsection

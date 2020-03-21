@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') {{ auth()->user()->name }}    @endsection
+
 @section('content')
 
 

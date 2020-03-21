@@ -1,6 +1,6 @@
 @extends('main.layouts.app')
 
-
+@section('title') إضافة وسيط جديد   @endsection
 
 @section('content')
 

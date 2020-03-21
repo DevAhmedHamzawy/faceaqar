@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') {{ $user->profile->full_name }} @endsection
+
 @section('header')
     <style>
         .swal2-modal{

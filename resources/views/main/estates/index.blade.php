@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') {{ $adSort->adjective }} @endsection
+
 @section('content')
 
 <!-- local_page -->

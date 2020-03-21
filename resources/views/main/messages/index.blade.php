@@ -1,5 +1,7 @@
 @extends('main.layouts.app')
 
+@section('title') صندوق الرسائل @endsection
+
 @section('header')
     <link rel="stylesheet" href="{{ asset('main/css/messages.css')}}">
 @endsection
