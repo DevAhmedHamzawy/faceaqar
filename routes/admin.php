@@ -41,4 +41,8 @@ Route::get('positions/{place}', 'Admin\LinksController@getPositions');
 
 Route::get('dashboard', 'Admin\DashboardController@index');
 
+//Messages Inbox
+Route::get('messages', 'Admin\LawyerContactsController@index')->name('inbox');
+
+
 });

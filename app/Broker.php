@@ -22,4 +22,9 @@ class Broker extends Model
     {
         return self::where('broker_ad_sort', '!=' , 'صور')->orWhere('broker_ad_sort', '!=' , 'كروت إعلانية إلكترونية')->get();
     }
+
+    public function getImgPathAttribute()
+    {
+        return url('storage/brokers/' . $this->file);
+    }
 }

@@ -15,7 +15,7 @@
             <!-- end_title_pages -->
 
             <div class="add_auctions">
-                <form id="commentForm" method="post" action="{{ route('brokers.store') }}" >
+                <form id="commentForm" method="post" enctype="multipart/form-data" action="{{ route('brokers.store') }}" >
                     @csrf
                     <div id="rootwizard">
                         
@@ -77,8 +77,8 @@
                     <h4> بيانات الإعلان </h4>
                         <div class="form-group broker_form_new_style">
                             <label for="">اختر نوع الإعلان في صفحة وسيط واجهة العقار الالكتروني <em>*</em> </label>
-                            <Select id="optselector">
-                            <option value="chooseopt">أختر</option>
+                            <Select id="optselector" name="broker_ad_sort">
+                            <option selected disabled>أختر</option>
                             <option value="photosel">صور</option>
                             <option value="textopt">كتابة نصية</option>
                             <option value="socialopt">حسابات التواصل الاجتماعي</option>

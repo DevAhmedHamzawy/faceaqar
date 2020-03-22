@@ -38,12 +38,14 @@ class BrokerController extends Controller
     {
         //dd($request->all());
         $request->merge(['area_id' => 1]);
-        dd($request->all());
         if($request->has('image')){
             $request->merge(['file' => UploadFiles::upload_broker_image($request->image, $request->name, 'brokers')]);
         }
 
-        Broker::create($request->except('g-recaptcha-response','agree','namefield1','mycheckbox','mycheckbox2','namefield7'));
+        $broker_ad_sort = ['photosel' => 'صور', 'textopt' => 'كتابة نصية', 'socialopt' => 'حسابات التواصل الاجتماعي', 'advcartopt' => 'الكروت الاعلانية الالكترونية', 'mediaopt' => 'حجز صفحة اعلانية كاملة'];
+
+        $request->merge(['broker_ad_sort' => $broker_ad_sort[$request->broker_ad_sort]]);
+        Broker::create($request->except('g-recaptcha-response','agree','namefield1','mycheckbox','mycheckbox2','namefield7','image'));
         return redirect('home');
     }
 

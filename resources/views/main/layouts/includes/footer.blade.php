@@ -149,6 +149,13 @@
 <script src="http://e.22web.org/assets/js/SmoothScroll.js"></script>
 
 
+<script type="text/javascript">
+    var nt_example1 = $('.nt-example1').newsTicker({
+        row_height: 45,
+        max_rows: 1,
+        duration: 4000,
+    });      
+</script>
 
 <script type="text/javascript">
     var elementPosition = $('#header-mob').offset();
@@ -650,5 +657,6 @@ function getSubCitiesFooter(item){
         })
 }
 
+$('.newsticker').newsTicker();
 
 </script>
