@@ -51,26 +51,26 @@
         <label for="">عدد الغرف </label>
     </div>
     <div class="col-md-4">
-        <input type="number" min="0" name="rooms_number" value="{{ $request_estate->rooms_number }}" class="form-control">
+        <input type="number" min="0" name="rooms_number" value="{{ $bladeVariables['request_estate']->rooms_number }}" class="form-control">
     </div>
 
     <div class="col-md-2">
         <label for="">عدد الحمامات</label>
     </div>
     <div class="col-md-4">
-        <input type="number" min="0" name="bathrooms_number" value="{{ $request_estate->bathrooms_number }}" class="form-control">
+        <input type="number" min="0" name="bathrooms_number" value="{{ $bladeVariables['request_estate']->bathrooms_number }}" class="form-control">
     </div>
     <div class="col-md-2">
         <label for="">  مساحة العقار م٢ </label>
     </div>
     <div class="col-md-4">
-        <input type="number" name="space" value="{{ $request_estate->space }}" class="form-control" id="" placeholder="مساحة العقار م٢">
+        <input type="number" name="space" value="{{ $bladeVariables['request_estate']->space }}" class="form-control" id="" placeholder="مساحة العقار م٢">
     </div>
     <div class="col-md-2">
         <label for=""> السعر </label>
     </div>
     <div class="col-md-4">
-        <input type="number" name="price" value="{{ $request_estate->price }}" class="form-control" id="" placeholder="السعر">
+        <input type="number" name="price" value="{{ $bladeVariables['request_estate']->price }}" class="form-control" id="" placeholder="السعر">
     </div>
     
 </div>

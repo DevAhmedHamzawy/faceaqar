@@ -42,7 +42,7 @@
 <div class="sel1">
     <p> مساحة البناء م٢	 </p>
     <div >
-      <input type="number" name="estate_space" value="{{ old('estate_space') }}" class="form-control required" id="" placeholder="  مساحة العقار م٢ ">
+      <input type="number" name="building_space" value="{{ old('building_space') }}" class="form-control required" id="" placeholder="  مساحة العقار م٢ ">
     </div>
 </div>
 <div class="sel1">
@@ -52,6 +52,7 @@
       <option class="choose" value=""  > اختر </option>
       <option> 0   </option>
       <option> 00  </option>
+      <option> 000  </option>
     </select>
     </div>
 </div>

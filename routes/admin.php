@@ -25,7 +25,10 @@ Route::delete('brokers/{broker}', 'Admin\BrokerController@destroy')->name('the-b
 
 Route::resource('reports', 'Admin\ReportController');
 
-Route::resource('show-estates', 'Admin\EstateController');
+Route::resource('estates', 'Admin\EstateController');
+
+Route::get('offices', 'Admin\OfficeController@index')->name('offices.index');
+
 
 Route::resource('pages', 'Admin\PageController');
 Route::get('pages/{page}/create', 'Admin\PageController@create')->name('pages.create');
@@ -33,7 +36,7 @@ Route::post('pages/{page}', 'Admin\PageController@store')->name('pages.store');
 Route::get('pages/{page}/{id}', 'Admin\PageController@edit')->name('pages.edit');
 Route::post('pages/{page}/{id}', 'Admin\PageController@update')->name('pages.update');
 
-Route::get('icons/{place}', 'Admin\IconController@index');
+Route::get('icons/{place}', 'Admin\IconController@index')->name('icons');
 Route::post('icons/{place}', 'Admin\IconController@store');
 
 Route::resource('links', 'Admin\LinksController');

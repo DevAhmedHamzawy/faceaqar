@@ -11,7 +11,7 @@
 
 @if($errors->any())
     <div class="alert alert-danger">
-        <p><strong>Opps Something went wrong</strong></p>
+        <p><strong>يرجى تعبئة الحقول الاتية :-</strong></p>
         <ul>
         @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -25,7 +25,6 @@
     <div class="container">
         <div class="row">
             @include('main.estates.includes.edit.location')
-
             <input type="hidden" name="adSort" value="{{ $adSort->name }}">
 
             @if($adSort->name == 'local_estate' || $adSort->name == 'auction_estate')

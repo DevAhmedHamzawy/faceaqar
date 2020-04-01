@@ -29,7 +29,7 @@ class BaseFilter
     {
         // in case of taking eloquent instances only
         //return array_only($filters, array_keys($this->request->all()));
-
+        
         return $filters;
     }
 }

@@ -16,18 +16,18 @@ class CreateAuctionEstatesTable extends Migration
         Schema::create('auction_estates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('estate_id');
-            $table->integer('destination_id');
-            $table->integer('price_sort_id');
-            $table->integer('payment_sort_id');
-            $table->string('schema_name');
-            $table->integer('schema_number');
-            $table->integer('block_number');
-            $table->integer('piece_number');
-            $table->enum('streets_number' , ['شارع واحد' , 'شارعين' , '3 شوارع' , '4 شوارع']);
-            $table->integer('estate_space');
-            $table->integer('price');
-            $table->enum('docs' , ['بصك' , 'بدون صك' , 'أخرى']);
-            $table->enum('delivery_method' , ['فورى' , 'أخرى']);
+            $table->integer('destination_id')->nullable();
+            $table->integer('price_sort_id')->nullable();
+            $table->integer('payment_sort_id')->nullable();
+            $table->string('schema_name')->nullable();
+            $table->integer('schema_number')->nullable();
+            $table->integer('block_number')->nullable();
+            $table->integer('piece_number')->nullable();
+            $table->enum('streets_number' , ['شارع واحد' , 'شارعين' , '3 شوارع' , '4 شوارع'])->nullable();
+            $table->integer('estate_space')->nullable();
+            $table->integer('price')->nullable();
+            $table->enum('docs' , ['بصك' , 'بدون صك' , 'أخرى'])->nullable();
+            $table->enum('delivery_method' , ['فورى' , 'أخرى'])->nullable();
             $table->integer('building_space')->nullable();
             $table->enum('building_design' , ['0' , '00' , '000'])->nullable();
             $table->integer('age')->nullable();
@@ -54,7 +54,7 @@ class CreateAuctionEstatesTable extends Migration
             $table->date('date')->nullable();
             $table->string('hijri_date')->nullable();
             $table->time('time')->nullable();
-            $table->text('auction_conditions');
+            $table->text('auction_conditions')->nullable();
             $table->timestamps();
         });
     }

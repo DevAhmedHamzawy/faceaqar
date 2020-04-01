@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Report;
+use App\Estate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DataTables;
 
 class ReportController extends Controller
 {
@@ -13,10 +14,28 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //dd(Report::all()->groupBy('estate_id')->toArray());
-        return view('admin.reports.index', ['reports' => Report::all()->groupBy('estate_id')]);
+
+        if ($request->ajax()) {
+
+        $estates = Estate::withCount(['likes', 'favourites', 'dislikes', 'reports'])->orderByDesc('reports_count')->get();
+        
+        return Datatables::of($estates)->addIndexColumn()
+        ->addColumn('action', function($row){
+
+                $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">عرض</a>';
+
+                return $btn;
+        })
+        ->rawColumns(['action'])
+        ->make(true);
+
+        }
+
+      
+
+        return view('admin.reports.index');
     }
 
     /**

@@ -27,7 +27,7 @@
                                     <th scope="col">رقم الجوال</th>
                                     <th scope="col">رقم الهاتف</th>
                                     <th scope="col">رقم الفاكس</th>
-                                    <th scope="col">العمليات</th>
+                                    <!--<th scope="col">العمليات</th>!-->
                                 </tr>
                             </thead>
                             @forelse ($lawyers as $lawyer)

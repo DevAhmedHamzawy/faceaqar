@@ -19,12 +19,12 @@ class CreateAdvertisersTable extends Migration
             $table->integer('advertiser_sort_id');
             $table->string('name');
             $table->string('mobile1');
-            $table->string('mobile2');
-            $table->string('telephone');
-            $table->string('fax');
-            $table->string('central');
-            $table->string('email');
-            $table->string('website');
+            $table->string('mobile2')->nullable();
+            $table->string('telephone')->nullable();
+            $table->string('fax')->nullable();
+            $table->string('central')->nullable();
+            $table->string('email')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }

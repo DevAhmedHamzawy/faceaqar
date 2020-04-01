@@ -182,9 +182,9 @@ class EstateController extends Controller
                     'offerName' => Estate::getOffer($estate->offer_id),
                     'areaName' => Estate::getMainArea($estate->area_id),
                     'localAuctionEstate' => $localAuctionEstate,
-                    'destinationName' => Estate::getDestination($localAuctionEstate->destination_id),
-                    'priceSortName' => AuctionEstate::getPriceSort($localAuctionEstate->price_sort_id),
-                    'paymentSortName' => AuctionEstate::getPaymentSort($localAuctionEstate->payment_sort_id),
+                    'destinationName' => Estate::getDestination($localAuctionEstate->destination_id ?? ''),
+                    'priceSortName' => AuctionEstate::getPriceSort($localAuctionEstate->price_sort_id ?? ''),
+                    'paymentSortName' => AuctionEstate::getPaymentSort($localAuctionEstate->payment_sort_id ?? ''),
                 ]);
                 break;
             case 'local_estate':
@@ -199,9 +199,9 @@ class EstateController extends Controller
                     'offerName' => Estate::getOffer($estate->offer_id),
                     'areaName' => Estate::getMainArea($estate->area_id),
                     'localAuctionEstate' => $localAuctionEstate,
-                    'destinationName' => Estate::getDestination($localAuctionEstate->destination_id),
-                    'priceSortName' => LocalEstate::getPriceSort($localAuctionEstate->price_sort_id),
-                    'paymentSortName' => LocalEstate::getPaymentSort($localAuctionEstate->payment_sort_id),
+                    'destinationName' => Estate::getDestination($localAuctionEstate->destination_id ?? ''),
+                    'priceSortName' => LocalEstate::getPriceSort($localAuctionEstate->price_sort_id ?? ''),
+                    'paymentSortName' => LocalEstate::getPaymentSort($localAuctionEstate->payment_sort_id ?? ''),
                 ]);
                 break;
                 case 'global_estate' || 'project_estate':
@@ -262,20 +262,20 @@ class EstateController extends Controller
 
 
         switch ($adSort) {
-            case 'local_estate':
+            case 'local_estate' || 1:
                 $bladeVariables['local_auction_estate'] = LocalEstate::whereEstateId($estate->id)->firstOrFail();
                 break;
-            case 'request_estate':
+            case 'request_estate' || 5:
                 $bladeVariables['request_estate'] = RequestEstate::whereEstateId($estate->id)->firstOrFail();
                 break;
-            case 'auction_estate':
+            case 'auction_estate' || 6:
                 $bladeVariables['local_auction_estate'] = AuctionEstate::whereEstateId($estate->id)->firstOrFail();
                 break;
         }
 
        
 
-        return view('main.estates.edit', $bladeVariables);
+        return view('main.estates.edit', ['bladeVariables' => $bladeVariables, 'estate' => $estate, 'adSort' => Estate::checkAdSort($adSort)]);
     }
 
     /**

@@ -25,7 +25,7 @@
                                     <th scope="col">الإسم</th>
                                     <th scope="col">البريد الإلكترونى</th>
                                     <th scope="col">الصورة</th>
-                                    <th scope="col">Operations</th>
+                                    {{--<th scope="col">Operations</th>--}}
                                 </tr>
                             </thead>
                             @forelse ($users as $user)
@@ -34,7 +34,7 @@
                                     <td scope="row">#</td>
                                     <td>{{ $user->name  }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td><img src="{{ $user->img_path }}" alt="" srcset=""></td>
+                                    {{--<td><img src="{{ $user->img_path }}" alt="" srcset=""></td>--}}
                                     <td>
                                         {{--<a href="{{ route('users.show', $user->user_name) }}" class="btn btn-primary">Show</a>--}}
                                         <a href="{{ route('users.edit', $user->name) }}" class="btn btn-warning">تعديل</a>

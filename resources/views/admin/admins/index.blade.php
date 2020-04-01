@@ -24,7 +24,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">الإسم</th>
                                     <th scope="col">البريد الإلكترونى</th>
-                                    <th scope="col">الصورة</th>
+                                    <!--<th scope="col">الصورة</th>!-->
                                     <th scope="col">Operations</th>
                                 </tr>
                             </thead>
@@ -34,7 +34,7 @@
                                     <td scope="row">#</td>
                                     <td>{{ $admin->user_name  }}</td>
                                     <td>{{ $admin->email }}</td>
-                                    <td><img src="{{ $admin->img_path }}" alt="" srcset=""></td>
+                                    {{--<td><img src="{{ $admin->img_path }}" alt="" srcset=""></td>--}}
                                     <td>
                                         {{--<a href="{{ route('admins.show', $admin->user_name) }}" class="btn btn-primary">Show</a>--}}
                                         <a href="{{ route('admins.edit', $admin->user_name) }}" class="btn btn-warning">تعديل</a>

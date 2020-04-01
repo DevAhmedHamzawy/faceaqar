@@ -9,7 +9,13 @@ class StreetFilter implements Filter
     public function apply(Builder $builder, $value)
     {
         if($value !== null){
-            return $builder->where('street' , 'like' , "%$value%");
+            if(request()->ad_sort_id == 7){
+                return $builder->whereHas('profile', function($q) use ($value){
+                    $q->where('street' , 'like' , "%$value%");
+                });
+            }else{
+                return $builder->where('street' , 'like' , "%$value%");
+            }
         }    
     }
 }

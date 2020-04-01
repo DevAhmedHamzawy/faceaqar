@@ -65,20 +65,20 @@ Trait Queries
     //Get Local Estate Or Auction Estate Data
     public static function getData($id)
     {
-        $auctionEstate = self::whereEstateId($id)->first();
-        return !empty($auctionEstate) ? $auctionEstate : '';
+        $localauctionEstate = self::whereEstateId($id)->first();
+        return !empty($localauctionEstate) ? $localauctionEstate : '';
     }
 
     //Get Price Sort
     public static function getPriceSort($id)
     {
-        return DB::table('price_sort')->whereId($id)->first()->name;
+        return DB::table('price_sort')->whereId($id)->first()->name ?? '';
     }
 
     //Get Payment Sort
     public static function getPaymentSort($id)
     {
-        return DB::table('payment_sort')->whereId($id)->first()->name;
+        return DB::table('payment_sort')->whereId($id)->first()->name ?? '';
     }
 
     //Get Main Area

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    العقارات بالموقع 
+                    المكاتب العقارية بالموقع 
                 </div>
 
                 <div class="card-body">
@@ -21,12 +21,11 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">نوع العقار</th>
-                                <th scope="col">إسم العقار</th>
-                                <th scope="col">المنطقة</th>
-                                <th scope="col">التصنيف</th>
-                                <th scope="col">النوع</th>
-                                <th scope="col">العرض</th>
+                                <th scope="col">إسم المكتب</th>
+                                <th scope="col">المفضلة</th>
+                                <th scope="col">+1</th>
+                                <th scope="col">-1</th>
+                                <th scope="col">البلاغات</th>
                                 <th scope="col">مشاهدات</th>
                                 <th scope="col">العمليات</th>
                             </tr>
@@ -49,15 +48,14 @@ $(function () {
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('estates.index') }}",
+        ajax: "{{ route('offices.index') }}",
         columns: [
-            {data: 'code', name: 'code'},
-            {data: 'adSort.display', name: 'adSort.display'},
+            {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'areaName', name: 'areaName'},
-            {data: 'category.name', name: 'category.name'},
-            {data: 'sortName', name: 'sortName'},
-            {data: 'offerName', name: 'offerName'},
+            {data: 'favourites_count', name: 'favourites_count'},
+            {data: 'likes_count', name: 'likes_count'},
+            {data: 'dislikes_count', name: 'dislikes_count'},
+            {data: 'reports_count', name: 'reports_count'},
             {data: 'views', name: 'views'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],

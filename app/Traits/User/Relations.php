@@ -38,4 +38,9 @@ Trait Relations
     {
         return $this->hasMany('App\Like', 'estate_id')->whereLike(-1);
     }
+
+    public function reports()
+    {
+        return $this->hasMany('App\Report');
+    }
 }

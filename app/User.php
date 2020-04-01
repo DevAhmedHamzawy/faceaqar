@@ -2,10 +2,11 @@
 
 namespace App;
 
+use App\Filters\BaseFilter;
 use App\Traits\User\Attributes;
 use App\Traits\User\ChartsPanelsQueries;
 use App\Traits\User\Relations;
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,6 +47,12 @@ class User extends Authenticatable implements MustVerifyEmail, ViewableContract
 
     protected $with = ['profile','estates','images','favourites.estate','likes','dislikes'];
 
+
+    public static function scopeFilter(Builder $builder, $filters)
+    {
+        return (new BaseFilter(request()))->apply($builder, $filters);
+    }   
+    
 
     public function getRouteKeyName()
     {

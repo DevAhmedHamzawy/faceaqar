@@ -118,7 +118,7 @@
         <label for="choice-type-number" class="imp-n-s">
 هل ترغب تثبيت صفحتك الالكترونية في مقدمة الإعلانات الالكترونية في جميع صفحات مدينتك بالموقع؟
         </label>
-        <span class="imp-n-s-2"> إضافة رسوم مالية عند التثبيت </span>
+        <span class="imp-n-s-2"><a href="{{ route('tickets.create') }}" style="color:#fff;"> إضافة رسوم مالية عند التثبيت </a></span>
         <div class="reveal-if-active" id="autoUpdate">
             <div class="row">
                 <div class="col-md-3 hidden-xs"></div>

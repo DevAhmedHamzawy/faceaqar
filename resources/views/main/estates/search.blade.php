@@ -1,14 +1,15 @@
 @extends('main.layouts.app')
 
-@section('title') بحث {{ $adSort->adjective }}  @endsection
+@section('title') بحث {{ $adSort->adjective ?? '' }}  @endsection
 
 @section('content')
 
 @if($adSort != 'general')
 <form method="get" action="{{ route('getresults', $adSort->name) }}" id="filtersform">
 @else
-<form>
+<form method="get" action="{{ route('getresults', $adSort->name ?? 'general') }}" id="filtersform">
 @endif
+    <input type="hidden" name="ad_sort_id" value="{{ $adSort->id }}">
     <div class="all-ser-pages">
             <div class="container">
                             <div class="center-sepag ser-pages">
@@ -17,28 +18,33 @@
                                 @if($adSort == 'general')
                                     @include('main.estates.includes.search.general')
                                 @else
-                                <div class="sel1">
-                                    <p> المنطقة </p>
-                                    <div class="custom-select">
-                                    <select>
-                                      <option value="volvo">الكل</option>
-                                      <option value="saab">الرياض</option>
-                                      <option value="mercedes">الرياض</option>
-                                      <option value="audi">الرياض</option>
-                                    </select>
-                                    </div>
-                                </div>
-                                <div class="sel1">
-                                    <p>المدينة  </p>
-                                    <div class="custom-select">
-                                    <select name="area_id">
-                                      <option value="volvo">الكل</option>
-                                      <option value="183">الرياض</option>
-                                      <option value="178">الرياض</option>
-                                      <option value="183">الرياض</option>
-                                    </select>
-                                    </div>
-                                </div>
+                                <div class="row" style="padding-bottom:15px;">
+                                    <div class="col-md-4">
+                                  <select class="form-control" onchange="getCitiesSearch(this);">
+                                    <option value="">اختر اسم الدولة</option>
+                                    @foreach ($areas as $area)
+                                        <option value="{{ $area->name }}">{{ $area->name }}</option>
+                                    @endforeach
+                                  </select>
+                                  </div>
+                                  <div class="col-md-4">
+                                  
+                                  <select class="form-control" id="cities-search" onchange="getSubCitiesSearch(this);">
+                                   <option value="">اختر اسم المنطقة</option>
+                                  </select>
+                                  </div>
+                                  <div class="col-md-4">
+                                  
+                                  <select class="form-control" name="area" id="area-id-newsletter-search">
+                                   <option value="">اختر اسم المدينة</option>
+                                   
+                                  </select>
+                                  </div>
+                                  
+                                  
+                                
+                                  
+                                  </div>
 
                                 @if($adSort->name == 'global_estate')
                                 <div class="sel1">
@@ -71,16 +77,17 @@
                                 @if($adSort->name == 'schema_estate')
                                     <div class="sel1">
                                         <p> إسم المخطط</p>
-                                        <input type="text" name="schema" placeholder="إسم المخطط">
+                                        <input type="text" name="name" placeholder="إسم المخطط">
                                     </div>
                                 @endif
 
-                                @if($adSort->name != 'schema_estate')
+                                @if($adSort->name != 'schema_estate' && $adSort->name != 'office_estate')
 
                                 <div class="sel1">
                                     <p> نوع العقار</p>
                                     <div class="custom-select">
-                                    <select name="category_id">
+                                    <select name="category">
+                                      <option value="">اختر</option>
                                       @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                       @endforeach
@@ -91,6 +98,7 @@
                                     <p> نوع القطعة</p>
                                     <div class="custom-select">
                                     <select name="sort_id">
+                                      <option value="">اختر</option>
                                       @foreach ($sorts as $sort)
                                         <option value="{{ $sort->id }}">{{ $sort->name }}</option>
                                       @endforeach
@@ -101,6 +109,7 @@
                                     <p> نوع العرض</p>
                                     <div class="custom-select">
                                     <select name="offer_id">
+                                      <option value="">اختر</option>
                                       @foreach ($offers as $offer)
                                         <option value="{{ $offer->id }}">{{ $offer->name }}</option>
                                       @endforeach
@@ -126,6 +135,7 @@
                                         <p>مساحة العقار م٢</p>
                                         <div class="custom-select">
                                         <select name="space">
+                                        <option value="">اختر</option>
                                         <option>0 - 100</option>
                                         <option>100 - 500</option>
                                         <option>500 - 1000</option>
@@ -144,9 +154,16 @@
                                         <p>السعر</p>
                                         <div class="custom-select">
                                         <select name="price">
-                                            <option>1000 - 2000 </option>
-                                            <option>5000 - 3000 </option>
-                                            <option>20000 - 6000 </option>
+                                            <option value="">اختر</option>
+                                            <option>0 - 100</option>
+                                            <option>100 - 500</option>
+                                            <option>500 - 1000</option>
+                                            <option>1000 - 1500</option>
+                                            <option>1500 - 2000</option>
+                                            <option>2000 - 3000</option>
+                                            <option>3000 - 5000</option>
+                                            <option>5000 - 7000</option>
+                                            <option>7000 - 10000</option>
                                         </select>
                                         </div>
                                     </div>
@@ -161,7 +178,7 @@
                                     <div class="for-sel2">
                                         <div class="sel1" style="height:39px">
                                             <p> اسم المشروع العقاري </p>
-                                            <input type="text" placeholder="اسم المشروع" style="width:120px">
+                                            <input type="text" name="name" placeholder="اسم المشروع" style="width:120px">
                                         </div>
                                     </div>
                                     
@@ -178,6 +195,30 @@
                                         <p> موعد المزاد العقاري</p>
                                         <input type="date" name="date" class="datein">
                                     </div>
+                                @endif
+
+
+                                @if($adSort->name == 'office_estate')
+                                <div class="sel1">
+                                    <p> إسم المكتب </p>
+                                    <input type="text" name="name" placeholder="الإسم">
+                                </div>
+                                
+
+                                <div class="sel1">
+                                    <p>نوع نشاط المكتب</p>
+                                    <div class="custom-select">
+                                    <select name="office_role">
+                                        <option value="">اختر</option>
+                                        <option value="estate_office">مكتب عقارى</option>
+                                        <option value="estate_agency">وكالة عقارية</option>
+                                        <option value="estate_company">شركة عقارية</option>
+                                        <option value="estate_auction_office">مكتب مزاد عقارى</option>
+                                        <option value="engineering_office">مكتب هندسى</option>                                        
+                                    </select>
+                                    </div>
+                                </div>
+                                
                                 @endif
                                 
                             @endif
@@ -214,6 +255,29 @@
             x.style.display = "none";
         }
         }
+
+
+        function getCitiesSearch(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#cities-search').empty()
+           for(city of data.data){
+           $('#cities-search').append('<option value="'+city.name+'">'+city.name+'</option>')
+           }  
+        })
+}
+
+
+function getSubCitiesSearch(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#area-id-newsletter-search').empty()
+           for(subcity of data.data){
+           $('#area-id-newsletter-search').append('<option value="'+subcity.id+'">'+subcity.name+'</option>')
+           }  
+        })
+}
+
     </script>
     
 @endsection

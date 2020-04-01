@@ -8,12 +8,17 @@ class BuildingDesignFilter implements Filter
 {
     public function apply(Builder $builder, $value)
     {
+
         if($value !== null){
-            return $builder->whereHas('localEstate', function($q) use ($value){
-                $q->where('building_design' , $value);
-            })->whereHas('auctionEstate', function($q) use ($value){
-                $q->where('building_design' , $value);
-            });
+            if(request()->ad_sort_id == 1){
+                return $builder->whereHas('localEstate', function($q) use ($value){
+                    $q->Where('building_design' , $value);
+                });
+            }else{
+                return $builder->whereHas('auctionEstate', function($q) use ($value){
+                    $q->Where('building_design' , $value);
+                });
+            }
         }
     }
 }

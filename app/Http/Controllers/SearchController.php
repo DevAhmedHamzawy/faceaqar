@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Advertiser;
+use App\AuctionEstate;
 use App\Broker;
 use App\Category;
 use App\Estate;
@@ -21,7 +22,6 @@ use App\Filters\DeliveryMethodFilter;
 use App\Filters\DestinationFilter;
 use App\Filters\DocsFilter;
 use App\Filters\ElectricityNetworkFilter;
-use App\Filters\EstateFilter;
 use App\Filters\FloorNumberFilter;
 use App\Filters\FloorsNumberFilter;
 use App\Filters\FloorTanksSortFilter;
@@ -36,7 +36,9 @@ use App\Filters\PaymentSortFilter;
 use App\Filters\PieceNumberFilter;
 use App\Filters\PriceFilter;
 use App\Filters\PriceSortFilter;
+use App\Filters\NameFilter;
 use App\Filters\ReceptionsNumberFilter;
+use App\Filters\RoleFilter;
 use App\Filters\RoomsNumberFilter;
 use App\Filters\SchemaNameFilter;
 use App\Filters\SchemaNumberFilter;
@@ -50,6 +52,7 @@ use App\Filters\UnitNumberFilter;
 use App\Filters\UnitsNumberFilter;
 use App\Filters\WaterNetworkFilter;
 use App\LocalEstate;
+use App\RequestEstate;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -100,8 +103,8 @@ class SearchController extends Controller
             
             case 'auction_estate':
                 $estate->localAuctionEstate = AuctionEstate::getData($estate->id);
-                $estate->priceSortName = AuctionEstate::getPriceSort($estate->localAuctionEstate->price_sort_id);
-                $estate->paymentSortName = AuctionEstate::getPaymentSort($estate->localAuctionEstate->payment_sort_id);
+                $estate->priceSortName = AuctionEstate::getPriceSort($estate->localAuctionEstate->price_sort_id ?? '');
+                $estate->paymentSortName = AuctionEstate::getPaymentSort($estate->localAuctionEstate->payment_sort_id ?? '');
                
                 break;
             case 'local_estate':
@@ -121,16 +124,54 @@ class SearchController extends Controller
     }
 
 
-    public function getFilters()
+    public function getFilters(Request $request, $adSort)
     {
-        //old
-        //$this->estates->filter($this->filters(request()))->get();
+        //dd($adSort);
+        //dd($request->all());
         //dd(Estate::filter($this->filters())->get());
 
+        if($adSort != 'office_estate'){
+        
+        $estates = Estate::filter($this->filters())->paginate(6);
+        foreach($estates as $estate){
+            $estate->sortName = Estate::getSort($estate->sort_id);
+            $estate->offerName = Estate::getOffer($estate->offer_id);
+            $estate->advertiser = Advertiser::where('estate_id',$estate->id)->first();
+            //$estate->areaName = Estate::getMainArea($estate->area_id);
 
+              //TODO :- Check About AdsortID To Avoid Mistakes
+
+        switch ($adSort) {
+            
+            case 'auction_estate':
+                $estate->localAuctionEstate = AuctionEstate::getData($estate->id);
+                $estate->priceSortName = AuctionEstate::getPriceSort($estate->localAuctionEstate->price_sort_id ?? '');
+                $estate->paymentSortName = AuctionEstate::getPaymentSort($estate->localAuctionEstate->payment_sort_id ?? '');
+               
+                break;
+            case 'local_estate':
+                $estate->localAuctionEstate = LocalEstate::getData($estate->id);
+                $estate->priceSortName = LocalEstate::getPriceSort($estate->localAuctionEstate->price_sort_id ?? '');
+                $estate->paymentSortName = LocalEstate::getPaymentSort($estate->localAuctionEstate->payment_sort_id ?? '');
+              
+                break;
+            case 'request_estate':
+                $estate->localAuctionEstate = RequestEstate::getData($estate->id);
+
+                break;
+                
+        }
+        }
+
+        }else{
+            $estates = User::filter($this->filters())->paginate(6);
+        }
+
+
+        $adSort == 'general' ? : $adSort = Estate::checkAdSort($adSort);
         return view('main.estates.search', 
         [
-            'adSort' => Estate::checkAdSort('local_estate'),
+            'adSort' => $adSort,
             'categories' => Category::getVisibleCategories(),
             'sorts' => Estate::getAllSorts(),
             'offers' => Estate::getAllOffers(),
@@ -138,24 +179,18 @@ class SearchController extends Controller
             'priceSorts' => Estate::getAllPriceSorts(),
             'paymentSorts' => Estate::getAllPaymentSorts(),
             'result' => 1,
-            'results' => Estate::filter($this->filters())->paginate(6),
+            'results' => $estates,
         ]);
     }
 
     protected function filters()
     {
-        //old
-        /*return [
-            'category' => request('category'),
-        ];*/
-
         return [
             'category' => new CategoryFilter,
             'area' => new AreaFilter,
             'center' => new CenterFilter,
             'neighborhood' => new NeighborhoodFilter,
             'street' => new StreetFilter,
-            'ad_sort_id' => new AdSortFilter,
             'sort_id' => new SortFilter,
             'offer_id' => new OfferFilter,
             'age' => new AgeFilter,
@@ -168,17 +203,17 @@ class SearchController extends Controller
             'building_design' => new BuildingDesignFilter,
             'building_space' => new BuildingSpaceFilter,
             'delivery_method' => new DeliveryMethodFilter,
-            'destination_filter' => new DestinationFilter,
+            'destination_id' => new DestinationFilter,
             'docs' => new DocsFilter,
             'electricity_network' => new ElectricityNetworkFilter,
             'floor_number' => new FloorNumberFilter,
             'floors_number' => new FloorsNumberFilter,
             'floor_tanks_sort' => new FloorTanksSortFilter,
-            'gas_network_filter' => new GasNetworkFilter,
-            'kitchens_number_filter' => new KitchensNumberFilter,
-            'lifts_number_filter' => new LiftsNumberFilter,
+            'gas_network' => new GasNetworkFilter,
+            'kitchens_number' => new KitchensNumberFilter,
+            'lifts_number' => new LiftsNumberFilter,
             'overhead_tanks_sort' => new OverheadTanksSortFilter,
-            'parking_filter' => new ParkingFilter,
+            'parking' => new ParkingFilter,
             'payment_sort' => new PaymentSortFilter,
             'piece_number' => new PieceNumberFilter,
             'price_sort' => new PriceSortFilter,
@@ -192,6 +227,9 @@ class SearchController extends Controller
             'unit_number' => new UnitNumberFilter,
             'units_number' => new UnitsNumberFilter,
             'water_network' => new WaterNetworkFilter,
+            'name' => new NameFilter,
+            'office_role' => new RoleFilter, 
+            'ad_sort_id' => new AdSortFilter,
         ];
 
         

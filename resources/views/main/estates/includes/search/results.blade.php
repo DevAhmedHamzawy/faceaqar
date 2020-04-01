@@ -17,6 +17,7 @@
                     </h2>
                 </div>
             </div>
+            @unless($adSort == 'general')
             <div class="col-sm-3 col-xs-12">
                 <div class="search_btn search_btn_engin">
                     <h2>
@@ -39,6 +40,7 @@
                     </h2>
                 </div>
             </div>
+            @endunless
         </div>
     </div>
     <!-- end_realestate_number -->
@@ -53,13 +55,17 @@
                         <li>{{ $estate->code }}</li>
                         <li> {{ $estate->created_at->format('Y-m-d') }} </li>
                     </ul>
-                    <a href="{{ route('estates.show', [$adSort->name, $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
+                     @if($adSort->name === 'office_estate')
+                            <a href="{{ route('profile', [$estate->name]) }}" title=""   style="margin-top:0;"  class="bg_tt"> {{ $estate->name }} </a>
+                     @else
+                            <a href="{{ route('estates.show', [$estate->ad_sort_id, $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
+                     @endif
                     <ul class="otherul">
                         @unless ($estate->category == null)
                             <li>{{ $estate->category->name }}<i class="fa fa-home"></i> </li>
                         @endunless
-                        <li class="qt3a"> {{ $estate->sortName[0] }} <i class="fas fa-building"></i> </li>
-                        <li>  {{ $estate->offerName[0] }}  <i class="far fa-gem"></i>   </li>
+                        <li class="qt3a"> {{ $estate->sortName }} <i class="fas fa-building"></i> </li>
+                        <li>  {{ $estate->offerName }}  <i class="far fa-gem"></i>   </li>
                     </ul>
                         
                         @unless($estate->localAuctionEstate == null)
@@ -67,7 +73,7 @@
                         <ul>
                         <li> {{ $estate->localAuctionEstate->rooms_number }} <i class="fas fa-bed"></i>
                         <li> {{ $estate->localAuctionEstate->bathrooms_number }} <i class="fas fa-bath"></i> </li>
-                        <li class="masaha"> <span class="Grey40" style="font-size:1.5em">م</span> <sup class="Grey40">2</sup> {{ $estate->localAuctionEstate->space }} </li>
+                        <li class="masaha"> <span class="Grey40" style="font-size:1.5em">م</span> <sup class="Grey40">2</sup> {{ $estate->localAuctionEstate->estate_space }} </li>
                         <li> {{ $estate->localAuctionEstate->price }} <i class="fas fa-tag"></i>  </li>
                         </ul>
 
@@ -79,7 +85,7 @@
                     <span> {{ $estate->neighborhood }} <i class="fas fa-map-marker-alt"></i> </span>
                     
                     @unless($estate->advertiser == null)
-                    <span>{{ $estate->advertiser->name }}<i class="fas fa-user-circle"></i>  </span>
+                    <span>{{ $estate->advertiser->advertiser_name }}<i class="fas fa-user-circle"></i>  </span>
                     @endunless
                 </div>
             </div>     

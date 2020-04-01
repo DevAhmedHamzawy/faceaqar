@@ -7,13 +7,17 @@ use Illuminate\Database\Eloquent\Builder;
 class SewerageNetworkFilter implements Filter
 {
     public function apply(Builder $builder, $value)
-    {
+    { 
         if($value !== null){
-            return $builder->whereHas('localEstate', function($q) use ($value){
-                $q->where('sewerage_network' , $value);
-            })->whereHas('auctionEstate', function($q) use ($value){
-                $q->where('sewerage_network' , $value);
-            });
+            if(request()->ad_sort_id == 1){
+                return $builder->whereHas('localEstate', function($q) use ($value){
+                    $q->where('sewerage_network' , $value);
+                });
+            }else{
+                return $builder->whereHas('auctionEstate', function($q) use ($value){
+                    $q->where('sewerage_network' , $value);
+                });
+            }
         }
     }
 }

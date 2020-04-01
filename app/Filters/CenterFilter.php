@@ -9,7 +9,13 @@ class CenterFilter implements Filter
     public function apply(Builder $builder, $value)
     {
         if($value !== null){
-            return $builder->where('center' , 'like' , "%$value%");
+            if(request()->ad_sort_id == 7){
+                return $builder->whereHas('profile', function($q) use ($value){
+                    $q->where('center' , 'like' , "%$value%");
+                });
+            }else{
+                return $builder->where('center' , 'like' , "%$value%");
+            }
         }
     }
 }

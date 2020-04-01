@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Estate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DataTables;
 
 class EstateController extends Controller
 {
@@ -13,9 +15,34 @@ class EstateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.estates.index', ['estates' => Estate::paginate(7)]);
+        if ($request->ajax()) {
+
+        $estates = Estate::all();
+
+        foreach($estates as $estate){
+            $estate->sortName = Estate::getSort($estate->sort_id);
+            $estate->offerName = Estate::getOffer($estate->offer_id);
+            $estate->views = views($estate)->unique()->count();
+            $estate->areaName = Estate::getMainArea($estate->area_id);
+            $estate->adSort = Estate::checkAdSort($estate->ad_sort_id);
+            if($estate->category == null) {  $estate->category = new Category; $estate->category->name = 'لا يوجد';  }
+        }
+
+        return Datatables::of($estates)->addIndexColumn()
+        ->addColumn('action', function($row){
+
+               $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">عرض</a>';
+
+                return $btn;
+        })
+        ->rawColumns(['action'])
+        ->make(true);
+
+        }
+
+        return view('admin.estates.index');
     }
 
     /**

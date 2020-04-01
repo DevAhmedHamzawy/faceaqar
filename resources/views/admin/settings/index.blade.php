@@ -66,6 +66,36 @@
                 </div>
             </div>
 
+            <div class="col-md-3">
+                <div class="card">
+                    <a href="{{ route('icons', 'header1') }}"><h1 class="text-center">أيقونات القائمة الرئيسية</h1></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <a href="{{ route('icons', 'header2') }}"><h1 class="text-center">أيقونات القائمة الرئيسية 2</h1></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <a href="{{ route('icons', 'header3') }}"><h1 class="text-center">أيقونات القائمة الرئيسية 3</h1></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <a href="{{ route('icons', 'footer') }}"><h1 class="text-center">ذيل الصفحة</h1></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <a href="{{ route('icons', 'footer-payment') }}"><h1 class="text-center">أيقونات طرق الدفع</h1></a>
+                </div>
+            </div>
+
 
             @foreach ($pages as $page)
 

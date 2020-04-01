@@ -58,7 +58,7 @@
         <label for="">اســم المعلن <em>*</em></label>
     </div>
     <div class="col-md-4">
-        <input type="text" name="advertiser_name" value="{{ $estate->advertiser->name }}" class="form-control" id="" placeholder="">
+        <input type="text" name="advertiser_name" value="{{ $estate->advertiser->advertiser_name }}" class="form-control" id="" placeholder="">
     </div>
     
     <div class="col-md-2">
@@ -133,7 +133,7 @@
         <label for="choice-type-number" class="imp-n-s">
 هل ترغب تثبيت صفحتك الالكترونية في مقدمة الإعلانات الالكترونية في جميع صفحات مدينتك بالموقع؟
         </label>
-        <span class="imp-n-s-2"> إضافة رسوم مالية عند التثبيت </span>
+        <span class="imp-n-s-2"><a href="{{ route('tickets.create') }}" style="color:#fff;"> إضافة رسوم مالية عند التثبيت </a></span>
         <div class="reveal-if-active" id="autoUpdate">
             <div class="row">
                 <div class="col-md-3 hidden-xs"></div>

@@ -7,13 +7,18 @@
     <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.1.3/css/bootstrap.min.css" integrity="sha384-Jt6Tol1A2P9JBesGeCxNrxkmRFSjWCBW1Af7CSQSKsfMVQCqnUVWhZzG0puJMCK6" crossorigin="anonymous">    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('adminpanel/css/style.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+    
     <title>Logo</title>
     @yield('header')
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
 
-        <a class="navbar-brand" href="#"><img src="{{ asset('public/images/main/logo.png') }}" width="150" height="30" /></a>
+        <a class="navbar-brand" href="#"><img src="{{ asset('adminpanel/img/logo.png') }}" width="150" height="30" /></a>
 
 
         <button class="navbar-toggler sideMenuToggler" type="button">
@@ -112,6 +117,7 @@
                     <li class="nav-item"><a href="{{ url('admin/dashboard') }}" class="nav-link px-2"><i class="material-icons icon">dashboard</i><span class="text">لوحة التحكم</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/estates') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">عقارات الموقع</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/reports') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">البلاغات عن العقارات</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/offices') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">المكاتب العقارية</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/contacts') }}" class="nav-link px-2"><i class="material-icons icon">accessibility</i><span class="text">رسائل تواصل معنا</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/newsletters') }}" class="nav-link px-2"><i class="material-icons icon">account_box</i><span class="text">النشرة التسويقية البريدية</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/admins') }}" class="nav-link px-2"><i class="material-icons icon">face</i><span class="text">المديرين</span></a></li>
@@ -145,5 +151,8 @@
 <script src="{{ asset('adminpanel/js/script.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
 @yield('footer')
 </html>

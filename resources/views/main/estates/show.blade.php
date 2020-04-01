@@ -155,13 +155,14 @@
                         </div>	
                     </div>	
                 </div>	
-            
-                @if($adSort->name == 'local_estate' || $adSort->name == 'auction_estate')
-                    @include('main.estates.includes.show.localauctionestatedata')
-                @endif
+                @if(!empty($localAuctionEstate))
+                    @if($adSort->name == 'local_estate' || $adSort->name == 'auction_estate')
+                        @include('main.estates.includes.show.localauctionestatedata')
+                    @endif
 
-                @if($adSort->name == 'auction_estate')
-                    @include('main.estates.includes.show.auctionestatedata')
+                    @if($adSort->name == 'auction_estate')
+                        @include('main.estates.includes.show.auctionestatedata')
+                    @endif
                 @endif
 
                 <div class="service_text">
