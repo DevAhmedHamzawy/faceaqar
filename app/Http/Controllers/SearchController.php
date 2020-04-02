@@ -61,6 +61,7 @@ class SearchController extends Controller
 {
     public function index($adSort = null)
     {
+        dd(request()->all());
         $adSort == 'general' || $adSort == 'filters' ? : $adSort = Estate::checkAdSort($adSort);
         
         return view('main.estates.search', 
@@ -76,11 +77,14 @@ class SearchController extends Controller
         ]);
     }
 
-    public function searchByAdSort($adSort)
+    public function searchByAdSort(Request $request)
     {
-        $adSortId = DB::table('ad_sort')->whereName($adSort)->pluck('id');
-        $adSort = DB::table('ad_sort')->whereName($adSort)->first();
+        
+        $adSortId = DB::table('ad_sort')->whereId($request->ad_sort_id)->pluck('id');
+        $adSort = DB::table('ad_sort')->whereId($request->ad_sort_id)->first();
 
+        //dd(Area::findOrFail($request->city_id));
+        dd('here');
         if($adSort->name !== 'office_estate' && $adSort->name !== 'broker_estate'){
 
             $estates = Estate::whereAdSortId($adSortId)->orderByDesc('created_at')->paginate(16);
@@ -91,35 +95,34 @@ class SearchController extends Controller
 
         if($adSort->name !== 'office_estate' && $adSort->name !== 'broker_estate'){
 
-        foreach($estates as $estate){
-            $estate->sortName = Estate::getSort($estate->sort_id);
-            $estate->offerName = Estate::getOffer($estate->offer_id);
-            $estate->advertiser = Advertiser::where('estate_id',$estate->id)->first();
-            //$estate->areaName = Estate::getMainArea($estate->area_id);
+            foreach($estates as $estate){
+                $estate->sortName = Estate::getSort($estate->sort_id);
+                $estate->offerName = Estate::getOffer($estate->offer_id);
+                $estate->advertiser = Advertiser::where('estate_id',$estate->id)->first();
+                //$estate->areaName = Estate::getMainArea($estate->area_id);
 
-              //TODO :- Check About AdsortID To Avoid Mistakes
+                //TODO :- Check About AdsortID To Avoid Mistakes
 
-        switch ($adSort) {
-            
-            case 'auction_estate':
-                $estate->localAuctionEstate = AuctionEstate::getData($estate->id);
-                $estate->priceSortName = AuctionEstate::getPriceSort($estate->localAuctionEstate->price_sort_id ?? '');
-                $estate->paymentSortName = AuctionEstate::getPaymentSort($estate->localAuctionEstate->payment_sort_id ?? '');
-               
-                break;
-            case 'local_estate':
-                $estate->localAuctionEstate = LocalEstate::getData($estate->id);
-                $estate->priceSortName = LocalEstate::getPriceSort($estate->localAuctionEstate->price_sort_id);
-                $estate->paymentSortName = LocalEstate::getPaymentSort($estate->localAuctionEstate->payment_sort_id);
-              
-                break;
+            switch ($adSort) {
                 
+                case 'auction_estate':
+                    $estate->localAuctionEstate = AuctionEstate::getData($estate->id);
+                    $estate->priceSortName = AuctionEstate::getPriceSort($estate->localAuctionEstate->price_sort_id ?? '');
+                    $estate->paymentSortName = AuctionEstate::getPaymentSort($estate->localAuctionEstate->payment_sort_id ?? '');
+                
+                    break;
+                case 'local_estate':
+                    $estate->localAuctionEstate = LocalEstate::getData($estate->id);
+                    $estate->priceSortName = LocalEstate::getPriceSort($estate->localAuctionEstate->price_sort_id);
+                    $estate->paymentSortName = LocalEstate::getPaymentSort($estate->localAuctionEstate->payment_sort_id);
+                
+                    break;
+                    
+            }
+
+            }
         }
 
-        }
-        }
-
-        //return json_encode($estates);
         return view('main.estates.index', ['estates' => $estates, 'adSort' => $adSort]);
     }
 

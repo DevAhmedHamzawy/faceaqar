@@ -15,43 +15,41 @@
                             <img src="{{ url('main/images/se-pag.png') }}">
                         </div>
                     </div>
+                    <form action="{{ route('search-by-ad-sort') }}" method="GET">
                     <div class="col-md-6 col-sm-12 no-pad">
                         <div class="center-sepag">
                             <h2>البحث عن الصفحات الاعلانية الالكترونية بالموقع</h2>
-                            <div class="sel1">
-                                <p>اختر المدينة</p>
-                                <div class="custom-select" id="cities">
-                                <select>
-                                  <option value="0">الكل</option>
-                                  <option value="1">الرياض</option>
-                                  <option value="2">الرياض</option>
-                                  <option value="3">الرياض</option>
-                                </select>
-                                </div>
-                            </div>
-                            <div class="sel1">
-                                <p>اختر المنطقة</p>
-                                <div class="custom-select">
-                                <select onchange="getCities(this);">
+                            <div class="row" style="padding-bottom:15px;">
+                                <div class="col-md-6">
+                                <select class="form-control" onchange="getCities(this);">
+                                  <option value="">اختر اسم الدولة</option>
                                   @foreach ($areas as $area)
-                                    <option value="{{ $area }}">{{ $area->name }}</option>
+                                      <option value="{{ $area->name }}">{{ $area->name }}</option>
                                   @endforeach
                                 </select>
                                 </div>
+                                <div class="col-md-6">
+                                
+                                <select class="form-control" name="city_id" id="cities">
+                                 <option value="">اختر اسم المنطقة</option>
+                                </select>
+                                </div>
                             </div>
+                        
                             <div class="sel2 sel2home">
                                 <div class="custom-select">
-                                <select>
-                                  <option value="volvo">اختر نوع الصفحة الاعلانية</option>
+                                <select name="ad_sort_id" required>
+                                  <option value="">اختر نوع الصفحة الاعلانية</option>
                                   @foreach ($adSorts as $adSort)
                                     <option value="{{ $adSort }}">{{ $adSort }}</option>
                                   @endforeach
                                 </select>
                                 </div>
                             </div>
-                            <button class="btn">ابدأ البحث</button>
+                            <button type="submit" class="btn">ابدأ البحث</button>
                         </div>
                     </div>
+                    </form>
                     <div class="col-md-3 col-sm-12 no-pad">
                         <div class="left-sepag">
                             <p>الصفحات العقارية الالكترونية وكيفية التعامل معها بالشكل الصحيح المباشر المبسط لعملاء الكرام نحن في خدمتكم</p>
