@@ -35,13 +35,13 @@
                                 </select>
                                 </div>
                             </div>
-                        
+
                             <div class="sel2 sel2home">
                                 <div class="custom-select">
                                 <select name="ad_sort_id" required>
                                   <option value="">اختر نوع الصفحة الاعلانية</option>
-                                  @foreach ($adSorts as $adSort)
-                                    <option value="{{ $adSort }}">{{ $adSort }}</option>
+                                  @foreach ($adSorts as $key=>$value)
+                                    <option value="{{ $value }}">{{ $key }}</option>
                                   @endforeach
                                 </select>
                                 </div>

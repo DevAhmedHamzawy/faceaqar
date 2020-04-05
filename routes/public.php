@@ -53,7 +53,7 @@ Route::post('sendmessage', 'MessageController@store');
 Route::get('estates', 'SearchController@searchByAdSort')->name('search-by-ad-sort');
 
 // Estates By Adsort
-Route::get('estates/{adSort}/index', 'EstateController@index');
+Route::get('estates/{adSort}/index', 'EstateController@index')->name('estates-list');
 
 //Search Filter Estates
 Route::get('search/{adSort}', 'SearchController@index')->name('search');

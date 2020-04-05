@@ -56,7 +56,7 @@ class EstateController extends Controller
 
         }
         
-        return view('main.estates.index', ['estates' => $estates, 'adSort' => $adSort]);
+        return view('main.estates.index', ['estates' => $estates, 'adSort' => $adSort, 'area' => null]);
     }
 
     /**

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Area extends Model
 {
     protected $guarded = [];
-    protected $with = ['children'];
 
     public function getRouteKeyName()
     {
@@ -19,8 +18,10 @@ class Area extends Model
         return self::whereParentId(1)->get();
     }
 
-    public function children()
+    public static function getChildrenAreas($id)
     {
-        return $this->hasMany('App\Area', 'parent_id')->whereNotNull('parent_id');
+        return self::whereParentId($id)->get();
     }
+
+    
 }

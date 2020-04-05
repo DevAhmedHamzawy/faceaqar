@@ -16,7 +16,7 @@ class HomeController extends Controller
     
     public function welcome()
     {
-        return view('main.welcome', ['clients' => Client::all(), 'portfolios' => Portfolio::all(), 'teams' => DB::table('teams')->join('users','users.id','=','user_id')->get(), 'adSorts' => DB::table('ad_sort')->pluck('display'), 'pages' => Page::getParents(), 'sliders' => Broker::getSlider(), 'tickers' => Broker::getTicker() ]);
+        return view('main.welcome', ['clients' => Client::all(), 'portfolios' => Portfolio::all(), 'teams' => DB::table('teams')->join('users','users.id','=','user_id')->get(), 'adSorts' => DB::table('ad_sort')->pluck('id','display'), 'pages' => Page::getParents(), 'sliders' => Broker::getSlider(), 'tickers' => Broker::getTicker() ]);
     } 
 
     public function index()

@@ -9,7 +9,11 @@
     <div class="container">
         <!-- title_pages -->
         <div class="title_pages">
-            <h2>صفحة {{ $adSort->adjective }} فى المدينة</h2>
+            @if ($area != null)
+                <h2>صفحة {{ $adSort->adjective }} فى {{ $area->name }}</h2>
+            @else
+                <h2>صفحة {{ $adSort->adjective }}</h2> 
+            @endif
             <span></span>
         </div>
         <!-- end_title_pages -->
@@ -18,56 +22,110 @@
         <!-- service_icon -->
         <div class="col-sm-12 col-xs-12">
             <div class="service_icon">
+                @if ($area != null)
+                    <ul>
+                        <li>
+                            <a href="{{ route('search-by-ad-sort' , ['local_estate', $area->id ?? '']) }}" title="">
+                                <img src="{{ url('main/images/icon_r_2.png') }}" class="img-responsive" alt=""/>
+                                <span>العقارات المحلية</span>
+                            </a>	
+                        </li>
+                        <li>
+                            <a href="{{ route('search-by-ad-sort' , ['global_estate', $area->id ?? '']) }}" title="">
+                                <img src="{{ url('main/images/icon_r_6.png') }}" class="img-responsive" alt=""/>
+                                <span>العقارات الدولية</span>
+                            </a>	
+                        </li>
+                        <li>
+                            <a href="{{ route('search-by-ad-sort' , ['project_estate', $area->id ?? '']) }}" title="">
+                                <img src="{{ url('main/images/icon_r_1.png') }}" class="img-responsive" alt=""/>
+                                <span>المشاريع العقارية</span>
+                            </a>	
+                        </li>
+                        <li>
+                            <a href="{{ route('search-by-ad-sort' , ['auction_estate', $area->id ?? '']) }}" title="">
+                                <img src="{{ url('main/images/icon_r_4.png') }}" class="img-responsive" alt=""/>
+                                <span>المزادات العقارية</span>
+                            </a>	
+                        </li>
+                        <li>
+                            <a href="{{ route('search-by-ad-sort' , ['request_estate', $area->id ?? '']) }}" title="">
+                                <img src="{{ url('main/images/icon_r_5.png') }}" class="img-responsive" alt=""/>
+                                <span>الطلبات العقارية</span>
+                            </a>	
+                        </li>
+                        <li>
+                            <a href="{{ route('search-by-ad-sort' , ['schema_estate', $area->id ?? '']) }}" title="">
+                                <img src="{{ url('main/images/ss.png') }}" class="img-responsive" alt=""/>
+                                <span>المخططات العقارية</span>
+                            </a>	
+                        </li>
+                        <li>
+                            <a href="{{ route('search-by-ad-sort' , ['office_estate', $area->id ?? '']) }}" title="">
+                                <img src="{{ url('main/images/regpag88.png') }}" class="img-responsive" alt=""/>
+                                <span>المكاتب العقارية الإلكترونية</span>
+                            </a>	
+                        </li>
+                        <li>
+                            <a href="{{ route('search-by-ad-sort' , ['broker_estate', $area->id ?? '']) }}" title="">
+                                <img src="{{ url('main/images/regpag4141.png') }}" class="img-responsive" alt=""/>
+                                <span>وسيط واجهة العقار الالكتروني</span>
+                            </a>	
+                        </li>
+                    </ul>  
+                @else
                 <ul>
                     <li>
-                        <a href="{{ route('search-by-ad-sort' , 'local_estate') }}" title="">
+                        <a href="{{ route('estates-list' , 'local_estate') }}" title="">
                             <img src="{{ url('main/images/icon_r_2.png') }}" class="img-responsive" alt=""/>
                             <span>العقارات المحلية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="{{ route('search-by-ad-sort' , 'global_estate') }}" title="">
+                        <a href="{{ route('estates-list' , 'global_estate') }}" title="">
                             <img src="{{ url('main/images/icon_r_6.png') }}" class="img-responsive" alt=""/>
                             <span>العقارات الدولية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="{{ route('search-by-ad-sort' , 'project_estate') }}" title="">
+                        <a href="{{ route('estates-list' , 'project_estate') }}" title="">
                             <img src="{{ url('main/images/icon_r_1.png') }}" class="img-responsive" alt=""/>
                             <span>المشاريع العقارية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="{{ route('search-by-ad-sort' , 'auction_estate') }}" title="">
+                        <a href="{{ route('estates-list' , 'auction_estate') }}" title="">
                             <img src="{{ url('main/images/icon_r_4.png') }}" class="img-responsive" alt=""/>
                             <span>المزادات العقارية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="{{ route('search-by-ad-sort' , 'request_estate') }}" title="">
+                        <a href="{{ route('estates-list' , 'request_estate') }}" title="">
                             <img src="{{ url('main/images/icon_r_5.png') }}" class="img-responsive" alt=""/>
                             <span>الطلبات العقارية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="{{ route('search-by-ad-sort' , 'schema_estate') }}" title="">
+                        <a href="{{ route('estates-list' , 'schema_estate') }}" title="">
                             <img src="{{ url('main/images/ss.png') }}" class="img-responsive" alt=""/>
                             <span>المخططات العقارية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="{{ route('search-by-ad-sort' , 'office_estate') }}" title="">
+                        <a href="{{ route('estates-list' , 'office_estate') }}" title="">
                             <img src="{{ url('main/images/regpag88.png') }}" class="img-responsive" alt=""/>
                             <span>المكاتب العقارية الإلكترونية</span>
                         </a>	
                     </li>
                     <li>
-                        <a href="{{ route('search-by-ad-sort' , 'broker_estate') }}" title="">
+                        <a href="{{ route('estates-list' , 'broker_estate') }}" title="">
                             <img src="{{ url('main/images/regpag4141.png') }}" class="img-responsive" alt=""/>
                             <span>وسيط واجهة العقار الالكتروني</span>
                         </a>	
                     </li>
-                </ul>
+                </ul> 
+                @endif
+               
             </div>
         </div>	
         <!-- end_service_icon -->
@@ -78,7 +136,7 @@
             <div class="realestate_number">
                 <div class="row">
                     <div class="col-sm-3 col-xs-12">
-                        <h3 class="number_real" style="margin-top: 10px;">عدد {{ $adSort->adjective }}  = {{ $estates->total() }} عقار</h3>
+                        <h3 class="number_real" style="margin-top: 10px;">عدد {{ $adSort->adjective }}  = {{-- $estates->total() --}} عقار</h3>
                     </div>
                     @unless($adSort->name == 'broker_estate')
                     <div class="col-sm-3  col-xs-12">
@@ -210,6 +268,6 @@
 </section>
 <!-- end_local_page -->
 
-<div class="text-center">{{ $estates->links() }}</div>
+<div class="text-center">{{-- $estates->links() --}}</div>
 
 @endsection

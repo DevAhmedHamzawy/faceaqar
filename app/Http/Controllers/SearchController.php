@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Advertiser;
+use App\Area;
 use App\AuctionEstate;
 use App\Broker;
 use App\Category;
@@ -79,25 +80,60 @@ class SearchController extends Controller
 
     public function searchByAdSort(Request $request)
     {
+        if($request->ad_sort_id == null && $request->city_id == null){
+            $requestKeyArray = [];
+            foreach ($request->all() as $key => $value) {
+                array_push($requestKeyArray, $key);
+            }
+            $request->merge(['ad_sort_id' => $requestKeyArray[0] , 'city_id' => $requestKeyArray[1]]);
+        }
         
-        $adSortId = DB::table('ad_sort')->whereId($request->ad_sort_id)->pluck('id');
-        $adSort = DB::table('ad_sort')->whereId($request->ad_sort_id)->first();
+        $adSortId = DB::table('ad_sort')->whereId($request->ad_sort_id)->orWhere('name', $request->ad_sort_id)->pluck('id');
+        $adSort = DB::table('ad_sort')->whereId($request->ad_sort_id)->orWhere('name', $request->ad_sort_id)->first();
 
-        //dd(Area::findOrFail($request->city_id));
-        dd('here');
+        
+       
+
+        $areaResult = Area::find($request->city_id); 
+
+        $areas = Area::getChildrenAreas($request->city_id);
+        
+        
+        
         if($adSort->name !== 'office_estate' && $adSort->name !== 'broker_estate'){
 
-            $estates = Estate::whereAdSortId($adSortId)->orderByDesc('created_at')->paginate(16);
-
+            $estates = [];
+            foreach ($areas as $area) {
+                $results = Estate::whereAdSortId($adSortId)->whereAreaId($area->id)->orderByDesc('created_at')->get();
+                foreach ($results as $result) {
+                    array_push($estates, $result);
+                }
+            }
+            
+        
         }else{
-            $adSort->name == 'office_estate' ? $estates = User::withRole('estate_office')->paginate(16) : $estates = Broker::paginate(16);
+
+            $estates = [];
+            if($adSort->name == 'office_estate'){
+                $results = User::withRole('estate_office')->whereHas('profile', function($q) use ($request){
+                    $q->whereAreaId($request->city_id);
+                })->get();
+                foreach ($results as $result) {
+                    array_push($estates, $result);
+                } 
+            }else{
+                $results = Broker::whereAreaId($request->city_id)->get();
+                foreach ($results as $result) {
+                    array_push($estates, $result);
+                } 
+            }
         }
 
         if($adSort->name !== 'office_estate' && $adSort->name !== 'broker_estate'){
 
             foreach($estates as $estate){
-                $estate->sortName = Estate::getSort($estate->sort_id);
-                $estate->offerName = Estate::getOffer($estate->offer_id);
+                $estate->sortName = Estate::getSort($estate->sort_id ?? '');
+                $estate->offerName = Estate::getOffer($estate->offer_id ?? '');
                 $estate->advertiser = Advertiser::where('estate_id',$estate->id)->first();
                 //$estate->areaName = Estate::getMainArea($estate->area_id);
 
@@ -123,7 +159,7 @@ class SearchController extends Controller
             }
         }
 
-        return view('main.estates.index', ['estates' => $estates, 'adSort' => $adSort]);
+        return view('main.estates.index', ['estates' => $estates, 'adSort' => $adSort, 'area' => $areaResult]);
     }
 
 
@@ -137,8 +173,8 @@ class SearchController extends Controller
         
         $estates = Estate::filter($this->filters())->paginate(6);
         foreach($estates as $estate){
-            $estate->sortName = Estate::getSort($estate->sort_id);
-            $estate->offerName = Estate::getOffer($estate->offer_id);
+            $estate->sortName = Estate::getSort($estate->sort_id ?? '');
+            $estate->offerName = Estate::getOffer($estate->offer_id ?? '');
             $estate->advertiser = Advertiser::where('estate_id',$estate->id)->first();
             //$estate->areaName = Estate::getMainArea($estate->area_id);
 
