@@ -94,9 +94,9 @@ class SearchController extends Controller
         
        
 
-        $areaResult = Area::find($request->city_id); 
+        $areaResult = Area::whereName($request->city_id)->first(); 
 
-        $areas = Area::getChildrenAreas($request->city_id);
+        $areas = Area::getChildrenAreas($areaResult->id);
         
         
         
@@ -158,7 +158,8 @@ class SearchController extends Controller
 
             }
         }
-
+        
+       
         return view('main.estates.index', ['estates' => $estates, 'adSort' => $adSort, 'area' => $areaResult]);
     }
 

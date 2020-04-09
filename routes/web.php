@@ -26,6 +26,9 @@ Route::group(['middleware' => 'verified'], function (){
     Route::get('profile/{user}/edit', 'UsersController@edit')->name('edit-profile');
     Route::put('profile/{user}/edit', 'UsersController@update')->name('update-profile');
 
+    // Update User Image
+    Route::post('profile/image', 'UsersController@image');
+
     // Estate Create Process
     Route::get('new-estate/{adSort}/create', 'EstateController@create')->name('estate.createestate');
     Route::post('new-estate/{adSort}/create', 'EstateController@store')->name('estates.create');

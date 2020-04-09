@@ -21,6 +21,8 @@ class Estate extends Model implements ViewableContract
 
     protected $with = ['category','images','likes','dislikes'];
 
+    
+
     public function getRouteKeyName()
     {   
         // instead we should use slug

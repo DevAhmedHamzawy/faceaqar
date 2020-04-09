@@ -45,8 +45,8 @@ class UsersController extends Controller
 
         if($request->has('commercial_register_img')){ $request->merge(['commercial_register_img' =>UploadFiles::upload_commercial_image($request->commercial_img, auth()->user()->name, 'users/'.auth()->user()->name.'/commercial_image')]);}
 
-        auth()->user()->profile()->update($request->except('_token', '_method', 'namefield6', 'namefield5' , 'name' , 'email', 'choice-type', 'national_img', 'commercial_img','userimages', 'latlng', 'g-recaptcha-response'));
-        auth()->user()->update($request->only('email'));
+        auth()->user()->profile()->update($request->except('_token', '_method', 'namefield6', 'namefield5' , 'name' , 'email', 'choice-type', 'national_img', 'commercial_img','userimages', 'latlng', 'g-recaptcha-response','password'));
+        auth()->user()->update($request->only('name','email','password'));
 
         
         if($request->hasfile('userimages'))
@@ -70,6 +70,15 @@ class UsersController extends Controller
        
 
         return redirect('/home');
+    }
+
+    public function image(Request $request)
+    {
+        $request->merge(['img' => UploadFiles::upload_image($request->file_data, auth()->user()->name, 'users')]);
+        
+        $data = []; array_push($data, $request->img);
+
+        return UserImage::updateOrCreate(['user_id' => auth()->user()->id], ['img' => json_encode($data)]) ? 1 : 0;
     }
 
     /**

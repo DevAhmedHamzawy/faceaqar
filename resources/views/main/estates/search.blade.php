@@ -6,10 +6,10 @@
 
 @if($adSort != 'general')
 <form method="get" action="{{ route('getresults', $adSort->name) }}" id="filtersform">
+    <input type="hidden" name="ad_sort_id" value="{{ $adSort->id }}">
 @else
 <form method="get" action="{{ route('getresults', $adSort->name ?? 'general') }}" id="filtersform">
 @endif
-    <input type="hidden" name="ad_sort_id" value="{{ $adSort->id }}">
     <div class="all-ser-pages">
             <div class="container">
                             <div class="center-sepag ser-pages">

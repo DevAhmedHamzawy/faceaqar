@@ -565,7 +565,7 @@
                                     <i class="fa fa-map"></i>
                                 </div>
                                 <h2>اختر الدولة</h2>
-                                <select onchange="getCities(this);">
+                                <select onchange="getCitiesContact(this);">
                                     @foreach ($areas as $area)
                                       <option value="{{ $area->name }}">{{ $area->name }}</option>
                                     @endforeach
@@ -576,7 +576,7 @@
                                    <i class="fas fa-map-marked-alt"></i>
                                 </div>
                                 <h2>اختر المنطقة</h2>
-                                <select id="cities" onchange="getSubCities(this);">
+                                <select id="cities_contact" onchange="getSubCitiesContact(this);">
                                 
                                 </select>
                             </div>
@@ -585,7 +585,7 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <h2>اختر المدينة</h2>
-                                <select id="area_id">
+                                <select class="area_id_contact">
                                   
                                 </select>
                                 <span id="area-id-contact-error invalid-feedback" role="alert"></span>
@@ -679,7 +679,7 @@ form_data.append('file_data', file_data);
 
 
 function sendContact(){
-    form_data.append('area_id', $(".area_id").val())
+    form_data.append('area_id', $(".area_id_contact").val())
     form_data.append('name', $(".name").val())
     form_data.append('mobile', $(".mobile").val())
     form_data.append('email', $(".email").val())

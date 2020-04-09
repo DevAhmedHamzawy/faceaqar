@@ -25,49 +25,49 @@
                 @if ($area != null)
                     <ul>
                         <li>
-                            <a href="{{ route('search-by-ad-sort' , ['local_estate', $area->id ?? '']) }}" title="">
+                            <a href="{{ route('search-by-ad-sort' , ['local_estate', $area->name ?? '']) }}" title="">
                                 <img src="{{ url('main/images/icon_r_2.png') }}" class="img-responsive" alt=""/>
                                 <span>العقارات المحلية</span>
                             </a>	
                         </li>
                         <li>
-                            <a href="{{ route('search-by-ad-sort' , ['global_estate', $area->id ?? '']) }}" title="">
+                            <a href="{{ route('search-by-ad-sort' , ['global_estate', $area->name ?? '']) }}" title="">
                                 <img src="{{ url('main/images/icon_r_6.png') }}" class="img-responsive" alt=""/>
                                 <span>العقارات الدولية</span>
                             </a>	
                         </li>
                         <li>
-                            <a href="{{ route('search-by-ad-sort' , ['project_estate', $area->id ?? '']) }}" title="">
+                            <a href="{{ route('search-by-ad-sort' , ['project_estate', $area->name ?? '']) }}" title="">
                                 <img src="{{ url('main/images/icon_r_1.png') }}" class="img-responsive" alt=""/>
                                 <span>المشاريع العقارية</span>
                             </a>	
                         </li>
                         <li>
-                            <a href="{{ route('search-by-ad-sort' , ['auction_estate', $area->id ?? '']) }}" title="">
+                            <a href="{{ route('search-by-ad-sort' , ['auction_estate', $area->name ?? '']) }}" title="">
                                 <img src="{{ url('main/images/icon_r_4.png') }}" class="img-responsive" alt=""/>
                                 <span>المزادات العقارية</span>
                             </a>	
                         </li>
                         <li>
-                            <a href="{{ route('search-by-ad-sort' , ['request_estate', $area->id ?? '']) }}" title="">
+                            <a href="{{ route('search-by-ad-sort' , ['request_estate', $area->name ?? '']) }}" title="">
                                 <img src="{{ url('main/images/icon_r_5.png') }}" class="img-responsive" alt=""/>
                                 <span>الطلبات العقارية</span>
                             </a>	
                         </li>
                         <li>
-                            <a href="{{ route('search-by-ad-sort' , ['schema_estate', $area->id ?? '']) }}" title="">
+                            <a href="{{ route('search-by-ad-sort' , ['schema_estate', $area->name ?? '']) }}" title="">
                                 <img src="{{ url('main/images/ss.png') }}" class="img-responsive" alt=""/>
                                 <span>المخططات العقارية</span>
                             </a>	
                         </li>
                         <li>
-                            <a href="{{ route('search-by-ad-sort' , ['office_estate', $area->id ?? '']) }}" title="">
+                            <a href="{{ route('search-by-ad-sort' , ['office_estate', $area->name ?? '']) }}" title="">
                                 <img src="{{ url('main/images/regpag88.png') }}" class="img-responsive" alt=""/>
                                 <span>المكاتب العقارية الإلكترونية</span>
                             </a>	
                         </li>
                         <li>
-                            <a href="{{ route('search-by-ad-sort' , ['broker_estate', $area->id ?? '']) }}" title="">
+                            <a href="{{ route('search-by-ad-sort' , ['broker_estate', $area->name ?? '']) }}" title="">
                                 <img src="{{ url('main/images/regpag4141.png') }}" class="img-responsive" alt=""/>
                                 <span>وسيط واجهة العقار الالكتروني</span>
                             </a>	
@@ -136,7 +136,7 @@
             <div class="realestate_number">
                 <div class="row">
                     <div class="col-sm-3 col-xs-12">
-                        <h3 class="number_real" style="margin-top: 10px;">عدد {{ $adSort->adjective }}  = {{-- $estates->total() --}} عقار</h3>
+                        <h3 class="number_real" style="margin-top: 10px;">عدد {{ $adSort->adjective }}  = {{ count($estates) }} عقار</h3>
                     </div>
                     @unless($adSort->name == 'broker_estate')
                     <div class="col-sm-3  col-xs-12">
@@ -249,7 +249,7 @@
                             <span> {{ $estate->neighborhood }} <i class="fas fa-map-marker-alt"></i> </span>
                             
                             @unless($estate->advertiser == null)
-                            <span>{{ $estate->advertiser->name }}<i class="fas fa-user-circle"></i>  </span>
+                            <span>{{ $estate->advertiser->advertiser_name }}<i class="fas fa-user-circle"></i>  </span>
 
                             @endunless
                             @endunless

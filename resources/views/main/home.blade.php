@@ -44,7 +44,11 @@
 
                 
                 <div class="container">
-                    <img src="{{ url('main/images/team1.png') }}" class="center-block img-circle" alt="Cinque Terre">
+                    @php $image = json_decode(auth()->user()->images->img); @endphp
+                    
+                    {{-- dd(url('main/users/{{ auth()->user->id }}/{{ $image }}'))  --}}
+                    <img src="{{ url('main/images/team1.png') }}" class="center-block img-circle" onclick="document.getElementById('profile').click()" alt="Cinque Terre">
+                    <input onchange="changeProfile()" style="display: none;"  id="profile" type="file" name="image">
                     <h1 class="text-center">{{ auth()->user()->name }}</h1>
                     <div class="row col-md-12">
                         <a href="{{ route('edit-profile', auth()->user()->name) }}" class="btn btn-primary col-md-4" style="margin: 10px 35% 0 0;"><h5>تعديل بياناتى</h5></a>
@@ -85,4 +89,34 @@
 @endif
 
 
+@endsection
+
+
+
+@section('footer')
+    <script>
+
+
+        window.form_data = new FormData();
+
+       
+        function changeProfile(id){
+            let file_data = $(`#profile`).prop('files')[0];
+            form_data.append('file_data', file_data);
+            
+
+            axios.post('../../profile/image', form_data)
+            .then((data) => {
+                
+                location.reload();
+                                      
+            }).catch((error) => {
+
+            
+            
+            });
+        
+        }
+    </script>
+   
 @endsection

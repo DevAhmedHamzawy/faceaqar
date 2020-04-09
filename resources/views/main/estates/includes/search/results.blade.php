@@ -55,11 +55,18 @@
                         <li>{{ $estate->code }}</li>
                         <li> {{ $estate->created_at->format('Y-m-d') }} </li>
                     </ul>
-                     @if($adSort->name === 'office_estate')
+                     @if ($adSort !== 'general')
+
+                        @if($adSort->name === 'office_estate')
                             <a href="{{ route('profile', [$estate->name]) }}" title=""   style="margin-top:0;"  class="bg_tt"> {{ $estate->name }} </a>
-                     @else
+                        @else
                             <a href="{{ route('estates.show', [$estate->ad_sort_id, $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
+                        @endif
+                         
+                     @else
+                        <a href="{{ route('estates.show', [$estate->ad_sort_id, $estate->name]) }}" title="" class="bg_tt"> {{ $estate->name }} </a>
                      @endif
+                     
                     <ul class="otherul">
                         @unless ($estate->category == null)
                             <li>{{ $estate->category->name }}<i class="fa fa-home"></i> </li>
@@ -79,7 +86,7 @@
 
                         @endunless
                         
-                    <img src="{{ url('main/images/pic_offer.jpg') }}" class="img-responsive" alt=""/>
+                        <img src="{{ $estate->main_img_path ?? url('main/images/pic_offer.jpg') }}" class="img-responsive" alt=""/>
 
                     <span class="paddd"> {{ $estate->center }}  <i class="fas fa-map-marker-alt"></i></span>
                     <span> {{ $estate->neighborhood }} <i class="fas fa-map-marker-alt"></i> </span>

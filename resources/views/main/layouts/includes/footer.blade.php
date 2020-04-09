@@ -24,7 +24,7 @@
                                 <div class="icon-ri">
                                     <i class="fa fa-angle-left"></i>
                                 </div>
-                                <a href="#">{{ $link->name }}</a>
+                                <a href="{{ route('pages.show-page', $link->page_id) }}">{{ $link->name }}</a>
                             </div>
                         @endforeach
                     </div>
@@ -85,7 +85,7 @@
                     <h2>روابط الموقع</h2>
                     <ul>
                         @foreach ($footeronelinks as $link)
-                            <li> <span> <i class="fa fa-angle-left"></i> </span> <a href="#">{{ $link->name }}</a> </li>                            
+                            <li> <span> <i class="fa fa-angle-left"></i> </span> <a href="{{ route('pages.show-page', $link->page_id) }}">{{ $link->name }}</a> </li>                            
                         @endforeach
                     </ul>
                 </div>
@@ -101,7 +101,7 @@
                 <div class="right-lasfo hidden-xs">
                     <ul>
                         @foreach ($footertwolinks as $link)
-                            <li> <a href="#"> {{ $link->name }} </a> </li><span>/</span>                            
+                            <li> <a href="{{ route('pages.show-page', $link->page_id) }}"> {{ $link->name }} </a> </li><span>/</span>                            
                         @endforeach
                         <li> <a href="#"> خريطة الموقع </a> </li>
                     </ul>
@@ -114,7 +114,7 @@
                                 <div class="icon-ri">
                                     <i class="fa fa-angle-left"></i>
                                 </div>
-                                <a href="#"> {{ $link->name }}  </a>
+                                <a href="{{ route('pages.show-page', $link->page_id) }}"> {{ $link->name }}  </a>
                             </div>                          
                         @endforeach
                        
@@ -567,6 +567,27 @@ function getSubCities(item){
 }
 
 
+
+function getCitiesContact(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('#cities_contact').empty()
+           for(city of data.data){
+           $('#cities_contact').append('<option value="'+city.name+'" data-lat="'+city.latitude+'" data-lng="'+city.longitude+'">'+city.name+'</option>')
+           }  
+        })
+}
+
+
+function getSubCitiesContact(item){
+    axios.get('../../areas/'+item.value)
+        .then((data) => {
+           $('.area_id_contact').empty()
+           for(subcity of data.data){
+           $('.area_id_contact').append('<option value="'+subcity.id+'" data-lat="'+subcity.latitude+'" data-lng="'+subcity.longitude+'">'+subcity.name+'</option>')
+           }  
+        })
+}
 
 
 function getCitiesNewsletterOne(item){

@@ -114,13 +114,13 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">أنواع العقارات</a>
                         <ul class="dropdown-menu dropdown-menu-list">
                            
-                            <li> <a href="{{ route('search-by-ad-sort', 'local_estate') }}"> العقارات المحلية </a> </li>
-                            <li><a href="{{ route('search-by-ad-sort', 'global_estate') }}"> العقارات الدولية </a></li>
-                            <li><a href="{{ route('search-by-ad-sort', 'project_estate') }}"> المشاريع العقارية </a></li>
-                            <li><a href="{{ route('search-by-ad-sort', 'auction_estate') }}"> المزادات العقارية </a></li>
-                            <li><a href="{{ route('search-by-ad-sort', 'request_estate') }}"> الطلبات العقارية </a></li>
-                            <li><a href="{{ route('search-by-ad-sort', 'schema_estate') }}"> المخططات العقارية </a></li>
-                            <li><a href="{{ route('search-by-ad-sort', 'office_estate') }}"> المكاتب العقارية الإلكترونية </a></li>
+                            <li> <a href="{{ route('estates-list', 'local_estate') }}"> العقارات المحلية </a> </li>
+                            <li><a href="{{ route('estates-list', 'global_estate') }}"> العقارات الدولية </a></li>
+                            <li><a href="{{ route('estates-list', 'project_estate') }}"> المشاريع العقارية </a></li>
+                            <li><a href="{{ route('estates-list', 'auction_estate') }}"> المزادات العقارية </a></li>
+                            <li><a href="{{ route('estates-list', 'request_estate') }}"> الطلبات العقارية </a></li>
+                            <li><a href="{{ route('estates-list', 'schema_estate') }}"> المخططات العقارية </a></li>
+                            <li><a href="{{ route('estates-list', 'office_estate') }}"> المكاتب العقارية الإلكترونية </a></li>
                         
                         </ul>
                 </li>
@@ -133,7 +133,7 @@
                         <ul class="dropdown-menu dropdown-menu-list">
                            
                             @foreach ($link->children as $child)
-                                <li><a href="tickets.html">{{ $child->name }}</a></li>
+                                <li><a href="{{ route('pages.show-page', $child->page_id) }}">{{ $child->name }}</a></li>
                             @endforeach
                            
                         </ul>
@@ -826,13 +826,13 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">أنواع العقارات</a>
                         <ul class="dropdown-menu dropdown-menu-list">
                            
-                            <li> <a href="{{ route('search-by-ad-sort', 'local_estate') }}"> العقارات المحلية </a> </li>
-                            <li><a href="{{ route('search-by-ad-sort', 'global_estate') }}"> العقارات الدولية </a></li>
-                            <li><a href="{{ route('search-by-ad-sort', 'project_estate') }}"> المشاريع العقارية </a></li>
-                            <li><a href="{{ route('search-by-ad-sort', 'auction_estate') }}"> المزادات العقارية </a></li>
-                            <li><a href="{{ route('search-by-ad-sort', 'request_estate') }}"> الطلبات العقارية </a></li>
-                            <li><a href="{{ route('search-by-ad-sort', 'schema_estate') }}"> المخططات العقارية </a></li>
-                            <li><a href="{{ route('search-by-ad-sort', 'office_estate') }}"> المكاتب العقارية الإلكترونية </a></li>
+                            <li> <a href="{{ route('estates-list', 'local_estate') }}"> العقارات المحلية </a> </li>
+                            <li><a href="{{ route('estates-list', 'global_estate') }}"> العقارات الدولية </a></li>
+                            <li><a href="{{ route('estates-list', 'project_estate') }}"> المشاريع العقارية </a></li>
+                            <li><a href="{{ route('estates-list', 'auction_estate') }}"> المزادات العقارية </a></li>
+                            <li><a href="{{ route('estates-list', 'request_estate') }}"> الطلبات العقارية </a></li>
+                            <li><a href="{{ route('estates-list', 'schema_estate') }}"> المخططات العقارية </a></li>
+                            <li><a href="{{ route('estates-list', 'office_estate') }}"> المكاتب العقارية الإلكترونية </a></li>
                         
                         </ul>
                 </li>
@@ -845,7 +845,7 @@
                         <ul class="dropdown-menu dropdown-menu-list">
                            
                             @foreach ($link->children as $child)
-                                <li><a href="tickets.html">{{ $child->name }}</a></li>
+                                <li><a href="{{ route('pages.show-page', $child->page_id) }}">{{ $child->name }}</a></li>
                             @endforeach
                            
                         </ul>
