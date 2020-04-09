@@ -43,4 +43,14 @@ Trait Relations
     {
         return $this->hasMany('App\Report');
     }
+
+    public function brokers()
+    {
+        return $this->hasMany('App\Broker');
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany('App\Ticket');
+    }
 }

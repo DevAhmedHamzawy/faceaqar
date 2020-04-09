@@ -8,7 +8,7 @@
                         <label for="">  أكتب أسم الشهرة للحساب <em>*</em></label>
                     </div>
                     <div class="col-md-4">
-                    <input type="name" name="namefield1" class="form-control required" name="account_name" placeholder=" اسم نشاط الحساب (اسم الشهرة ">
+                    <input type="name" class="form-control required" name="account_name" placeholder=" اسم نشاط الحساب (اسم الشهرة ">
                     </div>
                 </div>
 
@@ -18,7 +18,7 @@
                 </div>
                     <div class="col-md-4">
                     <select class="form-control required" name="account_sort">
-                        <option>اختر</option>
+                        <option selected disabled value="">اختر</option>
                         <option>تويتر</option>
                         <option>تلقرام</option>
                         <option>فيس بوك</option>
@@ -31,8 +31,8 @@
                     <label for="">اختر لون الحساب<em>*</em></label>
                 </div>
                     <div class="col-md-4">
-                    <select class="form-control required" name="account_color_sort">
-                        <option>اختر لون الحساب</option>
+                    <select class="form-control required" name="color_sort">
+                        <option selected disabled value="">اختر لون الحساب</option>
                         <option>عادي</option>
                         <option>ملون</option>
                     </select>
@@ -43,7 +43,7 @@
                     <label for=""> انسخ الرابط الالكتروني للحساب    <em>*</em></label>
                 </div>
                     <div class="col-md-4">
-                    <input type="url" name="namefield1" class="form-control required" name="account_url" placeholder=" انسخ هنا الرابط الالكتروني للحساب  ">
+                    <input type="url" class="form-control required" name="account_url" placeholder=" انسخ هنا الرابط الالكتروني للحساب  ">
                 </div>
             </div>
             
@@ -62,7 +62,7 @@
                         <label for="">   صورة حساب التواصل الإجتماعي </label>
                     </div>
                     <div class="col-md-4">
-                        <input type="file" name="file" class="form-control required" id="" placeholder="">
+                        <input type="file" name="social_image" class="form-control required" id="" placeholder="">
                     </div>
                 </div>
                 <div class="row">
@@ -81,7 +81,7 @@
                     </div>
                     <div class="col-md-4">
                         <select class="form-control required" name="duration_id">
-                            <option disabled> اختر </option>
+                            <option selected disabled value=""> اختر </option>
                             <option value="0">لايوجد </option>
                             <option value="1">15 يوم </option>
                             <option value="2">شهر</option>

@@ -62,7 +62,7 @@ class SearchController extends Controller
 {
     public function index($adSort = null)
     {
-        dd(request()->all());
+        //dd(request()->all());
         $adSort == 'general' || $adSort == 'filters' ? : $adSort = Estate::checkAdSort($adSort);
         
         return view('main.estates.search', 

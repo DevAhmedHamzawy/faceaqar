@@ -15,15 +15,9 @@
             <div class="inbox_people">
               <div class="headind_srch">
                 <div class="recent_heading">
-                  <h4>Recent</h4>
+                  <h4>صندوق الرسائل</h4>
                 </div>
-                <div class="srch_bar">
-                  <div class="stylish-input-group">
-                    <input type="text" class="search-bar"  placeholder="Search" >
-                    <span class="input-group-addon">
-                    <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                    </span> </div>
-                </div>
+               
               </div>
               <div class="inbox_chat">
                 
@@ -96,12 +90,12 @@
 @section('footer')
     <script>
         function getMessages(from, to){
+            
             axios.get(from+'/'+to+'/messages')
                 .then((data) => {
                     $('.msg_history').empty();
                     for(message of data.data){
                         if (message.from == {!! auth()->user()->id !!}){
-                            window.reciever_id = message.to;
                             $('.msg_history').append('<div class="outgoing_msg"><div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div> <div class="sent_msg"><p>'+message.body+'</p><span class="time_date">'+message.created_at+'</span></div></div>');
                         }else{
                             console.log(false)
@@ -110,24 +104,27 @@
 
                     }
                     $('.reciever_process').empty();
-                    $('.reciever_process').append('<input type="hidden" id="to" value="'+reciever_id+'">');
+                    //console.log(from); console.log(to);
+                    from == {!! auth()->user()->id !!} ? window.reciever_id = to : window.reciever_id = from;
+                    $('.reciever_process').append('<input type="hidden" id="to" value="'+this.reciever_id+'">');
                     
                 })
         }
 
         function sendMessage()
         {
-            let message = {
+            window.message = {
                 name: 'owner',
                 mobile: 0,
                 email: 'owneremail',
                 body: $('#body').val(),
-                to: $("#to").val(),
+                to: $('#to').val(),
             }
 
             axios.post('../sendmessage', message)
             .then((data) => {
                 $('.msg_history').append('<div class="outgoing_msg"><div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div> <div class="sent_msg"><p>'+data.data.body+'</p><span class="time_date">'+data.data.created_at+'</span></div></div>');
+                let message = null;
             })
 
         }

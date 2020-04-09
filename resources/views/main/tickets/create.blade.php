@@ -11,7 +11,9 @@
         <div class="row">
             <!-- title_pages -->
             <div class="title_pages">
-                <h2>  انشاء تذكرة الرسوم المالية رقم <span> (٢) </span> </h2>
+                <h2>  انشاء تذكرة الرسوم المالية @if ($ticket_sort == 'estate')
+                    لتثبيت الإعلان {{ $name }}
+                @elseif($ticket_sort == 'broker') لتثبيت الوسيط {{ $name }} @else لصور الوسيط {{ $name }}  @endif  </h2>
                 <span></span>
             </div>
             <!-- end_title_pages -->
@@ -40,6 +42,8 @@
                                         </div>
                                     </div>
                                     
+                                    <input type="hidden" name="item_name" value="{{ $name }}">
+
                                     <div class="row">
                                         <div class="col-md-2">
                                             <label for=""> اسم البنك المحول منه <em>*</em></label>
@@ -75,7 +79,7 @@
                                             <label for=""> تاريخ التحويل البنكي <em>*</em></label>
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="text" name="date" class="form-control datepicker required" id="" placeholder=" تقويم ميلادي">
+                                            <input type="date" name="date" class="form-control datepicker required" id="" placeholder=" تقويم ميلادي">
                                         </div>
                                   
                                         <div class="col-md-2">
@@ -116,9 +120,9 @@
                         </div>
 
                         <div id="rootwizard" class="onlinepayment">
-                            <input type="hidden" name="name" value="name">
+                            <input type="hidden" name="name" value="تذكرة تثبيت الإعلان {{ $name }}">
                             <input type="hidden" name="price" value="500">
-                            <input type="hidden" name="description" value="40">
+                            <input type="hidden" name="description" value="تذكرة تثبيت الإعلان {{ $name }}">
                             <input type="hidden" name="qty" value="1">
                         </div>
                         

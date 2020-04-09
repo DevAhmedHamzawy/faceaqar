@@ -3,6 +3,7 @@
 namespace App\Traits\Estate;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 Trait Attributes
 {
@@ -36,11 +37,26 @@ Trait Attributes
     public function getMainImgPathAttribute()
     {
         if(!empty($this->images)){
-            $images = json_decode($this->images->img);
-            return url('storage/estates/'. $this->name . '/' .$images[0]);
+            $images = json_decode($this->images->img, true);
+            if(file_exists(public_path() .'/storage/estates/'. $this->name . '/' .$images[0]))
+            {
+                return url('storage/estates/'. $this->name . '/' .$images[0]);
+            }else{
+                return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
+            }
         }else{
             return null;
         }
+    }
+
+    public function getSortNameAttribute()
+    {
+        return DB::table('sort')->whereId($this->sort_id)->first()->name ?? '';
+    }
+
+    public function getOfferNameAttribute()
+    {
+        return DB::table('offer')->whereId($this->offer_id)->first()->name ?? '';
     }
 
 }

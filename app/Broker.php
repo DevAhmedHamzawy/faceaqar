@@ -8,11 +8,6 @@ class Broker extends Model
 {
     protected $guarded = [];
 
-    public function getRouteKeyName()
-    {
-        return 'name';
-    }
-
     public static function getSlider()
     {
         return self::whereBrokerAdSort('صور')->orWhere('broker_ad_sort', 'كروت إعلانية إلكترونية')->get();
@@ -25,6 +20,15 @@ class Broker extends Model
 
     public function getImgPathAttribute()
     {
-        return url('storage/brokers/' . $this->file);
+        if($this->broker_ad_sort == 'صور'){  
+            if(file_exists(public_path() .'/storage/brokers/'. $this->file))
+            {
+                return url('storage/brokers/'. $this->file);
+            }else{
+                return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
+            }
+        }else{
+            return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
+        }
     }
 }

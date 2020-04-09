@@ -64,7 +64,7 @@
         <label for="">  مساحة العقار م٢ </label>
     </div>
     <div class="col-md-4">
-        <input type="number" name="space" value="{{ old('space') }}" class="form-control" id="" placeholder="مساحة العقار م٢">
+        <input type="number" name="estate_space" value="{{ old('estate_space') }}" class="form-control" id="" placeholder="مساحة العقار م٢">
     </div>
     <div class="col-md-2">
         <label for=""> السعر </label>

@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-md-4">
                         <select class="form-control required" name="color_sort">
-                            <option>اختر</option>
+                            <option selected disabled value="">اختر</option>
                             <option>اسود</option>
                             <option>احمر</option>
                         </select>													</div>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-md-4">
                         <select class="form-control required" name="duration_id">
-                            <option disabled> اختر </option>
+                            <option selected disabled value=""> اختر </option>
                             <option value="0">لايوجد </option>
                             <option value="1">15 يوم </option>
                             <option value="2">شهر</option>

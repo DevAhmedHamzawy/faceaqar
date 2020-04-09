@@ -67,14 +67,14 @@
     <div class="col-md-4">
         <select class="form-control required" name="advertiser_sort_id">
             <option> اختر </option>
-            <option value="1">مكتب عقاري</option>
-            <option value="2">مطور عقارى  </option>
-            <option value="3"> شركة عقارية</option>
-            <option value="4">مكتب مزاد عقاري</option>
-            <option value="5">مكتب هندسي</option>
-            <option value="6"> مالك</option>
-            <option value="7"> وسيط </option>
-            <option value="8"> اخرى </option>
+            <option value="1" @if($estate->advertiser->advertiser_sort_id == 1) selected @endif>مكتب عقاري</option>
+            <option value="2" @if($estate->advertiser->advertiser_sort_id == 2) selected @endif>مطور عقارى  </option>
+            <option value="3" @if($estate->advertiser->advertiser_sort_id == 3) selected @endif> شركة عقارية</option>
+            <option value="4" @if($estate->advertiser->advertiser_sort_id == 4) selected @endif>مكتب مزاد عقاري</option>
+            <option value="5" @if($estate->advertiser->advertiser_sort_id == 5) selected @endif>مكتب هندسي</option>
+            <option value="6" @if($estate->advertiser->advertiser_sort_id == 6) selected @endif> مالك</option>
+            <option value="7" @if($estate->advertiser->advertiser_sort_id == 7) selected @endif> وسيط </option>
+            <option value="8" @if($estate->advertiser->advertiser_sort_id == 8) selected @endif> اخرى </option>
         </select>
     </div>
 
@@ -133,7 +133,7 @@
         <label for="choice-type-number" class="imp-n-s">
 هل ترغب تثبيت صفحتك الالكترونية في مقدمة الإعلانات الالكترونية في جميع صفحات مدينتك بالموقع؟
         </label>
-        <span class="imp-n-s-2"><a href="{{ route('tickets.create') }}" style="color:#fff;"> إضافة رسوم مالية عند التثبيت </a></span>
+        <span class="imp-n-s-2"><a href="{{ route('create-ticket', ['estate',$estate->ad_sort_id,$estate->name]) }}" style="color:#fff;"> إضافة رسوم مالية عند التثبيت </a></span>
         <div class="reveal-if-active" id="autoUpdate">
             <div class="row">
                 <div class="col-md-3 hidden-xs"></div>
@@ -141,14 +141,13 @@
                     <label for="">اختر مدة التثبيت <em>*</em></label>
                 </div>
                 <div class="col-md-4">
-                    <select class="form-control required" name="duration_id">
+                    <select class="form-control required" name="premium_id">
                         <option disabled> اختر </option>
-                        <option value="0">لايوجد </option>
-                        <option value="1">15 يوم </option>
-                        <option value="2">شهر</option>
-                        <option value="3">3 شهور</option>
-                        <option value="4">6 شهور</option>
-                        <option value="5">سنه</option>
+                        <option value="1" @if($estate->premium_id == 1) selected @endif>15 يوم </option>
+                        <option value="2" @if($estate->premium_id == 2) selected @endif>شهر</option>
+                        <option value="3" @if($estate->premium_id == 3) selected @endif>3 شهور</option>
+                        <option value="4" @if($estate->premium_id == 4) selected @endif>6 شهور</option>
+                        <option value="5" @if($estate->premium_id == 5) selected @endif>سنه</option>
                     </select>
                 </div>
                 <div class="col-md-3 hidden-xs"></div>
@@ -166,12 +165,12 @@
         <label for=""> اختر مــدة الإضافة <em>*</em></label>
     </div>
     <div class="col-md-4">
-        <select class="form-control required" name="duration_publish">
+        <select class="form-control required" name="duration_id">
             <option disabled>اختر</option>
-            <option>شهر</option>
-            <option>3 شهور</option>
-            <option>6 شهور</option>
-            <option>سنه</option>
+            <option value="1" @if($estate->duration_id == 1) selected @endif>شهر</option>
+            <option value="2" @if($estate->duration_id == 2) selected @endif>3 شهور</option>
+            <option value="3" @if($estate->duration_id == 3) selected @endif>6 شهور</option>
+            <option value="4" @if($estate->duration_id == 4) selected @endif>سنه</option>
         </select>
     </div>
     <div class="col-md-3 hidden-xs"></div>
@@ -193,7 +192,10 @@
     </div>
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-default btn_web">تعديل</button>
+                            @if ($estate->visible == 0)
+                            <button type="submit" name="action" value="add" class="btn btn-default btn_web">حفظ نهائى</button>
+                            @endif
+                            <button type="submit" name="action" value="edit" class="btn btn-default btn_web">تعديل</button>
                             <button type="submit" class="btn btn-default btn_web">إلغاء</button>
                         </div>
                     </div>

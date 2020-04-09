@@ -7,7 +7,7 @@
                         <label for=""> اسم النشاط التجاري </label>
                     </div>
                     <div class="col-md-4">
-                        <input type="url" name="commercial_name" class="form-control required" id="" placeholder="اكتب اسم النشاط التجاري">
+                        <input type="text" name="commercial_name" class="form-control required" id="" placeholder="اكتب اسم النشاط التجاري">
                     </div>
                 </div>
                 <div class="row">
@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-md-4">
                         <textarea class="form-control required" placeholder=" اكتب العنوان التفصيلي للنشاط
-" name="commercial_address" rows="4"></textarea>
+" name="address" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -33,7 +33,7 @@
                        <label for=""> انسخ الرابط الالكتروني للموقع </label>
                     </div>
                     <div class="col-md-4">
-                        <input type="url" name="commercial_url" class="form-control " id="" placeholder="  انسخ الرابط الالكتروني للموقع  ">
+                        <input type="url" name="site_url" class="form-control " id="" placeholder="  انسخ الرابط الالكتروني للموقع  ">
                     </div>
                 </div>
                 <div class="row">
@@ -41,7 +41,8 @@
                         <label for=""> اختر نوع الحساب </label>
                     </div>
                     <div class="col-md-4">
-                        <select class="form-control " name="account_sort">
+                        <select class="form-control" name="account_sort">
+                            <option selected disabled value=""></option>
                             <option>تويتر</option>
                             <option>تلقرام</option>
                             <option>فيس بوك</option>
@@ -55,7 +56,7 @@
                         <label for="">  انسخ الرابط الالكتروني للحساب </label>
                     </div>
                     <div class="col-md-4">
-                        <input type="url" name="account_url" class="form-control " id="" placeholder=" انسخ الرابط الالكتروني للحساب 
+                        <input type="url" name="url" class="form-control " id="" placeholder=" انسخ الرابط الالكتروني للحساب 
 التواصل الاجتماعي للنشاط التجاري">
                     </div>
                 </div>
@@ -72,13 +73,14 @@
                         <label for=""> إضافة تعليق عن الإعلان </label>
                     </div>
                     <div class="col-md-4">
-                        <textarea class="form-control " name="comment" rows="4"></textarea>
+                        <textarea class="form-control" name="comment" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <h4> حدد الموقع الجغرافي للنشاط التجاري على خريطة ماب </h4>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d13814.253519705384!2d31.234019800000002!3d30.049381699999994!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1489584519054" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                        <div id="map" style="height:550px;"></div>
+                        <input type="hidden" name="latlng" id="latlng" />
                     </div>
                 </div>
 
@@ -93,7 +95,7 @@
                         <label for=""> رقم الجوال</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="url" name="namefield1" class="form-control required" id="" placeholder="اكتب رقم ">
+                        <input type="text" name="mobile" class="form-control required" id="" placeholder="اكتب رقم ">
                     </div>
                 </div> 
                 <div class="row">
@@ -101,7 +103,7 @@
                         <label for=""> رقم التليفون </label>
                     </div>
                     <div class="col-md-4">
-                        <input type="url" name="telephone" class="form-control " id="" placeholder="اكتب رقم ">
+                        <input type="text" name="telephone" class="form-control " id="" placeholder="اكتب رقم ">
                     </div>
                 </div>
                 <div class="row">
@@ -109,7 +111,7 @@
                         <label for=""> رقم الفاكس </label>
                     </div>
                     <div class="col-md-4">
-                        <input type="url" name="fax" class="form-control " id="" placeholder=" اكتب رقم">
+                        <input type="text" name="fax" class="form-control " id="" placeholder=" اكتب رقم">
                     </div>
                 </div>
                 <div class="row">
@@ -129,7 +131,7 @@
                         <label for="choice-type-number" class="imp-n-s">
                             هل ترغب ارفاق صور نشاطك التجاري؟ 
                         </label>
-                        <span class="imp-n-s-2">  اضافة رسوم مالية عند ارفاق صور   </span>
+                        <span class="imp-n-s-2"> اضافة رسوم مالية عند ارفاق صور </span>
                     </div>
                     </div>
                 </div>
@@ -139,7 +141,7 @@
                         <label for="">ارفاق صور  <em>*</em></label>
                     </div>
                     <div class="col-md-4">
-                        <input type="file" name="file" class="form-control required" id="" placeholder="">
+                        <input type="file" name="e_ad_cards_image" class="form-control required" id="" placeholder="">
                     </div>
                 </div>
                 
@@ -161,8 +163,8 @@
                         <label for=""> اختــر مدة التثبيت <em>*</em></label>
                     </div>
                     <div class="col-md-4">
-                        <select class="form-control required" name="duration_id">
-                            <option disabled> اختر </option>
+                        <select class="form-control required" name="premium_id">
+                            <option selected disabled value=""> اختر </option>
                             <option value="0">لايوجد </option>
                             <option value="1">15 يوم </option>
                             <option value="2">شهر</option>
@@ -180,7 +182,7 @@
                     </div>
                     <div class="col-md-4">
                         <select class="form-control required" name="duration_id">
-                            <option disabled> اختر </option>
+                            <option selected disabled value=""> اختر </option>
                             <option value="0">لايوجد </option>
                             <option value="1">15 يوم </option>
                             <option value="2">شهر</option>

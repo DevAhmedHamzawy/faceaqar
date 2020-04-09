@@ -20,4 +20,9 @@ class Ticket extends Model
     {
         return unserialize($this->payment_data);
     }
+
+    public function getImgPathAttribute()
+    {
+        return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
+    }
 }

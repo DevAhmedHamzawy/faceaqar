@@ -4,10 +4,10 @@
              <div class="block_form_1  block_form_r_1 row">
                  <div class="row">
                      <div class="col-md-3 col-md-offset-2 forright">
-                         <label for="">  ارفاق الملف الالكتروني  <em>*</em></label>
+                        <label for="">  ارفاق الملف الالكتروني  <em>*</em></label>
                      </div>
                      <div class="col-md-4">
-                         <input type="file" name="file" class="form-control required" id="" placeholder="">
+                        <input type="file" name="commercial_file" class="form-control required" id="" placeholder="">
                      </div>
                  </div>
                  <div class="row">
@@ -16,8 +16,9 @@
                      </div>
                      <div class="col-md-4">
                          <select class="form-control required" name="page_widget">
-                             <option value="0">الرئيسية</option>
-                             <option value="1">فوتر</option>
+                            <option selected disabled value=""></option>
+                            <option value="0">الرئيسية</option>
+                            <option value="1">فوتر</option>
                          </select>													
                      </div>
                  </div>
@@ -26,8 +27,8 @@
                          <label for=""> اختر لون الصفحة الاعلانية    <em>*</em></label>
                      </div>
                      <div class="col-md-4">
-                         <select class="form-control required" name="account_color_sort">
-                             <option>أختر اللون</option>
+                         <select class="form-control required" name="color_sort">
+                             <option selected disabled value="">أختر اللون</option>
                              <option>عادي</option>
                              <option>ملون</option>
                          </select>													
@@ -40,7 +41,7 @@
                          </label>
                      </div>
                      <div class="col-md-4">
-                         <input type="text" class="form-control required" name="page_url" placeholder="انسخ هنا الرابط الالكتروني للصفحة">
+                         <input type="text" class="form-control required" name="url" placeholder="انسخ هنا الرابط الالكتروني للصفحة">
                      </div>
                  </div>
                  <div class="row">
@@ -60,7 +61,7 @@
                      </div>
                      <div class="col-md-4">
                          <select class="form-control required" name="duration_id">
-                             <option>اختر</option>
+                             <option selected disabled value="">اختر</option>
                              <option>اسبوع</option>
                              <option>اسبوعين</option>
                              <option>شهر</option>
@@ -79,7 +80,7 @@
                      <div class="col-md-12 text-center">
                          <div class="checkbox form-group Terms_line text-center">
                              <label>
-                                 <input type="checkbox" class="required" name="namefield7">أوافق علي كافة الاحكام والشروط للموقع الإلكتروني والالتزام بما جاء فيها
+                                 <input type="checkbox" class="required" name="accept">أوافق علي كافة الاحكام والشروط للموقع الإلكتروني والالتزام بما جاء فيها
                              </label>
                          </div>
                      </div>

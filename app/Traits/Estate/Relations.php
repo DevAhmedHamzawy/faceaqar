@@ -22,7 +22,7 @@ Trait Relations
 
     public function requestEstate()
     {
-        return $this->hasOne('App\RequestEstate');
+        return $this->hasOne('App\RequestEstate','estate_id');
     }
 
     public function auctionEstate()

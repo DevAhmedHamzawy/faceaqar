@@ -18,9 +18,9 @@ class CreateEstatesTable extends Migration
             $table->integer('user_id');
             $table->integer('ad_sort_id');
             $table->integer('area_id');
-            $table->integer('category_id');
-            $table->integer('sort_id');
-            $table->integer('offer_id');
+            $table->integer('category_id')->nullable();
+            $table->integer('sort_id')->nullable();
+            $table->integer('offer_id')->nullable();
             $table->integer('premium_id')->nullable();
             $table->integer('duration_id');
             $table->boolean('visible');

@@ -23,15 +23,12 @@ class EstateFormRequest extends FormRequest
      */
     public function rules()
     {
-        
 
         $estateValidation = [
             'area_id' => 'required|numeric',
             'neighborhood' => 'required|min:3',
-            'name' => 'required',
-            'category_id' => 'required|numeric',
-            'sort_id' => 'required|numeric',
-            'offer_id' => 'required|numeric',
+            'name' => 'required|min:10',
+           
 
             'advertiser_name' => 'required|min:10',
             'advertiser_sort_id' => 'required|numeric',
@@ -39,10 +36,17 @@ class EstateFormRequest extends FormRequest
 
             'duration_publish' => 'in:شهر,3 شهور,6 شهور,سنه',
             'latlng' => 'required',
-           
+            //'estateimages' => 'required',
         ];
 
-       
+        $custom = [
+            'category_id' => 'required|numeric',
+            'sort_id' => 'required|numeric',
+            'offer_id' => 'required|numeric',
+        ];
+
+        if($this->adSort != 'schema_estate') { array_push($estateValidation, $custom); }
+
         return $estateValidation;
     }
 }

@@ -118,7 +118,7 @@
         <label for="choice-type-number" class="imp-n-s">
 هل ترغب تثبيت صفحتك الالكترونية في مقدمة الإعلانات الالكترونية في جميع صفحات مدينتك بالموقع؟
         </label>
-        <span class="imp-n-s-2"><a href="{{ route('tickets.create') }}" style="color:#fff;"> إضافة رسوم مالية عند التثبيت </a></span>
+        <span class="imp-n-s-2"> إضافة رسوم مالية عند التثبيت </span>
         <div class="reveal-if-active" id="autoUpdate">
             <div class="row">
                 <div class="col-md-3 hidden-xs"></div>
@@ -126,7 +126,7 @@
                     <label for="">اختر مدة التثبيت <em>*</em></label>
                 </div>
                 <div class="col-md-4">
-                    <select class="form-control required" name="duration_id">
+                    <select class="form-control required" name="premium_id">
                         <option disabled> اختر </option>
                         <option value="0">لايوجد </option>
                         <option value="1">15 يوم </option>
@@ -151,12 +151,12 @@
         <label for=""> اختر مــدة الإضافة <em>*</em></label>
     </div>
     <div class="col-md-4">
-        <select class="form-control required" name="duration_publish">
+        <select class="form-control required" name="duration_id">
             <option disabled>اختر</option>
-            <option>شهر</option>
-            <option>3 شهور</option>
-            <option>6 شهور</option>
-            <option>سنه</option>
+            <option value="1">شهر</option>
+            <option value="2">3 شهور</option>
+            <option value="3">6 شهور</option>
+            <option value="4">سنه</option>
         </select>
     </div>
     <div class="col-md-3 hidden-xs"></div>
@@ -178,9 +178,9 @@
     </div>
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-default btn_web">إضافة</button>
-                            <button type="submit" class="btn btn-default btn_web">حفظ</button>
-                            <button type="submit" class="btn btn-default btn_web">إلغاء</button>
+                            <button type="submit" name="action" value="add" class="btn btn-default btn_web">إضافة</button>
+                            <button type="submit" name="action" value="save" class="btn btn-default btn_web">حفظ</button>
+                            <button class="btn btn-default btn_web">إلغاء</button>
                         </div>
                     </div>
 </div>

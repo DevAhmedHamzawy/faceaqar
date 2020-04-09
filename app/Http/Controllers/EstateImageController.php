@@ -10,7 +10,8 @@ class EstateImageController extends Controller
 {
     public function destroy(Estate $estate, $index)
     {
-        $estateImages = json_decode($estate->images->img);
+        $estateImages = json_decode($estate->images->img, true);
+        $estateImages = array_values($estateImages);
         unset($estateImages[$index]);
         $estate->images->img = json_encode($estateImages);
         //$estate->images = $estateImages;

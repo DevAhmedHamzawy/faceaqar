@@ -52,7 +52,10 @@ Route::group(['middleware' => 'verified'], function (){
     Route::resource('brokers', 'BrokerController');
 
     //Create payment ticket For Premium MemberShip
-    Route::resource('tickets', 'TicketController', ['only' => ['create']]);
+    Route::get('create-ticket/{ticket_sort}/{ad_sort}/{name}', 'TicketController@create')->name('create-ticket');
+
+    //Show Ticket
+    Route::get('ticket/{id}', 'TicketController@show')->name('show-ticket');
 
     //Payment Process
     Route::post('payments', 'PaymentController@store')->name('payments.store');
@@ -70,5 +73,11 @@ Route::group(['middleware' => 'verified'], function (){
 
     //Show Messages
     Route::get('{user}/{from}/{to}/messages', 'MessageController@show')->name('messages.show');
+
+    //Notifications
+    Route::get('notifications', 'NotificationController@index')->name('notifications');
+
+    //Read Notification
+    Route::post('notifications/read', 'NotificationController@read');
 
 });

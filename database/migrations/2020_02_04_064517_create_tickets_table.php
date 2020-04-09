@@ -16,6 +16,7 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('membership_id');
+            $table->enum('sort', ['estate','broker','brokerimage']);
             $table->bigInteger('user_id');
             $table->text('payment_data');
             $table->timestamps();

@@ -23,53 +23,35 @@
                                 <h4> بيانات التواصل </h4>
                                 <div class="block_form_1 row">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="">اختر اسم الدولة <em>*</em></label>
-                                            <select class="form-control selectOption" required>
-                                                <option value="choose">أختر</option>
-                                                <option value="choose">السعودية</option>
-                                                <option value="choose">مصر</option>
-                                            </select>
+                                        <div class="col-md-2">
+                                            <label for=""> اختر اسم الدولة <em>*</em></label>
                                         </div>
-                                    
-                                        <div class="col-md-4">
-                                            <label for=""> اختر اسم المنطقة   <em>*</em></label>
-                                            <select class="form-control selectOption" required>
-                                                <option value="choose">أختر</option>
-                                                <option value="choose">الرياض</option>
-                                                <option value="choose">المدينة</option>
+                                        <div class="col-md-10">
+                                            <select class="form-control selectOption required" onchange="getCities(this);" required>
+                                                @foreach ($areas as $area)
+                                                    <option value="{{ $area->name }}">{{ $area->name }}</option>
+                                                @endforeach
                                             </select>											
                                         </div>
-                        
+                                        <div class="col-md-2">
+                                            <label for=""> اختر اسم المنطقة <em>*</em></label>
+                                        </div>
                                         <div class="col-md-4">
+                                            <select class="form-control selectOption required" id="cities" onchange="getSubCities(this);" required>
+                                                <option>اختر المنطقة</option>
+                                               
+                                            </select>											
+                                        </div>
+                                        <div class="col-md-2">
                                             <label for=""> اختر اسم المدينة  <em>*</em></label>
-                                            <select class="form-control selectOption" required>
-                                                <option value="choose">أختر</option>
-                                                <option value="choose">الرياض</option>
-                                                <option value="choose">المدينة</option>
-                                            </select>												
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control selectOption required" name="area_id" id="area_id" onchange="setMap(this);" required>
+                                                <option>اختر المدينة</option>
+                                            </select>													
                                         </div>
                                     </div>
-                                <hr>
-                                    <div class="row">
-                                
-                                        <div class="col-md-4">
-                                            <label for=""> الاسم  <em>*</em></label>
-                                            <input type="text" class="form-control required" name="name" placeholder="اكتب الاسم">
-                                        </div>
                                     
-                                        <div class="col-md-4">
-                                            <label for=""> الجوال  <em>*</em></label>
-
-                                            <input type="text" class="form-control required" name="mobile" placeholder="ادخل رقم الجوال">
-                                        </div>
-                                        
-                                        <div class="col-md-4">
-                                            <label for="">البريد الإلكترونى</label>
-
-                                            <input type="email" class="form-control required" name="email" placeholder="انسخ عنوان البريد الالكتروني">
-                                        </div>
-                                    </div>
                                 </div>
                                 
                     </div>
@@ -83,7 +65,7 @@
                             <option value="textopt">كتابة نصية</option>
                             <option value="socialopt">حسابات التواصل الاجتماعي</option>
                             <option value="advcartopt">الكروت الاعلانية الالكترونية</option>
-                                <option value="mediaopt"> حجز صفحة اعلانية كاملة  </option>
+                            <option value="mediaopt"> حجز صفحة اعلانية كاملة  </option>
                             </Select>
                         </div>
 
@@ -113,5 +95,41 @@
                     $('#' + $(this).val()).show();
                 });
             });
+
+
+
+            function initMap(lat = null, lng = null) {
+    
+    if(lat == null){ var myLatLng = {lat: 24.774265, lng: 46.738586} } else{ var myLatLng = {lat, lng} } ;
+ 
+   var map = new google.maps.Map(document.getElementById('map'), {
+     center: myLatLng,
+     zoom: 13
+   });
+ 
+   var marker = new google.maps.Marker({
+         position: myLatLng,
+         map: map,
+         title: 'Hello World!',
+         draggable: true
+       });
+ 
+    google.maps.event.addListener(marker, 'dragend', function(marker) {
+       var latLng = marker.latLng;
+       document.getElementById('latlng').value = [latLng.lat(),latLng.lng()];
+    });
+    }
+
+
+    function setMap(item)
+    {
+       let lat = $('option:selected', item).data("lat");
+       let lng = $('option:selected', item).data("lng");
+       initMap(Math.floor(lat), Math.floor(lng));
+    }
+    
+
+   
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap&key=AIzaSyDqET1nIDZzMGEieGANkEF_xB1RSCkJTjk" async defer></script>
 @endsection

@@ -63,7 +63,7 @@
                      </div>
                      <div class="col-md-4">
                          <select class="form-control required" name="duration_id">
-                             <option>اختر</option>
+                             <option selected disabled value="">اختر</option>
                              <option value="0">لايوجد </option>
                              <option value="1">7 أيام </option>
                              <option value="2">15 يوم </option>

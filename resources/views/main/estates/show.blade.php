@@ -70,6 +70,24 @@
                                         <li>{{ $estate->category->name }} <i class="fa fa-home"></i> </li>
                                         <li class="qt3a2">{!! $sortName !!}<i class="fas fa-building"></i> </li>
                                         <li>   {!! $offerName !!}   <i class="far fa-gem"></i>   </li>
+
+                                      
+
+                                        @if($adSort->name == 'request_estate')
+                                            
+                                        <li>   {!! $estate->requestEstate->rooms_number !!}   <i class="fa fa-bed"></i>   </li>
+
+                                        <li>   {!! $estate->requestEstate->bathrooms_number !!}   <i class="fa fa-bath"></i>   </li>
+
+                                        <li>   {!! $estate->requestEstate->estate_space !!} م2     </li>
+
+                                        <li>   {!! $estate->requestEstate->price !!}   <i class="fa fa-tag"></i>   </li>
+
+
+                                        @endif
+                                        
+
+
                                     </ul>
                                 </span>
                             </div>

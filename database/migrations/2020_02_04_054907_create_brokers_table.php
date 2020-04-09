@@ -15,9 +15,10 @@ class CreateBrokersTable extends Migration
     {
         Schema::create('brokers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id');
             $table->bigInteger('area_id');
-            $table->string('name');
-            $table->string('mobile');
+            $table->string('name')->nullable();
+            $table->string('mobile')->nullable();
             $table->string('email');
             $table->enum('broker_ad_sort', ['صور', 'كتابة نصية', 'حسابات التواصل الإجتماعى', 'الكروت الإعلانية الإلكترونية', 'حجز صفحة إعلانية كاملة'])->nullable();
             $table->string('file')->nullable();
