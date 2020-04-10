@@ -37,6 +37,7 @@ class PageController extends Controller
     public function store(Request $request)
     {
         Page::create($request->except('_token'));
+        return redirect()->back();
     }
 
     /**
@@ -72,6 +73,7 @@ class PageController extends Controller
     {
         //dd($request->all());
         $page->update($request->only('title','body'));
+        return redirect()->back();
     }
 
     /**
@@ -82,6 +84,7 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        //
+        $page->delete();
+        return redirect()->back();
     }
 }

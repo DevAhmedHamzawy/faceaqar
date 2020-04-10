@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 
-body{ font-family: 'Tajawal', sans-serif; }
+body{ font-family: 'Tajawal', sans-serif; overflow-x: hidden; }
 
 .bg-mattBlackLight {
   background-color: #303337; }
@@ -33,7 +33,7 @@ body{ font-family: 'Tajawal', sans-serif; }
     top: 0;
     bottom: 0;
     right: 0;
-    margin: 3.5rem auto auto;
+    margin: 4.1rem auto auto;
     width: 12.5rem;
     transition: all ease 0.25s;
     transform: translateX(-100%);

@@ -129,6 +129,14 @@
                 
             @endforeach
 
+
+            <div class="col-md-3">
+                <div class="card">
+                    <h1 class="text-center"><span class="material-icons" style="font-size:50px; padding:20px 0 20px 45px;">links</span></h1>
+                    <a href="{{ route('links.index') }}"><h5 class="text-center">  روابط الصفحات </h5></a>
+                </div>
+            </div>
+
             
 
           

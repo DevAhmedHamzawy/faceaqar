@@ -77,7 +77,7 @@ Trait ChartsQueries
     //Count Ad Sorts
     public static function CountAdSorts()
     {
-        $adsorts = DB::table('ad_sort')->pluck('id','name');
+        $adsorts = DB::table('ad_sort')->pluck('id','display');
         $countAdSorts = [];
 
         foreach($adsorts as $key => $value)

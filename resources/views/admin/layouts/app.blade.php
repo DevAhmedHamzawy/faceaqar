@@ -20,7 +20,7 @@
 <body>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
 
-        <a class="navbar-brand" href="#"><img src="{{ asset('adminpanel/img/logo.png') }}" width="150" height="30" /></a>
+        <a class="navbar-brand" href="#"><img src="{{ asset('adminpanel/img/logo.png') }}" width="190" height="40" /></a>
 
 
         <button class="navbar-toggler sideMenuToggler" type="button">
@@ -28,10 +28,10 @@
         </button> 
         
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
 
             <li class="nav-item dropdown  user-menu">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" data-target="#actions" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="http://example.com" style="margin-top:1px;" id="navbarDropdownMenuLink" data-toggle="dropdown" data-target="#actions" aria-haspopup="true" aria-expanded="false">
                   <img src="{{ Auth::user()->image }}" class="user-image" >
                   <span class="hidden-xs">{{ Auth::user()->user_name }}</span>
                 </a>
@@ -47,7 +47,7 @@
 
               <li class="nav-item dropdown messages-menu">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" data-target="#notifications" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-bell-o"></i>
+                  <i class="material-icons">notifications</i>
                   <span class="label label-success bg-success">{{-- count($contact) --}}</span>
                 </a>
                 <div class="dropdown-menu" id="notifications" aria-labelledby="navbarDropdownMenuLink">
@@ -79,7 +79,7 @@
             </li>
             <li class="nav-item dropdown notifications-menu">
               <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" data-target="#messages" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-envelope-o"></i>
+                <span class="material-icons">mail</span>
                 <span class="label label-warning bg-warning">{{-- count($activity) --}}</span>
               </a>
               <div id="messages" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

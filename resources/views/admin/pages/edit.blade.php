@@ -53,7 +53,7 @@
 
                             <div class="form-group row mb-0">
                                 <button type="submit" class="btn btn-primary col-md-12">
-                                    إضافة صفحة جديدة
+                                    تعديل الصفحة
                                 </button>
                             </div>
                         </form>

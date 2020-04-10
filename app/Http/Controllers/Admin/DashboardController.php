@@ -22,10 +22,12 @@ use App\User;
 class DashboardController extends Controller
 {
     protected $monthLabels;
+    protected $adSortLabels;
 
     public function __construct()
     {
         $this->monthLabels =  ['يناير', 'فبراير', 'مارس', 'إبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+        $this->adSortLabels = ['','العقارات المحلية','العقارات الدولية','المخططات العقارية','المشاريع العقارية','الطلبات العقارية','المزادات العقارية','المكاتب العقارية','الوسائط العقارية'];
     }
 
     public function index()
@@ -43,8 +45,9 @@ class DashboardController extends Controller
         $estateAddingByMonth = new EstateAddingByMonth;
         $estateAddingByMonth->labels = ($this->monthLabels);
         for($i = 1; $i < 9; $i++){
-            $estateAddingByMonth->dataset('My dataset', 'line', $estatesByAdSortInMonths[$i]);
+            $estateAddingByMonth->dataset($this->adSortLabels[$i], 'line', $estatesByAdSortInMonths[$i]);
         }
+
 
 
         //$roles = Role::all();
@@ -110,7 +113,7 @@ class DashboardController extends Controller
         $countPremiumChart = new CountPremiumChart;
         $countPremiumChart->labels = array_keys($countPremiums);
         $resultCountPremiums = array_values($countPremiums);
-        $countPremiumChart->dataset('My dataset', 'bar', $resultCountPremiums);
+        $countPremiumChart->dataset('الإعلانات المثبتة', 'bar', $resultCountPremiums);
 
 
         $countDurations = Estate::CountDurations();
@@ -118,7 +121,7 @@ class DashboardController extends Controller
         $countDurationChart = new CountDurationChart;
         $countDurationChart->labels = array_keys($countDurations);
         $resultCountDurations = array_values($countDurations);
-        $countDurationChart->dataset('My dataset', 'pie', $resultCountDurations);
+        $countDurationChart->dataset('عدد الإعلانات', 'bar', $resultCountDurations);
 
 
         $countOffers = Estate::CountOffers();
@@ -127,6 +130,8 @@ class DashboardController extends Controller
         $countOfferChart->labels = array_keys($countOffers);
         $resultCountOffers = array_values($countOffers);
         $countOfferChart->dataset('My dataset', 'pie', $resultCountOffers);
+        $countOfferChart->minimalist(false);
+        $countOfferChart->displayAxes(false);
 
 
         $countSorts = Estate::CountSorts();
@@ -134,8 +139,9 @@ class DashboardController extends Controller
         $countSortChart = new CountSortChart;
         $countSortChart->labels = array_keys($countSorts);
         $resultCountSorts = array_values($countSorts);
-        $countSortChart->dataset('My dataset', 'pie', $resultCountSorts);
-
+        $countSortChart->dataset('My dataset', 'doughnut', $resultCountSorts);
+        $countSortChart->minimalist(false);
+        $countSortChart->displayAxes(false);
 
         $countAdSorts = Estate::CountAdSorts();
 
@@ -143,15 +149,17 @@ class DashboardController extends Controller
         $countAdSortChart->labels = array_keys($countAdSorts);
         $resultCountAdSorts = array_values($countAdSorts);
         $countAdSortChart->dataset('My dataset', 'pie', $resultCountAdSorts);
-
+        $countAdSortChart->minimalist(false);
+        $countAdSortChart->displayAxes(false);
 
         $countCategories = Estate::CountCategories();
 
         $countCategoryChart = new CountCategoryChart;
         $countCategoryChart->labels = array_keys($countCategories);
         $resultCountCategories = array_values($countCategories);
-        $countCategoryChart->dataset('My dataset', 'pie', $resultCountCategories);
-        
+        $countCategoryChart->dataset('My dataset', 'doughnut', $resultCountCategories);
+        $countCategoryChart->minimalist(false);
+        $countCategoryChart->displayAxes(false);
 
 
 
@@ -166,7 +174,8 @@ class DashboardController extends Controller
         $topFiveUsersChart = new TopFiveUsersChart;
         $topFiveUsersChart->labels = $topFiveUserNames;
         $topFiveUsersChart->dataset('My dataset', 'pie', $topFiveUserEstates);
-
+        $topFiveUsersChart->minimalist(false);
+        $topFiveUsersChart->displayAxes(false);
         
 
         return view('admin.dashboard', compact('estateAddingByMonth', 'usersByMonth', 'officesByMonth', 'lawyersByMonth', 'countUsers', 'countOffices', 'countLawyers', 'countEstates', 'countPremiumChart', 'countDurationChart', 'countOfferChart' , 'countSortChart' , 'countAdSortChart' , 'countCategoryChart', 'topFiveUsersChart'));
