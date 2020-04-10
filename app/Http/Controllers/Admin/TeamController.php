@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Admin;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return view('admin.teams.index', ['teams' => User::all()]);
+        return view('admin.teams.index', ['teams' => DB::table('teams')->join('admins','teams.user_id','=','admins.id')->get(), 'admins' => Admin::all()]);
     }
 
     /**

@@ -39,8 +39,8 @@
                                     <td>{{ $client->name  }}</td>
                                     <td>{{ $client->img }}</td>
                                     <td>
-                                        <a href="{{ route('clients.show', $client->name) }}" class="btn btn-primary">Show</a>
-                                        <a href="{{ route('clients.edit', $client->name) }}" class="btn btn-warning">Edit</a>
+                                        {{--<a href="{{ route('clients.show', $client->name) }}" class="btn btn-primary">Show</a>
+                                        <a href="{{ route('clients.edit', $client->name) }}" class="btn btn-warning">Edit</a>--}}
                                         <form action="{{ route('clients.destroy', $client->name) }}" method="post">
                                             @csrf
                                             @method('DELETE')
@@ -85,13 +85,14 @@
 
             axios.post('../admin/clients', form_data)
             .then((response) => {
-                $('#success-message').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإرسال!</strong> تم إضافة عميل جديد بنجاح!</div></div>');
+                /*$('#success-message').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإرسال!</strong> تم إضافة عميل جديد بنجاح!</div></div>');
                     setTimeout(() => {
                         $(".alert").fadeTo(500, 0).slideUp(500, function(){
                             $(this).remove() 
                         });
-                }, 2000);
+                }, 2000);*/
                 //console.log(response);
+                window.location.reload();
             }).catch((error) => {
                 if(error.response.data.errors.name){
                     $('.name-contact-error').append('<strong>'+error.response.data.errors.name+'</strong>');
