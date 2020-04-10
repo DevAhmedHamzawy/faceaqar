@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.users.index', ['users' => User::all()]);
+        return view('admin.users.users.index', ['users' => User::orderByDesc('id')->get()]);
     }
 
     /**
@@ -37,6 +37,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge(['code' => rand(10,999999)]);
+
         $latlngArray = explode(',' , $request->input('latlng'));
 
         
@@ -49,7 +51,7 @@ class UserController extends Controller
             $request->merge(['lat' => $latlngArray[0] , 'lng' => $latlngArray[1]]);
         }
         $user->attachRole($request->role);
-        return 'done';
+        return redirect('/admin/users');
     }
 
     /**
@@ -94,6 +96,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect('/admin/users');
     }
 }

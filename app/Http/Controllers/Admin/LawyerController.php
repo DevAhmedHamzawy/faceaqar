@@ -36,6 +36,7 @@ class LawyerController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge(['code' => rand(10,999999)]);
 
         $latlngArray = explode(',' , $request->input('latlng'));
         

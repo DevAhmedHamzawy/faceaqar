@@ -29,7 +29,7 @@ class OfficeController extends Controller
         return DataTables::of($offices)->addIndexColumn()
         ->addColumn('action', function($row){
 
-               $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">عرض</a>';
+                $btn = '<a href="'.route("estates.show", ['estate_office', $row->name]).'" target="_blank" class="edit btn btn-primary btn-sm">عرض</a>';
 
                 return $btn;
         })

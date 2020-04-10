@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><h4 class="text-center">إضافة مستخدم جديد</h4></div>
+                <div class="card-header"><h4 class="text-center">تعديل بيانات المستخدم</h4></div>
 
                 <div class="card-body">
 
@@ -120,7 +120,7 @@
 
                         <div class="form-group row mb-0">
                             <button type="submit" class="btn btn-primary col-md-12">
-                                إضافة مستخدم جديد
+                                تعديل بيانات المستخدم
                             </button>
                         </div>
                     </form>

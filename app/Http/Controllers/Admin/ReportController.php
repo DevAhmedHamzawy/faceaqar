@@ -24,7 +24,7 @@ class ReportController extends Controller
         return Datatables::of($estates)->addIndexColumn()
         ->addColumn('action', function($row){
 
-                $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">عرض</a>';
+                $btn = '<a href="'.route("estates.show", [$row->ad_sort_id, $row->name]).'" target="_blank" class="edit btn btn-primary btn-sm">عرض</a>';
 
                 return $btn;
         })

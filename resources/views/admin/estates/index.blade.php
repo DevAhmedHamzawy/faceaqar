@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    العقارات بالموقع 
+                    <h4 class="text-center">العقارات بالموقع</h4> 
                 </div>
 
                 <div class="card-body">
@@ -16,7 +16,7 @@
                         </div>
                     @endif
 
-                    <table class="table table-striped table-dark data-table">
+                    <table class="table table-dark data-table">
 
                         <thead>
                             <tr>

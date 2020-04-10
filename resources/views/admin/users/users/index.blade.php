@@ -6,8 +6,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    مديرين الموقع
-                    <a href="{{ route('users.create') }}" class="btn btn-primary" style="float:left">إضافة مدير جديد</a>
+                    مستخدمين الموقع
+                    <a href="{{ route('users.create') }}" class="btn btn-primary" style="float:left">إضافة مستخدم جديد</a>
                 </div>
 
                 <div class="card-body">
@@ -24,8 +24,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">الإسم</th>
                                     <th scope="col">البريد الإلكترونى</th>
-                                    <th scope="col">الصورة</th>
-                                    {{--<th scope="col">Operations</th>--}}
+                                    <th scope="col">العمليات</th>
                                 </tr>
                             </thead>
                             @forelse ($users as $user)
@@ -37,7 +36,7 @@
                                     {{--<td><img src="{{ $user->img_path }}" alt="" srcset=""></td>--}}
                                     <td>
                                         {{--<a href="{{ route('users.show', $user->user_name) }}" class="btn btn-primary">Show</a>--}}
-                                        <a href="{{ route('users.edit', $user->name) }}" class="btn btn-warning">تعديل</a>
+                                        {{--<a href="{{ route('users.edit', $user->name) }}" class="btn btn-warning">تعديل</a>--}}
                                         <form action="{{ route('users.destroy', $user->name) }}" method="post">
                                             @csrf
                                             @method('DELETE')

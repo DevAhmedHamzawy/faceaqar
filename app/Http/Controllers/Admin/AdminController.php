@@ -37,6 +37,7 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         Admin::create($request->all());
+        return redirect('admin/admins');
     }
 
     /**
@@ -72,6 +73,7 @@ class AdminController extends Controller
     {
         //dd($request->all());
         $admin->update($request->all());
+        return redirect('admin/admins');
     }
 
     /**
@@ -82,6 +84,7 @@ class AdminController extends Controller
      */
     public function destroy(Admin $admin)
     {
-        //
+        $admin->delete();
+        return redirect('admin/admins');
     }
 }

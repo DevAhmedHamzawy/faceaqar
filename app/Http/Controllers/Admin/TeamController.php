@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class TeamController extends Controller
 {
