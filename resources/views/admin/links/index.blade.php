@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    Dashboard
+                <div class="card-header text-center">
+                    <h4>روابط الصفحات</h4>
                 </div>
 
                 <div class="card-body">
@@ -16,27 +16,31 @@
                         </div>
                     @endif
 
-                    <form>
-                        <select id="place" onchange="getpositions(this);">
+                    <button onclick="generateForm();return false;" class="btn btn-primary col-md-12"><span class="material-icons">add</span></button>
+                    <br><br>
+                    <form style="display: none;" class="form-group form-links">
+                        <select id="place" class="form-control" onchange="getpositions(this);">
                             <option selected disabled>اختر المكان ....</option>
                             <option value="menu1">العنوان الرئيسى للقائمة</option>
                             <option value="menu2">العنوان الفرعى للقائمة</option>
                             <option value="footer1">1ذيل الصفحة</option>
                             <option value="footer2">ذيل الصفحة2</option>
                         </select>
-
-                        <input type="text" id="name">
-                       
-                        <select id="position">
+                        <br/>
+                        <input type="text" class="form-control" id="name">
+                        <br/>
+                        <select id="position"  class="form-control">
                             <option selected disabled>إختر الترتيب ....</option>
                         </select>
-                        <select id="visible">
+                        <br/>
+                        <select id="visible"  class="form-control">
                             <option value="1">نعم</option>
                             <option value="0">لا</option>
                         </select>
-
+                        <br/>
                         <div id="form-links"></div>
-                        <button onclick="createLink();return false;" class="btn btn-primary">Create link</button>
+                        
+                        <button onclick="createLink();return false;" class="btn btn-primary col-md-12">إنـــشـــاء الــــرابــــط</button>
                     </form>
 
                     <table class="table table-striped table-dark">
@@ -44,24 +48,46 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Operations</th>
+                                    <th scope="col">الإسم</th>
+                                    <th scope="col">المكان</th>
+                                    <th scope="col">العمليات</th>
                                 </tr>
                             </thead>
                             @forelse ($links as $link)
                             <tbody>
                                 <tr>
-                                    <td scope="row">#</td>
+                                    <td scope="row">{{ $link->id }}</td>
                                     <td>{{ $link->name  }}</td>
-                                    <td>{{ $link->img }}</td>
                                     <td>
-                                        {{--<a href="{{ route('links.show', $link->name) }}" class="btn btn-primary">Show</a>
-                                        <a href="{{ route('links.edit', $link->name) }}" class="btn btn-warning">Edit</a>--}}
+
+                                        @switch($link->place)
+                                            @case('menu1')
+                                                العنوان الرئيسى للقائمة
+                                                @break
+                                            @case('menu2')
+                                                العنوان الفرعى للقائمة
+                                                @break
+                                            @case('footer1')
+                                                ذيل الصفحة 1
+                                                @break
+                                            @case('footer2')
+                                                ذيل الصفحة 2
+                                            @break
+                                            @default
+                                                {{ $link->name  }}
+                                                
+                                        @endswitch
+
+                                    
+                                    
+                                    
+                                    
+                                    </td>
+                                    <td>
                                         <form action="{{ route('links.destroy', $link->name) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
+                                            <button class="btn btn-danger" type="submit">حذف</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -74,10 +100,17 @@
                         </table>
                        
                     </ul>
+
                 </div>
+                
+                <br>
+               
+
             </div>
         </div>
+        <div class="text-center" style="margin-top:-45px;">{{ $links->links() }}</div>
     </div>
+
 </div>
 @endsection
 
@@ -97,7 +130,7 @@
 
                     $('#form-links').empty();
 
-                    $('#form-links').append('<select id="page_id"></select>');
+                    $('#form-links').append('<select id="page_id" class="form-control"></select>');
 
                     @foreach ($pages as $page)
                     $('#page_id').append('<option value="{{ $page->id }}">{!! $page->title !!}</option>');
@@ -109,13 +142,13 @@
 
                 $('#form-links').empty();
 
-                $('#form-links').append('<select id="parent_id"></select>');
+                $('#form-links').append('<select id="parent_id" class="form-control"></select>');
 
                 @foreach ($menuone as $link)
                 $('#parent_id').append('<option value="{{ $link->id }}">{!! $link->name !!}</option>');
                 @endforeach
 
-                $('#form-links').append('<select id="page_id"></select>');
+                $('#form-links').append('<select id="page_id" class="form-control"></select>');
 
                 @foreach ($pages as $page)
                 $('#page_id').append('<option value="{{ $page->id }}">{!! $page->title !!}</option>');
@@ -164,13 +197,6 @@
 
             axios.post('../admin/links', link)
             .then((response) => {
-                 /*$('#success-message').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإرسال!</strong> تم إضافة عميل جديد بنجاح!</div></div>');
-                    setTimeout(() => {
-                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-                            $(this).remove() 
-                        });
-                }, 2000);*/
-                //console.log(response);
                 window.location.reload();
             }).catch((error) => {
                 if(error.response.data.errors.name){
@@ -184,6 +210,11 @@
                 }
             })
 
+        }
+
+        function generateForm()
+        {
+            $('.form-links').css('display', 'block');
         }
 
     </script>

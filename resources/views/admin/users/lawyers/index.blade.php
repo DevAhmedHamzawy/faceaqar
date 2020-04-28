@@ -6,8 +6,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    المحامين
-                    <a href="{{ route('lawyers.create') }}" class="btn btn-primary" style="float:left">إضافة محامى جديد</a>
+                    <h5>المحامين
+                        <a href="{{ route('lawyers.create') }}" class="btn btn-primary" style="float:left"><span class="material-icons">add</span></a>
+                    </h5>
                 </div>
 
                 <div class="card-body">
@@ -24,29 +25,31 @@
                                     <th scope="col">#</th>
                                     <th scope="col">الإسم</th>
                                     <th scope="col">العنوان</th>
-                                    <th scope="col">رقم الجوال</th>
-                                    <th scope="col">رقم الهاتف</th>
-                                    <th scope="col">رقم الفاكس</th>
+                                    <th scope="col">الهاتف</th>
+                                    <th scope="col">الفاكس</th>
                                     <!--<th scope="col">العمليات</th>!-->
                                 </tr>
                             </thead>
                             @forelse ($lawyers as $lawyer)
                             <tbody>
                                 <tr>
-                                    <td scope="row">#</td>
+                                    <td scope="row">{{ $lawyer->id }}</td>
                                     <td>{{ $lawyer->name  }}</td>
                                     <td>{{ $lawyer->profile->address ?? 'غير موجود' }}</td>
-                                    <td>{{ $lawyer->profile->mobile ?? 'غير موجود' }}</td>
                                     <td>{{ $lawyer->profile->telephone ?? 'غير موجود' }}</td>
                                     <td>{{ $lawyer->profile->fax ?? 'غير موجود' }}</td>
                                     <td>
-                                        {{--<a href="{{ route('lawyers.show', $lawyer->name) }}" class="btn btn-primary">عرض</a>--}}
-                                        {{--<a href="{{ route('lawyers.edit', $lawyer->name) }}" class="btn btn-warning">Edit</a>--}}
-                                        {{--<form action="{{ route('lawyers.destroy', $lawyer->name) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">حذف</button>
-                                        </form>--}}
+                                        <div class="row">
+                                            <a href="{{ route('lawyers.show', $lawyer->name) }}" class="btn btn-primary"><span class="material-icons">eye</span></a>
+                                            &nbsp;
+                                            <a href="{{ route('lawyers.edit', $lawyer->name) }}" class="btn btn-warning"><span class="material-icons">edit</span></a>
+                                            &nbsp;
+                                            <form action="{{ route('lawyers.destroy', $lawyer->name) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit"><span class="material-icons">delete</span></button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>

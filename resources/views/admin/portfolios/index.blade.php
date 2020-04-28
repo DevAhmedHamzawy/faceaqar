@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
+                    <h4 class="text-center">أعمالنا</h4>
                 </div>
 
                 <div class="card-body">
@@ -16,36 +16,40 @@
                         </div>
                     @endif
 
-                    <form>
-                        <input type="text" id="name">
-                        <input type="date" id="date">
-                        <input type="file" id="file">
-                        <button onclick="createPortfolio();return false;" class="btn btn-primary">Create portfolio</button>
-                    </form>
+                    <button onclick="generateForm();return false;" class="btn btn-primary col-md-12"><span class="material-icons">add</span></button>
+                    <br><br>
 
+                    <form style="display: none;" class="form-group form-links">
+                        <input type="text" class="form-control" id="name">
+                        <br>
+                        <input type="date" class="form-control" id="date">
+                        <br>
+                        <input type="file" class="form-control" id="file">
+                        <br>
+                        <button onclick="createPortfolio();return false;" class="btn btn-primary col-md-12">إضافة إلى الأعمال</button>
+                    </form>
+                    <br>
                     <table class="table table-striped table-dark">
 
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Operations</th>
+                                    <th scope="col">الإسم</th>
+                                    <th scope="col">الصورة</th>
+                                    <th scope="col">العمليات</th>
                                 </tr>
                             </thead>
                             @forelse ($portfolios as $portfolio)
                             <tbody>
                                 <tr>
-                                    <td scope="row">#</td>
+                                    <td scope="row">{{ $portfolio->id }}</td>
                                     <td>{{ $portfolio->name  }}</td>
-                                    <td>{{ $portfolio->img }}</td>
+                                    <td><img src="{{ $portfolio->img_path }}" alt="" srcset=""></td>
                                     <td>
-                                        {{--<a href="{{ route('portfolios.show', $portfolio->name) }}" class="btn btn-primary">Show</a>
-                                        <a href="{{ route('portfolios.edit', $portfolio->name) }}" class="btn btn-warning">Edit</a>--}}
                                         <form action="{{ route('portfolios.destroy', $portfolio->name) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
+                                            <button class="btn btn-danger" type="submit">حذف</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -87,13 +91,7 @@
 
             axios.post('../admin/portfolios', form_data)
             .then((response) => {
-                /*$('#success-message').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإرسال!</strong> تم إضافة عميل جديد بنجاح!</div></div>');
-                    setTimeout(() => {
-                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-                            $(this).remove() 
-                        });
-                }, 2000);*/
-                //console.log(response);
+              
                 window.location.reload();
             }).catch((error) => {
                 if(error.response.data.errors.name){
@@ -107,6 +105,12 @@
                 }
             })
 
+        }
+
+
+        function generateForm()
+        {
+            $('.form-links').css('display', 'block');
         }
 
     </script>

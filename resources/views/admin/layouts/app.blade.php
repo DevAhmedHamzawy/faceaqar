@@ -119,7 +119,9 @@
                     <li class="nav-item"><a href="{{ url('admin/dashboard') }}" class="nav-link px-2"><i class="material-icons icon">dashboard</i><span class="text">لوحة التحكم</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/estates') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">عقارات الموقع</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/reports') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">البلاغات عن العقارات</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/estates/adding-premium') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">التثبيت والإضافة للعقارات</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/offices') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">المكاتب العقارية</span></a></li>
+                    <li class="nav-item"><a href="{{ url('admin/reports') }}" class="nav-link px-2"><i class="material-icons icon">content_copy</i><span class="text">التثبيت والإضافة للمكاتب</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/contacts') }}" class="nav-link px-2"><i class="material-icons icon">accessibility</i><span class="text">رسائل تواصل معنا</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/newsletters') }}" class="nav-link px-2"><i class="material-icons icon">account_box</i><span class="text">النشرة التسويقية البريدية</span></a></li>
                     <li class="nav-item"><a href="{{ url('admin/admins') }}" class="nav-link px-2"><i class="material-icons icon">face</i><span class="text">المديرين</span></a></li>

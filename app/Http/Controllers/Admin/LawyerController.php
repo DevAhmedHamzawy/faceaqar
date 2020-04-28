@@ -15,7 +15,7 @@ class LawyerController extends Controller
      */
     public function index()
     {
-        return view('admin.users.lawyers.index', ['lawyers' => User::withRole('lawyer')->get()]);
+        return view('admin.users.lawyers.index', ['lawyers' => User::withRole('lawyer')->orderByDesc('id')->paginate(6)]);
     }
 
     /**
@@ -66,9 +66,9 @@ class LawyerController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $lawyer)
     {
-        return view('admin.users.lawyers.edit', ['lawyer' => $user]);
+        return view('admin.users.lawyers.edit', ['lawyer' => $lawyer]);
     }
 
     /**
@@ -78,9 +78,16 @@ class LawyerController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $lawyer)
     {
-        //
+        $latlngArray = explode(',' , $request->input('latlng'));
+        
+        $request->merge(['lat' => $latlngArray[0] , 'lng' => $latlngArray[1]]);
+
+        $lawyer->update($request->only('name','email','password'));
+        $lawyer->profile()->update($request->except('_token','_method','name','password','image','latlng'));
+
+        return redirect()->route('lawyers.index');
     }
 
     /**

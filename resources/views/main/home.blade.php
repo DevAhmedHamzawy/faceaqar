@@ -44,7 +44,7 @@
 
                 
                 <div class="container">
-                    @php $image = json_decode(auth()->user()->images->img); @endphp
+                    {{-- @php $image = json_decode(auth()->user()->images->img); @endphp --}}
                     
                     {{-- dd(url('main/users/{{ auth()->user->id }}/{{ $image }}'))  --}}
                     <img src="{{ url('main/images/team1.png') }}" class="center-block img-circle" onclick="document.getElementById('profile').click()" alt="Cinque Terre">

@@ -13,10 +13,10 @@ class DurationTableSeeder extends Seeder
     public function run()
     {
         DB::table('durations')->insert([
-            ['name' => 'شهر'],
-            ['name' => 'شهور 3'],
-            ['name' => 'شهور 6'],
-            ['name' => 'سنة']
+            ['name' => 'شهر', 'number' => '30'],
+            ['name' => 'شهور 3', 'number' => '90'],
+            ['name' => 'شهور 6', 'number' => '180'],
+            ['name' => 'سنة', 'number' => '365']
         ]);
     }
 }

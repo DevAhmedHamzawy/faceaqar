@@ -15,11 +15,13 @@
                             <label for=""> اختر اسم الدولة <em>*</em></label>
                         </div>
                         <div class="col-md-10">
-                            <select class="form-control selectOption required" onchange="getCities(this);" required>
+                            <select class="form-control selectOption required" onchange="getCities(this);" @if($adSort->id == 1) onclick="getCities(this);"  @endif required>
                                 @foreach ($areas as $area)
+                                    @if($adSort->id == 1) @if($area->id == 15)
                                     <option value="{{ $area->name }}">{{ $area->name }}</option>
+                                    @endif @endif
                                 @endforeach
-                            </select>											
+                            </select>										
                         </div>
                         <div class="col-md-2">
                             <label for=""> اختر اسم المنطقة <em>*</em></label>

@@ -12,7 +12,10 @@ Route::resource('portfolios', 'Admin\PortfolioController');
 Route::resource('teams', 'Admin\TeamController');   
 
 Route::resource('contacts', 'Admin\ContactController');       
-Route::resource('tickets', 'Admin\TicketController');
+Route::resource('tickets', 'Admin\TicketController')->only('index');
+Route::get('tickets/{ticket}/{estate}', 'Admin\TicketController@show')->name('tickets.show');
+Route::post('tickets/{ticket}/{estate}/activate', 'Admin\TicketController@activate')->name('tickets.activate');
+Route::post('tickets/{ticket}/{estate}/deactivate', 'Admin\TicketController@deactivate')->name('tickets.deactivate');
 
 Route::resource('newsletters', 'Admin\NewsletterController');
 
@@ -25,7 +28,8 @@ Route::delete('brokers/{broker}', 'Admin\BrokerController@destroy')->name('the-b
 
 Route::resource('reports', 'Admin\ReportController');
 
-Route::resource('estates', 'Admin\EstateController');
+Route::resource('estates', 'Admin\EstateController')->only('index','destroy');
+Route::get('estates/adding-premium', 'Admin\EstateController@addingPremiumEstates')->name('estates.addingpremium');
 
 Route::get('offices', 'Admin\OfficeController@index')->name('offices.index');
 

@@ -14,17 +14,47 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form method="POST" action="{{ route('lawyers.update', $lawyer->user_name) }}">
+                    <form method="POST" action="{{ route('lawyers.update', $lawyer->name) }}">
                         @csrf
                         @method('PATCH')
 
                         <div class="form-group row">
-                            <label for="user_name" class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
+                            <div class="col-md-2">
+                                <label for=""> اختر اسم الدولة <em>*</em></label>
+                            </div>
+                            <div class="col-md-10">
+                                <select class="form-control selectOption required" onchange="getCities(this);" required>
+                                    @foreach ($areas as $area)
+                                        <option value="{{ $area->name }}">{{ $area->name }}</option>
+                                    @endforeach
+                                </select>											
+                            </div>
+                            <div class="col-md-2">
+                                <label for=""> اختر اسم المنطقة <em>*</em></label>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-control selectOption required" id="cities" onchange="getSubCities(this);" required>
+                                    <option>اختر المنطقة</option>
+                                   
+                                </select>											
+                            </div>
+                            <div class="col-md-2">
+                                <label for=""> اختر اسم المدينة  <em>*</em></label>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-control selectOption required" name="area_id" id="area_id" onchange="setMap(this);" required>
+                                    <option>اختر المدينة</option>
+                                </select>													
+                            </div>
+                        </div>
 
-                            <div class="col-md-6">
-                                <input id="user_name" type="text" class="form-control @error('user_name') is-invalid @enderror" name="user_name" value="{{ $lawyer->user_name }}" required autocomplete="user_name" autofocus>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-2 col-form-label text-md-right">الإسم</label>
 
-                                @error('user_name')
+                            <div class="col-md-10">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $lawyer->name }}" required autocomplete="name" autofocus>
+
+                                @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -34,12 +64,12 @@
 
 
                         <div class="form-group row">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+                            <label for="full_name" class="col-md-2 col-form-label text-md-right">الإسم بالكامل</label>
 
-                            <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ $lawyer->first_name }}" required autocomplete="first_name" autofocus>
+                            <div class="col-md-10">
+                                <input id="full_name" type="text" class="form-control @error('full_name') is-invalid @enderror" name="full_name" value="{{ $lawyer->profile->full_name }}" required autocomplete="full_name" autofocus>
 
-                                @error('first_name')
+                                @error('full_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -49,25 +79,10 @@
 
 
                         <div class="form-group row">
-                            <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+                            <label for="description" class="col-md-2 col-form-label text-md-right">الوصف</label>
 
-                            <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ $lawyer->last_name }}" required autocomplete="last_name" autofocus>
-
-                                @error('last_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('User Description') }}</label>
-
-                            <div class="col-md-6">
-                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror textarea" cols="30" rows="10" required autocompleted="description">{{ $lawyer->description }}</textarea>
+                            <div class="col-md-10">
+                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror textarea" cols="30" rows="10" autocompleted="description">{{ $lawyer->profile->description }}</textarea>
 
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -76,11 +91,27 @@
                                 @enderror
                             </div>
                         </div>
+                        
+
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="address" class="col-md-2 col-form-label text-md-right">العنوان</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-10">
+                                <textarea name="address" id="address" class="form-control @error('address') is-invalid @enderror textarea" cols="30" rows="10" autocompleted="address">{{ $lawyer->profile->address }}</textarea>
+
+                                @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-2 col-form-label text-md-right">البريد الإلكترونى</label>
+
+                            <div class="col-md-10">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $lawyer->email }}" required autocomplete="email">
 
                                 @error('email')
@@ -90,11 +121,75 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="mobile1" class="col-md-2 col-form-label text-md-right">الجوال</label>
+
+                            <div class="col-md-10">
+                                <input id="mobile1" type="text" class="form-control @error('mobile1') is-invalid @enderror" name="mobile1" value="{{ $lawyer->profile->mobile1 }}" required autocomplete="mobile1" autofocus>
+
+                                @error('mobile1')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="telephone" class="col-md-2 col-form-label text-md-right">رقم الهاتف</label>
+
+                            <div class="col-md-10">
+                                <input id="telephone" type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ $lawyer->profile->telephone }}" required autocomplete="telephone" autofocus>
+
+                                @error('telephone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="fax" class="col-md-2 col-form-label text-md-right">رقم الفاكس</label>
+
+                            <div class="col-md-10">
+                                <input id="fax" type="text" class="form-control @error('fax') is-invalid @enderror" name="fax" value="{{ $lawyer->profile->fax }}" required autocomplete="fax" autofocus>
+
+                                @error('fax')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="image" class="col-md-2 col-form-label text-md-right">الصورة الشخصية</label>
+                            <div class="col-md-10">
+                            <input type="file" name="image" class="form-control">
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>حدد موقع  المحامى  الجغرافي على مخطط ماب</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="map" style="height:550px;"></div>
+                                <input type="hidden" name="latlng" id="latlng" />
+                            </div>
+                        </div>
     
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-2 col-form-label text-md-right">كلمة المرور</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
@@ -104,12 +199,15 @@
                                 @enderror
                             </div>
                         </div>
+                        كلمة المرور تضاف للمحامى باعتبار انه سيدخل لوحة التحكم التى ستعرض له فقط الرسائل الخاصة به
+
+
 
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('User') }}
+                                    تـــعـــديـــل بـــيـــانـــات الـــمــــحـــامـــى
                                 </button>
                             </div>
                         </div>

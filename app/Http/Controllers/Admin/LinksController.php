@@ -16,7 +16,7 @@ class LinksController extends Controller
      */
     public function index()
     {
-        return view('admin.links.index', ['pages' => Page::all(), 'links' => Links::all(), 'menuone' => Links::wherePlace('menu1')->get()]);
+        return view('admin.links.index', ['pages' => Page::all(), 'links' => Links::OrderByDesc('id')->paginate(5), 'menuone' => Links::wherePlace('menu1')->get()]);
     }
 
     /**

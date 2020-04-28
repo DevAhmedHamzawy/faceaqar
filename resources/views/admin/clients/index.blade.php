@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
+                    <h4 class="text-center">عملائنا</h4>
                 </div>
 
                 <div class="card-body">
@@ -16,35 +16,37 @@
                         </div>
                     @endif
 
-                    <form>
-                        <input type="text" id="name">
-                        <input type="file" id="file">
-                        <button onclick="createClient();return false;" class="btn btn-primary">Create client</button>
+                    <button onclick="generateForm();return false;" class="btn btn-primary col-md-12"><span class="material-icons">add</span></button>
+                    <br><br>
+                    <form style="display: none;" class="form-group form-links">
+                        <input type="text" id="name" class="form-control">
+                        <br>
+                        <input type="file" id="file" class="form-control">
+                        <br>
+                        <button onclick="createClient();return false;" class="btn btn-primary col-md-12">إضافة عميل جديد</button>
                     </form>
-
+                    <br>
                     <table class="table table-striped table-dark">
 
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Operations</th>
+                                    <th scope="col">الإسم</th>
+                                    <th scope="col">الصورة</th>
+                                    <th scope="col">العمليات</th>
                                 </tr>
                             </thead>
                             @forelse ($clients as $client)
                             <tbody>
                                 <tr>
-                                    <td scope="row">#</td>
+                                    <td scope="row">{{ $client->id }}</td>
                                     <td>{{ $client->name  }}</td>
-                                    <td>{{ $client->img }}</td>
+                                    <td><img src="{{ $client->img_path }}" width="50" height="50" alt="" srcset=""></td>
                                     <td>
-                                        {{--<a href="{{ route('clients.show', $client->name) }}" class="btn btn-primary">Show</a>
-                                        <a href="{{ route('clients.edit', $client->name) }}" class="btn btn-warning">Edit</a>--}}
                                         <form action="{{ route('clients.destroy', $client->name) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
+                                            <button class="btn btn-danger" type="submit">حذف</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -85,13 +87,6 @@
 
             axios.post('../admin/clients', form_data)
             .then((response) => {
-                /*$('#success-message').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإرسال!</strong> تم إضافة عميل جديد بنجاح!</div></div>');
-                    setTimeout(() => {
-                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-                            $(this).remove() 
-                        });
-                }, 2000);*/
-                //console.log(response);
                 window.location.reload();
             }).catch((error) => {
                 if(error.response.data.errors.name){
@@ -105,6 +100,11 @@
                 }
             })
 
+        }
+
+        function generateForm()
+        {
+            $('.form-links').css('display', 'block');
         }
 
     </script>

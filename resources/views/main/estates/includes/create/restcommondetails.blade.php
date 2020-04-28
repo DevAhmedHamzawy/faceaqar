@@ -43,7 +43,7 @@
         <label for="">اســم المعلن <em>*</em></label>
     </div>
     <div class="col-md-4">
-        <input type="text" name="advertiser_name" class="form-control" id="" placeholder="">
+        <input type="text" name="advertiser_name" value="{{ old('advertiser_name') }}" class="form-control" id="" placeholder="">
     </div>
     
     <div class="col-md-2">
@@ -67,7 +67,7 @@
         <label for="">(1) رقــم الجوال <em>*</em></label>
     </div>
     <div class="col-md-4">
-        <input type="number" name="mobile1" class="form-control required" id="" placeholder="">
+        <input type="number" name="mobile1" value="{{ old('mobile1') }}" class="form-control required" id="" placeholder="">
     </div>
     
     <div class="col-md-2">

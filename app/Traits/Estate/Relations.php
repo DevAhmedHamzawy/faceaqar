@@ -59,4 +59,9 @@ Trait Relations
     {
         return $this->hasOne('App\Advertiser');
     }
+
+    public function ticket()
+    {
+        return $this->hasOne('App\Ticket');
+    }
 }

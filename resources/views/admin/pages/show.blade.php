@@ -16,15 +16,17 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('pages.update', [$page->id, null]) }}">
+                        <button onclick="generateForm();return false;" class="btn btn-primary col-md-12"><span class="material-icons">edit</span></button>
+                        <br><br>
+
+                        <form method="POST" action="{{ route('pages.update', [$page->id, null]) }}" style="display: none;" class="form-group form-links">
                             @csrf
                             @method('PATCH')
 
                             <div class="form-group row">
-                                <label for="title" class="col-md-2 col-form-label text-md-right">إسم الصفحة</label>
 
-                                <div class="col-md-10">
-                                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $page->title }}" required autocomplete="title" autofocus>
+                                <div class="col-md-12">
+                                    <input id="title" type="text" placeholder="إسم الصفحة" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $page->title }}" required autocomplete="title" autofocus>
 
                                     @error('title')
                                         <span class="invalid-feedback" role="alert">
@@ -35,11 +37,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="body" class="col-md-2 col-form-label text-md-right">محتوى الصفحة</label>
 
-                                <div class="col-md-10">
+                                <div class="col-md-12">
 
-                                    <textarea name="body" id="body" class="form-control @error('body') is-invalid @enderror textarea" cols="30" rows="10" required autocompleted="body">{{ $page->body }}</textarea>
+                                    <textarea name="body" id="body" placeholder="محتوى الصفحة" class="form-control @error('body') is-invalid @enderror textarea" cols="30" rows="10" required autocompleted="body">{{ $page->body }}</textarea>
                                     
                                     @error('body')
                                         <span class="invalid-feedback" role="alert">
@@ -56,10 +57,10 @@
                             </div>
                         </form>
 
-
+                        <h4 class="text-center mt-5">الصفحات</h4>
                         <table class="table table-striped table-dark mt-5">
 
-                            <a href="{{ route('pages.create', $page->id) }}" class="btn btn-primary mt-5">إضافة صفحة جديدة</a>
+                            <a href="{{ route('pages.create', $page->id) }}" class="btn btn-primary col-md-12 mt-5"><span class="material-icons">add</span></a>
 
                             <thead>
                                 <tr>
@@ -74,12 +75,16 @@
                                   <td scope="row">{{ $childpage->id }}</td>
                                     <td>{{ $childpage->title  }}</td>
                                     <td>
-                                        <button class="btn btn-warning" type="submit"><a href="{{ route('pages.edit', [$page->id, $childpage->id]) }}">تعديل</a></button>
-                                        <form action="{{ url('admin/pages/'.$childpage->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">حذف</button>
-                                        </form>
+                                        <div class="row">
+                                            <button class="btn btn-warning" type="submit"><a href="{{ route('pages.edit', [$page->id, $childpage->id]) }}">تعديل</a></button>
+                                            &nbsp;&nbsp;
+                                            <form action="{{ url('admin/pages/'.$childpage->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit">حذف</button>
+                                            </form>
+                                        </div>
+                                       
                                     </td>
                                 </tr>
                             </tbody>
@@ -96,4 +101,13 @@
         </div>
     </div>
 
+@endsection
+
+@section('footer')
+    <script>
+        function generateForm()
+        {
+            $('.form-links').css('display', 'block');
+        }
+    </script>
 @endsection

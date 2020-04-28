@@ -99,6 +99,6 @@
             @endforeach
         </div>
     <!-- end_block_ads_realestate -->
-    <div class="text-center">{{ $results->links() }}</div>
+    <div class="text-center">{{-- $results->links() --}}</div>
 </div>
 <!-- end_realestate_blocks -->

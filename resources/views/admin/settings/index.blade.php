@@ -106,7 +106,7 @@
             <div class="col-md-3">
                 <div class="card">
                     <h1 class="text-center"><span class="material-icons" style="font-size:50px; padding:20px 0;">horizontal_split</span></h1>
-                    <a href="{{ route('icons', 'footer') }}"><h5 class="text-center">ذيل الصفحة</h5></a>
+                    <a href="{{ route('icons', 'footer') }}"><h5 class="text-center">أيقونات ذيل الصفحة</h5></a>
                 </div>
             </div>
 

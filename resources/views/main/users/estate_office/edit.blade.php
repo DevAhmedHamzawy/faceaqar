@@ -276,53 +276,8 @@
                                 <input type="text" class="form-control " name="website" value="{{ $user->profile->website ?? '' }}">
                             </div>
 
-                            <div class="col-md-12 text-center pd-top">
-                                <input type="checkbox" name="choice-type" id="checkbox1" >
-                                <label for="choice-type-number" class="imp-n-s">
-هل ترغب تثبيت صفحتك الالكترونية في مقدمة الإعلانات الالكترونية في جميع صفحات مدينتك بالموقع؟
-                                </label>
-                                <span class="imp-n-s-2"> إضافة رسوم مالية عند التثبيت </span>
-                                <div class="reveal-if-active" id="autoUpdate">
-                                    <div class="row">
-                                        <div class="col-md-3 hidden-xs"></div>
-                                        <div class="col-md-2">
-                                            <label for="">اختر مدة التثبيت <em>*</em></label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <select class="form-control required">
-                                                <option> اختر </option>
-                                                <option>لايوجد </option>
-                                                <option>15 يوم </option>
-                                                <option>شهر</option>
-                                                <option>3 شهور</option>
-                                                <option>6 شهور</option>
-                                                <option>سنه</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3 hidden-xs"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <br/>
-                                <h4> بيانات مدة إضافة صفحتك الإلكترونية بالموقع </h4>
-                            </div>
-                                                
-                            <div class="col-md-3 hidden-xs"></div>
-                            <div class="col-md-2">
-                                <label for=""> اختر مــدة الإضافة <em>*</em></label>
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-control required">
-                                    <option>اختر</option>
-                                    <option>شهر</option>
-                                    <option>3 شهور</option>
-                                    <option>6 شهور</option>
-                                    <option>سنه</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3 hidden-xs"></div>
+                            
+                            
                             <div class="clearfix"></div>         
                             <div class="col-md-4 hidden-xs"></div>
                             <div class="col-md-4 add-code">

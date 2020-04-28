@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
+                    <h4 class="text-center">فريق العمل</h4>
                 </div>
 
                 <div class="card-body">
@@ -16,34 +16,35 @@
                         </div>
                     @endif
 
-                    <form>
-                        <select id="user_id">
+                    <button onclick="generateForm();return false;" class="btn btn-primary col-md-12"><span class="material-icons">add</span></button>
+                    <br><br>
+                    <form style="display: none;" class="form-group form-links">
+                        <select id="user_id" class="form-control">
                             @foreach ($admins as $admin)
                                 <option value="{{ $admin->id }}">{{ $admin->user_name }}</option>
                             @endforeach
                         </select>
-                        <button onclick="createTeam();return false;" class="btn btn-primary">Create team</button>
+                        <br>
+                        <button onclick="createTeam();return false;" class="btn btn-primary col-md-12">إضافة إلى الفريق</button>
                     </form>
-
+                    <br>
                     <table class="table table-striped table-dark">
 
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Operations</th>
+                                    <th scope="col">الإسم</th>
+                                    <th scope="col">الصورة</th>
+                                    <th scope="col">العمليات</th>
                                 </tr>
                             </thead>
                             @forelse ($teams as $team)
                             <tbody>
                                 <tr>
-                                    <td scope="row">#</td>
+                                    <td scope="row">{{ $team->id }}</td>
                                     <td>{{ $team->user_name  }}</td>
                                     <td>{{ $team->img ?? '' }}</td>
                                     <td>
-                                        {{-- <a href="{{ route('teams.show', $team->name) }}" class="btn btn-primary">Show</a>
-                                        <a href="{{ route('teams.edit', $team->name) }}" class="btn btn-warning">Edit</a> --}}
                                         <form action="{{ route('teams.destroy', $team->user_name) }}" method="post">
                                             @csrf
                                             @method('DELETE')
@@ -76,13 +77,6 @@
 
             axios.post('../admin/teams', { user_id: $('#user_id').val() })
             .then((response) => {
-                /*$('#success-message').append('<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>تم الإرسال!</strong> تم إضافة عميل جديد بنجاح!</div></div>');
-                    setTimeout(() => {
-                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-                            $(this).remove() 
-                        });
-                }, 2000);*/
-                //console.log(response);
                 window.location.reload();
             }).catch((error) => {
                 if(error.response.data.errors.name){
@@ -96,6 +90,12 @@
                 }
             })
 
+        }
+
+
+        function generateForm()
+        {
+            $('.form-links').css('display', 'block');
         }
 
     </script>

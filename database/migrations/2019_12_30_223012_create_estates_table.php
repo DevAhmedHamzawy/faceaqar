@@ -24,6 +24,7 @@ class CreateEstatesTable extends Migration
             $table->integer('premium_id')->nullable();
             $table->integer('duration_id');
             $table->boolean('visible');
+            $table->boolean('premium_approval')->default(0);
             $table->integer('code');
             $table->string('center')->nullable();
             $table->string('neighborhood');

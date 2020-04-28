@@ -46,7 +46,7 @@
                     <span>{{ $estate->advertiser->advertiser_name }}<i class="fas fa-user-circle"></i>  </span>
                 
                     @endunless
-                    <span><a href="{{ route('estates.edit', [$estate->ad_sort_id, $estate->name]) }}" @if($estate->visible == 1) style="pointer-events: none;cursor: default;opacity:0.7" @endif >تعديل</a></span>
+                    <span><a href="{{ route('estates.edit', [$estate->ad_sort_id, $estate->name]) }}">تعديل</a></span>
                     <span>
                         <form action="{{ route('estates.destroy', $estate->name) }}" method="post">
                             @csrf

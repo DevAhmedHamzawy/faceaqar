@@ -172,7 +172,7 @@ class SearchController extends Controller
 
         if($adSort != 'office_estate'){
         
-        $estates = Estate::filter($this->filters())->paginate(6);
+        $estates = Estate::filter($this->filters())->get();
         foreach($estates as $estate){
             $estate->sortName = Estate::getSort($estate->sort_id ?? '');
             $estate->offerName = Estate::getOffer($estate->offer_id ?? '');
@@ -204,7 +204,7 @@ class SearchController extends Controller
         }
 
         }else{
-            $estates = User::filter($this->filters())->paginate(6);
+            $estates = User::filter($this->filters())->get();
         }
 
 
@@ -225,6 +225,8 @@ class SearchController extends Controller
 
     protected function filters()
     {
+    	//dd(request()->all());
+
         return [
             'category' => new CategoryFilter,
             'area' => new AreaFilter,

@@ -50,6 +50,19 @@ Trait Queries
          return DB::table('destination')->whereId($id)->first()->name ?? 'لا يوجد';
     }
 
+    //Get Specific Premium
+    public static function getPremium($id)
+    {
+        return DB::table('premiums')->whereId($id)->first() ?? 'لا يوجد';
+    }
+
+    //Get Specific Duration
+    public static function getDuration($id)
+    {
+        return DB::table('durations')->whereId($id)->first() ?? 'لا يوجد';
+    }
+ 
+
     //Get All Price Sorts
     public static function getAllPriceSorts()
     {
