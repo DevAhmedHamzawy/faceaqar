@@ -74,7 +74,7 @@
                     </div>
                 </div>
             
-            <h4> بيانات مدة الاعلان الالكتروني بالموقع </h4>
+            {{--<h4> بيانات مدة الاعلان الالكتروني بالموقع </h4>
                 <div class="row">
                 <div class="col-md-3 col-md-offset-2 forright">
                         <label for="">اختر مدة الإعلان<em>*</em></label>
@@ -90,7 +90,7 @@
                             <option value="5">سنه</option>
                         </select>
                     </div>
-                </div>
+                </div>--}}
                 <div class="row">
                     {!! NoCaptcha::renderJs() !!}
                     {!! NoCaptcha::display() !!}

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    طلبات الوسيط الإلكترونى
+                    <h4 class="text-center">إعلانات الوسيط بالموقع</h4> 
                 </div>
 
                 <div class="card-body">
@@ -16,46 +16,54 @@
                         </div>
                     @endif
 
-                    <table class="table table-striped table-dark">
+                    <table class="table table-dark data-table">
 
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">الإسم</th>
-                                    <th scope="col">البريد الإلكترونى</th>
-                                    <th scope="col">الحالة</th>
-                                    <th scope="col">Operations</th>
-                                </tr>
-                            </thead>
-                            @forelse ($brokers as $broker)
-                            <tbody>
-                                <tr>
-                                    <td scope="row">#</td>
-                                    <td>{{ $broker->name  }}</td>
-                                    <td>{{ $broker->email }}</td>
-                                    <td>{{ $broker->visible == 1 ? 'مفعل' : 'غير مفعل' }}</td>
-                                    <td>
-                                        {{--<a href="{{ route('users.show', $broker->user_name) }}" class="btn btn-primary">Show</a>--}}
-                                        <a href="{{ route('brokers.activate', $broker->name) }}" class="btn btn-warning">تفعيل</a>
-                                        <form action="{{ route('the-brokers.destroy', $broker->name) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">حذف</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            @empty
-                                <li class="list-group-item">
-                                    No users Added
-                                </li>
-                            @endforelse
-                        </table>
-                       
-                    </ul>
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">الإسم</th>
+                                <th scope="col">النوع</th>
+                                <th scope="col">الحالة</th>
+                                <th scope="col">العمليات</th>
+                                <th scope="col">العمليات</th>
+                            </tr>
+                        </thead>
+                          
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('footer')
+    <script type="text/javascript">
+
+$(function () {
+    
+    var table = $('.data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('thebrokers.index') }}",
+        columns: [
+            {data: 'id', name: 'id'},
+            {data: 'name', name: 'name'},
+            {data: 'broker_ad_sort', name: 'broker_ad_sort'},
+            {data: 'visible_status', name: 'visible_status'},
+            {data: 'activate', name: 'activate', orderable: false, searchable: false},
+            {data: 'delete', name: 'delete', orderable: false, searchable: false},
+        ],
+        dom: 'lBfrtip',
+    });
+    
+  });
+
+
+  $.fn.dataTable.ext.errMode = 'none';
+
+    
+
+    </script>
 @endsection

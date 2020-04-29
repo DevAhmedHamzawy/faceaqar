@@ -65,12 +65,11 @@
                          <select class="form-control required" name="duration_id">
                              <option selected disabled value="">اختر</option>
                              <option value="0">لايوجد </option>
-                             <option value="1">7 أيام </option>
-                             <option value="2">15 يوم </option>
-                             <option value="3">شهر</option>
-                             <option value="4">3 شهور</option>
-                             <option value="5">6 شهور</option>
-                             <option value="6">سنه</option>
+                             <option value="1">15 يوم </option>
+                             <option value="2">شهر</option>
+                             <option value="3">3 شهور</option>
+                             <option value="4">6 شهور</option>
+                             <option value="5">سنه</option>
                          </select>				
                      </div>
                  </div>

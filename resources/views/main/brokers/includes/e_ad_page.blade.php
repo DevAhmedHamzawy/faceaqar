@@ -53,7 +53,7 @@
                      </div>
                  </div>
                  
-             <h4> بيانات مدة الاعلان الالكتروني بالموقع </h4>
+             {{--<h4> بيانات مدة الاعلان الالكتروني بالموقع </h4>
 
                  <div class="row">
                      <div class="col-md-3 col-md-offset-2 forright">
@@ -62,15 +62,15 @@
                      <div class="col-md-4">
                          <select class="form-control required" name="duration_id">
                              <option selected disabled value="">اختر</option>
-                             <option>اسبوع</option>
-                             <option>اسبوعين</option>
-                             <option>شهر</option>
-                             <option>3 شهور</option>
-                             <option>6 شهور</option>
-                             <option>سنة</option>
+                             <option value="0">لايوجد </option>
+                             <option value="1">15 يوم </option>
+                             <option value="2">شهر</option>
+                             <option value="3">3 شهور</option>
+                             <option value="4">6 شهور</option>
+                             <option value="5">سنه</option>
                          </select>				
                      </div>
-                 </div>
+                 </div>--}}
                  <div class="row">
                     {!! NoCaptcha::renderJs() !!}
                     {!! NoCaptcha::display() !!}

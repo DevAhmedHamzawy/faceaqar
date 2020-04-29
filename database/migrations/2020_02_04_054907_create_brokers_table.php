@@ -20,7 +20,8 @@ class CreateBrokersTable extends Migration
             $table->string('name')->nullable();
             $table->string('mobile')->nullable();
             $table->string('email');
-            $table->enum('broker_ad_sort', ['صور', 'كتابة نصية', 'حسابات التواصل الإجتماعى', 'الكروت الإعلانية الإلكترونية', 'حجز صفحة إعلانية كاملة'])->nullable();
+            //$table->enum('broker_ad_sort', ['صور', 'كتابة نصية', 'حسابات التواصل الإجتماعى', 'الكروت الإعلانية الإلكترونية', 'حجز صفحة إعلانية كاملة'])->nullable();
+            $table->string('broker_ad_sort');
             $table->string('file')->nullable();
             $table->enum('dimensions', ['230 x 200', '231 x 201', '232 x 202'])->nullable();
             //$table->enum('color_sort', ['أبيض و أسود', 'ألوان'])->nullable();

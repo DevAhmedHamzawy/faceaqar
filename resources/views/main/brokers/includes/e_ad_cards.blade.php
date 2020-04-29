@@ -136,7 +136,7 @@
                     </div>
                 </div>
                 
-                <div class="row" id="mycheckboxdiv" style="display:none">
+                {{--<div class="row" id="mycheckboxdiv" style="display:none">
                     <div class="col-md-3 col-md-offset-2 forright">
                         <label for="">ارفاق صور  <em>*</em></label>
                     </div>
@@ -155,10 +155,9 @@
                         <span class="imp-n-s-2"> إضافة رسوم مالية عند التثبيت </span>
                         </div>
                         </div>
-                    
-                </div>
+                </div>--}}
                 
-                <div class="row" id="mycheckboxdiv2" style="display:none">
+                {{--<div class="row" id="mycheckboxdiv2" style="display:none">
                     <div class="col-md-3 col-md-offset-2 forright">
                         <label for=""> اختــر مدة التثبيت <em>*</em></label>
                     </div>
@@ -191,7 +190,7 @@
                             <option value="5">سنه</option>
                         </select>				
                     </div>
-                </div>
+                </div>--}}
                 <div class="row">
                     {!! NoCaptcha::renderJs() !!}
                     {!! NoCaptcha::display() !!}

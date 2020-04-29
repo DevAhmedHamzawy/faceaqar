@@ -31,4 +31,6 @@ class Broker extends Model
             return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
         }
     }
+
+    
 }
