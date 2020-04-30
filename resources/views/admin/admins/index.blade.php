@@ -60,6 +60,7 @@
                 </div>
             </div>
         </div>
+        <div class="text-center" style="margin-top:-35px;margin-bottom:5px;">{{ $admins->links() }}</div>
     </div>
 </div>
 @endsection

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    المكاتب العقارية بالموقع 
+                    <h3 class="text-center">المكاتب العقارية بالموقع</h3> 
                 </div>
 
                 <div class="card-body">
@@ -27,6 +27,8 @@
                                 <th scope="col">-1</th>
                                 <th scope="col">البلاغات</th>
                                 <th scope="col">مشاهدات</th>
+                                <th scope="col">العمليات</th>
+                                <th scope="col">العمليات</th>
                                 <th scope="col">العمليات</th>
                             </tr>
                         </thead>
@@ -57,7 +59,10 @@ $(function () {
             {data: 'dislikes_count', name: 'dislikes_count'},
             {data: 'reports_count', name: 'reports_count'},
             {data: 'views', name: 'views'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'show', name: 'show', orderable: false, searchable: false},
+            {data: 'blacklist', name: 'blacklist', orderable: false, searchable: false},
+            {data: 'delete', name: 'delete', orderable: false, searchable: false},
+
         ],
         dom: 'lBfrtip',
     });

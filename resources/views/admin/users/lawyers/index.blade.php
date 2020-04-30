@@ -40,7 +40,7 @@
                                     <td>{{ $lawyer->profile->fax ?? 'غير موجود' }}</td>
                                     <td>
                                         <div class="row">
-                                            <a href="{{ route('lawyers.show', $lawyer->name) }}" class="btn btn-primary"><span class="material-icons">eye</span></a>
+                                            <a href="{{ route('lawyers.show', $lawyer->name) }}" target="_blank" class="btn btn-primary"><span class="material-icons">remove_red_eye</span></a>
                                             &nbsp;
                                             <a href="{{ route('lawyers.edit', $lawyer->name) }}" class="btn btn-warning"><span class="material-icons">edit</span></a>
                                             &nbsp;

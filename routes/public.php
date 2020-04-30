@@ -76,7 +76,7 @@ Route::get('profile/{user}', 'UsersController@show')->name('profile');
 Route::get('brokers/{broker}', 'BrokerController@show')->name('brokers.show');
 
 //Lawyer
-Route::get('lawyers/{user}', 'LawyerController@show');
+Route::get('lawyers/{user}', 'LawyerController@show')->name('lawyers.show');
 
 
 

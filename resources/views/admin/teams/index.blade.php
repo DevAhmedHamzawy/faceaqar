@@ -34,7 +34,6 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">الإسم</th>
-                                    <th scope="col">الصورة</th>
                                     <th scope="col">العمليات</th>
                                 </tr>
                             </thead>
@@ -43,12 +42,11 @@
                                 <tr>
                                     <td scope="row">{{ $team->id }}</td>
                                     <td>{{ $team->user_name  }}</td>
-                                    <td>{{ $team->img ?? '' }}</td>
                                     <td>
                                         <form action="{{ route('teams.destroy', $team->user_name) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
+                                            <button class="btn btn-danger" type="submit">حذف</button>
                                         </form>
                                     </td>
                                 </tr>

@@ -36,6 +36,7 @@ class CreateEstatesTable extends Migration
             $table->longText('more_description')->nullable();
             $table->decimal('lat', 10, 7);
             $table->decimal('lng', 10, 7);
+            $table->boolean('blacklist')->default(0);
             $table->timestamps();
         });
     }

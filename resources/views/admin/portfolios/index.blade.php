@@ -44,7 +44,7 @@
                                 <tr>
                                     <td scope="row">{{ $portfolio->id }}</td>
                                     <td>{{ $portfolio->name  }}</td>
-                                    <td><img src="{{ $portfolio->img_path }}" alt="" srcset=""></td>
+                                    <td><img src="{{ $portfolio->img_path }}" width="50" height="50"></td>
                                     <td>
                                         <form action="{{ route('portfolios.destroy', $portfolio->name) }}" method="post">
                                             @csrf

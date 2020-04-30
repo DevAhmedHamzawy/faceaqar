@@ -38,7 +38,7 @@ class BrokerController extends Controller
             })
             ->addColumn('delete', function($row){
     
-                $btn = '<button class="btn btn-danger" type="submit">حذف</button></form>';
+                $btn = '<a href="'.route("broker.delete", [$row->id]).'"  class="btn btn-danger btn-sm">حذف</a>';
     
                 return $btn;
             })

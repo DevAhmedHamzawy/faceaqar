@@ -64,4 +64,9 @@ Trait Relations
     {
         return $this->hasOne('App\Ticket');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

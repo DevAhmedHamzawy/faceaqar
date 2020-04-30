@@ -16,19 +16,34 @@ class ReportController extends Controller
      */
     public function index(Request $request)
     {
-
         if ($request->ajax()) {
 
-        $estates = Estate::withCount(['likes', 'favourites', 'dislikes', 'reports'])->orderByDesc('reports_count')->get();
+        $estates = Estate::withCount(['likes', 'favourites', 'dislikes', 'reports'])->with('user')->orderByDesc('reports_count')->get();
         
         return Datatables::of($estates)->addIndexColumn()
-        ->addColumn('action', function($row){
+        ->addColumn('show', function($row){
 
                 $btn = '<a href="'.route("estates.show", [$row->ad_sort_id, $row->name]).'" target="_blank" class="edit btn btn-primary btn-sm">عرض</a>';
 
                 return $btn;
         })
-        ->rawColumns(['action'])
+        ->addColumn('blacklist', function($row){
+
+            if($row->blacklist == 0){
+                $btn = '<a href="'.route("blacklist", [$row->id,'estate']).'"  class="btn btn-warning btn-sm">حظر</a>';
+            }else{
+                $btn = '<a href="'.route("unblacklist", [$row->id,'estate']).'"  class="btn btn-warning btn-sm">فك الحظر</a>';
+            }
+
+            return $btn;
+        })
+        ->addColumn('delete', function($row){
+
+            $btn = '<a href="'.route("estates.delete", [$row->name]).'"  class="btn btn-danger btn-sm">حذف</a>';
+
+            return $btn;
+        })
+        ->rawColumns(['show','blacklist','delete'])
         ->make(true);
 
         }

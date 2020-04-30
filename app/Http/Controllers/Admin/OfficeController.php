@@ -27,35 +27,40 @@ class OfficeController extends Controller
             }
 
         return DataTables::of($offices)->addIndexColumn()
-        ->addColumn('action', function($row){
+        ->addColumn('show', function($row){
 
-                $btn = '<a href="'.route("estates.show", ['estate_office', $row->name]).'" target="_blank" class="edit btn btn-primary btn-sm">عرض</a>';
+                $btn = '<a href="'.route("profile", [$row->name]).'" target="_blank" class="edit btn btn-primary btn-sm">عرض</a>';
 
                 return $btn;
         })
-        ->rawColumns(['action'])
+        ->addColumn('blacklist', function($row){
+
+            if($row->blacklist == 0){
+                $btn = '<a href="'.route("blacklist", [$row->id,'office']).'"  class="btn btn-warning btn-sm">حظر</a>';
+            }else{
+                $btn = '<a href="'.route("unblacklist", [$row->id,'office']).'"  class="btn btn-warning btn-sm">فك الحظر</a>';
+            }
+
+            return $btn;
+        })
+        ->addColumn('delete', function($row){
+
+            $btn = '<a href="'.route("office.delete", [$row->name]).'"  class="btn btn-danger btn-sm">حذف</a>';
+
+            return $btn;
+        })
+        ->rawColumns(['show','blacklist','delete'])
         ->make(true);
 
         }
 
-
-        /*$offices = User::with(['roles' => function($q){
-            $q->where('name', 'estate_office');
-            $q->orWhere('name', 'estate_agency');
-            $q->orWhere('name', 'estate_company');
-            $q->orWhere('name', 'estate_auction_office');
-            $q->orWhere('name', 'engineering_office');
-
-        }])->withCount(['likes', 'favourites', 'dislikes', 'reports'])->orderByDesc('reports_count')->limit(5)->get();
-
-        //dd($offices);
-        
-        foreach ($offices as $office) {
-            dd($office->profile->code);
-        }*/             
-
-
         return view('admin.offices.index');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->back();
     }
 
 }

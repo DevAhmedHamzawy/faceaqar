@@ -58,4 +58,22 @@ class User extends Authenticatable implements MustVerifyEmail, ViewableContract
     {
         return 'name';
     }
+
+     // this is a recommended way to declare event handlers
+     public static function boot() {
+        parent::boot();
+
+        static::deleting(function($user) { 
+            $user->images()->delete();
+            $user->profile()->delete();
+            $user->estates()->delete();
+            $user->favourites()->delete();
+            $user->likes()->delete();
+            $user->dislikes()->delete();
+            $user->reports()->delete();
+            $user->brokers()->delete();
+            $user->tickets()->delete();
+        });
+    }
+
 }

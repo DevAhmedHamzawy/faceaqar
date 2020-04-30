@@ -33,15 +33,20 @@
                                     <td scope="row">#</td>
                                     <td>{{ $user->name  }}</td>
                                     <td>{{ $user->email }}</td>
-                                    {{--<td><img src="{{ $user->img_path }}" alt="" srcset=""></td>--}}
                                     <td>
-                                        {{--<a href="{{ route('users.show', $user->user_name) }}" class="btn btn-primary">Show</a>--}}
-                                        {{--<a href="{{ route('users.edit', $user->name) }}" class="btn btn-warning">تعديل</a>--}}
-                                        <form action="{{ route('users.destroy', $user->name) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">حذف</button>
-                                        </form>
+                                        <div class="row">
+                                            @if($user->blacklist == 0)
+                                               <a href="{{ route("blacklist", [$user->id,'user']) }}"  class="btn btn-warning btn-sm">حظر</a>
+                                            @else
+                                               <a href="{{ route("unblacklist", [$user->id,'user']) }}"  class="btn btn-warning btn-sm">فك الحظر</a>
+                                            @endif
+                                            &nbsp;
+                                            <form action="{{ route('users.destroy', $user->name) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit">حذف</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>

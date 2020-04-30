@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Icon;
 use App\Page;
 use App\Settings;
 use Illuminate\Http\Request;
@@ -22,25 +23,25 @@ class SettingsController extends Controller
 
         switch ($sort) {
             case 'main':
-                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
+                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort, 'icons' => Icon::wherePlace('settings')->get()]);
                 break;
             case 'about':
-                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
+                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort, 'icons' => Icon::wherePlace('settings')->get()]);
                 break; 
             case 'terms':
-                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
+                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort, 'icons' => Icon::wherePlace('settings')->get()]);
                 break;
             case 'services':
-                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
+                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort, 'icons' => Icon::wherePlace('settings')->get()]);
                 break;
             case 'branches':
-                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
+                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort, 'icons' => Icon::wherePlace('settings')->get()]);
                 break;
             case 'financial_fees':
-                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
+                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort, 'icons' => Icon::wherePlace('settings')->get()]);
                 break;
             case 'payment_methods':
-                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort]);
+                return view('admin.settings.edit', ['settings' => $settings, 'sort' => $sort, 'icons' => Icon::wherePlace('settings')->get()]);
                 break;
             case 'index':
                 return view('admin.settings.index', ['pages' => Page::whereNull('Parent_id')->get()]);

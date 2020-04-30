@@ -9,8 +9,13 @@ class Portfolio extends Model
     protected $guarded = [];
     protected $appends = ['img_path'];
 
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
     public function getImgPathAttribute()
     {
-        return url('storage/portfolios/' . $this->img);
+        return url('storage/portfolio/' . $this->img);
     }
 }

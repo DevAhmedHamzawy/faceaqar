@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    بلاغات العقارات بالموقع 
+                    <h5 class="text-center">بلاغات العقارات بالموقع</h5>
                 </div>
 
                 <div class="card-body">
@@ -22,10 +22,13 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">إسم العقار</th>
+                                    <th scope="col">إسم المستخدم</th>
                                     <th scope="col">التقييمات الإيجابية</th>
                                     <th scope="col">التقييمات السلبية</th>
                                     <th scope="col">مفضلة</th>
                                     <th scope="col">عدد مرات البلاغات</th>
+                                    <th scope="col">العمليات</th>
+                                    <th scope="col">العمليات</th>
                                     <th scope="col">العمليات</th>
                                 </tr>
                             </thead>
@@ -52,11 +55,14 @@ $(function () {
         columns: [
             {data: 'code', name: 'code'},
             {data: 'name', name: 'name'},
+            {data: 'user.name', name: 'user.name'},
             {data: 'likes_count', name: 'likes_count'},
             {data: 'favourites_count', name: 'favourites_count'},
             {data: 'dislikes_count', name: 'dislikes_count'},
             {data: 'reports_count', name: 'reports_count'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'show', name: 'action', orderable: false, searchable: false},
+            {data: 'blacklist', name: 'action', orderable: false, searchable: false},
+            {data: 'delete', name: 'action', orderable: false, searchable: false},
         ],
         dom: 'lBfrtip',
         "order": [[ 5, "desc" ]]

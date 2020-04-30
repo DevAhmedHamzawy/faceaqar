@@ -149,7 +149,7 @@
                 </div>
 
                 <div class="card">
-                    <div class="card-header">{{ __('ddddfferfe') }}</div>
+                    <div class="card-header"><h5 class="text-center">أيقونات الموقع</h5></div>
 
                     <div class="card-body">
 
@@ -159,60 +159,19 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('settings.update', $settings->id) }}">
-                            @csrf
-                            @method('PATCH')
-
-                            <div class="form-group row">
-                                <label for="file" class="col-md-2 col-form-label text-md-right">{{ __('File') }}</label>
-
-                                <div class="col-md-10">
-                                    <input type="file" name="logo1" id="file">
-
-                                    @error('file')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                @foreach ($icons as $icon)
+                                    <div class="col-md-3" id="the_icon_{{ $icon->id }}">
+                                        <img src="{{ $icon->icon_path }}" style="width:60px;height:60px;margin: 16px 97px;background-color: black;" class="rounded-circle" onclick="document.getElementById('image_{!! $icon->id !!}').click()" alt="Cinque Terre">
+                                        <h5 class="text-center">{{ $icon->name }}</h5>
+                                        <input onchange="changeIcon({{ $icon->id }})" style="display: none;"  id="image_{{ $icon->id }}" type="file" name="image">
+                                        <input type="hidden" id="icon_id_{{ $icon->id }}" value="{{ $icon->id }}">
+                                    </div>
+                                @endforeach
                             </div>
+                        </div>
 
-                            <div class="form-group row">
-                                <label for="file" class="col-md-2 col-form-label text-md-right">{{ __('File') }}</label>
-
-                                <div class="col-md-10">
-                                    <input type="file" name="logo2" id="file2">
-
-                                    @error('file')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="file" class="col-md-2 col-form-label text-md-right">{{ __('File') }}</label>
-
-                                <div class="col-md-10">
-                                    <input type="file" name="qr" id="qr">
-
-                                    @error('file')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('settings') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
 
@@ -667,4 +626,33 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('footer')
+    <script>
+
+
+        window.form_data = new FormData();
+
+       
+        function changeIcon(id){
+            let file_data = $(`#image_${id}`).prop('files')[0];
+            form_data.append('file_data', file_data);
+            form_data.append('icon_id', $(`#icon_id_${id}`).val());
+            
+
+            axios.post('../../../admin/icons/settings', form_data)
+            .then((data) => {
+                location.reload();
+                                      
+            }).catch((error) => {
+
+            
+            
+            });
+        
+        }
+    </script>
+   
 @endsection

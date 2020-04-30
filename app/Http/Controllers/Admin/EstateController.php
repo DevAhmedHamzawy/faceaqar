@@ -76,7 +76,7 @@ class EstateController extends Controller
                 return $btn;
             })
             ->addColumn('destroy', function($row){
-                $btn = '<a href="'.route("estates.destroy", [$row->name]).'"  class="btn btn-danger btn-sm">حذف</a>';
+                $btn = '<a href="'.route("estates.delete", [$row->name]).'"  class="btn btn-danger btn-sm">حذف</a>';
                 return $btn;
             })
             ->rawColumns(['edit','paymentshow','destroy'])

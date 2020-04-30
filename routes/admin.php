@@ -6,7 +6,7 @@ Route::group(['middleware' => 'assign.guard:admin,admin/login'],function(){
 Route::get('settings/{sort}/1', 'Admin\SettingsController@edit')->name('settings.edit');
 Route::patch('settings/update', 'Admin\SettingsController@update')->name('settings.update');
 
-Route::resource('lawyers', 'Admin\LawyerController'); 
+Route::resource('lawyers', 'Admin\LawyerController')->except('show'); 
 Route::resource('clients', 'Admin\ClientController');       
 Route::resource('portfolios', 'Admin\PortfolioController');       
 Route::resource('teams', 'Admin\TeamController');   
@@ -25,12 +25,16 @@ Route::resource('users', 'Admin\UserController');
 Route::get('brokers', 'Admin\BrokerController@index')->name('thebrokers.index');
 Route::get('brokers/{broker}/activate', 'Admin\BrokerController@activate')->name('brokers.activate');
 Route::get('brokers/{broker}/deactivate', 'Admin\BrokerController@deactivate')->name('brokers.deactivate');
-Route::delete('brokers/{broker}', 'Admin\BrokerController@destroy')->name('the-brokers.destroy');
+Route::get('brokers/{broker}', 'Admin\BrokerController@destroy')->name('broker.delete');
+
+Route::get('users/{user}', 'Admin\OfficeController@destroy')->name('office.delete');
+
 
 Route::resource('reports', 'Admin\ReportController');
 
-Route::resource('estates', 'Admin\EstateController')->only('index','destroy');
+Route::resource('estates', 'Admin\EstateController')->only('index');
 Route::get('estates/adding-premium', 'Admin\EstateController@addingPremiumEstates')->name('estates.addingpremium');
+Route::get('estates/{estate}', 'Admin\EstateController@destroy')->name('estates.delete');
 
 Route::get('offices', 'Admin\OfficeController@index')->name('offices.index');
 
@@ -51,6 +55,10 @@ Route::get('dashboard', 'Admin\DashboardController@index');
 
 //Messages Inbox
 Route::get('messages', 'Admin\LawyerContactsController@index')->name('inbox');
+
+
+Route::get('blacklist/{id}/{type}/blacklist', 'Admin\BlacklistController@blacklist')->name('blacklist');
+Route::get('blacklist/{id}/{type}/unblacklist', 'Admin\BlacklistController@unblacklist')->name('unblacklist');
 
 
 });
