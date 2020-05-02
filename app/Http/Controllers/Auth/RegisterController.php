@@ -74,4 +74,12 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    protected function redirectTo()
+    {
+        if (auth()->user()->email_verified_at) {
+            return '/home';
+        }
+        return '/thanks';
+    }
 }

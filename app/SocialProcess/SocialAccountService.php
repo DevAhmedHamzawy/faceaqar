@@ -4,6 +4,7 @@ namespace App\SocialProcess;
 
 use App\SocialAccount;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Laravel\Socialite\Contracts\Provider;
 
@@ -31,7 +32,7 @@ class SocialAccountService
                 $user = User::create([
                     'name' => $providerUser->getName(),
                     'email' => $providerUser->getEmail(),
-                    
+                    'email_verified_at' => Carbon::now(),
                     'password' => bcrypt($randomPassword),
                 ]);
 
