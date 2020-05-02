@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            @foreach ($pages[4]->children as $child)
+                            @foreach ($pages[5]->children as $child)
                                 <div class="item-mark">
                                     <div class="desk-item-mark col-md-6 col-xs-12">
                                         <h4><a href="{{ route('pages.show-page', $child->id) }}">{{ $child->title }}</a></h4>

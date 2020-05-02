@@ -225,8 +225,7 @@ class SearchController extends Controller
 
     protected function filters()
     {
-    	//dd(request()->all());
-
+        //dd(request()->all());
         return [
             'category' => new CategoryFilter,
             'area' => new AreaFilter,

@@ -27,8 +27,8 @@ class EstateController extends Controller
         $adSortId = DB::table('ad_sort')->whereName($adSort)->pluck('id');
         $adSort = DB::table('ad_sort')->whereName($adSort)->first();
 
-        if($adSort->name == 'office_estate') { $estates = User::withRole(['estate_office','estate_agency','estate_company','estate_auction_office','engineering_office'])->paginate(6); }
-        elseif($adSort->name == 'broker_estate') { $estates = Broker::paginate(6); } else { $estates = Estate::whereAdSortId($adSortId)->paginate(6);  }
+        if($adSort->name == 'office_estate') { $estates = User::withRole(['estate_office','estate_agency','estate_company','estate_auction_office','engineering_office'])->get(); }
+        elseif($adSort->name == 'broker_estate') { $estates = Broker::get(); } else { $estates = Estate::whereAdSortId($adSortId)->get();  }
 
         foreach($estates as $estate){
             $estate->sortName = Estate::getSort($estate->sort_id);
