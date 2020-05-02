@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'mobile' => ['required', 'numeric', 'min:10'],
             //'g-recaptcha-response' => 'required|captcha',
-            //'accept' => ['required'],
+            //'accept' => ['accepted'],
         ]);
     }
 
@@ -70,6 +70,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'mobile' => $data['mobile'],
             'password' => Hash::make($data['password']),
         ]);
     }

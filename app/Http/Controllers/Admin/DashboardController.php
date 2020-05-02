@@ -18,6 +18,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Role;
 use App\User;
+use Carbon\Carbon;
+use Visitor;
 
 class DashboardController extends Controller
 {
@@ -50,10 +52,7 @@ class DashboardController extends Controller
 
 
 
-        //$roles = Role::all();
-        /*foreach($roles as $role)//{
-            dd(Role::whereName($role->name)->first()->users);
-        }*/
+        
 
         $usersByMonth = new UsersByMonth;
         $usersByMonth->labels = ($this->monthLabels);
@@ -176,8 +175,16 @@ class DashboardController extends Controller
         $topFiveUsersChart->dataset('My dataset', 'pie', $topFiveUserEstates);
         $topFiveUsersChart->minimalist(false);
         $topFiveUsersChart->displayAxes(false);
+
+        $now = Carbon::now();
+        $dt = Carbon::createFromFormat('m', $now->month);
+        
+        
+        $countVisitors = Visitor::count();
+        $countClicks = floor(Visitor::clicks()/2);
+        $allVisitors = Visitor::all();
         
 
-        return view('admin.dashboard', compact('estateAddingByMonth', 'usersByMonth', 'officesByMonth', 'lawyersByMonth', 'countUsers', 'countOffices', 'countLawyers', 'countEstates', 'countPremiumChart', 'countDurationChart', 'countOfferChart' , 'countSortChart' , 'countAdSortChart' , 'countCategoryChart', 'topFiveUsersChart'));
+        return view('admin.dashboard', compact('estateAddingByMonth', 'usersByMonth', 'officesByMonth', 'lawyersByMonth', 'countUsers', 'countOffices', 'countLawyers', 'countEstates', 'countPremiumChart', 'countDurationChart', 'countOfferChart' , 'countSortChart' , 'countAdSortChart' , 'countCategoryChart', 'topFiveUsersChart', 'countVisitors', 'countClicks', 'allVisitors'));
     }
 }

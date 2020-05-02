@@ -124,6 +124,8 @@
                     });
             }, 2000);
             //console.log(response);
+            alert('تم الإرسال');
+            window.location.reload();
         }).catch((error) => {
             if(error.response.data.errors.message){
                 $('.message-newsletter-error').append('<strong>'+error.response.data.errors.message+'</strong>');

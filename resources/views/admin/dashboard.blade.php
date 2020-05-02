@@ -139,16 +139,53 @@
     </div>
 
 
-    {{--<div class="row">
-      
-
-      <div class="col-md-6 my-3">
-        <div class="bg-mattBlackLight p-3">
-          <h4 class="mb-2">Client</h4>
-          
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card-counter success">
+          <i class="material-icons icon">person</i>
+          <span class="count-numbers">{{ $countVisitors }}</span>
+          <span class="count-name">عدد الزوار</span>
         </div>
       </div>
-    </div>--}}
+
+      <div class="col-md-6">
+       
+      </div>
+
+
+        <div class="col-md-6">
+          <div class="card-counter danger">
+            <i class="material-icons icon">track_changes</i>
+            <span class="count-numbers">{{ $countClicks }}</span>
+            <span class="count-name">عدد النقرات</span>
+          </div>
+        </div>
+
+      
+     
+
+      <div class="col-md-6">
+        <table class="table table-striped table-dark" style="margin-top:-105px;height:325px;">
+          <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">IP</th>
+                  <th scope="col">الدولة</th>
+                  <th scope="col">عدد النقرات</th>
+              </tr>
+          </thead>
+          @foreach ($allVisitors as $visitor)
+          <tbody>
+              <td scope="row">#</td>
+              <td>{{ $visitor->ip  }}</td>
+              <td>{{ $visitor->country }}</td>
+              <td>{{  floor($visitor->clicks/2) }}</td>
+          </tbody>
+          @endforeach
+        </table>
+      </div>
+      
+    </div>
   
 
 </div>

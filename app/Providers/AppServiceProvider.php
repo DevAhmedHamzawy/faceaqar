@@ -12,6 +12,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Visitor;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -52,5 +53,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('hijridate', Hijri::DateFullFormat(Carbon::now()));
 
         SeoLinksIndex::getLinks($settings->name, $settings->about, env('APP_URL'), env('APP_URL'), $settings->twitter, $settings->logo1);
+
+        Visitor::log();
     }
 }

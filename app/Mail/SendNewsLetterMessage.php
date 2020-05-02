@@ -12,18 +12,18 @@ class SendNewsLetterMessage extends Mailable
     use Queueable, SerializesModels;
     public $sender_name;
     public $reciever_name;
-    public $message;
+    public $msg;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($sender_name, $reciever_name, $message)
+    public function __construct($sender_name, $reciever_name, $msg)
     {
         $this->sender_name = $sender_name;
         $this->reciever_name = $reciever_name;
-        $this->message = $message;
+        $this->msg = $msg;
     }
 
     /**

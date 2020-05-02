@@ -40,8 +40,9 @@ class ContactController extends Controller
     {
         $request->merge(['area_id' => 0]);
         Contact::create($request->except('receiver_email','receiver_name'));
-
-        Mail::to($request->receiver_email)->send(new SendContactMessage($request->name, $request->receiver_name, $request->message));
+        
+        $request->merge(['msg' => $request->body]);
+        Mail::to($request->receiver_email)->send(new SendContactMessage($request->name, $request->receiver_name, $request->msg));
     }
 
     /**

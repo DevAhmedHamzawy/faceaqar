@@ -21,7 +21,9 @@
         "laravel/tinker": "^1.0",
         "pragmarx/tracker": "^3.5",
         "pusher/pusher-php-server": "^4.1",
+        "socialiteproviders/instagram": "^3.0",
         "srmklive/paypal": "^1.6",
+        "weboap/visitor": "^2.0",
         "yajra/laravel-datatables-oracle": "^9.9",
         "zizaco/entrust": "^1.9"
     },
