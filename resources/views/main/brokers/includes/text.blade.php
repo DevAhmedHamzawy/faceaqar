@@ -7,7 +7,7 @@
                         <label for="">اكتب النص الإعلانى<em>*</em></label>
                     </div>
                     <div class="col-md-4">
-                        <textarea id="field" onkeyup="countChar(this)" class="form-control required" name="description" rows="4"></textarea>
+                        <textarea id="field" onkeyup="countChar(this)" class="form-control required" name="text_body" rows="4"></textarea>
                     </div>
                     <div class="col-md-3">
                         <label for="" class="c_color_001">عداد الحروف = 00 حرف </label>
@@ -31,8 +31,8 @@
                     <div class="col-md-4">
                         <select class="form-control required" name="color_sort">
                             <option selected disabled value="">اختر</option>
-                            <option>اسود</option>
-                            <option>احمر</option>
+                            <option>ملون</option>
+                            <option>أبيض وأسود</option>
                         </select>													</div>
                 </div>
                 <h4> بيانات مدة الاعلان الالكتروني بالموقع </h4>

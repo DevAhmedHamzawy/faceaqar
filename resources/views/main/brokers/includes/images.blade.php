@@ -7,7 +7,7 @@
                          <label for="">ارفاق  صورة الإعلان <em>*</em></label>
                      </div>
                      <div class="col-md-4">
-                         <input type="file" name="image" class="form-control required" id="" placeholder="">
+                         <input type="file" name="image[]" class="form-control required" id="" placeholder="">
                      </div>
                  </div>
                  <div class="row">
@@ -51,7 +51,7 @@
                          <label for=""> اضف تعليق عن الإعلان </label>
                      </div>
                      <div class="col-md-4">
-                         <textarea class="form-control required" name="comment" rows="4"></textarea>
+                         <textarea class="form-control required" name="img_comment" rows="4"></textarea>
                      </div>
                  </div>
                  

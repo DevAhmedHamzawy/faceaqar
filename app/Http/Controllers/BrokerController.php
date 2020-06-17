@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\AdCardBroker;
+use App\AdPageBroker;
 use App\Broker;
-use App\Traits\UploadFiles;
+use App\BrokerImage;
+use App\ImageBroker;
+use App\SocialAccountBroker;
+use App\TextBroker;
 use Illuminate\Http\Request;
 
 class BrokerController extends Controller
@@ -27,48 +32,79 @@ class BrokerController extends Controller
     public function store(Request $request)
     {
 
+        //dd($request->all());
         $broker_ad_sort = ['photosel' => 'صور', 'textopt' => 'كتابة نصية', 'socialopt' => 'حسابات التواصل الاجتماعي', 'advcartopt' => 'الكروت الإعلانية الإلكترونية', 'mediaopt' => 'حجز صفحة اعلانية كاملة'];
 
-        $request->merge(['broker_ad_sort' => $broker_ad_sort[$request->broker_ad_sort], 'user_id' => auth()->user()->id]);   
+        $request->merge(['user_id' => auth()->user()->id]);   
+        $broker = Broker::create($request->only('user_id','area_id','duration_id'));
+        $request->merge(['broker_ad_sort' => $broker_ad_sort[$request->broker_ad_sort],'broker_id' => $broker->id]);
 
         switch ($request->broker_ad_sort) {
             case 'صور':
                 
                 $request->merge(['name' => 'imagebroker'.rand(0,3000)]);
 
-                if($request->has('image')){
-                    $request->merge(['file' => UploadFiles::upload_broker_image($request->image, $request->name, 'brokers')]);
+                if($request->hasFile('image'))
+                {
+                    $broker_id = $broker->id;
+
+                    foreach($request->file('image') as $image)
+                    {
+                        $name = $image->getClientOriginalName();
+                        $image->storePubliclyAs("public/brokers/${broker_id}", $name);  
+                        $data[] = $name;  
+                    }
+
+                    $brokerimage= new BrokerImage();
+                    $brokerimage->img=json_encode($data);
+                    $brokerimage->broker_id=$request->broker_id;
+                    
+                    $brokerimage->save();
                 }
 
                 
-                Broker::create($request->only('user_id','area_id','name','broker_ad_sort','dimensions','color_sort','img_url','comment','duration_id','file'));
+                $request->merge(['url' => $request->img_url, 'comment' => $request->img_comment]);
+
+                
+                ImageBroker::create($request->only('broker_id','dimensions','color_sort','url','comment'));
 
 
                 break;
             
             case 'كتابة نصية':
 
-                if($request->has('image')){
-                    $request->merge(['file' => UploadFiles::upload_broker_image($request->image, $request->name, 'brokers')]);
-                }
-                
-                $request->merge(['name' => 'كتابة نصية']);
 
-                Broker::create($request->only('user_id','area_id','name','broker_ad_sort','description','color_sort','image'));
+                $request->merge(['comment' => $request->text_body]);
+
+                TextBroker::create($request->only('broker_id','comment','color_sort'));
 
 
                 break;
 
             case 'حسابات التواصل الاجتماعي':
 
-            
-                if($request->has('social_image')){
-                    $request->merge(['file' => UploadFiles::upload_broker_image($request->social_image, $request->name, 'brokers')]);
+
+                if($request->hasFile('account_image'))
+                {
+                    $broker_id = $broker->id;
+
+                    foreach($request->file('account_image') as $image)
+                    {
+                        $name = $image->getClientOriginalName();
+                        $image->storePubliclyAs("public/brokers/${broker_id}", $name);  
+                        $data[] = $name;  
+                    }
+
+                    $brokerimage= new BrokerImage();
+                    $brokerimage->img=json_encode($data);
+                    $brokerimage->broker_id=$request->broker_id;
+                    
+                    $brokerimage->save();
                 }
 
-                $request->merge(['name' => 'حساب تواصل إجتماعى']);
+                $request->merge(['name' => $request->account_name, 'sort' => $request->account_sort, 'url' => $request->account_url, 'body' => $request->account_body, 'comment' => $request->account_comment]);
 
-                Broker::create($request->only('user_id','area_id','name','broker_ad_sort','account_name','account_sort','account_color_sort','account_url','description','file'));
+                SocialAccountBroker::create($request->only('broker_id','name','sort','color_sort','url','body','comment'));
 
 
                 break;
@@ -76,26 +112,60 @@ class BrokerController extends Controller
             case 'الكروت الإعلانية الإلكترونية':
 
         
-                if($request->has('e_ad_cards_image')){
-                    $request->merge(['file' => UploadFiles::upload_broker_image($request->e_ad_cards_image, $request->name, 'brokers')]);
+                if($request->hasFile('commercial_image'))
+                {
+                    $broker_id = $broker->id;
+
+                    foreach($request->file('commercial_image') as $image)
+                    {
+                        $name = $image->getClientOriginalName();
+                        $image->storePubliclyAs("public/brokers/${broker_id}", $name);  
+                        $data[] = $name;  
+                    }
+
+                    $brokerimage= new BrokerImage();
+                    $brokerimage->img=json_encode($data);
+                    $brokerimage->broker_id=$request->broker_id;
+                    
+                    $brokerimage->save();
                 }
 
-                $request->merge(['name' => 'كارت إعلانى الكترونى']);
 
-                Broker::create($request->only('user_id','area_id','name','broker_ad_sort','commercial_name','commercial_description','commercial_address','commercial_url','commercial_account_sort','commercial_account_url','youtube','commercial_comment','commercial_mobile','commercial_telephone','commercial_fax','commercial_email','commercial_image','duration_id'));
+                $latlngArray = explode(',' , $request->input('latlng'));
+
+                $request->merge(['name' => $request->commercial_name, 'body' => $request->commercial_body, 'address' => $request->commercial_address, 'url' => $request->commercial_url, 'sort' => $request->account_sort, 'youtube_url' => $request->commercial_youtube, 'comment' => $request->commercial_comment, 'lat' => $latlngArray[0] , 'lng' => $latlngArray[1]]);
+
+                AdCardBroker::create($request->only('broker_id','name','body','address','url','sort','url','youtube_url','comment','mobile','telephone','fax','email','premium_id','lat','lng'));
 
 
                 break;
 
             
             case 'حجز صفحة اعلانية كاملة':
-
     
-                /*if($request->has('commercial_file')){
-                    $request->merge(['commercial_file' => UploadFiles::upload_broker_image($request->image, $request->name, 'brokers')]);
-                }*/
+                $request->merge(['name' => 'epage'.rand(0,3000)]);
 
-                Broker::create($request->only('user_id','area_id','name','broker_ad_sort','page_widget','e_ad_page_color_sort','e_ad_page_url','e_ad_page_comment','duration_id'));
+                if($request->hasFile('page_file'))
+                {
+                    $broker_id = $broker->id;
+
+                    foreach($request->file('page_file') as $image)
+                    {
+                        $name = $image->getClientOriginalName();
+                        $image->storePubliclyAs("public/brokers/${broker_id}", $name);  
+                        $data[] = $name;  
+                    }
+
+                    $brokerimage= new BrokerImage();
+                    $brokerimage->img=json_encode($data);
+                    $brokerimage->broker_id=$request->broker_id;
+                    
+                    $brokerimage->save();
+                }
+
+                $request->merge(['url' => $request->page_url, 'comment' => $request->page_comment]);
+
+                AdPageBroker::create($request->only('broker_id','page_widget','url','comment','color_sort'));
 
 
                 break;
@@ -126,6 +196,7 @@ class BrokerController extends Controller
      */
     public function destroy(Broker $broker)
     {
-        //
+        $broker->delete();
+        return redirect()->back();
     }
 }

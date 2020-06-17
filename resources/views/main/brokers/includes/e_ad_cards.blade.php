@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-md-4">
                         <textarea class="form-control required" placeholder="اكتب نبذة مختصرة عن النشاط التجاري
-" name="description" rows="4"></textarea>
+" name="commercial_body" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-md-4">
                         <textarea class="form-control required" placeholder=" اكتب العنوان التفصيلي للنشاط
-" name="address" rows="4"></textarea>
+" name="commercial_address" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -33,7 +33,7 @@
                        <label for=""> انسخ الرابط الالكتروني للموقع </label>
                     </div>
                     <div class="col-md-4">
-                        <input type="url" name="site_url" class="form-control " id="" placeholder="  انسخ الرابط الالكتروني للموقع  ">
+                        <input type="url" name="commercial_url" class="form-control " id="" placeholder="  انسخ الرابط الالكتروني للموقع  ">
                     </div>
                 </div>
                 <div class="row">
@@ -56,7 +56,7 @@
                         <label for="">  انسخ الرابط الالكتروني للحساب </label>
                     </div>
                     <div class="col-md-4">
-                        <input type="url" name="url" class="form-control " id="" placeholder=" انسخ الرابط الالكتروني للحساب 
+                        <input type="url" name="commercial_url" class="form-control " id="" placeholder=" انسخ الرابط الالكتروني للحساب 
 التواصل الاجتماعي للنشاط التجاري">
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                         <label for="">  اضافة فيديو يوتيوب   </label>
                     </div>
                     <div class="col-md-4">
-                        <input type="url" name="youtube" class="form-control " id="" placeholder=" اضافة فيديو يوتيوب للنشاط التجاري ">
+                        <input type="url" name="commercial_youtube" class="form-control " id="" placeholder=" اضافة فيديو يوتيوب للنشاط التجاري ">
                     </div>
                 </div>
                 <div class="row">
@@ -73,7 +73,7 @@
                         <label for=""> إضافة تعليق عن الإعلان </label>
                     </div>
                     <div class="col-md-4">
-                        <textarea class="form-control" name="comment" rows="4"></textarea>
+                        <textarea class="form-control" name="commercial_comment" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -136,12 +136,12 @@
                     </div>
                 </div>
                 
-                {{--<div class="row" id="mycheckboxdiv" style="display:none">
+                <div class="row" id="mycheckboxdiv" style="display:none">
                     <div class="col-md-3 col-md-offset-2 forright">
                         <label for="">ارفاق صور  <em>*</em></label>
                     </div>
                     <div class="col-md-4">
-                        <input type="file" name="e_ad_cards_image" class="form-control required" id="" placeholder="">
+                        <input type="file" name="commercial_image[]" class="form-control required" id="" placeholder="">
                     </div>
                 </div>
                 
@@ -155,9 +155,9 @@
                         <span class="imp-n-s-2"> إضافة رسوم مالية عند التثبيت </span>
                         </div>
                         </div>
-                </div>--}}
+                </div>
                 
-                {{--<div class="row" id="mycheckboxdiv2" style="display:none">
+                <div class="row" id="mycheckboxdiv2" style="display:none">
                     <div class="col-md-3 col-md-offset-2 forright">
                         <label for=""> اختــر مدة التثبيت <em>*</em></label>
                     </div>
@@ -190,7 +190,7 @@
                             <option value="5">سنه</option>
                         </select>				
                     </div>
-                </div>--}}
+                </div>
                 <div class="row">
                     {!! NoCaptcha::renderJs() !!}
                     {!! NoCaptcha::display() !!}

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBrokersTable extends Migration
+class CreateBrokerImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateBrokersTable extends Migration
      */
     public function up()
     {
-        Schema::create('brokers', function (Blueprint $table) {
+        Schema::create('broker_images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
-            $table->bigInteger('area_id');
-            $table->integer('duration_id');
+            $table->integer('broker_id');
+            $table->string('img');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateBrokersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brokers');
+        Schema::dropIfExists('broker_images');
     }
 }

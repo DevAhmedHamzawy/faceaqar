@@ -20,7 +20,7 @@ class UsersController extends Controller
         $images = json_decode($user->images->img);
         $storage_images = [];
         foreach($images as $image){
-            $image = asset("storage/estates/${user_name}/${image}");
+            $image = asset("storage/users/${user_name}/${image}");
             array_push($storage_images, $image);
         }
 
@@ -40,12 +40,20 @@ class UsersController extends Controller
 
     public function update(Request $request, User $user)
     {
+        if($request->has('latlng'))
+        {
+         $latlngArray = explode(',' , $request->input('latlng'));
+         $request->merge(['lat' => $latlngArray[0] , 'lng' => $latlngArray[1]]);
+
+        }
+
+        if($request->has('password')) { $request->merge(['password' => bcrypt($request->password)]); }
 
         if($request->has('national_identity_img')){ $request->merge(['national_identity_img' => UploadFiles::upload_national_image($request->national_img, auth()->user()->name, 'users/'.auth()->user()->name.'/national_image') ]);}
 
         if($request->has('commercial_register_img')){ $request->merge(['commercial_register_img' =>UploadFiles::upload_commercial_image($request->commercial_img, auth()->user()->name, 'users/'.auth()->user()->name.'/commercial_image')]);}
 
-        auth()->user()->profile()->update($request->except('_token', '_method', 'namefield6', 'namefield5' , 'name' , 'email', 'choice-type', 'national_img', 'commercial_img','userimages', 'latlng', 'g-recaptcha-response','password'));
+        auth()->user()->profile()->update($request->except('_token', '_method', 'namefield6', 'namefield5' , 'name' , 'choice-type', 'national_img', 'commercial_img','userimages', 'latlng', 'g-recaptcha-response','password'));
         auth()->user()->update($request->only('name','email','password'));
 
         

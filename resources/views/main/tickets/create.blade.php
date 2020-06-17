@@ -13,7 +13,7 @@
             <div class="title_pages">
                 <h2>  انشاء تذكرة الرسوم المالية @if ($ticket_sort == 'estate')
                     لتثبيت الإعلان {{ $name }}
-                @elseif($ticket_sort == 'broker') لتثبيت الوسيط {{ $name }} @else لصور الوسيط {{ $name }}  @endif  </h2>
+                @elseif($ticket_sort == 'broker') لتثبيت الوسيط {{ $name }} @elseif($ticket_sort == 'broker_images') لصور الوسيط {{ $name }} @else {{ abort(404) }}  @endif  </h2>
                 <span></span>
             </div>
             <!-- end_title_pages -->
@@ -27,7 +27,7 @@
                             </div>
                             <div class="col-md-12">
                                 <select name="payment_method" id="payment_method">
-                                    <option value="0">باى بال</option>
+                                    {{--<option value="0">باى بال</option>--}}
                                     <option value="1">تحويل بنكى</option>
                                 </select>
                             </div>
@@ -43,6 +43,7 @@
                                     </div>
                                     
                                     <input type="hidden" name="item_name" value="{{ $name }}">
+                                    <input type="hidden" name="ticket_sort" value="{{ $ticket_sort }}">
 
                                     <div class="row">
                                         <div class="col-md-2">

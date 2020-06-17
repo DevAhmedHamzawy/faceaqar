@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBrokersTable extends Migration
+class CreateImageBrokersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateBrokersTable extends Migration
      */
     public function up()
     {
-        Schema::create('brokers', function (Blueprint $table) {
+        Schema::create('image_brokers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
-            $table->bigInteger('area_id');
-            $table->integer('duration_id');
+            $table->integer('broker_id');
+            $table->enum('dimensions', ['230 x 200', '231 x 201', '232 x 202']);
+            $table->enum('color_sort', ['أبيض وأسود', 'ملون']);
+            $table->string('url');
+            $table->text('comment');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateBrokersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brokers');
+        Schema::dropIfExists('image_brokers');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AdCardBroker;
 use App\Estate;
 use App\Ticket;
 use Illuminate\Http\Request;
@@ -37,12 +38,17 @@ class PaymentController extends Controller
         return redirect($response['paypal_link']);
     }else{
 
-        $item_id = Estate::whereName($request->item_name)->first()->id;
+        if($request->ticket_sort == 'estate'){
+            $item_id = Estate::whereName($request->item_name)->first()->id;
+        }else{
+            if($request->ticket_sort == 'broker') { $request->merge(['sort' => 'broker']); } else { $request->merge(['sort' => 'brokerimage']); }
+            $item_id = AdCardBroker::whereName($request->item_name)->first()->broker_id;
+        }
 
         $request->merge(['user_id' => auth()->user()->id, 'membership_id' => $item_id]);
         $payment_data = serialize($request->except(['user_id', 'membership_id']));
 
-        Ticket::create(['user_id' => auth()->user()->id, 'membership_id' => $item_id, 'payment_data' => $payment_data]);
+        Ticket::create(['user_id' => auth()->user()->id, 'membership_id' => $item_id, 'payment_data' => $payment_data, 'sort' => $request->sort]);
 
         return 'done';
 

@@ -22,9 +22,31 @@
                         
                        
                         
-                    <img src="{{ $broker->img_path }}" class="img-responsive" style="height:240px" alt=""/>
+                    <img src="{{ $broker->main_img_path }}" class="img-responsive" style="height:240px" alt=""/>
 
-                   
+                    <span> المتبقى من مدة الإضافة </span>
+                    <span> 
+                    
+                        <span class="imp-n-s-2"><a href="{{ route('create-ticket', ['broker',0,$broker->adCardBroker->name ?? ' ']) }}" style="color:#fff;"> إضافة رسوم مالية عند التثبيت </a></span>
+
+                    </span>
+                    <span> 
+                    
+                        <span class="imp-n-s-2"><a href="{{ route('create-ticket', ['broker_images',0,$broker->adCardBroker->name ?? ' ']) }}" style="color:#fff;"> إضافة رسوم مالية عند التثبيت </a></span>
+                    
+                    </span>
+                    
+                    <span>
+                        <form action="{{ route('brokers.destroy', $broker->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">حذف</button>
+                        </form>
+                    </span>
+                    
+
+
+
                 </div>
             </div>
             @empty

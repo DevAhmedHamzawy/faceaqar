@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\AdCardBroker;
 use App\Area;
 use App\Broker;
 use App\Client;
+use App\ImageBroker;
 use App\Page;
 use App\Portfolio;
 use App\Role;
@@ -16,7 +18,12 @@ class HomeController extends Controller
     
     public function welcome()
     {
-        return view('main.welcome', ['clients' => Client::all(), 'portfolios' => Portfolio::all(), 'teams' => DB::table('teams')->join('users','users.id','=','user_id')->get(), 'adSorts' => DB::table('ad_sort')->pluck('id','display'), 'pages' => Page::getParents(), 'sliders' => Broker::getSlider(), 'tickers' => Broker::getTicker() ]);
+        $slider = [];
+        $slider1 = ImageBroker::get();
+        $slider2 = AdCardBroker::get();
+        array_merge($slider, [$slider1, $slider2]);
+
+        return view('main.welcome', ['clients' => Client::all(), 'portfolios' => Portfolio::all(), 'teams' => DB::table('teams')->join('users','users.id','=','user_id')->get(), 'adSorts' => DB::table('ad_sort')->pluck('id','display'), 'pages' => Page::getParents(), 'sliders' => $slider, 'tickers' => Broker::getTicker() ]);
     } 
 
     public function index()

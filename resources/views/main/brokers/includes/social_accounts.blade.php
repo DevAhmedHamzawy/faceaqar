@@ -33,8 +33,8 @@
                     <div class="col-md-4">
                     <select class="form-control required" name="color_sort">
                         <option selected disabled value="">اختر لون الحساب</option>
-                        <option>عادي</option>
                         <option>ملون</option>
+                        <option>أبيض وأسود</option>
                     </select>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                     <label for="" class="newlabel"> نبذة مختصرة عن الحساب  <em>*</em></label>
                 </div>
                     <div class="col-md-4">
-                    <textarea class="form-control required" name="description" placeholder=" اكتب نبذة مختصرة عن النشاط التجاري
+                    <textarea class="form-control required" name="account_body" placeholder=" اكتب نبذة مختصرة عن النشاط التجاري
 " rows="4"></textarea>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                         <label for="">   صورة حساب التواصل الإجتماعي </label>
                     </div>
                     <div class="col-md-4">
-                        <input type="file" name="social_image" class="form-control required" id="" placeholder="">
+                        <input type="file" name="account_image[]" class="form-control required" id="" placeholder="">
                     </div>
                 </div>
                 <div class="row">
@@ -70,11 +70,11 @@
                         <label for="" class="newlabel"> إضافة تعليق عن الإعلان</label>
                     </div>
                     <div class="col-md-4">
-                        <textarea class="form-control required" name="comment" rows="4"></textarea>
+                        <textarea class="form-control required" name="account_comment" rows="4"></textarea>
                     </div>
                 </div>
             
-            {{--<h4> بيانات مدة الاعلان الالكتروني بالموقع </h4>
+            <h4> بيانات مدة الاعلان الالكتروني بالموقع </h4>
                 <div class="row">
                 <div class="col-md-3 col-md-offset-2 forright">
                         <label for="">اختر مدة الإعلان<em>*</em></label>
@@ -90,7 +90,7 @@
                             <option value="5">سنه</option>
                         </select>
                     </div>
-                </div>--}}
+                </div>
                 <div class="row">
                     {!! NoCaptcha::renderJs() !!}
                     {!! NoCaptcha::display() !!}

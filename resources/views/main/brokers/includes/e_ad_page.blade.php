@@ -7,7 +7,7 @@
                         <label for="">  ارفاق الملف الالكتروني  <em>*</em></label>
                      </div>
                      <div class="col-md-4">
-                        <input type="file" name="commercial_file" class="form-control required" id="" placeholder="">
+                        <input type="file" name="page_file[]" class="form-control required" id="" placeholder="">
                      </div>
                  </div>
                  <div class="row">
@@ -17,8 +17,8 @@
                      <div class="col-md-4">
                          <select class="form-control required" name="page_widget">
                             <option selected disabled value=""></option>
-                            <option value="0">الرئيسية</option>
-                            <option value="1">فوتر</option>
+                            <option>الرئيسية</option>
+                            <option>فوتر</option>
                          </select>													
                      </div>
                  </div>
@@ -29,8 +29,8 @@
                      <div class="col-md-4">
                          <select class="form-control required" name="color_sort">
                              <option selected disabled value="">أختر اللون</option>
-                             <option>عادي</option>
                              <option>ملون</option>
+                             <option>أبيض وأسود</option>
                          </select>													
                      </div>
                  </div>
@@ -41,7 +41,7 @@
                          </label>
                      </div>
                      <div class="col-md-4">
-                         <input type="text" class="form-control required" name="url" placeholder="انسخ هنا الرابط الالكتروني للصفحة">
+                         <input type="text" class="form-control required" name="page_url" placeholder="انسخ هنا الرابط الالكتروني للصفحة">
                      </div>
                  </div>
                  <div class="row">
@@ -49,11 +49,11 @@
                          <label for=""> اضف تعليق عن الإعلان </label>
                      </div>
                      <div class="col-md-4">
-                         <textarea class="form-control required" name="comment" rows="4"></textarea>
+                         <textarea class="form-control required" name="page_comment" rows="4"></textarea>
                      </div>
                  </div>
                  
-             {{--<h4> بيانات مدة الاعلان الالكتروني بالموقع </h4>
+                 <h4> بيانات مدة الاعلان الالكتروني بالموقع </h4>
 
                  <div class="row">
                      <div class="col-md-3 col-md-offset-2 forright">
@@ -70,7 +70,7 @@
                              <option value="5">سنه</option>
                          </select>				
                      </div>
-                 </div>--}}
+                 </div>
                  <div class="row">
                     {!! NoCaptcha::renderJs() !!}
                     {!! NoCaptcha::display() !!}
