@@ -55,6 +55,7 @@
                         <a href="{{ route('inbox', auth()->user()->name) }}" class="btn btn-primary col-md-4" style="margin: 10px 35% 0 0;"><h5>صندوق الرسائل</h5></a>
                         <a href="{{ route('brokers.create') }}" class="btn btn-primary col-md-4" style="margin: 10px 35% 0 0;"><h5>إضافة الوسيط</h5></a>
                         <a href="{{ route('notifications') }}" class="btn btn-primary col-md-4" style="margin: 10px 35% 0 0;"><h5>الإشعارات</h5></a>
+                        <a href="{{ route('all-lawyers') }}" class="btn btn-primary col-md-4" style="margin: 10px 35% 0 0;"><h5>محامين الموقع</h5></a>
                     </div>
                 </div>
                

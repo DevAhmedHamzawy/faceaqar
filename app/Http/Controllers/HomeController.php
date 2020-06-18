@@ -10,6 +10,7 @@ use App\ImageBroker;
 use App\Page;
 use App\Portfolio;
 use App\Role;
+use App\SocialAccountBroker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,12 +19,12 @@ class HomeController extends Controller
     
     public function welcome()
     {
-        $slider = [];
-        $slider1 = ImageBroker::get();
-        $slider2 = AdCardBroker::get();
-        array_merge($slider, [$slider1, $slider2]);
-
-        return view('main.welcome', ['clients' => Client::all(), 'portfolios' => Portfolio::all(), 'teams' => DB::table('teams')->join('users','users.id','=','user_id')->get(), 'adSorts' => DB::table('ad_sort')->pluck('id','display'), 'pages' => Page::getParents(), 'sliders' => $slider, 'tickers' => Broker::getTicker() ]);
+        $sliders = [];
+        $sliders = Broker::with('images')->get();
+        //$slider2 = AdCardBroker::get();
+        //$sliders = array_merge($slider1,$slider2);
+        
+        return view('main.welcome', ['clients' => Client::all(), 'portfolios' => Portfolio::all(), 'teams' => DB::table('teams')->join('users','users.id','=','user_id')->get(), 'adSorts' => DB::table('ad_sort')->pluck('id','display'), 'pages' => Page::getParents(), 'sliders' => $sliders, 'tickers' => Broker::all() ]);
     } 
 
     public function index()
