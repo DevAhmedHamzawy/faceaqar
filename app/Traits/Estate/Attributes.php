@@ -42,7 +42,17 @@ Trait Attributes
             {
                 return url('storage/estates/'. $this->name . '/' .$images[0]);
             }else{
-                return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
+                //return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->id ) ) ) . "?d=identicon" . "&s=" . $size = 130;
+
+                
+                $images = [];
+
+                for ($i=0 ; $i < 33 ; $i++ ) { 
+                    array_push($images, $i.".jpg");
+                }
+
+                $number = rand(0,count($images)-1);
+                return url('storage/estates/general' . '/' .$images[$number]);
             }
         }else{
             return null;

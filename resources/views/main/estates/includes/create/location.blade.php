@@ -19,7 +19,10 @@
                                 @foreach ($areas as $area)
                                     @if($adSort->id == 1) @if($area->id == 15)
                                     <option value="{{ $area->name }}">{{ $area->name }}</option>
-                                    @endif @endif
+                                    @endif
+                                    @else
+                                    <option value="{{ $area->name }}">{{ $area->name }}</option>
+                                    @endif
                                 @endforeach
                             </select>										
                         </div>

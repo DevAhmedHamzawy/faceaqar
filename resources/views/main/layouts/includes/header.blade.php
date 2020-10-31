@@ -98,7 +98,7 @@
         <div class="overlay-content">
                         <div class="time-date" style="color:#fff">
                         <p>{{ $hijridate }}</p>
-                        <img src="{{ $header1[7]->icon_path }}">
+                        <img src="{{ $header1[8]->icon_path }}">
                     </div>
         </div>
     </div>
@@ -255,7 +255,7 @@
                 <div class="col-md-3 col-sm-12">
                     <div class="time-date">
                         <p>{{ $hijridate }}</p>
-                        <img src="{{ $header1[7]->icon_path }}">
+                        <img src="{{ $header1[8]->icon_path }}">
                     </div>
                 </div>
             </div>

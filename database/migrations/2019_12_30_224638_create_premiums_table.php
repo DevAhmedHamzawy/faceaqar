@@ -16,6 +16,7 @@ class CreatePremiumsTable extends Migration
         Schema::create('premiums', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->integer('number');
         });
     }
 

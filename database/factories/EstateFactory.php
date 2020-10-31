@@ -20,6 +20,7 @@ $factory->define(Estate::class, function (Faker $faker) {
         'premium_id' => function(){ return DB::table('premiums')->get()->random()->id; },
         'duration_id' => function(){ return DB::table('durations')->get()->random()->id; },
         'code' => $faker->numberBetween(1,8000),
+        'visible' => $faker->numberBetween(0,1),
         'center' => $faker->city,
         'neighborhood' => $faker->city,
         'street' => $faker->streetName,
@@ -29,6 +30,5 @@ $factory->define(Estate::class, function (Faker $faker) {
         'description' => $faker->paragraph(3),
         'lat' => $faker->latitude($min = -90, $max = 90),
         'lng' => $faker->longitude($min = -180, $max = 180),
-        'views' => $faker->numberBetween(1,3000),
     ];
 });

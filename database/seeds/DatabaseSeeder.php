@@ -14,7 +14,7 @@ use App\Portfolio;
 use App\Profile;
 use App\RequestEstate;
 use App\Role;
-use App\Setting;
+use App\Settings;
 use App\User;
 use App\UserImage;
 use Illuminate\Database\Seeder;
@@ -28,22 +28,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //$this->call(AdSortTableSeeder::class);
-        //$this->call(CategoryTableSeeder::class);
-        //$this->call(DestinationTableSeeder::class);
-        //$this->call(DurationTableSeeder::class);
-        //$this->call(OfferTableSeeder::class);
-        //$this->call(PaymentSortTableSeeder::class);
-        //$this->call(PremiumTableSeeder::class);
-        //$this->call(PriceSortTableSeeder::class);
-        //$this->call(SortTableSeeder::class);
-        //$this->call(RoleTableSeeder::class);    
-        //$this->call(TeamTableSeeder::class);    
+        /*$this->call(AdSortTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
+        $this->call(DestinationTableSeeder::class);
+        $this->call(DurationTableSeeder::class);
+        $this->call(OfferTableSeeder::class);
+        $this->call(PaymentSortTableSeeder::class);
+        $this->call(PremiumTableSeeder::class);
+        $this->call(PriceSortTableSeeder::class);
+        $this->call(SortTableSeeder::class);
+        $this->call(RoleTableSeeder::class);   
+        $this->call(TeamTableSeeder::class);    
         
-        //factory(Area::class, 100)->create();
 
 
-        /*$role1 = Role::whereId(1)->firstOrFail();
+        $role1 = Role::whereId(1)->firstOrFail();
         $role2 = Role::whereId(2)->firstOrFail();
         $role3 = Role::whereId(3)->firstOrFail();
         $role4 = Role::whereId(4)->firstOrFail();
@@ -90,35 +89,35 @@ class DatabaseSeeder extends Seeder
 
         App\User::where('id' , '>' , '450')->where('id' , '<' , '400')->each(function ($user) use ($role9) { 
             $user->roles()->attach($role9->id); 
-        });*/
+        });
 
         
-        //factory(Estate::class, 100)->create();
+        factory(Estate::class, 100)->create();*/
         //factory(Advertiser::class, 200)->create();
-        //factory(LocalEstate::class, 50)->create();
-        //factory(AuctionEstate::class, 50)->create();
-        //factory(RequestEstate::class, 50)->create();
+        /*factory(LocalEstate::class, 50)->create();
+        factory(AuctionEstate::class, 50)->create();
+        factory(RequestEstate::class, 50)->create();
 
        
-        //factory(Admin::class, 20)->create();
+        factory(Admin::class, 20)->create();
 
-        //factory(Setting::class, 1)->create();
+        factory(Settings::class, 1)->create();
 
-        //factory(Client::class, 15)->create();
+        factory(Client::class, 15)->create();
 
-        //factory(Portfolio::class, 15)->create();
+        factory(Portfolio::class, 15)->create();
 
-        //$this->call(PageTableSeeder::class);
+        $this->call(PageTableSeeder::class);
 
-        //factory(Page::class, 50)->create();
+        factory(Page::class, 50)->create();
 
-        //$this->call(IconTableSeeder::class);
+        $this->call(IconTableSeeder::class);
 
-        //factory(Links::class, 20)->create();
+        factory(Links::class, 20)->create();
 
-        //factory(EstateImage::class, 139)->create();
+        factory(EstateImage::class, 139)->create();
 
-        //factory(UserImage::class, 139)->create();
+        factory(UserImage::class, 139)->create();*/
 
     }
 }

@@ -18,7 +18,7 @@ class CreateRequestEstatesTable extends Migration
             $table->integer('estate_id');
             $table->integer('rooms_number')->nullable();
             $table->integer('bathrooms_number')->nullable();
-            $table->integer('space')->nullable();
+            $table->integer('estate_space')->nullable();
             $table->integer('price')->nullable();
             $table->timestamps();
         });

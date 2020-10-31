@@ -17,7 +17,7 @@ class CreateAdvertisersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('estate_id');
             $table->integer('advertiser_sort_id');
-            $table->string('name');
+            $table->string('advertiser_name');
             $table->string('mobile1');
             $table->string('mobile2')->nullable();
             $table->string('telephone')->nullable();

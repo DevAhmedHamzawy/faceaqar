@@ -7,8 +7,14 @@
 
     @include('main.welcome.search')  
     
+    @include('main.welcome.most_viewed')    
+
     @include('main.welcome.services')
     
+
+    @include('main.welcome.new')    
+
+
     <!-- banner 1 -->
     <div class="banner1">
         <div class="container">
@@ -16,13 +22,21 @@
         </div>
     </div>
 
+    @include('main.welcome.estate_offices')    
+
     @include('main.welcome.estate_services')    
     
     @include('main.welcome.government_services')
+
+    @include('main.welcome.project_estates')    
     
     @include('main.welcome.adding_estates')
+
+    @include('main.welcome.auction_estates')    
     
     @include('main.welcome.searching_estates')
+
+    @include('main.welcome.request_estates')    
     
     @include('main.welcome.customers_portfolios_work')
     

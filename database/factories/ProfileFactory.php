@@ -8,9 +8,14 @@ use App\User;
 use Faker\Generator as Faker;
 
 $factory->define(Profile::class, function (Faker $faker) {
+    static $i = 0;
+    $users = User::all()->pluck('id')->toArray();
+
+    if($i < 400){
     return [
-        'user_id' => function(){ return User::all()->random()->id; },
+        'user_id' => $users[$i++],
         'area_id' => function(){ return Area::all()->random()->id; },
+        'code' => $faker->numberBetween(1,10000),
         'center' => $faker->city,
         'neighborhood' => $faker->city,
         'street' => $faker->streetName,
@@ -39,4 +44,7 @@ $factory->define(Profile::class, function (Faker $faker) {
         'email' => $faker->email,
         'website' => $faker->url,
     ];
+    }else{
+        return [];
+    }
 });

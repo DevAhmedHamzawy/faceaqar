@@ -12,11 +12,14 @@ $factory->define(EstateImage::class, function (Faker $faker) {
     static $i = 0;
     $estates = Estate::all()->pluck('id')->toArray();
 
-   
-    return [
-        'estate_id' => $estates[$i++],
-        'img' => json_encode(["Hydrangeas.jpg","Chrysanthemum.jpg","Koala.jpg","Desert.jpg","Lighthouse.jpg","Lighthouse.jpg"])
-    ];
+    if($i < 100){
+        return [
+            'estate_id' => $estates[$i++],
+            'img' => json_encode(["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg"])
+        ]; 
+    }else{
+        return [];
+    }
     
 
 });

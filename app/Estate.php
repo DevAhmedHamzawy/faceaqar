@@ -33,6 +33,11 @@ class Estate extends Model implements ViewableContract
     {
         return (new BaseFilter(request()))->apply($builder, $filters);
     }   
+
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('created_at', 'desc')->get();
+    }
     
     // this is a recommended way to declare event handlers
     public static function boot() {
